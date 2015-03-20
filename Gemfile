@@ -1,10 +1,11 @@
 source 'https://rubygems.org'
+ruby '2.1.4'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+# Use MySQL as the database for Active Record
+gem 'mysql2'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -24,13 +25,60 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
 
 # Use Unicorn as the app server
-# gem 'unicorn'
+gem 'puma'
+gem 'resque', "~> 1.22.0", :require => "resque/server"
+gem 'redis'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+
+# Clear syntax for writing and deploying cron jobs
+
+# Pagination
+gem 'kaminari'
+
+# File Upload
+gem 'paperclip'
+
+# User authentication
+gem 'devise'
+gem "devise-async"
+gem 'omniauth'
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
+gem 'omniauth-linkedin'
+
+# Searches
+gem 'ransack'
+
+# Bootstrap
+gem 'bootstrap-sass'
+
+# Html5 Form Validators
+gem 'html5_validators'
+
+# Help jQuery work with TurboLinks
+gem 'jquery-turbolinks'
+
+# Make Nested Form Fields Easier and More Dynamic
+gem 'nested_form_fields'
+
+# Add Moment.js
+gem 'momentjs-rails'
+
+gem "rack-timeout"
+
+gem 'mandrill-api'
+gem 'mailchimp-api', '~> 2.0.6'
+
+gem 'aws-sdk', '~> 1'
+gem 'jquery.fileupload-rails'
+
+#WYSIWYG Editor
+gem 'bootsy'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -41,5 +89,28 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+  # Stop Assest Logs from showing during development
+  gem 'quiet_assets'
+
+  # Test for N+1 Queries, Unnessecary Eager Loading, or Should Be Using Counter Cache
+  gem 'bullet'
+
+  # Easily create fake data for development
+  gem 'faker'
+
+  # Catch Mail during Dev
+  gem 'mailcatcher'
+
+  # Add a comment summarizing the current schema to each model file
+  gem 'annotate'
+
+  gem 'meta_request'
+
+
+end
+
+group :production do
+  gem 'rails_12factor'
 end
 
