@@ -49,7 +49,6 @@ gem "devise-async"
 gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
-gem 'omniauth-linkedin'
 
 # Searches
 gem 'ransack'
