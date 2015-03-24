@@ -1,4 +1,4 @@
-<h2>Welcom Home <%= current_user.name if user_signed_in? %></h2>
+<h2>Welcome Home <%= current_user.name if user_signed_in? %></h2>
 <% if user_signed_in? %>
 	<%= link_to("LOGOUT", destroy_user_session_path, :method => :delete)  %>
 <% else %>
