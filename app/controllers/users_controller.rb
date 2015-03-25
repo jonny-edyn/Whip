@@ -16,7 +16,7 @@ class UsersController < ApplicationController
     # authorize! :update, @user
     respond_to do |format|
       if @user.update(user_params)
-        sign_in(@user == current_user ? @user : current_user, :bypass => true)
+        sign_in(@user == current_user ? @user : current_user, bypass: true)
         format.html { redirect_to @user, notice: 'Your profile was successfully updated.' }
         format.json { head :no_content }
       else
@@ -30,8 +30,8 @@ class UsersController < ApplicationController
   def finish_signup
     # authorize! :update, @user 
     if request.patch? && params[:user] #&& params[:user][:email]
-      if @user.update(user_params)
-        sign_in(@user, :bypass => true)
+      if @user.update_attributes(user_params)
+        sign_in(@user, bypass: true)
         redirect_to root_path, notice: 'Your profile was successfully updated.'
       else
         @show_errors = true
