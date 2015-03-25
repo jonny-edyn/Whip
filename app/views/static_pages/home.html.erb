@@ -5,3 +5,8 @@
 	<%= link_to("SIGN IN", new_user_session_path)  %>
 	<%= link_to("SIGN UP", new_user_registration_path)  %>
 <% end %>
+
+<% @users = User.all
+	@users.each do |user| %>
+	<%= user.name %><%= user.id %><br>
+	<% end %>
