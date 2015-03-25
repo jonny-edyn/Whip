@@ -8,5 +8,5 @@
 
 <% @users = User.all
 	@users.each do |user| %>
-	<%= user.name %><%= user.id %><br>
+	<br><%= user.name %><%= user.email %><%= user.id %><br>
 	<% end %>
