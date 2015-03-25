@@ -6,6 +6,8 @@
 
 	<% unless @idents.include?("twitter") %>
 		<a href="<%= root_url %>users/auth/twitter">MERGE TWITTER</a>
+	<% else %>
+		<a href="<%= remove_twitter_user_path %>">REMOVE TWITTER FROM ACCOUNT</a>
 	<% end %>
 	
 	<% unless @idents.include?("facebook") %>

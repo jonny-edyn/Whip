@@ -51,6 +51,14 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def remove_twitter
+    @user = current_user
+    @ident = @user.identities.find_by(provider: "twitter")
+    @ident.destroy!
+    redirect_to root_path
+    
+  end
   
   private
     def set_user

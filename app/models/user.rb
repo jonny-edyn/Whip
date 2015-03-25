@@ -46,8 +46,7 @@ class User < ActiveRecord::Base
 
     # Associate the identity with the user if needed
     if identity.user != user
-      identity.user = user
-      identity.save!
+      flash[:danger] = "Twitter Account already associated with different user.  If you believe this to be an error, please contact us immediately!"
     end
     user
   end
