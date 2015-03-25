@@ -16,7 +16,9 @@
 	<br><%= user.name %><%= user.email %><%= user.id %><br>
 	<% end %>
 BREAK
+<% if user_signed_in? %>
 <% @identities = current_user.identities
 	@identities.each do |i| %>
 	<br><%= i.user.email %><br>
 	<% end %>
+<% end %>
