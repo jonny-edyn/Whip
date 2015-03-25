@@ -1,13 +1,22 @@
-<h2>Welcome Home <%= current_user.name if user_signed_in? %></h2>
+<h2>Welcome Home <%= current_user.email if user_signed_in? %></h2>
 <% if user_signed_in? %>
 	<%= link_to("LOGOUT", destroy_user_session_path, :method => :delete)  %>
 	<%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %>
+	<a href="http://localhost:3000/users/auth/twitter">MERGE TWITTER</a>
+	
+	<a href="http://localhost:3000/users/auth/facebook">MERGE FB</a>
 <% else %>
 	<%= link_to("SIGN IN", new_user_session_path)  %>
 	<%= link_to("SIGN UP", new_user_registration_path)  %>
+
 <% end %>
 
 <% @users = User.all
 	@users.each do |user| %>
 	<br><%= user.name %><%= user.email %><%= user.id %><br>
+	<% end %>
+BREAK
+<% @identities = Identity.all
+	@identities.each do |i| %>
+	<br><%= i.user.email %><br>
 	<% end %>
