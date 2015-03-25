@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :finish_signup]
+  before_action :set_user, only: [:show, :update, :destroy, :finish_signup]
+  before_filter :authenticate_user!
 
   # GET /users/:id.:format
   def show
@@ -9,11 +10,13 @@ class UsersController < ApplicationController
   # GET /users/:id/edit
   def edit
     # authorize! :update, @user
+    @user = current_user
   end
 
   # PATCH/PUT /users/:id.:format
   def update
     # authorize! :update, @user
+    @user = User.find(current_user.id)
     respond_to do |format|
       if @user.update(user_params)
         sign_in(@user == current_user ? @user : current_user, bypass: true)
