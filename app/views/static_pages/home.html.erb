@@ -1,4 +1,4 @@
-<h2>Welcome Home <%= current_user.email if user_signed_in? %></h2>
+<h2>Welcome Home <%= current_user.name if user_signed_in? %></h2>
 <% if user_signed_in? %>
 	<%= link_to("LOGOUT", destroy_user_session_path, :method => :delete)  %>
 	<%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %>
@@ -16,7 +16,7 @@
 	<br><%= user.name %><%= user.email %><%= user.id %><br>
 	<% end %>
 BREAK
-<% @identities = Identity.all
+<% @identities = current_user.identities
 	@identities.each do |i| %>
 	<br><%= i.user.email %><br>
 	<% end %>
