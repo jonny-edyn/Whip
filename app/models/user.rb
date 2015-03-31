@@ -4,6 +4,22 @@ class User < ActiveRecord::Base
 
   has_many :identities, dependent: :destroy
 
+  has_many :relationships, foreign_key: "follower_id", dependent: :destroy
+  has_many :followers, through: :reverse_relationships, source: :follower
+
+
+  has_many :followed_users, through: :relationships, source: :followed
+  has_many :reverse_relationships, foreign_key: "followed_id",
+                                   class_name:  "Relationship",
+                                   dependent:   :destroy
+
+  has_many :votes, as: :voteable
+  has_many :comments
+
+  belongs_to :party
+  belongs_to :postcode
+
+
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable
   devise :database_authenticatable, :registerable,
@@ -46,7 +62,7 @@ class User < ActiveRecord::Base
 
     # Associate the identity with the user if needed
     if identity.user != user
-      flash[:danger] = "Twitter Account already associated with different user.  If you believe this to be an error, please contact us immediately!"
+      #fix this
     end
     user
   end
