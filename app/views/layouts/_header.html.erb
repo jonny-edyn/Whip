@@ -1,0 +1,93 @@
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="z-index:10000;">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header" style="width:100%;">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" id="menu-toggler">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="<%= root_path %>" style="letter-spacing: 10px;">WHIP</a>
+      <a class="navbar-brand" href="#">SIGN IN</a>
+            <!-- 'Sticky' (non-collapsing) right-side menu item(s) -->
+           
+     <div class="collapse navbar-collapse pull-right" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+              <!-- This works well for static text, like a username -->
+          <li><%= link_to "TRENDING BILLS", "#" %></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" role="button" aria-expanded="false">ISSUES</a>
+            <ul class="dropdown-menu" role="menu">
+                <li>
+                  <div class="row" style="width: 448px; padding:5px 15px;">
+                    <ul class="list-unstyled col-md-3" style="width: 118px; padding-right: 0px;">
+                        <li><a href="#">Arts and culture</a></li>
+                        <li><a href="#">Crime</a></li>
+                        <li><a href="#">Defence</a></li>
+                        <li><a href="#">Devolution</a></li>
+                    </ul>
+                    <ul class="list-unstyled col-md-3" style="width: 104px;">
+                        <li><a href="#">Economy</a></li>
+                        <li><a href="#">Education</a></li>
+                        <li><a href="#">Energy</a></li>
+                        <li><a href="#">Environment</a></li>
+                    </ul>
+                    <ul class="list-unstyled col-md-3" style="width: 108px; padding-right: 0px;">
+                        <li><a href="#">Family</a></li>
+                        <li><a href="#">Health</a></li>
+                        <li><a href="#">Human Rights</a></li>
+                        <li><a href="#">Immigration</a></li>
+                    </ul>
+                    <ul class="list-unstyled col-md-2" style="width:50px;">
+                        <li><a href="#">Pension</a></li>
+                        <li><a href="#">Students</a></li>
+                        <li><a href="#">Transport</a></li>
+                        <li><a href="#">Tax</a></li>
+                    </ul>
+                  </div>
+                </li>
+            </ul>
+          </li>
+          <% if user_signed_in? %>
+            <li><%= link_to "MY VOTES", "#" %></li>
+          <% end %>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" role="button" aria-expanded="false">INFO</a>
+            <ul class="dropdown-menu" role="menu">
+              <li>
+                <div class="row" style="width: 262px; padding: 5px 15px;">
+                    <ul class="list-unstyled col-md-6" style="width:100px;">
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Feedback</a></li>
+                        <li><a href="#">Jobs</a></li>
+                    </ul>
+                    <ul class="list-unstyled col-md-6" style="width:132px;">
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Team</a></li>
+                        <li><a href="#">Terms of service</a></li>
+                        <li><a href="#">WHIP guidlines</a></li>
+                    </ul>
+                  </div>
+                </li>
+            </ul>
+          </li>
+          <li><%= link_to "FB", "#" %></li>
+          <li><%= link_to "TW", "#" %></li>
+          <li><%= link_to "EM", "#" %></li>
+          
+        </ul>
+    </div><!-- /.navbar-collapse -->
+
+    
+    </div><!-- /.navbar-header -->
+
+ 
+        
+
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+   
+  </div><!-- /.container-fluid -->
+</nav>

@@ -2,13 +2,48 @@
 <html>
 <head>
   <title>Whip</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <%= render 'layouts/shim' %>
 </head>
 <body>
 
-<%= yield %>
+	<div id="holder">
 
+		<div class="container-fluid">
+
+			<div class="row">
+
+
+				<div id="header">
+				    
+					<%= render 'layouts/header' %>
+
+				</div> <%# end header div %>
+				
+				<div id="body" class="col-md-12" style="padding-top: 50px;">
+
+					<%= yield %>
+
+				</div> <%# end body div %>
+
+
+					<%= render 'layouts/footer' %>
+
+
+			</div> <%# end row div %>
+
+		</div> <%# end container-fluid div %>
+
+
+	</div> <%# end holder div %>
+
+
+  
 </body>
+
 </html>
