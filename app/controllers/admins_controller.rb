@@ -7,6 +7,8 @@ class AdminsController < ApplicationController
 
 	def bills
 		@bills = Bill.all
+		@bill = Bill.new
+		@issues = Issue.all
 	end
 
 	def parties

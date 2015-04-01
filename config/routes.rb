@@ -15,6 +15,12 @@ Rails.application.routes.draw do
 
   resources :parties
 
+  resources :bills do
+    member do
+      post :add_issues
+    end
+  end
+
   resources :admins do
     collection do
       get :users

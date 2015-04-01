@@ -1,0 +1,87 @@
+<div class="row" style="margin-bottom: 20px; border-bottom: 1px solid #030303; padding-bottom: 20px;">
+	<div class="col-md-6">
+		<%= current_user.name %><br>
+		# of Votes <!-- add this functionality still -->
+		<a href="<%= edit_user_registration_path %>">SETTINGS</a><br>
+		<a href="#">FOLLOWERS</a><!-- add this functionality still -->
+	</div>
+	<div class="col-md-6" style="text-align:right;">
+		Add MP Association Here
+	</div>
+</div>
+
+
+<div class="row" style="padding-bottom:20px;">
+	<div class="col-md-12" style="text-align:center;">
+		<%= @bill.simple_name %>
+	</div>
+</div>
+
+
+<div class="row" style="margin-bottom: 20px; border-bottom: 1px solid #030303; padding-bottom: 20px;">
+	<div class="col-md-6" style="text-align:center;">
+		<h2>ARGUMENT FOR</h2>
+		<%= @bill.support %>
+	</div>
+	<div class="col-md-6" style="text-align:center;">
+		<h2>ARGUMENT AGAINST</h2>
+		<%= @bill.opposition %>
+	</div>
+</div>
+
+
+<div class="row" style="margin-bottom: 20px; border-bottom: 1px solid #030303; padding-bottom: 20px;">
+	<div class="col-md-6" style="text-align:right;">
+		VOTE YES
+	</div>
+	<div class="col-md-6" style="text-align:left;">
+		VOTE NO
+	</div>
+</div>
+
+
+<div class="row" style="padding-bottom:20px;">
+	<h2 style="text-align:center; padding-bottom:20px;">BILL PROGRESS</h2>
+	<div class="col-md-2 col-md-offset-3" style="text-align:center;">
+		HOUSE OF COMMONS
+	</div>
+	<div class="col-md-2" style="text-align:center;">
+		HOUSE OF LORDS
+	</div>
+	<div class="col-md-2" style="text-align:center;">
+		ROYAL ASSENT
+	</div>
+</div>
+
+
+<div class="row" style="padding-bottom:40px;">
+	<div class="col-md-12" style="text-align:left;">
+		<h2>MEANING</h2>
+		<%= @bill.meaning %>
+	</div>
+</div>
+
+
+<div class="row" style="padding-bottom:40px;">
+	<div class="col-md-12" style="text-align:left;">
+		<h2>WHO DOES IT IMPACT?</h2>
+		<%= @bill.impact %>
+	</div>
+</div>
+
+
+<div class="row" style="padding-bottom:40px;">
+	<div class="col-md-12" style="text-align:left;">
+		<h2>POTENTIAL COSTS</h2>
+		<%= @bill.cost %>
+	</div>
+</div>
+
+
+<div class="row" style="padding-bottom:80px;">
+	<div class="col-md-12" style="text-align:left;">
+		<% @issues.each do |issue| %>
+			<p style="display: inline; border: 1px solid #030303; padding: 5px; margin-right: 30px;"><%= issue.name %></p>
+		<% end %>
+	</div>
+</div>

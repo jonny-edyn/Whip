@@ -1,10 +1,129 @@
 <div class="row">
 	<div class="col-md-8">
-		<% if @bills.any? %>
-			<% @bills.each do |bill| %>
-				<%= bill.name %><br>
-			<% end %>
-		<% end %>
+		<div class="row">
+			<div class="col-md-12">
+				<h2 style="margin-top: 0;">BILLS</h2>
+				<br>
+			</div>
+			<div class="col-md-12">
+				<% if @bills.any? %>
+				<% @bills.each do |bill| %>
+				<% 
+					ids = []
+					bill.issues.each do |issue|
+						ids << issue.id
+					end 
+				%>
+				<div class="row">
+					<div class="col-md-9">
+						<%= bill.simple_name %>
+						<div style="display:none;" id="bill_<%= bill.id %>_edit" class="edit_form">
+							<%= form_for bill do |f| %>
+								<%= f.label :simple_name, "Common Name" %>
+								<%= f.text_field :simple_name %><br>
+								<%= f.label :official_name, "Official Name" %>
+								<%= f.text_field :official_name %><br>
+								<%= f.label :support, "Arguments For" %>
+								<%= f.text_area :support %><br>
+								<%= f.label :opposition, "Arguments Against" %>
+								<%= f.text_area :opposition %><br>
+								<%= f.label :meaning, "Meaning" %>
+								<%= f.text_area :meaning %><br>
+								<%= f.label :impact, "Who Does It Impact?" %>
+								<%= f.text_area :impact %><br>
+								<%= f.label :cost, "Potential Costs" %>
+								<%= f.text_area :cost %><br>
+								<%= f.label :trending, "Add To Top Trending?" %>
+								<%= f.check_box :trending %><br>
+								<%= f.submit "Edit Bill" %>
+							<% end %>
+						</div>
+						<div style="display:none;" id="bill_<%= bill.id %>_issues" class="issues_form">
+							<%= form_tag add_issues_bill_path(bill.id) do %>
+								<%= select_tag "bill_issues", options_from_collection_for_select(@issues, "id", "name", ids), multiple: true, class: "issue_select" %>
+								<%= submit_tag "Add Issues To Bills"%>
+							<% end %>
+						</div>
+					</div>
+					<div class="col-md-1"> 
+						<a href="" id="<%= bill.id %>" class="show_edit">EDIT</a>
+					</div>
+					<div class="col-md-1"> 
+						<a href="" id="<%= bill.id %>" class="show_issues">ISSUES</a>
+					</div>
+					<div class="col-md-1"> 
+						<%= form_for bill, method: :delete, html: {style: "display:inline;"}  do |f|%>
+							<%= f.submit "DELETE", style: "background: transparent; border: none;" %>
+						<% end %>
+					</div>
+				</div>
+				<br>
+				<% end %>
+				<% end %>
+			</div>
+			<div class="col-md-12">
+				<h2>Add Bill</h2>
+			</div>
+			<div class="col-md-12">
+				<%= form_for @bill do |f| %>
+					<%= f.label :simple_name, "Common Name" %>
+					<%= f.text_field :simple_name %><br>
+					<%= f.label :official_name, "Official Name" %>
+					<%= f.text_field :official_name %><br>
+					<%= f.label :support, "Arguments For" %>
+					<%= f.text_area :support %><br>
+					<%= f.label :opposition, "Arguments Against" %>
+					<%= f.text_area :opposition %><br>
+					<%= f.label :meaning, "Meaning" %>
+					<%= f.text_area :meaning %><br>
+					<%= f.label :impact, "Who Does It Impact?" %>
+					<%= f.text_area :impact %><br>
+					<%= f.label :cost, "Potential Costs" %>
+					<%= f.text_area :cost %><br>
+					<%= f.label :trending, "Add To Top Trending?" %>
+					<%= f.check_box :trending %><br>
+					<%= f.submit "Add New Bill" %>
+				<% end %>
+			</div>
+		</div>
 	</div>
 	<%= render "admins/admin_sidebar" %>
 </div>
+
+<script type="text/javascript">
+var ready;
+ready = function() {
+
+$('body').on('click','.show_edit',function(e){
+	e.preventDefault();
+
+	var id = $(this).attr('id');
+	var fin = 'bill_' + id + '_edit'
+
+	$('.edit_form').css('display','none');
+	$('.issues_form').css('display','none');
+	$('#' + fin).fadeIn();
+});
+
+$('body').on('click','.show_issues',function(e){
+	e.preventDefault();
+
+	var id = $(this).attr('id');
+	var fin = 'bill_' + id + '_issues'
+
+	$('.edit_form').css('display','none');
+	$('.issues_form').css('display','none');
+	$('#' + fin).fadeIn();
+});
+
+ //
+ // Build multiselect for filtering form
+ // 
+
+  $('.issue_select').multiselect();
+
+ };
+
+$(document).ready(ready);
+$(document).on('page:load', ready);
+</script>
