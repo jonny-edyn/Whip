@@ -11,6 +11,22 @@ Rails.application.routes.draw do
 
   match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
 
+  resources :issues
+
+  resources :parties
+
+  resources :admins do
+    collection do
+      get :users
+      get :bills
+      get :parties
+      get :issues
+      get :constituencies
+      get :mps
+      get :post_codes
+    end
+  end
+
   root 'static_pages#home'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

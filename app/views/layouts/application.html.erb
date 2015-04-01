@@ -25,7 +25,7 @@
 
 				</div> <%# end header div %>
 				
-				<div id="body" class="col-md-12" style="padding-top: 50px;">
+				<div id="body" class="col-md-12" style="padding-top: 70px;padding-left: 60px;padding-right: 60px;">
 
 					<%= yield %>
 
@@ -42,8 +42,56 @@
 
 	</div> <%# end holder div %>
 
+	<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h4 class="modal-title" id="myModalLabel">SIGN IN</h4>
+	      </div>
+	      <div class="modal-body">
+	        <div id="flash_messages">
+	        </div>
+	        <%= render 'devise/sessions/new_for_modal' %>
+	        <br>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 
+	<div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h4 class="modal-title" id="myModalLabel">JOIN NOW</h4>
+	      </div>
+	      <div class="modal-body">
+	        <div id="flash_messages_3">
+	        </div>
+	        <%= render 'devise/registrations/new_for_modal' %>
+	        <br>
+	      </div>
+	    </div>
+	  </div>
+	</div>
   
 </body>
 
 </html>
+
+<script type="text/javascript">
+function centerModal() {
+    $(this).css('display', 'block');
+    var $dialog = $(this).find(".modal-dialog");
+    var offset = ($(window).height() - $dialog.height()) / 2;
+    //Make sure you don't hide the top part of the modal w/ a negative margin if it's longer than the screen height, and keep the margin equal to the bottom margin of the modal
+    var bottomMargin = $dialog.css('marginBottom');
+    bottomMargin = parseInt(bottomMargin);
+    if(offset < bottomMargin) offset = bottomMargin;
+    $dialog.css("margin-top", offset);
+}
+
+$('.modal').on('show.bs.modal', centerModal);
+$(window).on("resize", function () {
+    $('.modal:visible').each(centerModal);
+});
+</script>
