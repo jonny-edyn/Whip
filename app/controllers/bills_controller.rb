@@ -39,6 +39,18 @@ class BillsController < ApplicationController
 
 	def index
 		@bills = Bill.all
+		@trending = []
+		@common = []
+		@bills.each do |bill|
+			if bill.trending
+				@trending << bill
+			end
+		end
+		@bills.each do |bill|
+			unless bill.trending
+				@common << bill
+			end
+		end
 	end
 
 	def show
