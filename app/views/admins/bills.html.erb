@@ -3,6 +3,11 @@
 		<div class="row">
 			<div class="col-md-12">
 				<h2 style="margin-top: 0;">BILLS</h2>
+				<%= form_for @setting do |f| %>
+					<%= f.label :yes, "Automatic Trending?" %>
+					<%= f.check_box :yes %>
+					<%= f.submit "Save Trending Setting" %>
+				<% end %>
 				<br>
 			</div>
 			<div class="col-md-12">

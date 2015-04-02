@@ -1,1 +1,89 @@
 <%= render 'bills/top_banner_with_names' %>
+<h2>TOP TRENDING BILLS</h2>
+
+	<div class="row trending_bills" >
+		<% 
+			if @trending.any?
+			@trending.each do |bill|
+		 %>
+		<div class="col-md-12" style="text-align:center;">
+			<div class="row" style="padding-bottom:20px;">
+				<div class="col-md-12" style="text-align:center;">
+					<%= link_to bill.simple_name, bill_path(bill) %>
+				</div>
+			</div>
+
+
+			<div class="row" style="margin-bottom: 20px; border-bottom: 1px solid #030303; padding-bottom: 20px;">
+				<div class="col-md-6" style="text-align:center;">
+					<h2>ARGUMENT FOR</h2>
+					<%= bill.support %>
+				</div>
+				<div class="col-md-6" style="text-align:center;">
+					<h2>ARGUMENT AGAINST</h2>
+					<%= bill.opposition %>
+				</div>
+			</div>
+
+
+			<div class="row" style="margin-bottom: 20px; border-bottom: 1px solid #030303; padding-bottom: 20px;">
+				<div class="col-md-6" style="text-align:right;">
+					VOTE YES
+				</div>
+				<div class="col-md-6" style="text-align:left;">
+					VOTE NO
+				</div>
+			</div>
+		</div>
+		<% end %>
+		<% end %>
+	</div>
+
+
+
+<div class="row">
+	<% 
+		if @common.any?
+		@common.each do |bill|
+	 %>
+	<div class="col-md-6" style="text-align:center;">
+		<div class="row" style="padding-bottom:20px;">
+			<div class="col-md-12" style="text-align:center;">
+				<%= link_to bill.simple_name, bill_path(bill) %>
+			</div>
+		</div>
+
+
+		<div class="row" style="margin-bottom: 20px; border-bottom: 1px solid #030303; padding-bottom: 20px;">
+			<div class="col-md-12" style="text-align:center;">
+				<h2>ARGUMENT FOR</h2>
+				<%= bill.support %>
+			</div>
+			<div class="col-md-12" style="text-align:center;">
+				<h2>ARGUMENT AGAINST</h2>
+				<%= bill.opposition %>
+			</div>
+		</div>
+
+
+		<div class="row" style="margin-bottom: 20px; border-bottom: 1px solid #030303; padding-bottom: 20px;">
+			<div class="col-md-6" style="text-align:right;">
+				VOTE YES
+			</div>
+			<div class="col-md-6" style="text-align:left;">
+				VOTE NO
+			</div>
+		</div>
+	</div>
+	<% end %>
+	<% end %>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+	  $('.trending_bills').slick({
+	    accessibility: true,
+
+	  });
+	});
+</script>

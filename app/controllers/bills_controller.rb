@@ -38,23 +38,51 @@ class BillsController < ApplicationController
 	end
 
 	def index
+
+
 		@bills = Bill.all
+		count = []
 		@trending = []
 		@common = []
-		@bills.each do |bill|
-			if bill.trending
-				@trending << bill
+
+		if Setting.first.yes
+
+			@bills.each do |bill|
+				count << [bill, bill.impressionist_count]
 			end
-		end
-		@bills.each do |bill|
-			unless bill.trending
-				@common << bill
+
+			orderd_count = count.sort_by{|k|k[1]}.reverse
+
+			@trending_both = orderd_count.first(3)
+			@trending_both.each do |trending|
+				@trending << trending[0]
 			end
+			@common_both = orderd_count.drop(3)
+			@common_both.each do |common|
+				@common << common[0]
+			end
+		else
+
+			
+			@bills.each do |bill|
+				if bill.trending
+					@trending << bill
+				end
+			end
+			@bills.each do |bill|
+				unless bill.trending
+					@common << bill
+				end
+			end
+
 		end
+
+			
 	end
 
 	def show
 		@bill = Bill.find(params[:id])
+		impressionist(@bill)
 		@issues = @bill.issues
 	end
 

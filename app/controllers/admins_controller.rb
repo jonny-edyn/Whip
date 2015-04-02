@@ -9,6 +9,7 @@ class AdminsController < ApplicationController
 		@bills = Bill.all
 		@bill = Bill.new
 		@issues = Issue.all
+		@setting = Setting.first
 	end
 
 	def parties
