@@ -1,0 +1,10 @@
+<div class="row" style="margin-bottom: 20px; border-bottom: 1px solid #030303; padding-bottom: 20px;">
+	<div class="col-md-6">
+		<%= @user.name %><br>
+		# of Votes<br> <!-- add this functionality still -->
+		<%= render 'follow_form' if signed_in? %>
+	</div>
+	<div class="col-md-6" style="text-align:right;">
+		Add MP Association Here
+	</div>
+</div>

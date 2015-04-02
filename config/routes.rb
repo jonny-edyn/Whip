@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resource :user, only: [:edit] do
+  resources :users, only: [:edit, :show] do
     collection do
       patch 'update_password'
       get :remove_twitter
@@ -34,6 +34,10 @@ Rails.application.routes.draw do
   end
 
   resources :settings, only: [:update]
+
+  resources :relationships, only: [:create, :destroy]
+
+  resources :votes
 
   root 'static_pages#home'
   # The priority is based upon order of creation: first created -> highest priority.

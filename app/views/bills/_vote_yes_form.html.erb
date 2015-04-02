@@ -1,0 +1,5 @@
+<%= form_tag votes_path do |f| %>
+  <div><%= hidden_field_tag 'bill_id', bill %></div>
+  <div><%= hidden_field_tag 'in_favor', true %></div>
+  <%= submit_tag "Yes", class: "" %>
+<% end %>
