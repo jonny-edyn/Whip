@@ -1,0 +1,60 @@
+<%= render 'bills/top_banner_with_names' %>
+
+<div class="row trending_bills" >
+		<% 
+			if @votes.any?
+			@votes.each do |vote|
+			bill = vote.bill
+		 %>
+		<div class="col-md-12" style="text-align:center;">
+			<div class="row" style="padding-bottom:20px;">
+				<div class="col-md-12" style="text-align:center;">
+					<%= link_to bill.simple_name, bill_path(bill) %>
+				</div>
+			</div>
+
+			<div class="row" style="margin-bottom: 20px; padding-bottom: 20px;">
+				<div class="col-md-6" style="text-align:left;">
+
+					<% if vote.in_favor %>
+						<h2>YOU VOTED YES</h2>
+						<h4>CHANGE VOTE TO</h4><%= render 'bills/vote_no_form', bill: bill.id %>
+				</div>
+					<% else %>
+						<h2>YOU VOTED NO</h2>
+						<h4>CHANGE VOTE TO</h4><%= render 'bills/vote_yes_form', bill: bill.id %>
+				</div>
+					<% end %>
+
+				<div class="col-md-6" style="text-align:right;">
+					MP VOTED NO
+				</div>
+			</div>
+
+			
+
+			<div class="row" style="padding-bottom:20px;">
+				<h4 style="text-align:left; padding-bottom:20px;">BILL PROGRESS</h4>
+				<div class="col-md-2" style="text-align:center;">
+					HOUSE OF COMMONS
+				</div>
+				<div class="col-md-2" style="text-align:center;">
+					HOUSE OF LORDS
+				</div>
+				<div class="col-md-2" style="text-align:center;">
+					ROYAL ASSENT
+				</div>
+				<div class="col-md-6" style="text-align:center;">
+					YOUR COMMENT
+				</div>
+			</div>
+
+		</div>
+
+
+
+
+
+		<% end %>
+		<% end %>
+	</div>

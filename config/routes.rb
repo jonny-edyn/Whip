@@ -37,6 +37,7 @@ Rails.application.routes.draw do
 
   resources :relationships, only: [:create, :destroy]
 
+  get '/my_votes' => 'votes#my_votes'
   resources :votes
 
   root 'static_pages#home'

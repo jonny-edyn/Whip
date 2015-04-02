@@ -68,10 +68,18 @@
 
 		<div class="row" style="margin-bottom: 20px; border-bottom: 1px solid #030303; padding-bottom: 20px;">
 			<div class="col-md-6" style="text-align:right;">
-				<%= render 'bills/vote_yes_form', bill: bill.id %>
+				<% if user_signed_in? %>
+					<%= render 'bills/vote_yes_form', bill: bill.id %>
+				<% else %>
+					<a class="navbar-brand" href="#" data-toggle="modal" data-target="#loginModal">SIGN IN</a>
+				<% end %>
 			</div>
 			<div class="col-md-6" style="text-align:left;">
-				<%= render 'bills/vote_no_form', bill: bill.id %>
+				<% if user_signed_in? %>
+					<%= render 'bills/vote_no_form', bill: bill.id %>
+				<% else %>
+					<a class="navbar-brand" href="#" data-toggle="modal" data-target="#loginModal">SIGN IN</a>
+				<% end %>
 			</div>
 		</div>
 	</div>
