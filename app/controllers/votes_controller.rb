@@ -13,6 +13,7 @@ class VotesController < ApplicationController
 		end
 
 		if @vote.save
+			Resque.enqueue(NewVoteMessage, @vote.id)
 	      	redirect_to :back
 	  	else
 	    	render 'static_pages/home'

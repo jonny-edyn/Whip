@@ -60,3 +60,39 @@
 		<% end %>
 		<% end %>
 	</div>
+
+<script type="text/javascript">
+var ready;
+ready = function() {
+
+
+	  $('body').off('click','.bill_voting');
+	  $('body').on('click','.bill_voting', function(e){
+	  	e.preventDefault();
+
+	  	var this_form = $(this);
+	  	var comment_section = $(this_form).children('.hidden_comment');
+
+	  	comment_section.val('testing');
+	  	
+	  	$('#commentModal').modal('show');
+
+	  	$('#commentModal').off('click','#add_comment');
+	  	$('#commentModal').on('click','#add_comment',function(e){
+	  		var new_comment = $(this).siblings('#content').val();
+	  		comment_section.val(new_comment);
+	  		
+	  		$('#commentModal').modal('hide');
+
+	  		this_form.trigger("submit.rails");
+	  	});
+
+	  });
+
+
+
+};
+
+$(document).ready(ready);
+$(document).on('page:load', ready);
+</script>
