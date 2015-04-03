@@ -1,4 +1,6 @@
 class VotesController < ApplicationController
+	before_action :set_idents, only: [:my_votes]
+	before_action :set_bill_count, only: [:my_votes]
 
 	def create
 		unless current_user.votes.where(bill_id: params[:bill_id]).any?

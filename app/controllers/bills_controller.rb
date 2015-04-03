@@ -1,4 +1,6 @@
 class BillsController < ApplicationController
+	before_action :set_idents, only: [:index]
+	before_action :set_bill_count, only: [:index, :show]
 
 	def create
 

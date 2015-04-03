@@ -9,6 +9,23 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <%= render 'layouts/shim' %>
+  	<script type="text/javascript">
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '962288367166716',
+          xfbml      : true,
+          version    : 'v2.3'
+        });
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+	</script>
 </head>
 <body>
 
@@ -85,6 +102,7 @@
 	        </div>
 	        <%= render 'votes/add_comment_for_modal' %>
 	        <br>
+	        <%= render 'votes/post_vote_on_social_for_modal' %>
 	      </div>
 	    </div>
 	  </div>

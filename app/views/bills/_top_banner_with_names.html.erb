@@ -1,7 +1,7 @@
 <div class="row" style="margin-bottom: 20px; border-bottom: 1px solid #030303; padding-bottom: 20px;">
 	<div class="col-md-6">
 		<%= current_user.name %><br>
-		# of Votes<br> <!-- add this functionality still -->
+		<%= @votes_count %> Votes<br>
 		<a href="<%= edit_user_registration_path %>">SETTINGS</a><br>
 		<a href="#">FOLLOWERS</a><!-- add this functionality still -->
 	</div>

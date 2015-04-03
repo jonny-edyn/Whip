@@ -16,4 +16,18 @@ class ApplicationController < ActionController::Base
       end
     end
 
+    def set_idents
+      @idents = []
+
+      if user_signed_in?
+        current_user.identities.each do |i|
+          @idents << i.provider
+        end
+      end
+    end
+
+    def set_bill_count
+      @votes_count = current_user.votes.count
+    end
+
 end
