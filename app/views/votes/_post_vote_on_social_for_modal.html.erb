@@ -1,6 +1,11 @@
-<a href="" id="fb_share">Share On FB</a>
-<a class="twitter-share-button"
-  href="https://twitter.com/share">
+<a href="" id="fb_share">Share On FB</a><br>
+<a href="" id="tw_share">Share On TW</a>
+<a class="twitter popup" href="http://twitter.com/share">Tweet</a>
+<a style="display:none !important;" class="twitter-share-button"
+  href="https://twitter.com/share"
+  data-url="http://whip-production.herokuapp.com/"
+  data-text="I just voted on Whip!"
+  >
 Tweet
 </a>
 <script>
@@ -17,4 +22,28 @@ window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.
 			  href: 'https://developers.facebook.com/docs/'
 			}, function(response){});
 	});
+
+	$('body').on('click','#tw_share',function(e){
+		e.preventDefault();
+
+		$('.twitter-share-button').trigger('click');
+
+	});
+
+	 $('.popup').click(function(event) {
+	    var width  = 575,
+	        height = 400,
+	        left   = ($(window).width()  - width)  / 2,
+	        top    = ($(window).height() - height) / 2,
+	        url    = this.href,
+	        opts   = 'status=1' +
+	                 ',width='  + width  +
+	                 ',height=' + height +
+	                 ',top='    + top    +
+	                 ',left='   + left;
+	    
+	    window.open(url, 'twitter', opts);
+	 
+	    return false;
+	  });
 </script>
