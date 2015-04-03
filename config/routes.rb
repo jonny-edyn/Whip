@@ -1,13 +1,16 @@
 Rails.application.routes.draw do
 
+
+
+  devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks' }
+
   resources :users, only: [:edit, :show] do
     collection do
       patch 'update_password'
       get :remove_twitter
+      get :remove_facebook
     end
   end
-
-  devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks' }
 
   match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
 

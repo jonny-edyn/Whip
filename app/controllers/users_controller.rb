@@ -37,6 +37,7 @@ class UsersController < ApplicationController
         sign_in(@user, bypass: true)
         redirect_to root_path, notice: 'Your profile was successfully updated.'
       else
+        flash[:notice] = "Email already taken!  If you already have an account, login and with Facebook or Email and add your Twitter account on Settings page."
         @show_errors = true
       end
     end
@@ -57,7 +58,13 @@ class UsersController < ApplicationController
     @ident = @user.identities.find_by(provider: "twitter")
     @ident.destroy!
     redirect_to root_path
-    
+  end
+
+  def remove_facebook
+    @user = current_user
+    @ident = @user.identities.find_by(provider: "facebook")
+    @ident.destroy!
+    redirect_to root_path
   end
   
   private
