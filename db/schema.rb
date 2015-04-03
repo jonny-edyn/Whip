@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150402190422) do
+ActiveRecord::Schema.define(version: 20150403135945) do
 
   create_table "bill_issues", force: :cascade do |t|
     t.integer  "bill_id",    limit: 4
@@ -32,14 +32,6 @@ ActiveRecord::Schema.define(version: 20150402190422) do
     t.text     "opposition",    limit: 65535
     t.datetime "created_at",                                  null: false
     t.datetime "updated_at",                                  null: false
-  end
-
-  create_table "comments", force: :cascade do |t|
-    t.integer  "user_id",    limit: 4
-    t.integer  "bill_id",    limit: 4
-    t.text     "content",    limit: 65535
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
   end
 
   create_table "constituencies", force: :cascade do |t|
@@ -165,8 +157,9 @@ ActiveRecord::Schema.define(version: 20150402190422) do
     t.boolean  "in_favor",      limit: 1
     t.integer  "voteable_id",   limit: 4
     t.string   "voteable_type", limit: 255
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.text     "comment",       limit: 65535
   end
 
   add_index "votes", ["voteable_type", "voteable_id"], name: "index_votes_on_voteable_type_and_voteable_id", using: :btree

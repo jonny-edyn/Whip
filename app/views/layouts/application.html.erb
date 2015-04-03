@@ -58,7 +58,7 @@
 	  </div>
 	</div>
 
-	<div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+	<div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="signUpModalLabel" aria-hidden="true">
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	      <div class="modal-header">
@@ -68,6 +68,22 @@
 	        <div id="flash_messages_3">
 	        </div>
 	        <%= render 'devise/registrations/new_for_modal' %>
+	        <br>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+	<div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="commentModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h4 class="modal-title" id="myModalLabel">THANKS FOR VOTING</h4>
+	      </div>
+	      <div class="modal-body">
+	        <div id="flash_messages_3">
+	        </div>
+	        <%= render 'votes/add_comment_for_modal' %>
 	        <br>
 	      </div>
 	    </div>
