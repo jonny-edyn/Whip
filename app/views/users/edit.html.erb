@@ -1,13 +1,81 @@
-<%= form_for(@user, :url => { :action => "update_password" } ) do |f| %>
-  <div class="field">
-    <%= f.label :password, "Password" %><br />
-    <%= f.password_field :password, :autocomplete => "off"  %>
+<div class="row">
+  <div class="col-md-12">
+    <h2 style="text-align: center;padding-bottom: 40px;">MEET</h2>
   </div>
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation %>
+</div>
+
+<div class="row" style="padding-bottom: 20px;border-bottom: 1px solid #030303;margin-bottom: 20px;">
+  <div class="col-md-6">
+    <div class="row">
+      <div class="col-md-4">
+        USER PICTURE
+      </div>
+      <div class="col-md-8">
+        HI <%= current_user.name %><br>
+        Please enter your postcode.  We need <br>
+        this to find your local MP.<br>
+        POSTCODE
+      </div>
+    </div>
   </div>
-  <div class="action_container">
-    <%= f.submit %>
+  <div class="col-md-6">
+    <div class="row">
+      <div class="col-md-4 col-md-offset-2">
+        MP PICTURE
+      </div>
+      <div class="col-md-6">
+        MP Name<br>
+        MP for your consittuency <br>
+        Send message <br>
+        FB TW EM<br>
+        Phone
+      </div>
+    </div>
   </div>
-<% end %>
+</div>
+
+<div class="row" style="padding-bottom: 20px;border-bottom: 1px solid #030303;margin-bottom: 20px;">
+  <div class="col-md-12" style="text-align: center;">
+    <h2 style="text-align: center;padding-bottom: 40px;">PICK YOUR PARTY</h2>
+    <% 
+      if @parties.any? 
+      @parties.each do |party|
+    %>
+      <h4 style="display:inline;padding: 15px;line-height: 2.5em;"><%= party.name %></h4>
+    <% end %>
+    <% end %>
+    <div style="clear:both;"></div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <h2 style="text-align: center;padding-bottom: 40px;">EDIT ACCOUNT INFO</h2>
+      <%= form_for(@user, :url => { :action => "update_password" } ) do |f| %>
+        <div class="field">
+          <%= f.label :password, "Password" %><br />
+          <%= f.password_field :password, :autocomplete => "off"  %>
+        </div>
+        <div class="field">
+          <%= f.label :password_confirmation %><br />
+          <%= f.password_field :password_confirmation %>
+        </div>
+        <div class="action_container">
+          <%= f.submit %>
+        </div>
+      <% end %>
+
+      <% unless @idents.include?("twitter") %>
+        <a href="<%= root_url %>users/auth/twitter">MERGE TWITTER</a>
+      <% else %>
+        <a href="<%= remove_twitter_user_path %>">REMOVE TWITTER FROM ACCOUNT</a>
+      <% end %>
+
+      <% unless @idents.include?("facebook") %>
+        <a href="<%= root_url %>users/auth/facebook">MERGE FB</a>
+      <% else %>
+        <a href="<%= remove_twitter_user_path %>">REMOVE TWITTER FROM ACCOUNT</a>
+      <% end %>
+      <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %>
+  </div>
+</div>

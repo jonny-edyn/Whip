@@ -2,7 +2,7 @@
 	<div class="col-md-6">
 		<%= current_user.name %><br>
 		<%= @votes_count %> Votes<br>
-		<a href="<%= edit_user_registration_path %>">SETTINGS</a><br>
+		<a href="<%= edit_user_path(current_user) %>">SETTINGS</a><br>
 		<a href="#">FOLLOWERS</a><!-- add this functionality still -->
 	</div>
 	<div class="col-md-6" style="text-align:right;">

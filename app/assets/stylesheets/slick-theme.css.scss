@@ -60,7 +60,7 @@ font-family: 'slick';
 font-size: 20px;
 line-height: 1;
 opacity: .75;
-color: white;
+color: black;
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
 }
@@ -75,11 +75,11 @@ left: auto;
 }
 .slick-prev:before
 {
-content: '←';
+content: '\25C4';
 }
 [dir='rtl'] .slick-prev:before
 {
-content: '→';
+content: '\25C4';
 }
 .slick-next
 {
@@ -92,11 +92,11 @@ left: -25px;
 }
 .slick-next:before
 {
-content: '→';
+content: '\25BA';
 }
 [dir='rtl'] .slick-next:before
 {
-content: '←';
+content: '\25BA';
 }
 /* Dots */
 .slick-slider

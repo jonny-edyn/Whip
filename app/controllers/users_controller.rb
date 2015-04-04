@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy, :finish_signup]
+  before_action :set_idents, only: [:edit]
   before_filter :authenticate_user!
 
   # GET /users/:id.:format
@@ -11,6 +12,7 @@ class UsersController < ApplicationController
   def edit
     # authorize! :update, @user
     @user = current_user
+    @parties = Party.all
   end
 
   # PATCH/PUT /users/:id.:format
