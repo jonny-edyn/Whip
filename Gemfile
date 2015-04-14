@@ -82,7 +82,8 @@ gem 'bootsy'
 gem "autoprefixer-rails"
 
 gem 'impressionist'
-
+gem 'ruby_odata'
+gem 'nokogiri', '1.6.3.1'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

@@ -31,6 +31,7 @@ Rails.application.routes.draw do
       get :parties
       get :issues
       get :constituencies
+      post :populate_constituencies
       get :mps
       get :post_codes
     end

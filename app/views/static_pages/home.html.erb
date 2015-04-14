@@ -1,6 +1,14 @@
 <div class="row">
 	<div class="col-md-12" style="text-align: center;">
 		BACKGROUND IMAGE
+		<% if false %>
+
+			<% @constituencies.each do |constituency| %>
+				<%= constituency['name'] %> <%= constituency['constituency_web_id'] %><br>
+			<% end %>
+
+		<% end %>
+
 	</div>
 </div>
 

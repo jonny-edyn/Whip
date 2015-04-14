@@ -1,3 +1,5 @@
+<%= link_to "Update Constituencies In DB", populate_constituencies_admins_path, :method=> :post, confirm: 'question?' %> <%= @constituencies.length %>
+<% if false %>
 <div class="row">
 	<div class="col-md-8">
 		<% if @constituencies.any? %>
@@ -8,3 +10,4 @@
 	</div>
 	<%= render "admins/admin_sidebar" %>
 </div>
+<% end %>
