@@ -1,3 +1,5 @@
+<%= link_to "Update MPs In DB", populate_mps_admins_path, {:method=> :post, data: {confirm: 'Are you sure? This will take a while!  Perform during a slow time (late at night).'}} %> <%= @mps.length %>
+<% if false %>
 <div class="row">
 	<div class="col-md-8">
 		<% if @mps.any? %>
@@ -8,3 +10,4 @@
 	</div>
 	<%= render "admins/admin_sidebar" %>
 </div>
+<% end %>

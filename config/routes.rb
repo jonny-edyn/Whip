@@ -33,6 +33,7 @@ Rails.application.routes.draw do
       get :constituencies
       post :populate_constituencies
       get :mps
+      post :populate_mps
       get :post_codes
     end
   end

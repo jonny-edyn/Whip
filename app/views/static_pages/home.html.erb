@@ -1,11 +1,18 @@
 <div class="row">
 	<div class="col-md-12" style="text-align: center;">
 		BACKGROUND IMAGE
-		<% if false %>
+		<% if true %>
 
-			<% @constituencies.each do |constituency| %>
-				<%= constituency['name'] %> <%= constituency['constituency_web_id'] %><br>
-			<% end %>
+			<% 
+				require 'open-uri'
+
+			  		encoded_url_3 = URI.encode("http://www.doogal.co.uk/ShowMap.php?postcode=HR2 8JD")
+			  		@doc_3 = Nokogiri::HTML(open(encoded_url_3))
+			  		@node = @doc_3.xpath('//td[text()="Constituency: "]').first
+			  		@count = @node.next_element.text
+		  	 %>
+
+		  	<%= @count %>
 
 		<% end %>
 

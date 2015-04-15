@@ -1,13 +1,11 @@
-<%= link_to "Update Constituencies In DB", populate_constituencies_admins_path, :method=> :post, confirm: 'question?' %> <%= @constituencies.length %>
-<% if false %>
+<%= link_to "Update Constituencies In DB", populate_constituencies_admins_path, {:method=> :post, data: {confirm: 'Are you sure? This will take a while!  Perform during a slow time (late at night).'}} %> <%= @constituencies.length %>
 <div class="row">
 	<div class="col-md-8">
 		<% if @constituencies.any? %>
 			<% @constituencies.each do |constituency| %>
-				<%= constituency.name %><br>
+				<%= constituency.name %> / <%= constituency.mp.name if constituency.mp %><br>
 			<% end %>
 		<% end %>
 	</div>
 	<%= render "admins/admin_sidebar" %>
 </div>
-<% end %>

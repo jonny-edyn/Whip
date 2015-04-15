@@ -17,7 +17,6 @@ class User < ActiveRecord::Base
   has_many :comments
 
   belongs_to :party
-  belongs_to :postcode
 
 
   # Include default devise modules. Others available are:
