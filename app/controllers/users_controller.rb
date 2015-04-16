@@ -68,6 +68,21 @@ class UsersController < ApplicationController
     @ident.destroy!
     redirect_to root_path
   end
+
+  def add_post_code_join_constituency
+    require 'open-uri'
+    encoded_url_3 = URI.encode("http://www.doogal.co.uk/ShowMap.php?postcode=#{params[:postcode]}")
+    @doc_3 = Nokogiri::HTML(open(encoded_url_3))
+    @node = @doc_3.xpath('//td[text()="Constituency: "]').first
+    constituency_name_web = @node.next_element.text
+    @constituency = Constituency.find_by(name: constituency_name_web)
+    @user = User.find(params[:id])
+      @user.post_code = params[:postcode]
+      @user.constituency_id = @constituency.id
+    if @user.save
+      redirect_to :back
+    end
+  end
   
   private
     def set_user

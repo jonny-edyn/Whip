@@ -27,28 +27,40 @@
 			<div class="col-md-6" style="text-align:left;">
 				<div class="row">
 					<div class="col-md-3">
-						<p>Arts and culture</p>
-						<p>Crime</p>
-						<p>Defence</p>
-						<p>Devolution</a></p>
+						<% 
+							if @first_issue_group.any?
+							@first_issue_group.each do |issue|
+						 %>
+							<p><a href="<%=  issue_name_path(issue.name) %>"><%= issue.name %></a></p>
+						<% end %>
+						<% end %>
 					</div>
 					<div class="col-md-3">
-						<p>Economy</p>
-						<p>Education</p>
-						<p>Energy</p>
-						<p>Environment</a></p>
+						<% 
+							if @second_issue_group.any?
+							@second_issue_group.each do |issue|
+						 %>
+							<p><a href="<%=  issue_name_path(issue.name) %>"><%= issue.name %></a></p>
+						<% end %>
+						<% end %>
 					</div>
 					<div class="col-md-3">
-						<p>Family</p>
-						<p>Health</p>
-						<p>Human Rights</p>
-						<p>Immigration</a></p>
+						<% 
+							if @third_issue_group.any?
+							@third_issue_group.each do |issue|
+						 %>
+							<p><a href="<%=  issue_name_path(issue.name) %>"><%= issue.name %></a></p>
+						<% end %>
+						<% end %>
 					</div>
 					<div class="col-md-3">
-						<p>Pensions</p>
-						<p>Students</p>
-						<p>Transport</p>
-						<p>Tax</a></p>
+						<% 
+							if @fourth_issue_group.any?
+							@fourth_issue_group.each do |issue|
+						 %>
+							<p><a href="<%=  issue_name_path(issue.name) %>"><%= issue.name %></a></p>
+						<% end %>
+						<% end %>
 					</div>
 				</div>
 			</div>

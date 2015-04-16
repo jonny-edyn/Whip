@@ -37,6 +37,45 @@ class IssuesController < ApplicationController
 
 	end
 
+	def find_issues
+		@bills = Bill.with_matching_issue(params[:issue_name])
+		count = []
+		@trending = []
+		@common = []
+
+		if Setting.first.yes
+
+			@bills.each do |bill|
+				count << [bill, bill.impressionist_count]
+			end
+
+			orderd_count = count.sort_by{|k|k[1]}.reverse
+
+			@trending_both = orderd_count.first(3)
+			@trending_both.each do |trending|
+				@trending << trending[0]
+			end
+			@common_both = orderd_count.drop(3)
+			@common_both.each do |common|
+				@common << common[0]
+			end
+		else
+
+			
+			@bills.each do |bill|
+				if bill.trending
+					@trending << bill
+				end
+			end
+			@bills.each do |bill|
+				unless bill.trending
+					@common << bill
+				end
+			end
+
+		end
+	end
+
 	private
 
 	  def issue_params

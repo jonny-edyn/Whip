@@ -10,10 +10,14 @@ Rails.application.routes.draw do
       get :remove_twitter
       get :remove_facebook
     end
+    member do
+      post :add_post_code_join_constituency
+    end
   end
 
   match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
 
+  match '/issues/:issue_name/' => 'issues#find_issues', via: [:get], :as => :issue_name
   resources :issues
 
   resources :parties

@@ -1,0 +1,128 @@
+<%= render 'bills/top_banner_with_names' %>
+<h2>TOP TRENDING BILLS</h2>
+
+	<div class="row trending_bills" >
+		<% 
+			if @trending.any?
+			@trending.each do |bill|
+		 %>
+		<div class="col-md-12" style="text-align:center;">
+			<div class="row" style="padding-bottom:20px;">
+				<div class="col-md-12" style="text-align:center;">
+					<%= link_to bill.simple_name, bill_path(bill) %>
+				</div>
+			</div>
+
+
+			<div class="row" style="margin-bottom: 20px; border-bottom: 1px solid #030303; padding-bottom: 20px;">
+				<div class="col-md-6" style="text-align:center;">
+					<h2>ARGUMENT FOR</h2>
+					<%= bill.support %>
+				</div>
+				<div class="col-md-6" style="text-align:center;">
+					<h2>ARGUMENT AGAINST</h2>
+					<%= bill.opposition %>
+				</div>
+			</div>
+
+
+			<div class="row" style="margin-bottom: 20px; border-bottom: 1px solid #030303; padding-bottom: 20px;">
+				<div class="col-md-6" style="text-align:right;">
+					<%= render 'bills/vote_yes_form', bill: bill.id %>
+				</div>
+				<div class="col-md-6" style="text-align:left;">
+					<%= render 'bills/vote_no_form', bill: bill.id %>
+				</div>
+			</div>
+		</div>
+		<% end %>
+		<% end %>
+	</div>
+
+
+
+<div class="row">
+	<% 
+		if @common.any?
+		@common.each do |bill|
+	 %>
+	<div class="col-md-6" style="text-align:center;">
+		<div class="row" style="padding-bottom:20px;">
+			<div class="col-md-12" style="text-align:center;">
+				<%= link_to bill.simple_name, bill_path(bill) %>
+			</div>
+		</div>
+
+
+		<div class="row" style="margin-bottom: 20px; border-bottom: 1px solid #030303; padding-bottom: 20px;">
+			<div class="col-md-12" style="text-align:center;">
+				<h2>ARGUMENT FOR</h2>
+				<%= bill.support %>
+			</div>
+			<div class="col-md-12" style="text-align:center;">
+				<h2>ARGUMENT AGAINST</h2>
+				<%= bill.opposition %>
+			</div>
+		</div>
+
+
+		<div class="row" style="margin-bottom: 20px; border-bottom: 1px solid #030303; padding-bottom: 20px;">
+			<div class="col-md-6" style="text-align:right;">
+				<% if user_signed_in? %>
+					<%= render 'bills/vote_yes_form', bill: bill.id %>
+				<% else %>
+					<a class="navbar-brand" href="#" data-toggle="modal" data-target="#loginModal">SIGN IN</a>
+				<% end %>
+			</div>
+			<div class="col-md-6" style="text-align:left;">
+				<% if user_signed_in? %>
+					<%= render 'bills/vote_no_form', bill: bill.id %>
+				<% else %>
+					<a class="navbar-brand" href="#" data-toggle="modal" data-target="#loginModal">SIGN IN</a>
+				<% end %>
+			</div>
+		</div>
+	</div>
+	<% end %>
+	<% end %>
+</div>
+
+<script type="text/javascript">
+var ready;
+ready = function() {
+
+	  $('.trending_bills').slick({
+	    accessibility: true,
+
+	  });
+
+	  $('body').off('click','.bill_voting');
+	  $('body').on('click','.bill_voting', function(e){
+	  	e.preventDefault();
+
+	  	var this_form = $(this);
+	  	var comment_section = $(this_form).children('.hidden_comment');
+
+	  	comment_section.val('testing');
+	  	
+	  	$('#commentModal').modal('show');
+
+	  	$('#commentModal').off('click','#add_comment');
+	  	$('#commentModal').on('click','#add_comment',function(e){
+	  		var new_comment = $(this).siblings('#content').val();
+	  		comment_section.val(new_comment);
+	  		
+	  		$('#commentModal').modal('hide');
+
+	  		this_form.trigger("submit.rails");
+	  	});
+
+	  });
+
+
+
+};
+
+$(document).ready(ready);
+$(document).on('page:load', ready);
+</script>

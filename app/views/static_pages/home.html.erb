@@ -1,19 +1,9 @@
 <div class="row">
 	<div class="col-md-12" style="text-align: center;">
 		BACKGROUND IMAGE
-		<% if true %>
-
-			<% 
-				require 'open-uri'
-
-			  		encoded_url_3 = URI.encode("http://www.doogal.co.uk/ShowMap.php?postcode=HR2 8JD")
-			  		@doc_3 = Nokogiri::HTML(open(encoded_url_3))
-			  		@node = @doc_3.xpath('//td[text()="Constituency: "]').first
-			  		@count = @node.next_element.text
-		  	 %>
-
-		  	<%= @count %>
-
+		<%= form_tag add_post_code_join_constituency_user_path(current_user), id: "add_postcode" do %>
+			<%= text_field_tag :postcode %>
+			<%= submit_tag 'submit', id: "postcode_check" %>
 		<% end %>
 
 	</div>
@@ -87,3 +77,19 @@ Id mei facilis volumus similique, et ius accusamus persequeris. Pri ad sale toll
 		EDUCATE
 	</div>
 </div>
+
+<script type="text/javascript">
+function testPostCode () {
+  var newPostCode = checkPostCode  (document.getElementById('postcode').value);
+  if (newPostCode) {
+    document.getElementById('postcode').value = newPostCode;
+    $('#add_postcode').trigger("submit.rails");
+  } 
+  else alert ("Postcode has invalid format");
+}
+$('body').off('click','#postcode_check');
+$('body').on('click','#postcode_check', function(e){
+	e.preventDefault();
+	testPostCode();
+});
+</script>

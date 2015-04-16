@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
+  before_action :set_issues
 
 
   	def check_if_admin
@@ -28,6 +29,13 @@ class ApplicationController < ActionController::Base
 
     def set_bill_count
       @votes_count = current_user.votes.count
+    end
+
+    def set_issues
+      @first_issue_group = Issue.first(4)
+      @second_issue_group = Issue.offset(4).first(4)
+      @third_issue_group = Issue.offset(8).first(4)
+      @fourth_issue_group = Issue.offset(12).first(4)
     end
 
 end

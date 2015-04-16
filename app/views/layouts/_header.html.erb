@@ -29,28 +29,40 @@
                 <li>
                   <div class="row" style="width: 448px; padding:5px 15px;">
                     <ul class="list-unstyled col-md-3" style="width: 118px; padding-right: 0px;">
-                        <li><a href="#">Arts and culture</a></li>
-                        <li><a href="#">Crime</a></li>
-                        <li><a href="#">Defence</a></li>
-                        <li><a href="#">Devolution</a></li>
+                        <% 
+                          if @first_issue_group.any?
+                          @first_issue_group.each do |issue|
+                         %>
+                          <li><a href="<%=  issue_name_path(issue.name) %>"><%= issue.name %></a></li>
+                        <% end %>
+                        <% end %>
                     </ul>
                     <ul class="list-unstyled col-md-3" style="width: 104px;">
-                        <li><a href="#">Economy</a></li>
-                        <li><a href="#">Education</a></li>
-                        <li><a href="#">Energy</a></li>
-                        <li><a href="#">Environment</a></li>
+                        <% 
+                          if @second_issue_group.any?
+                          @second_issue_group.each do |issue|
+                         %>
+                          <li><a href="<%=  issue_name_path(issue.name) %>"><%= issue.name %></a></li>
+                        <% end %>
+                        <% end %>
                     </ul>
                     <ul class="list-unstyled col-md-3" style="width: 108px; padding-right: 0px;">
-                        <li><a href="#">Family</a></li>
-                        <li><a href="#">Health</a></li>
-                        <li><a href="#">Human Rights</a></li>
-                        <li><a href="#">Immigration</a></li>
+                        <% 
+                          if @third_issue_group.any?
+                          @third_issue_group.each do |issue|
+                         %>
+                          <li><a href="<%=  issue_name_path(issue.name) %>"><%= issue.name %></a></li>
+                        <% end %>
+                        <% end %>
                     </ul>
                     <ul class="list-unstyled col-md-2" style="width:50px;">
-                        <li><a href="#">Pension</a></li>
-                        <li><a href="#">Students</a></li>
-                        <li><a href="#">Transport</a></li>
-                        <li><a href="#">Tax</a></li>
+                        <% 
+                          if @fourth_issue_group.any?
+                          @fourth_issue_group.each do |issue|
+                         %>
+                          <li><a href="<%=  issue_name_path(issue.name) %>"><%= issue.name %></a></li>
+                        <% end %>
+                        <% end %>
                     </ul>
                   </div>
                 </li>
