@@ -9,12 +9,16 @@
     <div class="row">
       <div class="col-md-4">
         USER PICTURE
+        <%= @voting_name %>
       </div>
       <div class="col-md-8">
         HI <%= current_user.name %><br>
         Please enter your postcode.  We need <br>
         this to find your local MP.<br>
-        POSTCODE
+        <%= form_tag add_post_code_join_constituency_user_path(current_user), id: "add_postcode" do %>
+          <%= text_field_tag :postcode, @user.post_code %>
+          <%= submit_tag 'submit', id: "postcode_check" %>
+        <% end %>
       </div>
     </div>
   </div>
@@ -24,8 +28,8 @@
         MP PICTURE
       </div>
       <div class="col-md-6">
-        MP Name<br>
-        MP for your consittuency <br>
+        <%= @mp.name if @mp %><br>
+        MP for <%= @constituency.name if @constituency %> <br>
         Send message <br>
         FB TW EM<br>
         Phone
@@ -41,10 +45,15 @@
       if @parties.any? 
       @parties.each do |party|
     %>
-      <h4 style="display:inline;padding: 15px;line-height: 2.5em;"><%= party.name %></h4>
+      <h4 style="display:inline;padding: 15px;line-height: 2.5em;"><a href="" class="add_user_to_party_link" id="<%= party.id %>"><%= party.name %></a></h4>
     <% end %>
     <% end %>
     <div style="clear:both;"></div>
+    <div style="display:none;">
+      <%= form_tag add_user_to_party_user_path(@user), id: "add_party" do %>
+        <%= hidden_field_tag :party_name, "" %>
+      <% end %>
+    </div>
   </div>
 </div>
 
@@ -79,3 +88,43 @@
       <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %>
   </div>
 </div>
+
+
+<script type="text/javascript">
+function testPostCode () {
+  var newPostCode = checkPostCode  (document.getElementById('postcode').value);
+  if (newPostCode) {
+    document.getElementById('postcode').value = newPostCode;
+    $('#add_postcode').trigger("submit.rails");
+  } 
+  else alert ("Postcode has invalid format");
+}
+$('body').off('click','#postcode_check');
+$('body').on('click','#postcode_check', function(e){
+  e.preventDefault();
+  testPostCode();
+});
+</script>
+
+<script type="text/javascript">
+var ready;
+ready = function() {
+
+$('body').off('click','.add_user_to_party_link');
+$('body').on('click','.add_user_to_party_link', function(e){
+  e.preventDefault();
+
+  var _this = $(this).text();
+  $('#party_name').val(_this);
+  $('#add_party').trigger("submit.rails");
+
+
+});
+
+$('.add_user_to_party_link#' + <%= @user.party_id %>).css('color','red');
+
+};
+
+$(document).ready(ready);
+$(document).on('page:load', ready);
+</script>

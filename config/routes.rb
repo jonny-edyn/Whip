@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     end
     member do
       post :add_post_code_join_constituency
+      post :add_user_to_party
     end
   end
 

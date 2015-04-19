@@ -13,6 +13,14 @@ class UsersController < ApplicationController
     # authorize! :update, @user
     @user = current_user
     @parties = Party.all
+    @constituency = @user.constituency
+    @mp = @constituency.mp
+    @name = @mp.name.split(' ')
+    if @name.length == 3
+      @voting_name = "#{@name[2]}, #{@name[0]} #{@name[1]}"
+    else
+      @voting_name = "#{@name[1]}, #{@name[0]}"
+    end
   end
 
   # PATCH/PUT /users/:id.:format
@@ -79,6 +87,15 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
       @user.post_code = params[:postcode]
       @user.constituency_id = @constituency.id
+    if @user.save
+      redirect_to :back
+    end
+  end
+
+  def add_user_to_party
+    @party = Party.find_by(name: params[:party_name])
+    @user = User.find(params[:id])
+      @user.party_id = @party.id
     if @user.save
       redirect_to :back
     end
