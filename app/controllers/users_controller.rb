@@ -16,11 +16,13 @@ class UsersController < ApplicationController
     @constituency = @user.constituency
     @mp = @constituency.mp
     @name = @mp.name.split(' ')
-    if @name.length == 3
-      @voting_name = "#{@name[2]}, #{@name[0]} #{@name[1]}"
-    else
-      @voting_name = "#{@name[1]}, #{@name[0]}"
-    end
+    @name_new = @name
+    @name_all_but_last_element = @name_new[0...-1]
+    @name_last_element = @name_new[-1]
+    @second_half_name = @name_all_but_last_element.join(" ")
+    @voting_name = "#{@name_last_element}, #{@second_half_name}"
+    @test = 'Davies, Glyn'
+    @test = @test.gsub('rh', '').gsub(/\s+/, ' ')
   end
 
   # PATCH/PUT /users/:id.:format

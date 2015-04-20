@@ -12,6 +12,11 @@ class AddMp
 	@mp_final = []
 	@mp_final << {"name" => @mp.xpath('displayas').text}
 	@mp_name = @mp_final.first['name']
+	@name_new = @mp_name.split(' ')
+	@name_all_but_last_element = @name_new[0...-1]
+	@name_last_element = @name_new[-1]
+	@second_half_name = @name_all_but_last_element.join(" ")
+    @voting_name = "#{@name_last_element[0]}, #{@second_half_name}"
 	mp = Mp.new
 		mp.name = @mp_name
 		mp.constituency_id = constituency_id

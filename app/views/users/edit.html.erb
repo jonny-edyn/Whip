@@ -10,6 +10,11 @@
       <div class="col-md-4">
         USER PICTURE
         <%= @voting_name %>
+        <% if @test == @voting_name %>
+        1
+        <% else %>
+        2
+        <% end %>
       </div>
       <div class="col-md-8">
         HI <%= current_user.name %><br>
