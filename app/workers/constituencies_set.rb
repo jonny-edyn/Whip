@@ -14,7 +14,16 @@ class ConstituenciesSet
 	 	end
 	end
 	if @constituencies.any?
-		@constituencies.each do |constituency_add|
+		@constituencies.each_with_index do |constituency_add, index|
+			if index == 0
+				@setting = Setting.find_by(name: 'updating_constituency_list')
+					@setting.yes = true
+				@setting.save
+			elsif index == constituencies.size - 1
+				@setting = Setting.find_by(name: 'updating_constituency_list')
+					@setting.yes = false
+				@setting.save
+			end
 			if Constituency.where(web_id: constituency_add['constituency_web_id']).any?
 				Resque.enqueue(UpdateConstituency, constituency_add['name'], constituency_add['constituency_web_id'])
 			else

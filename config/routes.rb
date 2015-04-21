@@ -39,6 +39,8 @@ Rails.application.routes.draw do
       post :populate_constituencies
       get :mps
       post :populate_mps
+      get :voting_results
+      post :get_voting_results
       get :post_codes
     end
   end

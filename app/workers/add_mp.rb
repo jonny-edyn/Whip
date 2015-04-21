@@ -16,10 +16,11 @@ class AddMp
 	@name_all_but_last_element = @name_new[0...-1]
 	@name_last_element = @name_new[-1]
 	@second_half_name = @name_all_but_last_element.join(" ")
-    @voting_name = "#{@name_last_element[0]}, #{@second_half_name}"
+    @voting_name = "#{@name_last_element}, #{@second_half_name}"
 	mp = Mp.new
 		mp.name = @mp_name
 		mp.constituency_id = constituency_id
+		mp.voting_name = @voting_name
 	mp.save
 
   end

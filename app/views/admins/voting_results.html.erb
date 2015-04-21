@@ -1,0 +1,5 @@
+<%= form_tag get_voting_results_admins_path do %>
+	<%= select_tag :bill_id, options_from_collection_for_select(@bills, 'id', 'simple_name') %>
+	<%= text_field_tag :web_url %>
+	<%= submit_tag "Get Results" %>
+<% end %>

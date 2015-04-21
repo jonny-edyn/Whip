@@ -24,6 +24,7 @@ class AdminsController < ApplicationController
 
 	def constituencies
 		@constituencies = Constituency.all
+		@setting = Setting.find_by(name: 'updating_constituency_list')
 	end
 
 	def populate_constituencies
@@ -33,10 +34,22 @@ class AdminsController < ApplicationController
 
 	def mps
 		@mps = Mp.all
+		@setting = Setting.find_by(name: 'updating_mp_list')
 	end
 
 	def populate_mps
 		Resque.enqueue(MpsSet)
+		redirect_to :back
+	end
+
+	def voting_results
+		@bills = Bill.all
+	end
+
+	def get_voting_results
+		@web_url = params[:web_url]
+		@bill_id = params[:bill_id]
+		Resque.enqueue(VotesSet, @bill_id, @web_url)
 		redirect_to :back
 	end
 

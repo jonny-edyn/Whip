@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150415034144) do
+ActiveRecord::Schema.define(version: 20150421082555) do
 
   create_table "bill_issues", force: :cascade do |t|
     t.integer  "bill_id",    limit: 4
@@ -93,6 +93,7 @@ ActiveRecord::Schema.define(version: 20150415034144) do
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.integer  "web_id",          limit: 4
+    t.string   "voting_name",     limit: 255
   end
 
   create_table "parties", force: :cascade do |t|

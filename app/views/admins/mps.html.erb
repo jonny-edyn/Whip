@@ -1,10 +1,14 @@
+<% if @setting.yes == false %>
 <%= link_to "Update MPs In DB", populate_mps_admins_path, {:method=> :post, data: {confirm: 'Are you sure? This will take a while!  Perform during a slow time (late at night).'}} %> <%= @mps.length %>
+<% else %>
+<p>Currently updating DB check back shortly!</p>
+<% end %>
 <% if true %>
 <div class="row">
 	<div class="col-md-8">
 		<% if @mps.any? %>
 			<% @mps.each do |mp| %>
-				<%= mp.name %><br>
+				<%= mp.voting_name %> <%= mp.votes.first.in_favor if mp.votes.any? %><br>
 			<% end %>
 		<% end %>
 	</div>
