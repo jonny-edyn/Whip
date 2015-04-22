@@ -120,7 +120,7 @@ class BillsController < ApplicationController
 	private
 
 	  def bill_params
-	  	params.require(:bill).permit(:progress, :meaning, :impact, :cost, :trending, :simple_name, :official_name, :support, :opposition)
+	  	params.require(:bill).permit(:progress, :meaning, :impact, :cost, :trending, :simple_name, :official_name, :support, :opposition, :image_url)
 	  end
 	  
 

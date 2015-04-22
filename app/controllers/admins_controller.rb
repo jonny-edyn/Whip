@@ -10,6 +10,7 @@ class AdminsController < ApplicationController
 		@bill = Bill.new
 		@issues = Issue.all
 		@setting = Setting.first
+		@s3_direct_post_primary = S3_BUCKET.presigned_post(key: "uploads/bill_photos/#{SecureRandom.uuid}/${filename}", success_action_status: 201, acl: :public_read)
 	end
 
 	def parties
