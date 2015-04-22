@@ -7,7 +7,15 @@
 			<a href="#">FOLLOWERS</a><!-- add this functionality still -->
 		</div>
 		<div class="col-md-6" style="text-align:right;">
-			Add MP Association Here
+			<% 
+				if current_user.constituency && current_user.constituency.mp
+				@mp = current_user.constituency.mp
+			%>
+				<%= @mp.name %><br>
+				MP for <%= @mp.constituency.name %><br>
+				Send Message<br>
+				Social Icons<br>
+			<% end %>
 		</div>
 	</div>
 <% end %>

@@ -53,8 +53,9 @@ class AdminsController < ApplicationController
 		redirect_to :back
 	end
 
-	def post_codes
-		@post_codes = PostCode.all
+	def mass_bill_import
+		Bill.import(params[:file])
+		redirect_to :back
 	end
 
 end

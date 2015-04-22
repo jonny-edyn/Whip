@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  authenticated :user do
+    root :to => 'bills#index', :as => :authenticated_root
+  end
 
 
   devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks', :registrations => "registrations" }
@@ -27,6 +30,9 @@ Rails.application.routes.draw do
     member do
       post :add_issues
     end
+    collection do
+      get :xls_index
+    end
   end
 
   resources :admins do
@@ -41,7 +47,7 @@ Rails.application.routes.draw do
       post :populate_mps
       get :voting_results
       post :get_voting_results
-      get :post_codes
+      post :mass_bill_import
     end
   end
 

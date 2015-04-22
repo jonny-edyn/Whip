@@ -8,6 +8,17 @@
 					<%= f.check_box :yes %>
 					<%= f.submit "Save Trending Setting" %>
 				<% end %>
+
+				<h2>
+				  Download:
+				  <%= link_to "Excel", xls_index_bills_path(format: "xls") %>
+				</h2>
+
+				<h2>Mass Import Bills</h2>
+				<%= form_tag mass_bill_import_admins_path, multipart: true do %>
+				  <%= file_field_tag :file %>
+				  <%= submit_tag "Import Bills" %>
+				<% end %>
 				<br>
 			</div>
 			<div class="col-md-12">
@@ -40,6 +51,8 @@
 								<%= f.text_area :cost %><br>
 								<%= f.label :trending, "Add To Top Trending?" %>
 								<%= f.check_box :trending %><br>
+								<%= f.label :progress, "Current Bill Progress" %>
+								<%= f.select :progress, options_for_select([ ["HOUSE OF COMMONS","house_of_commons"], ["HOUSE OF LORDS","house_of_lords"],["ROYAL ASSENT","royal_assent"] ], bill.progress) %><br>
 								<%= f.submit "Edit Bill" %>
 							<% end %>
 						</div>
@@ -87,6 +100,8 @@
 					<%= f.text_area :cost %><br>
 					<%= f.label :trending, "Add To Top Trending?" %>
 					<%= f.check_box :trending %><br>
+					<%= f.label :progress, "Current Bill Progress" %>
+					<%= f.select :progress, options_for_select([ ["HOUSE OF COMMONS","house_of_commons"], ["HOUSE OF LORDS","house_of_lords"],["ROYAL ASSENT","royal_assent"] ]) %><br>
 					<%= f.submit "Add New Bill" %>
 				<% end %>
 			</div>

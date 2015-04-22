@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">ID</Data></Cell>
+        <Cell><Data ss:Type="String">Simple Name</Data></Cell>
+        <Cell><Data ss:Type="String">Official Name</Data></Cell>
+        <Cell><Data ss:Type="String">Support</Data></Cell>
+        <Cell><Data ss:Type="String">Opposition</Data></Cell>
+        <Cell><Data ss:Type="String">Cost</Data></Cell>
+        <Cell><Data ss:Type="String">Price</Data></Cell>
+        <Cell><Data ss:Type="String">Impact</Data></Cell>
+        <Cell><Data ss:Type="String">Meaning</Data></Cell>
+      </Row>
+    <% @bills.each do |bill| %>
+      <Row>
+        <Cell><Data ss:Type="Number"><%= bill.id %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= bill.simple_name %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= product.official_name %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= product.support %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= product.opposition %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= product.cost %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= product.price %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= product.impact %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= product.meaning %></Data></Cell>
+      </Row>
+    <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>

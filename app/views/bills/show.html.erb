@@ -38,13 +38,13 @@
 
 <div class="row" style="padding-bottom:20px;">
 	<h2 style="text-align:center; padding-bottom:20px;">BILL PROGRESS</h2>
-	<div class="col-md-2 col-md-offset-3" style="text-align:center;">
+	<div class="col-md-2 col-md-offset-3" style="text-align:center;" id="house_of_commons_div">
 		HOUSE OF COMMONS
 	</div>
-	<div class="col-md-2" style="text-align:center;">
+	<div class="col-md-2" style="text-align:center;" id="house_of_lords_div">
 		HOUSE OF LORDS
 	</div>
-	<div class="col-md-2" style="text-align:center;">
+	<div class="col-md-2" style="text-align:center;" id="royal_assent_div">
 		ROYAL ASSENT
 	</div>
 </div>
@@ -81,3 +81,52 @@
 		<% end %>
 	</div>
 </div>
+
+<script type="text/javascript">
+var ready;
+ready = function() {
+var current_progess = "<%= @bill.progress %>";
+var finder_name = current_progess + "_div"
+$('#' + finder_name).css('color','red');
+};
+
+$(document).ready(ready);
+$(document).on('page:load', ready);
+
+</script>
+
+<script type="text/javascript">
+var ready;
+ready = function() {
+
+
+	  $('body').off('click','.bill_voting');
+	  $('body').on('click','.bill_voting', function(e){
+	  	e.preventDefault();
+
+	  	var this_form = $(this);
+	  	var comment_section = $(this_form).children('.hidden_comment');
+
+	  	comment_section.val('testing');
+	  	
+	  	$('#commentModal').modal('show');
+
+	  	$('#commentModal').off('click','#add_comment');
+	  	$('#commentModal').on('click','#add_comment',function(e){
+	  		var new_comment = $(this).siblings('#content').val();
+	  		comment_section.val(new_comment);
+	  		
+	  		$('#commentModal').modal('hide');
+
+	  		this_form.trigger("submit.rails");
+	  	});
+
+	  });
+
+
+
+};
+
+$(document).ready(ready);
+$(document).on('page:load', ready);
+</script>

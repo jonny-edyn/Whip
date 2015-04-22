@@ -19,15 +19,32 @@
 					<% if vote.in_favor %>
 						<h2>YOU VOTED YES</h2>
 						<h4>CHANGE VOTE TO</h4><%= render 'bills/vote_no_form', bill: bill.id %>
-				</div>
 					<% else %>
 						<h2>YOU VOTED NO</h2>
 						<h4>CHANGE VOTE TO</h4><%= render 'bills/vote_yes_form', bill: bill.id %>
-				</div>
 					<% end %>
 
+				</div>
+
 				<div class="col-md-6" style="text-align:right;">
-					MP VOTED NO
+					<% 
+						if current_user.constituency && current_user.constituency.mp
+						@mp = current_user.constituency.mp
+
+					%>
+						<% 
+							if @mp.votes.where(bill_id: bill.id).any?
+							mp_vote = @mp.votes.where(bill_id: bill.id).first
+						 %>
+						 	<% if mp_vote.in_favor %>
+								<%= @mp.name.upcase %> VOTED YES
+							<% else %>
+								<%= @mp.name.upcase %> VOTED YES
+							<% end %>
+						<% else %>
+							<%= @mp.name.upcase %> HAS NOT VOTED ON BILL
+						<% end %>
+					<% end %>
 				</div>
 			</div>
 

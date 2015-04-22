@@ -82,6 +82,13 @@ class BillsController < ApplicationController
 			
 	end
 
+	def xls_index
+		@bills = Bill.all
+		respond_to do |format|
+		    format.xls { send_data @bills.to_csv(col_sep: "\t") }
+		end
+	end
+
 	def show
 		@bill = Bill.find(params[:id])
 		impressionist(@bill)
