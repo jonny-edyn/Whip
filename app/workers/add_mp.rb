@@ -9,6 +9,7 @@ class AddMp
 	encoded_url_3 = URI.encode("http://data.parliament.uk/membersdataplatform/services/mnis/members/query/House=Commons|Membership=all|Constituency*#{@name}/")
 	@doc_3 = Nokogiri::HTML(open(encoded_url_3))
 	@mp = @doc_3.xpath("//member").first
+	@member_id = @mp.attr('member_id')
 	@mp_final = []
 	@mp_final << {"name" => @mp.xpath('displayas').text}
 	@mp_name = @mp_final.first['name']
@@ -21,6 +22,7 @@ class AddMp
 		mp.name = @mp_name
 		mp.constituency_id = constituency_id
 		mp.voting_name = @voting_name
+		mp.web_id = @member_id
 	mp.save
 
   end
