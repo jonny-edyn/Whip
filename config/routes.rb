@@ -58,6 +58,10 @@ Rails.application.routes.draw do
   get '/my_votes' => 'votes#my_votes'
   resources :votes
 
+  match '/404', to: 'errors#file_not_found', via: :all
+  match '/422', to: 'errors#unprocessable', via: :all
+  match '/500', to: 'errors#internal_server_error', via: :all
+
   root 'static_pages#home'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
