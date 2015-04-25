@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">ID</Data></Cell>
+        <Cell><Data ss:Type="String">Facebook</Data></Cell>
+        <Cell><Data ss:Type="String">Twitter</Data></Cell>
+        <Cell><Data ss:Type="String">Email</Data></Cell>
+        <Cell><Data ss:Type="String">Name</Data></Cell>
+        <Cell><Data ss:Type="String">Phone</Data></Cell>
+        <Cell><Data ss:Type="String">Picture Url</Data></Cell>
+        <Cell><Data ss:Type="String">Web ID</Data></Cell>
+        <Cell><Data ss:Type="String">Voting Name</Data></Cell>
+      </Row>
+    <% @mps.each do |mp| %>
+      <Row>
+        <Cell><Data ss:Type="Number"><%= mp.id %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= mp.fb_link %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= mp.tw_link %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= mp.email %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= mp.name %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= mp.phone %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= mp.picture_url %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= mp.web_id %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= mp.voting_name %></Data></Cell>
+      </Row>
+    <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>

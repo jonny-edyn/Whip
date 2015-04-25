@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150422111430) do
+ActiveRecord::Schema.define(version: 20150425184031) do
 
   create_table "bill_issues", force: :cascade do |t|
     t.integer  "bill_id",    limit: 4
@@ -145,6 +145,7 @@ ActiveRecord::Schema.define(version: 20150422111430) do
     t.boolean  "admin",                  limit: 1,   default: false
     t.integer  "constituency_id",        limit: 4
     t.string   "post_code",              limit: 255
+    t.boolean  "allow_profile_view",     limit: 1,   default: false
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

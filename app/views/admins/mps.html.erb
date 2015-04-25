@@ -6,6 +6,17 @@
 <% if true %>
 <div class="row">
 	<div class="col-md-8">
+		<h2>
+		  Download:
+		  <%= link_to "Excel", mps_path(format: "xls") %>
+		</h2>
+
+		<h2>Mass Import MPs</h2>
+		<%= form_tag mass_mp_import_admins_path, multipart: true do %>
+		  <%= file_field_tag :file %>
+		  <%= submit_tag "Import MPs" %>
+		<% end %>
+		<br>
 		<% if @mps.any? %>
 			<% @mps.each do |mp| %>
 				<%= mp.voting_name %> <%= mp.votes.first.in_favor if mp.votes.any? %><br>

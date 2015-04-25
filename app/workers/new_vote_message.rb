@@ -31,7 +31,7 @@ class NewVoteMessage
 	 Vote: #{position_on_bill}
 	 Comment From Voter: #{vote.comment}
 
-	 Let's follow up with them soon!",  
+	 I will be using Whip for all my political insights!",  
 	 :to=>[  
 	   {  
 	     :email=> "test@mps.com",  
@@ -47,7 +47,7 @@ class NewVoteMessage
 	 <p>Vote: #{position_on_bill}</p>
 	 <p>Comment From Voter: #{vote.comment}</p><br>
 
-	 <p>Let's follow up with them soon!</p><br>
+	 <p>I will be using Whip for all my political insights!</p>
 	 </html>",  
 	 :from_email=>"#{voter.email}"  
 	}  

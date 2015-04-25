@@ -7,9 +7,10 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks', :registrations => "registrations" }
 
+  get '/users_followed' => 'users#users_followed'
   resources :users, only: [:edit, :show] do
     collection do
-      patch 'update_password'
+      patch :update_info
       get :remove_twitter
       get :remove_facebook
     end
@@ -31,9 +32,10 @@ Rails.application.routes.draw do
       post :add_issues
     end
     collection do
-      get :xls_index
     end
   end
+
+  resources :mps
 
   resources :admins do
     collection do
@@ -45,6 +47,7 @@ Rails.application.routes.draw do
       post :populate_constituencies
       get :mps
       post :populate_mps
+      post :mass_mp_import
       get :voting_results
       post :get_voting_results
       post :mass_bill_import
@@ -56,12 +59,15 @@ Rails.application.routes.draw do
   resources :relationships, only: [:create, :destroy]
 
   get '/my_votes' => 'votes#my_votes'
+
   resources :votes
 
   match '/404', to: 'errors#file_not_found', via: :all
   match '/422', to: 'errors#unprocessable', via: :all
   match '/500', to: 'errors#internal_server_error', via: :all
 
+  post 'mailing_list_request' => 'static_pages#mailing_list_request'
+  get '/prelaunch_landing_page' => 'static_pages#prelaunch_landing_page'
   root 'static_pages#home'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

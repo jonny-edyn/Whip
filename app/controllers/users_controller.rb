@@ -1,11 +1,14 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy, :finish_signup]
   before_action :set_idents, only: [:edit]
+  before_action :profile_action, only: [:show]
   before_filter :authenticate_user!
 
   # GET /users/:id.:format
   def show
     # authorize! :read, @user
+    @votes = @user.votes
+    @vote_count = @votes.count
   end
 
   # GET /users/:id/edit
@@ -18,13 +21,13 @@ class UsersController < ApplicationController
   end
 
   # PATCH/PUT /users/:id.:format
-  def update
+  def update_info
     # authorize! :update, @user
     @user = User.find(current_user.id)
     respond_to do |format|
       if @user.update(user_params)
         sign_in(@user == current_user ? @user : current_user, bypass: true)
-        format.html { redirect_to @user, notice: 'Your profile was successfully updated.' }
+        format.html { redirect_to :back, notice: 'Your profile was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -94,15 +97,34 @@ class UsersController < ApplicationController
       redirect_to :back
     end
   end
+
+  def users_followed
+    @users = current_user.followed_users
+  end
   
   private
     def set_user
-      @user = User.find(params[:id])
+      if User.where(id: params[:id]).any?
+        @user = User.find(params[:id])
+      else
+        redirect_to root_path
+      end
     end
 
     def user_params
-      accessible = [ :name, :email ] # extend with your own params
+      accessible = [ :name, :email, :allow_profile_view ] # extend with your own params
       accessible << [ :password, :password_confirmation ] unless params[:user][:password].blank?
       params.require(:user).permit(accessible)
+    end
+
+    def profile_action
+      if current_user.id == @user.id
+        redirect_to root_path
+        return
+      end
+      unless @user.allow_profile_view 
+        redirect_to root_path
+        return
+      end
     end
 end

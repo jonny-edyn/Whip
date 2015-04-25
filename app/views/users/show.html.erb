@@ -1,10 +1,63 @@
 <div class="row" style="margin-bottom: 20px; border-bottom: 1px solid #030303; padding-bottom: 20px;">
 	<div class="col-md-6">
 		<%= @user.name %><br>
-		# of Votes<br> <!-- add this functionality still -->
+		<%= @vote_count %> Votes<br>
 		<%= render 'follow_form' if signed_in? %>
 	</div>
-	<div class="col-md-6" style="text-align:right;">
-		Add MP Association Here
+</div>
+
+<div class="row trending_bills" >
+	<% 
+		if @votes.any?
+		@votes.each do |vote|
+		bill = vote.bill
+	 %>
+	<div class="col-md-12" style="text-align:center;">
+		<div class="row" style="padding-bottom:20px;">
+			<div class="col-md-12" style="text-align:center;">
+				<%= link_to bill.simple_name, bill_path(bill) %>
+			</div>
+		</div>
+
+		<div class="row" style="margin-bottom: 20px; padding-bottom: 20px;">
+			<div class="col-md-6" style="text-align:left;">
+
+				<% if vote.in_favor %>
+					<h2><%= @user.name %> VOTED YES</h2>
+				<% else %>
+					<h2><%= @user.name %> VOTED NO</h2>
+				<% end %>
+
+			</div>
+
+		</div>
+
+		
+
+		<div class="row" style="padding-bottom:20px;">
+			<h4 style="text-align:left; padding-bottom:20px;">BILL PROGRESS</h4>
+			<div class="col-md-2" style="text-align:center;">
+				HOUSE OF COMMONS
+			</div>
+			<div class="col-md-2" style="text-align:center;">
+				HOUSE OF LORDS
+			</div>
+			<div class="col-md-2" style="text-align:center;">
+				ROYAL ASSENT
+			</div>
+			<div class="col-md-6" style="text-align:center;">
+				<% if vote.comment != "" %>
+					<%= vote.comment %>
+				<% end %>
+			</div>
+		</div>
+
 	</div>
+
+
+
+
+
+	<% end %>
+	<% end %>
 </div>

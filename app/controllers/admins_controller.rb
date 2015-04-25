@@ -43,6 +43,11 @@ class AdminsController < ApplicationController
 		redirect_to :back
 	end
 
+	def mass_mp_import
+		Mp.import(params[:file])
+		redirect_to :back
+	end
+
 	def voting_results
 		@bills = Bill.all
 	end
