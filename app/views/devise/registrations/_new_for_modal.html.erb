@@ -1,5 +1,5 @@
-<a href="<%= root_url %>users/auth/twitter">SIGN IN WITH TWITTER</a>
-<a href="<%= root_url %>users/auth/facebook">SIGN IN WITH FACEBOOK</a>
+<a href="<%= root_url %>users/auth/twitter?image_size=original">SIGN IN WITH TWITTER</a>
+<a href="<%= root_url %>users/auth/facebook?image_size=large">SIGN IN WITH FACEBOOK</a>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>

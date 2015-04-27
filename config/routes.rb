@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
-  post 'mailing_list_request' => 'static_pages#mailing_list_request'
-  match '*foo' => redirect('/'), via: [:get, :patch, :post]
-  root :to => 'static_pages#prelaunch_landing_page'
+  #post 'mailing_list_request' => 'static_pages#mailing_list_request'
+  #match '*foo' => redirect('/'), via: [:get, :patch, :post]
+  #root :to => 'static_pages#prelaunch_landing_page'
 
   authenticated :user do
     root :to => 'bills#index', :as => :authenticated_root
@@ -70,9 +70,9 @@ Rails.application.routes.draw do
   match '/422', to: 'errors#unprocessable', via: :all
   match '/500', to: 'errors#internal_server_error', via: :all
 
-  #post 'mailing_list_request' => 'static_pages#mailing_list_request'
-  #get '/prelaunch_landing_page' => 'static_pages#prelaunch_landing_page'
-  #root 'static_pages#home'
+  post 'mailing_list_request' => 'static_pages#mailing_list_request'
+  get '/prelaunch_landing_page' => 'static_pages#prelaunch_landing_page'
+  root 'static_pages#home'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

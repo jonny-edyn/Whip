@@ -42,7 +42,7 @@ class UsersController < ApplicationController
     if request.patch? && params[:user] #&& params[:user][:email]
       if @user.update_attributes(user_params)
         sign_in(@user, bypass: true)
-        redirect_to root_path, notice: 'Your profile was successfully updated.'
+        redirect_to edit_user_path(@user.id), notice: 'Your profile was successfully updated.'
       else
         flash[:notice] = "Email already taken!  If you already have an account, login and with Facebook or Email and add your Twitter account on Settings page."
         @show_errors = true
