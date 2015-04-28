@@ -1,15 +1,14 @@
 Rails.application.routes.draw do
 
-  #post 'mailing_list_request' => 'static_pages#mailing_list_request'
   #match '*foo' => redirect('/'), via: [:get, :patch, :post]
-  #root :to => 'static_pages#prelaunch_landing_page'
+  
 
-  authenticated :user do
-    root :to => 'bills#index', :as => :authenticated_root
-  end
+  #authenticated :user do
+  # root :to => 'bills#index', :as => :authenticated_root
+  #end
 
 
-  devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks', :registrations => "registrations" }
+  devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks', :sessions => "sessions", :registrations => "registrations" }
 
   get '/users_followed' => 'users#users_followed'
   resources :users, only: [:edit, :show] do
@@ -55,6 +54,7 @@ Rails.application.routes.draw do
       get :voting_results
       post :get_voting_results
       post :mass_bill_import
+      get :hidden_admin_login
     end
   end
 
@@ -71,8 +71,9 @@ Rails.application.routes.draw do
   match '/500', to: 'errors#internal_server_error', via: :all
 
   post 'mailing_list_request' => 'static_pages#mailing_list_request'
-  get '/prelaunch_landing_page' => 'static_pages#prelaunch_landing_page'
-  root 'static_pages#home'
+  #get '/prelaunch_landing_page' => 'static_pages#prelaunch_landing_page'
+  root  'static_pages#prelaunch_landing_page'
+  #root 'static_pages#home'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
