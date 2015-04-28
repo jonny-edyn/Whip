@@ -2,6 +2,29 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+
+//
+// Fonts
+//
+
+@font-face {
+  font-family: 'dinMedium';
+  src: font-url('din_medium.eot');
+  src: font-url('din_medium.eot?#iefix') format('embedded-opentype'),font-url('din_medium.woff') format('woff'),font-url('din_medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'dinRegular';
+  src: font-url('din_regular.eot');
+  src: font-url('din_regular.eot?#iefix') format('embedded-opentype'),font-url('din_regular.woff') format('woff'),font-url('din_regular.ttf') format('truetype');
+}
+
+ 
+
+//
+// Label Later
+//
+
 ul.nav li.dropdown:hover > ul.dropdown-menu {
     display: block;
     margin: 0;
