@@ -35,7 +35,8 @@
 					<p class="headers">RESEARCH</p>
 					<p class="text">Learn about the government bills, that matter to you. We will break bills  down into Laymans terms, providing you with a detailed non partisan synopsis. Read about the arguments for, arguments against, cost and potential impacts with links to additional resources.</p>
 				</div>
-				<div class="col-md-12 hidden-xs to_half" style="text-align:center;">
+				<div class="col-md-12 to_half" style="text-align:center;">
+					<p class="headers hide_name">RESEARCH</p>
 					<img src="<%= image_path('magnifying_glass_icon.png') %>">
 				</div>
 			</div>
@@ -45,7 +46,8 @@
 	<div class="row bottom_line_gray light_blue_hover hover_expand" style="margin: 0;">
 		<div class="col-md-12" style="padding-top: 50px;padding-bottom: 50px;padding-right: 30px;">
 			<div class="row" style="display: flex; align-items: center;">
-				<div class="col-md-12 hidden-xs to_half" style="text-align:center;">
+				<div class="col-md-12 to_half" style="text-align:center;">
+					<p class="headers hide_name">VOTE</p>
 					<img src="<%= image_path('ballet_box_icon.png') %>">
 				</div>
 				<div class="col-md-6 hidden_half" style="text-align:left;display:none;">
@@ -60,14 +62,15 @@
 		<div class="col-md-12" style="padding-top: 50px;padding-bottom: 50px;padding-left: 30px;">
 			<div class="row" style="display: flex; align-items: center;">
 				<div class="col-md-6 hidden_half" style="text-align:left;display:none;">
-					<p class="headers">Compare</p>
+					<p class="headers">COMPARE</p>
 					<p class="text">See how your vote compares with what your MP is actually doing. Check whether they are listening to you.</p>
 
 					<p class="text">Imagine if everyone could see and understand the bills going through Westminster? Imagine every British citizen could have their say.  Imagine if you could find out if your MP is listening?
 
 					<p class="text">Whip: Putting Parliament in your hands.</p>
 				</div>
-				<div class="col-md-12 hidden-xs to_half" style="text-align:center;">
+				<div class="col-md-12 to_half" style="text-align:center;">
+					<p class="headers hide_name">COMPARE</p>
 					<img src="<%= image_path('research_icon.png') %>">
 				</div>
 			</div>
@@ -130,8 +133,16 @@
 <% end %>
 
 <script type="text/javascript">
+
 var ready;
 ready = function() {
+
+	function makeBigger(this_img) {
+	    this_img.css({height: '+=10%', width: '+=10%'});
+	}
+	function returnToOriginalSize(this_img) {
+	    this_img.css({height: "", width: ""});
+	}
 
 	$( ".hover_text" ).hover(
 	  function() {
@@ -139,9 +150,12 @@ ready = function() {
 	    var _id = _this.attr("id");
 		$('.reveal_hover').css('display','none');
 		$('.reveal_hover#' + _id + '_reveal').fadeIn();
+		makeBigger(_this.children('img'));
 	  }, 
 	  function() {
+	  	var _this = $(this)
 		$('.reveal_hover').css('display','none');
+		returnToOriginalSize(_this.children('img'));
 	  }
 	);
 
@@ -149,11 +163,13 @@ ready = function() {
 	  function() {
 	    var _this = $(this)
 	    _this.children().children().children('.to_half').removeClass( "col-md-12" ).addClass( "col-md-6" );
-	    _this.children().children().children('.hidden_half').fadeIn();
+	    _this.children().children().children('.to_half').children('.hide_name').css('display','none');
+	    _this.children().children().children('.hidden_half').fadeIn(1000);
 	  }, 
 	  function() {
 		var _this = $(this)
 	    _this.children().children().children('.to_half').removeClass( "col-md-6" ).addClass( "col-md-12" );
+	    _this.children().children().children('.to_half').children('.hide_name').fadeIn();
 	    _this.children().children().children('.hidden_half').css('display','none');
 	  }
 	);
