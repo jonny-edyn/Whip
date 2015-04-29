@@ -79,7 +79,6 @@ gem 'jquery.fileupload-rails'
 #WYSIWYG Editor
 gem 'bootsy'
 
-gem "autoprefixer-rails"
 
 gem 'impressionist'
 gem 'ruby_odata'
