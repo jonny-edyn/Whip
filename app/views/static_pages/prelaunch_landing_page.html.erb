@@ -1,6 +1,6 @@
 
 
-<div class="row" style="text-align: center;padding-top: 100px;">
+<div class="row top_form_padding" style="text-align: center;padding-top:100px;">
 	<div class="col-md-12" style="z-index: 10;">
 		<p><img src="<%= image_path('whip_circle_icon.png') %>" style="padding-right: 10px;height:32px;"><img src="<%= image_path('whip_text_landing.png') %>" style="height:28px;"></p>
 		<p class="headers" style="font-size:15px;margin-top:16px;">Parliament in your hands</p>
@@ -174,7 +174,25 @@ ready = function() {
 	  }
 	);
 
-
+	var form_height = 187
+	var total_height = $(window).height();
+	var west_width = $('#westminster_bottom').width();
+	var west_height = west_width / 2.724852071
+	var west_height_int = parseInt(west_height)
+	var remaining_height = total_height - west_height - form_height
+	console.log(form_height);
+	console.log(total_height);
+	console.log(west_width);
+	console.log(west_height);
+	console.log(remaining_height);
+	var add_top_padding = total_height * .15748
+	var add_top_padding_int = parseInt(add_top_padding)
+	var move_back = total_height * .220472
+	var move_back_int = parseInt(move_back)
+	console.log(add_top_padding_int);
+	console.log(move_back_int);
+	$('.top_form_padding').css('padding-top', add_top_padding_int + 'px');
+	$('.westminster-padding').css('top','-' + move_back_int + 'px');
 };
 
 $(document).ready(ready);
