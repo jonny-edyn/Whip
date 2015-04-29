@@ -346,6 +346,7 @@ PLATFORMS
 
 DEPENDENCIES
   annotate
+  autoprefixer-rails
   aws-sdk (~> 1)
   bcrypt (~> 3.1.7)
   bootstrap-sass
