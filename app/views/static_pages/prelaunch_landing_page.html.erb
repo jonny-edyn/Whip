@@ -1,114 +1,117 @@
 
+<div class="viewport_size" style="position:relative;">
 
-<div class="row top_form_padding" style="text-align: center;padding-top:100px;">
-	<div class="col-md-12" style="z-index: 10;">
-		<p><img src="<%= image_path('whip_circle_icon.png') %>" style="padding-right: 10px;height:32px;"><img src="<%= image_path('whip_text_landing.png') %>" style="height:28px;"></p>
-		<p class="headers" style="font-size:15px;margin-top:16px;">Parliament in your hands</p>
-		<div id="join_mailing_list_form">
-			<%= form_tag mailing_list_request_path, remote: true do %>
+	<div class="row top_form_padding" style="text-align: center;position: relative; top: 40%; transform: translateY(-60%);">
+		<div class="col-md-12" style="z-index: 10;">
+			<p><img src="<%= image_path('whip_circle_icon.png') %>" style="padding-right: 10px;height:32px;"><img src="<%= image_path('whip_text_landing.png') %>" style="height:28px;"></p>
+			<p class="headers" style="font-size:15px;margin-top:16px;">Parliament in your hands</p>
+			<div id="join_mailing_list_form">
+				<%= form_tag mailing_list_request_path, remote: true do %>
 
-	              <%= text_field_tag :contact_email,'', autofocus: true, placeholder: "Enter email now to find out more", class: "headers", id: "prelaunch_text_box", style: "font-size:13px;text-align: center;" %>
-	              <br>
+		              <%= text_field_tag :contact_email,'', autofocus: true, placeholder: "Enter email now to find out more", class: "headers", id: "prelaunch_text_box", style: "font-size:13px;text-align: center;" %>
+		              <br>
 
-	              <%= submit_tag 'SIGN UP', class: "headers prelaunch_submit_btn", id: "sign_up_btn", style: "font-size:10px;padding: 2px 10px;" %>
+		              <%= submit_tag 'SIGN UP', class: "headers prelaunch_submit_btn", id: "sign_up_btn", style: "font-size:10px;padding: 2px 10px;" %>
 
-	        <% end %>
-		</div>
-		<div id="joined_mailing_list_notification" style="display:none;">
-			<p class="headers" style="font-size:13px;text-align: center;" >Thanks for joining the mailing list!  Please check your email to confirm your subscription!</p>
+		        <% end %>
+			</div>
+			<div id="joined_mailing_list_notification" style="display:none;">
+				<p class="headers" style="font-size:13px;text-align: center;" >Thanks for joining the mailing list!  Please check your email to confirm your subscription!</p>
+			</div>
 		</div>
 	</div>
-</div>
 
-<div class="westminster-padding" style="position:relative;">
-
-	<div class="row" style="height:auto;">
+	<div class="row" style="height:auto;position: absolute; bottom: 0px;">
 		<div class="col-md-12">
 			<img class="bottom_line_gray" src="<%= image_path('building_background.png') %>" style="width:100%;" id="westminster_bottom">
 		</div>
 	</div>
 
-	<div class="row bottom_line_gray light_pink_hover hover_expand" style="margin: 0;">
-		<div class="col-md-12" style="padding-top: 50px;padding-bottom: 50px;padding-left: 30px;">
-			<div class="row" style="display: flex; align-items: center;">
-				<div class="col-md-6 hidden_half" style="text-align:left;display:none;">
-					<p class="headers">RESEARCH</p>
-					<p class="text">Learn about the government bills, that matter to you. We will break bills  down into Laymans terms, providing you with a detailed non partisan synopsis. Read about the arguments for, arguments against, cost and potential impacts with links to additional resources.</p>
-				</div>
-				<div class="col-md-12 col-xs-12 to_half" style="text-align:center;">
-					<p class="headers hide_name">RESEARCH</p>
-					<img src="<%= image_path('magnifying_glass_icon.png') %>">
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="row bottom_line_gray light_blue_hover hover_expand" style="margin: 0;">
-		<div class="col-md-12" style="padding-top: 50px;padding-bottom: 50px;padding-right: 30px;">
-			<div class="row" style="display: flex; align-items: center;">
-				<div class="col-md-12 col-xs-12 to_half" style="text-align:center;">
-					<p class="headers hide_name">VOTE</p>
-					<img src="<%= image_path('ballet_box_icon.png') %>">
-				</div>
-				<div class="col-md-6 hidden_half" style="text-align:left;display:none;">
-					<p class="headers">VOTE</p>
-					<p class="text">This is your chance to have your say on how your MP should vote on bills. At the click of a button Whip will generate a message on your behalf and sends it to your local MP. Then effortlessly share with friends to give the bill the exposure it needs.</p>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="row bottom_line_gray light_pink_hover hover_expand" style="margin: 0;">
-		<div class="col-md-12" style="padding-top: 50px;padding-bottom: 50px;padding-left: 30px;">
-			<div class="row" style="display: flex; align-items: center;">
-				<div class="col-md-6 hidden_half" style="text-align:left;display:none;">
-					<p class="headers">COMPARE</p>
-					<p class="text">See how your vote compares with what your MP is actually doing. Check whether they are listening to you.</p>
-
-					<p class="text">Imagine if everyone could see and understand the bills going through Westminster? Imagine every British citizen could have their say.  Imagine if you could find out if your MP is listening?
-
-					<p class="text">Whip: Putting Parliament in your hands.</p>
-				</div>
-				<div class="col-md-12 col-xs-12 to_half" style="text-align:center;">
-					<p class="headers hide_name">COMPARE</p>
-					<img src="<%= image_path('research_icon.png') %>">
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="row" style="text-align:center;padding-top: 60px;">
-		<div class="col-md-12">
-			<p class="headers">OUR GOAL</p>
-			<div class="row" style="padding-top: 26px; align-items: center;">
-				<div class="col-md-2 col-md-offset-3 col-xs-12 hover_text" id="heads">
-					<img src="<%= image_path('two_heads_icon.png') %>" style="margin-bottom: 16px;">
-					<p class="headers prelaunch_text_engage" style="font-size:12px;padding-bottom:20px;">ENGAGE</p>
-				</div>
-				<div class="col-md-2 col-xs-12 hover_text" id="books">
-					<img src="<%= image_path('book_stack_icon.png') %>" style="margin-bottom: 16px;">
-					<p class="headers prelaunch_text_engage" style="font-size:12px;position: relative;top: 5px;padding-bottom:20px;">EDUCATE</p>
-				</div>
-				<div class="col-md-2 col-xs-12 hover_text" id="fist">
-					<img src="<%= image_path('fist_icon.png') %>" style="margin-bottom: 16px;">
-					<p class="headers prelaunch_text_engage" style="font-size:12px;padding-bottom:20px;">EMPOWER</p>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<p class="reveal_hover text" id="heads_reveal" style="display:none;">This is just to test</p>
-					<p class="reveal_hover text" id="books_reveal" style="display:none;">This is your chance to have your say on how your MP should vote on bills. At the click of a button Whip will generate a message on your behalf and sends it to your local MP. Then effortlessly share with friends to give the bill the exposure it needs.</p>
-					<p class="reveal_hover text" id="fist_reveal" style="display:none;">A Third Time</p>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
-
-
-
 </div>
+
+
+
+
+<div class="row bottom_line_gray light_pink_hover hover_expand" style="margin: 0;">
+	<div class="col-md-12" style="padding-top: 50px;padding-bottom: 50px;padding-left: 30px;">
+		<div class="row" style="display: flex; align-items: center;">
+			<div class="col-md-6 hidden_half" style="text-align:left;display:none;">
+				<p class="headers">RESEARCH</p>
+				<p class="text">Learn about the government bills, that matter to you. We will break bills  down into Laymans terms, providing you with a detailed non partisan synopsis. Read about the arguments for, arguments against, cost and potential impacts with links to additional resources.</p>
+			</div>
+			<div class="col-md-12 col-xs-12 to_half" style="text-align:center;">
+				<p class="headers hide_name">RESEARCH</p>
+				<img src="<%= image_path('magnifying_glass_icon.png') %>">
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row bottom_line_gray light_blue_hover hover_expand" style="margin: 0;">
+	<div class="col-md-12" style="padding-top: 50px;padding-bottom: 50px;padding-right: 30px;">
+		<div class="row" style="display: flex; align-items: center;">
+			<div class="col-md-12 col-xs-12 to_half" style="text-align:center;">
+				<p class="headers hide_name">VOTE</p>
+				<img src="<%= image_path('ballet_box_icon.png') %>">
+			</div>
+			<div class="col-md-6 hidden_half" style="text-align:left;display:none;">
+				<p class="headers">VOTE</p>
+				<p class="text">This is your chance to have your say on how your MP should vote on bills. At the click of a button Whip will generate a message on your behalf and sends it to your local MP. Then effortlessly share with friends to give the bill the exposure it needs.</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row bottom_line_gray light_pink_hover hover_expand" style="margin: 0;">
+	<div class="col-md-12" style="padding-top: 50px;padding-bottom: 50px;padding-left: 30px;">
+		<div class="row" style="display: flex; align-items: center;">
+			<div class="col-md-6 hidden_half" style="text-align:left;display:none;">
+				<p class="headers">COMPARE</p>
+				<p class="text">See how your vote compares with what your MP is actually doing. Check whether they are listening to you.</p>
+
+				<p class="text">Imagine if everyone could see and understand the bills going through Westminster? Imagine every British citizen could have their say.  Imagine if you could find out if your MP is listening?
+
+				<p class="text">Whip: Putting Parliament in your hands.</p>
+			</div>
+			<div class="col-md-12 col-xs-12 to_half" style="text-align:center;">
+				<p class="headers hide_name">COMPARE</p>
+				<img src="<%= image_path('research_icon.png') %>">
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row" style="text-align:center;padding-top: 60px;">
+	<div class="col-md-12">
+		<p class="headers">OUR GOAL</p>
+		<div class="row" style="padding-top: 26px; align-items: center;">
+			<div class="col-md-2 col-md-offset-3 col-xs-12 hover_text" id="heads">
+				<img src="<%= image_path('two_heads_icon.png') %>" style="margin-bottom: 16px;">
+				<p class="headers prelaunch_text_engage" style="font-size:12px;padding-bottom:20px;">ENGAGE</p>
+			</div>
+			<div class="col-md-2 col-xs-12 hover_text" id="books">
+				<img src="<%= image_path('book_stack_icon.png') %>" style="margin-bottom: 16px;">
+				<p class="headers prelaunch_text_engage" style="font-size:12px;position: relative;top: 5px;padding-bottom:20px;">EDUCATE</p>
+			</div>
+			<div class="col-md-2 col-xs-12 hover_text" id="fist">
+				<img src="<%= image_path('fist_icon.png') %>" style="margin-bottom: 16px;">
+				<p class="headers prelaunch_text_engage" style="font-size:12px;padding-bottom:20px;">EMPOWER</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<p class="reveal_hover text" id="heads_reveal" style="display:none;">This is just to test</p>
+				<p class="reveal_hover text" id="books_reveal" style="display:none;">This is your chance to have your say on how your MP should vote on bills. At the click of a button Whip will generate a message on your behalf and sends it to your local MP. Then effortlessly share with friends to give the bill the exposure it needs.</p>
+				<p class="reveal_hover text" id="fist_reveal" style="display:none;">A Third Time</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
 
 <% if false %>
 	<script type="text/javascript">
@@ -174,25 +177,9 @@ ready = function() {
 	  }
 	);
 
-	var form_height = 187
 	var total_height = $(window).height();
-	var west_width = $('#westminster_bottom').width();
-	var west_height = west_width / 2.724852071
-	var west_height_int = parseInt(west_height)
-	var remaining_height = total_height - west_height - form_height
-	console.log(form_height);
-	console.log(total_height);
-	console.log(west_width);
-	console.log(west_height);
-	console.log(remaining_height);
-	var add_top_padding = total_height * .15748
-	var add_top_padding_int = parseInt(add_top_padding)
-	var move_back = total_height * .220472
-	var move_back_int = parseInt(move_back)
-	console.log(add_top_padding_int);
-	console.log(move_back_int);
-	$('.top_form_padding').css('padding-top', add_top_padding_int + 'px');
-	$('.westminster-padding').css('top','-' + move_back_int + 'px');
+	
+	$('.viewport_size').css('height',total_height - 60);
 };
 
 $(document).ready(ready);
