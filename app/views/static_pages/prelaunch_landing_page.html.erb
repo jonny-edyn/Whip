@@ -32,7 +32,7 @@
 
 
 
-<div class="row bottom_line_gray light_pink_hover hover_expand" style="margin: 0;">
+<div class="row bottom_line_gray light_pink_hover hover_expand_right" style="margin: 0;">
 	<div class="col-md-12" style="padding-top: 50px;padding-bottom: 50px;padding-left: 30px;">
 		<div class="row" style="display: flex; align-items: center;">
 			<div class="col-md-6 hidden_half" style="text-align:left;display:none;">
@@ -41,18 +41,18 @@
 			</div>
 			<div class="col-md-12 col-xs-12 to_half" style="text-align:center;">
 				<p class="headers hide_name">RESEARCH</p>
-				<img src="<%= image_path('magnifying_glass_icon.png') %>">
+				<img style="position:relative;" src="<%= image_path('magnifying_glass_icon.png') %>">
 			</div>
 		</div>
 	</div>
 </div>
 
-<div class="row bottom_line_gray light_blue_hover hover_expand" style="margin: 0;">
+<div class="row bottom_line_gray light_blue_hover hover_expand_left" style="margin: 0;">
 	<div class="col-md-12" style="padding-top: 50px;padding-bottom: 50px;padding-right: 30px;">
 		<div class="row" style="display: flex; align-items: center;">
 			<div class="col-md-12 col-xs-12 to_half" style="text-align:center;">
 				<p class="headers hide_name">VOTE</p>
-				<img src="<%= image_path('ballet_box_icon.png') %>">
+				<img style="position:relative;" src="<%= image_path('ballet_box_icon.png') %>">
 			</div>
 			<div class="col-md-6 hidden_half" style="text-align:left;display:none;">
 				<p class="headers">VOTE</p>
@@ -62,7 +62,7 @@
 	</div>
 </div>
 
-<div class="row bottom_line_gray light_pink_hover hover_expand" style="margin: 0;">
+<div class="row bottom_line_gray light_pink_hover hover_expand_right" style="margin: 0;">
 	<div class="col-md-12" style="padding-top: 50px;padding-bottom: 50px;padding-left: 30px;">
 		<div class="row" style="display: flex; align-items: center;">
 			<div class="col-md-6 hidden_half" style="text-align:left;display:none;">
@@ -75,7 +75,7 @@
 			</div>
 			<div class="col-md-12 col-xs-12 to_half" style="text-align:center;">
 				<p class="headers hide_name">COMPARE</p>
-				<img src="<%= image_path('research_icon.png') %>">
+				<img style="position:relative;" src="<%= image_path('research_icon.png') %>">
 			</div>
 		</div>
 	</div>
@@ -162,18 +162,45 @@ ready = function() {
 	  }
 	);
 
-	$( ".hover_expand" ).hover(
+	$( ".hover_expand_left" ).hover(
 	  function() {
 	    var _this = $(this)
-	    _this.children().children().children('.to_half').removeClass( "col-md-12" ).addClass( "col-md-6" );
-	    _this.children().children().children('.to_half').children('.hide_name').css('visibility','hidden');
-	    _this.children().children().children('.hidden_half').fadeIn(1000);
+	    var this_image = _this.children().children().children('.to_half').children('img');
+    	 _this.children().children().children('.to_half').children('.hide_name').css('visibility','hidden');
+	     this_image.animate({left:'-30%'}, 1000, "linear", function(){
+	        _this.children().children().children('.to_half').removeClass( "col-md-12" ).addClass( "col-md-6" );
+		    _this.children().children().children('.hidden_half').fadeIn(1400);
+	     });
 	  }, 
 	  function() {
 		var _this = $(this)
-	    _this.children().children().children('.to_half').removeClass( "col-md-6" ).addClass( "col-md-12" );
-	    _this.children().children().children('.to_half').children('.hide_name').fadeIn();
-	    _this.children().children().children('.hidden_half').css('display','none');
+		var this_image = _this.children().children().children('.to_half').children('img');
+		_this.children().children().children('.hidden_half').css('display','none');
+		_this.children().children().children('.to_half').removeClass( "col-md-6" ).addClass( "col-md-12" );
+		this_image.animate({left:''}, 1000, "linear", function(){
+		    _this.children().children().children('.to_half').children('.hide_name').css('visibility','');
+		});	
+	  }
+	);
+
+	$( ".hover_expand_right" ).hover(
+	  function() {
+	    var _this = $(this)
+	    var this_image = _this.children().children().children('.to_half').children('img');
+    	 _this.children().children().children('.to_half').children('.hide_name').css('visibility','hidden');
+	     this_image.animate({left:'30%'}, 1000, "linear", function(){
+	        _this.children().children().children('.to_half').removeClass( "col-md-12" ).addClass( "col-md-6" );
+		    _this.children().children().children('.hidden_half').fadeIn(1400);
+	     });
+	  }, 
+	  function() {
+		var _this = $(this)
+		var this_image = _this.children().children().children('.to_half').children('img');
+		_this.children().children().children('.hidden_half').css('display','none');
+		_this.children().children().children('.to_half').removeClass( "col-md-6" ).addClass( "col-md-12" );
+		this_image.animate({left:''}, 1000, "linear", function(){
+		    _this.children().children().children('.to_half').children('.hide_name').css('visibility','');
+		});	
 	  }
 	);
 
