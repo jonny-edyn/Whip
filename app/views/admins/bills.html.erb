@@ -91,7 +91,7 @@
 					<%= f.label :official_name, "Official Name" %>
 					<%= f.text_field :official_name %><br>
 					<%= f.label :support, "Arguments For" %>
-					<%= f.text_area :support %><br>
+					<%= f.bootsy_area :support, editor_options: { link: false, color: false,image: false } %><br>
 					<%= f.label :opposition, "Arguments Against" %>
 					<%= f.text_area :opposition %><br>
 					<%= f.label :meaning, "Meaning" %>
