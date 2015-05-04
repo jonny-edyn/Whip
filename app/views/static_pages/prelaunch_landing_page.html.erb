@@ -32,41 +32,43 @@
 
 
 
-<div class="row bottom_line_gray light_pink_hover hover_expand_right" style="margin: 0;">
-	<div class="col-md-12" style="padding-top: 50px;padding-bottom: 50px;padding-left: 30px;">
+<div class="row bottom_line_gray light_pink_hover hover_expand_right" id="infoResearch" style="margin: 0;">
+	<div class="col-md-12" style="padding-top: 50px;padding-bottom: 50px;">
 		<div class="row" style="display: flex; align-items: center;">
 			<div class="col-md-6 hidden_half" style="text-align:left;display:none;">
-				<p class="headers">RESEARCH</p>
+				<p class="headers headers_padding">RESEARCH</p>
 				<p class="text">Learn about the government bills, that matter to you. We will break bills  down into Laymans terms, providing you with a detailed non partisan synopsis. Read about the arguments for, arguments against, cost and potential impacts with links to additional resources.</p>
 			</div>
 			<div class="col-md-12 col-xs-12 to_half" style="text-align:center;">
-				<p class="headers hide_name">RESEARCH</p>
+				<p class="headers hide_name headers_padding">RESEARCH</p>
 				<img style="position:relative;" src="<%= image_path('magnifying_glass_icon.png') %>">
 			</div>
 		</div>
 	</div>
 </div>
 
-<div class="row bottom_line_gray light_blue_hover hover_expand_left" style="margin: 0;">
-	<div class="col-md-12" style="padding-top: 50px;padding-bottom: 50px;padding-right: 30px;">
+<div class="row bottom_line_gray light_blue_hover hover_expand_left" id="infoVote" style="margin: 0;">
+	<!--<div class="col-md-12" style="padding-top: 50px;padding-bottom: 50px;padding-right: 30px;">-->
+	<div class="col-md-12" style="padding-top: 50px;padding-bottom: 50px;">
 		<div class="row" style="display: flex; align-items: center;">
 			<div class="col-md-12 col-xs-12 to_half" style="text-align:center;">
-				<p class="headers hide_name">VOTE</p>
+				<p class="headers hide_name headers_padding">VOTE</p>
 				<img style="position:relative;" src="<%= image_path('ballet_box_icon.png') %>">
 			</div>
-			<div class="col-md-6 hidden_half" style="text-align:left;display:none;">
-				<p class="headers">VOTE</p>
+			<div class="col-md-6 hidden_half" style="text-align:left;display:none;padding-right:30px;">
+				<p class="headers headers_padding">VOTE</p>
 				<p class="text">This is your chance to have your say on how your MP should vote on bills. At the click of a button Whip will generate a message on your behalf and sends it to your local MP. Then effortlessly share with friends to give the bill the exposure it needs.</p>
 			</div>
 		</div>
 	</div>
 </div>
 
-<div class="row bottom_line_gray light_pink_hover hover_expand_right" style="margin: 0;">
-	<div class="col-md-12" style="padding-top: 50px;padding-bottom: 50px;padding-left: 30px;">
+<div class="row bottom_line_gray light_pink_hover hover_expand_right" id="infoCompare" style="margin: 0;">
+	<!--<div class="col-md-12" style="padding-top: 50px;padding-bottom: 50px;padding-left: 30px;">-->
+	<div class="col-md-12" style="padding-top: 50px;padding-bottom: 50px;">
 		<div class="row" style="display: flex; align-items: center;">
 			<div class="col-md-6 hidden_half" style="text-align:left;display:none;">
-				<p class="headers">COMPARE</p>
+				<p class="headers headers_padding">COMPARE</p>
 				<p class="text">See how your vote compares with what your MP is actually doing. Check whether they are listening to you.</p>
 
 				<p class="text">Imagine if everyone could see and understand the bills going through Westminster? Imagine every British citizen could have their say.  Imagine if you could find out if your MP is listening?
@@ -74,7 +76,7 @@
 				<p class="text">Whip: Putting Parliament in your hands.</p>
 			</div>
 			<div class="col-md-12 col-xs-12 to_half" style="text-align:center;">
-				<p class="headers hide_name">COMPARE</p>
+				<p class="headers hide_name headers_padding">COMPARE</p>
 				<img style="position:relative;" src="<%= image_path('research_icon.png') %>">
 			</div>
 		</div>
@@ -162,6 +164,142 @@ ready = function() {
 	  }
 	);
 
+	var hoverDelay = 500, setTimeoutConst;
+	var hoverDelayLeft = 500, setTimeoutConstLeft;
+	var fadeDelay = 500;
+	var animateDelay = 500;
+	var mouseOut = false;
+	var mouseOutLeft = false;
+	
+	/*
+	
+	var hoverDelayResearch = 500, setTimeoutConstResearch;
+	var hoverDelayVote = 500, setTimeoutConstVote;
+	var hoverDelayCompare = 500, setTimeoutConstCompare;
+	var mouseOutResearch = false;
+	var mouseOutVote = false;
+	var mouseOutCompare = false;
+	
+	$(document).on({
+		mouseenter: function () {
+			InfoAnimationIn( $(this), '27%', hoverDelayResearch, setTimeoutConstResearch, mouseOutResearch );
+		},
+		mouseleave: function () {
+			InfoAnimationOut( $(this), '27%', hoverDelayResearch, setTimeoutConstResearch, mouseOutResearch );
+		}
+	}, "#infoResearch");
+	
+	function InfoAnimationIn( _this, $per, $delay, $delayConst, $mouse ) {
+		var this_image = _this.children().children().children('.to_half').children('img');
+		$mouse = false;
+		 $delayConst = setTimeout(function(){
+			 _this.children().children().children('.to_half').children('.hide_name').css('visibility','hidden');
+			 this_image.animate({left:$per}, animateDelay, "linear", function(){
+				if ($mouse == false ) {
+					_this.children().children().children('.to_half').removeClass( "col-md-12" ).addClass( "col-md-6" );
+					_this.children().children().children('.hidden_half').fadeIn(fadeDelay);
+					 this_image.css({'left':0});
+				}
+			 });
+		 }, $delay);
+	}
+	
+	function InfoAnimationOut( _this, $per, $delay, $delayConst, $mouse ) {
+		clearTimeout($delayConst);
+		var this_image = _this.children().children().children('.to_half').children('img');
+		
+		if ( this_image.css('left') == '0px' && _this.children().children().children('.to_half').hasClass( 'col-md-6' ) ) {
+			this_image.css({'left':$per});
+		}
+		
+		if (_this.children().children().children('.hidden_half').is('hidden') ) {
+			this_image.finish(); 
+		}
+		$mouse = true;
+		_this.children().children().children('.hidden_half').css('display','none');
+		_this.children().children().children('.to_half').removeClass( "col-md-6" ).addClass( "col-md-12" );
+		this_image.animate({left:''}, animateDelay, "linear", function(){
+			_this.children().children().children('.to_half').children('.hide_name').css('visibility','');
+		});	
+	}
+	*/
+	
+	$(document).on({
+		mouseenter: function () {
+			var _this = $(this)
+			var this_image = _this.children().children().children('.to_half').children('img');
+			mouseOut = false;
+			setTimeoutConst = setTimeout(function(){
+				_this.children().children().children('.to_half').children('.hide_name').css('visibility','hidden');
+				this_image.animate({left:'27%'}, animateDelay, "linear", function(){
+					if (mouseOut == false ) {
+					   _this.children().children().children('.to_half').removeClass( "col-md-12" ).addClass( "col-md-6" );
+					   _this.children().children().children('.hidden_half').fadeIn(fadeDelay);
+					   this_image.css({'left':0});
+				   	}
+				   
+				});
+			}, hoverDelay);
+		},
+		mouseleave: function () {
+			clearTimeout(setTimeoutConst);
+			var _this = $(this)
+			var this_image = _this.children().children().children('.to_half').children('img');
+			
+			if ( this_image.css('left') == '0px' && _this.children().children().children('.to_half').hasClass( 'col-md-6' ) ) {
+				this_image.css({'left':'27%'});
+			}
+			
+			if (_this.children().children().children('.hidden_half').is('hidden') ) {
+				this_image.finish(); 
+			}
+			mouseOut = true;
+			_this.children().children().children('.hidden_half').css('display','none');
+			_this.children().children().children('.to_half').removeClass( "col-md-6" ).addClass( "col-md-12" );
+			this_image.animate({left:''}, animateDelay, "linear", function(){
+				_this.children().children().children('.to_half').children('.hide_name').css('visibility','');
+			});	
+		}
+	}, ".hover_expand_right");
+
+	$(document).on({
+		mouseenter: function () {
+			var _this = $(this);
+			var this_image = _this.children().children().children('.to_half').children('img');
+			mouseOutLeft = false;
+			 setTimeoutConstLeft = setTimeout(function(){
+				 _this.children().children().children('.to_half').children('.hide_name').css('visibility','hidden');
+				 this_image.animate({left:'-27%'}, animateDelay, "linear", function(){
+				 	if (mouseOutLeft == false ) {
+						_this.children().children().children('.to_half').removeClass( "col-md-12" ).addClass( "col-md-6" );
+						_this.children().children().children('.hidden_half').fadeIn(fadeDelay);
+						 this_image.css({'left':0});
+					}
+				 });
+			 }, hoverDelayLeft);
+		},
+		mouseleave: function () {
+			clearTimeout(setTimeoutConstLeft);
+			var _this = $(this);
+			var this_image = _this.children().children().children('.to_half').children('img');
+			
+			if ( this_image.css('left') == '0px' && _this.children().children().children('.to_half').hasClass( 'col-md-6' ) ) {
+				this_image.css({'left':'-27%'});
+			}
+			
+			if (_this.children().children().children('.hidden_half').is('hidden') ) {
+				this_image.finish(); 
+			}
+			mouseOutLeft = true;
+			_this.children().children().children('.hidden_half').css('display','none');
+			_this.children().children().children('.to_half').removeClass( "col-md-6" ).addClass( "col-md-12" );
+			this_image.animate({left:''}, animateDelay, "linear", function(){
+				_this.children().children().children('.to_half').children('.hide_name').css('visibility','visible');
+			});	
+		}
+	}, ".hover_expand_left");
+	
+	/*
 	$( ".hover_expand_left" ).hover(
 	  function() {
 	    var _this = $(this)
@@ -182,6 +320,7 @@ ready = function() {
 		});	
 	  }
 	);
+	
 
 	$( ".hover_expand_right" ).hover(
 	  function() {
@@ -203,7 +342,9 @@ ready = function() {
 		});	
 	  }
 	);
-
+	*/
+	/**/
+	
 	var total_height = $(window).height();
 	
 	$('.viewport_size').css('height',total_height - 60);
