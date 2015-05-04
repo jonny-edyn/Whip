@@ -1,3 +1,137 @@
 // Place all the styles related to the Admins controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.top-buffer { margin-top:9px; }
+
+/* modal-alert */
+@media (min-width: 480px) {
+  .modal-alert .modal-dialog {
+    width: 350px;
+  }
+}
+.modal-alert .modal-header,
+.modal-alert .modal-title,
+.modal-alert .modal-body,
+.modal-alert .modal-footer {
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0 20px;
+  text-align: center !important;
+}
+.modal-alert .modal-header {
+  color: #fff;
+  margin-bottom: 20px;
+  padding: 25px 0 18px 0;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+  border-bottom: 4px solid rgba(0, 0, 0, 0.08);
+}
+.modal-alert .modal-header .fa {
+  font-size: 90px;
+}
+.modal-alert .modal-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 3px;
+}
+.modal-alert .modal-body {
+  color: #888;
+}
+.modal-alert .modal-footer {
+  margin: 25px 0 20px 0;
+}
+.modal-alert.modal-info .modal-header {
+  background: #5bc0de;
+}
+.modal-alert.modal-danger .modal-header {
+  background: #d9534f;
+}
+.modal-alert.modal-warning .modal-header {
+  background: #f4b04f;
+}
+.modal-alert.modal-success .modal-header {
+  background: #5ebd5e;
+}
+
+/* flat buttons */
+.btn.btn-flat {
+  border-bottom-width: 3px;
+}
+.btn.btn-flat:focus {
+  border-bottom-width: 3px;
+}
+.btn.btn-flat:active {
+  border-bottom-width: 1px !important;
+  margin-top: 2px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.btn.btn-flat.btn-lg {
+  border-bottom-width: 3px;
+}
+.btn.btn-flat.btn-lg:active {
+  margin-top: 2px;
+}
+.btn.btn-flat.btn-xs {
+  border-bottom-width: 2px;
+}
+.btn.btn-flat.btn-xs:active {
+  margin-top: 1px;
+}
+.btn.btn-outline,
+.btn.btn-outline.btn-flat,
+.btn.btn-outline.btn-primary,
+.btn.btn-outline.btn-flat.btn-primary {
+  background: none;
+  color: #555555;
+  background: url('../images/pixel-admin/blank.png')\9;
+}
+.btn.btn-outline,
+.btn.btn-outline.btn-flat,
+.btn.btn-outline.btn-primary,
+.btn.btn-outline.btn-flat.btn-primary,
+.btn.btn-outline:focus,
+.btn.btn-outline.btn-flat:focus,
+.btn.btn-outline.btn-primary:focus,
+.btn.btn-outline.btn-flat.btn-primary:focus,
+.btn-group > .btn.btn-outline,
+.btn-group > .btn.btn-outline.btn-flat,
+.btn-group > .btn.btn-outline.btn-primary,
+.btn-group > .btn.btn-outline.btn-flat.btn-primary,
+.btn-group > .btn.btn-outline:focus,
+.btn-group > .btn.btn-outline.btn-flat:focus,
+.btn-group > .btn.btn-outline.btn-primary:focus,
+.btn-group > .btn.btn-outline.btn-flat.btn-primary:focus,
+.input-group-btn > .btn.btn-outline,
+.input-group-btn > .btn.btn-outline.btn-flat,
+.input-group-btn > .btn.btn-outline.btn-primary,
+.input-group-btn > .btn.btn-outline.btn-flat.btn-primary,
+.input-group-btn > .btn.btn-outline:focus,
+.input-group-btn > .btn.btn-outline.btn-flat:focus,
+.input-group-btn > .btn.btn-outline.btn-primary:focus,
+.input-group-btn > .btn.btn-outline.btn-flat.btn-primary:focus {
+  background: none;
+  border-color: #e0e0e0;
+  border-color: rgba(0, 0, 0, 0.12);
+  background: url('../images/pixel-admin/blank.png')\9;
+}
+.btn.btn-outline.dark,
+.btn.btn-outline.dark.btn-primary {
+  color: #fff;
+  color: rgba(255, 255, 255, 0.8);
+  background: url('../images/pixel-admin/blank.png')\9;
+}
+.btn.btn-outline.dark,
+.btn.btn-outline.dark.btn-primary,
+.btn.btn-outline.dark:focus,
+.btn.btn-outline.dark.btn-primary:focus {
+  border-color: #595959;
+  border-color: rgba(255, 255, 255, 0.12);
+}
+.btn.btn-outline.dark:hover,
+.btn.btn-outline.dark.btn-primary:hover,
+.btn.btn-outline.dark:active,
+.btn.btn-outline.dark.btn-primary:active {
+  border-color: transparent !important;
+}

@@ -52,7 +52,7 @@ class User < ActiveRecord::Base
       if user.nil?
         user = User.new(
           name: auth.extra.raw_info.name,
-          #username: auth.info.nickname || auth.uid,
+          picture_url: auth.info.image,
           email: email ? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
           password: Devise.friendly_token[0,20]
         )
@@ -62,8 +62,10 @@ class User < ActiveRecord::Base
 
     # Associate the identity with the user if needed
     if identity.user != user
-      #fix this
+      #fix this identity.user = user
     end
+    identity.user_id = user.id
+    identity.save!
     user
   end
 

@@ -7,11 +7,11 @@
 <div class="row" style="padding-bottom: 20px;border-bottom: 1px solid #030303;margin-bottom: 20px;">
   <div class="col-md-6">
     <div class="row">
-      <div class="col-md-4">
-        USER PICTURE
+      <div class="col-md-3">
+        <img src="<%= @user.picture_url %>" style="height:80px;">
       </div>
-      <div class="col-md-8">
-        HI <%= current_user.name %><br>
+      <div class="col-md-9">
+        HI <%= @user.name %><br>
         Please enter your postcode.  We need <br>
         this to find your local MP.<br>
         <%= form_tag add_post_code_join_constituency_user_path(current_user), id: "add_postcode" do %>
@@ -80,13 +80,13 @@
       <% unless @idents.include?("twitter") %>
         <a href="<%= root_url %>users/auth/twitter">MERGE TWITTER</a>
       <% else %>
-        <a href="<%= remove_twitter_user_path %>">REMOVE TWITTER FROM ACCOUNT</a>
+        <a href="<%= remove_twitter_users_path %>">REMOVE TWITTER FROM ACCOUNT</a>
       <% end %>
 
       <% unless @idents.include?("facebook") %>
         <a href="<%= root_url %>users/auth/facebook">MERGE FB</a>
       <% else %>
-        <a href="<%= remove_twitter_user_path %>">REMOVE TWITTER FROM ACCOUNT</a>
+        <a href="<%= remove_twitter_users_path %>">REMOVE FB FROM ACCOUNT</a>
       <% end %>
       <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %>
   </div>
@@ -124,8 +124,9 @@ $('body').on('click','.add_user_to_party_link', function(e){
 
 });
 
-$('.add_user_to_party_link#' + <%= @user.party_id %>).css('color','red');
-
+<% if @user.party_id %>
+    $('.add_user_to_party_link#' + <%= @user.party_id %>).css('color','red');
+<% end %>
 };
 
 $(document).ready(ready);

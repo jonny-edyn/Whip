@@ -1,5 +1,6 @@
 class AdminsController < ApplicationController
 	before_action :check_if_admin
+	skip_before_filter :check_if_admin, :only => [:hidden_admin_login]
 
 	def users
 		@users = User.all
@@ -62,6 +63,10 @@ class AdminsController < ApplicationController
 	def mass_bill_import
 		Bill.import(params[:file])
 		redirect_to :back
+	end
+
+	def hidden_admin_login
+		
 	end
 
 end

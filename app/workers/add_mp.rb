@@ -18,11 +18,24 @@ class AddMp
 	@name_last_element = @name_new[-1]
 	@second_half_name = @name_all_but_last_element.join(" ")
     @voting_name = "#{@name_last_element}, #{@second_half_name}"
+
+    encoded_url_4 = URI.encode("http://data.parliament.uk/membersdataplatform/services/mnis/members/query/House=Commons|Membership=all|id=#{@member_id}/Addresses/")
+	@doc_4 = Nokogiri::HTML(open(encoded_url_4))
+	@twitter = @doc_4.xpath('//type[text()="Twitter"]').first
+	@twitter_link = @twitter.next.next.next.next.text if @twitter
+	@facebook = @doc_4.xpath('//type[text()="Facebook"]').first
+	@facebook_link = @facebook.next.next.next.next.text if @facebook
+	@email = @doc_4.xpath('//email').first.text
+
 	mp = Mp.new
 		mp.name = @mp_name
 		mp.constituency_id = constituency_id
 		mp.voting_name = @voting_name
 		mp.web_id = @member_id
+		mp.fb_link = @facebook_link
+		mp.tw_link = @twitter_link
+		mp.email = @email
+		mp.picture_url = "http://data.parliament.uk/membersdataplatform/services/images/MemberPhoto/#{@member_id}/"
 	mp.save
 
   end
