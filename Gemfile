@@ -87,6 +87,8 @@ gem 'nokogiri', '1.6.3.1'
 
 gem 'roo', '2.0.0beta1'
 gem 'roo-xls'
+
+gem "font-awesome-rails"
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
