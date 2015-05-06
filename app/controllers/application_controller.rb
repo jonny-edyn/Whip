@@ -10,6 +10,10 @@ class ApplicationController < ActionController::Base
   def layout_by_resource
     if controller_name == 'static_pages' && action_name == 'prelaunch_landing_page'
       "blank"
+    elsif controller_name == 'static_pages' && action_name == 'home'
+      "blank"
+    elsif controller_name == 'static_pages' && action_name == 'postlaunch_landing_page'
+      "blank"
     else
       "application"
     end

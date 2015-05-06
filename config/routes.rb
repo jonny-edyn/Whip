@@ -74,6 +74,7 @@ Rails.application.routes.draw do
   #get '/prelaunch_landing_page' => 'static_pages#prelaunch_landing_page'
   get '/old_home' => 'static_pages#old_home'
   get '/home' => 'static_pages#home'
+  get '/postlaunch_landing_page' => 'static_pages#postlaunch_landing_page'
   root  'static_pages#prelaunch_landing_page'
   #root 'static_pages#home'
 

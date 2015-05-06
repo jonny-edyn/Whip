@@ -1,0 +1,97 @@
+<style>
+/* alan - I don't know which css file to put this in */
+video {
+  width: 100%    !important;
+  height: auto   !important;
+}
+.videoWrapper {
+	position: relative;
+	padding-bottom: 56.25%; /* 16:9 */
+	padding-top: 25px;
+	height: 0;
+}
+.videoWrapper iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+</style>
+
+<div class="container">
+
+	<div>
+	</div>
+
+	<div class="row padding_40">
+		<div class="col-md-12">
+			<img src="<%= image_path('parliment-one.jpg') %>" class="img-responsive" />
+		</div>
+	</div>
+
+	<div class="row padding_40">
+		<div class="col-md-4" style="text-align:center;">
+					<p class="headers hide_name headers_padding">RESEARCH</p>
+					<img style="position:relative;" src="<%= image_path('magnifying_glass_icon.png') %>">
+		</div>
+		<div class="col-md-4" style="text-align:center;">
+					<p class="headers hide_name headers_padding">VOTE</p>
+					<img style="position:relative;" src="<%= image_path('ballet_box_icon.png') %>">
+		</div>
+		<div class="col-md-4" style="text-align:center;">
+					<p class="headers hide_name headers_padding">COMPARE</p>
+					<img style="position:relative;" src="<%= image_path('research_icon.png') %>">
+		</div>
+	</div>
+
+	<div class="row padding_40">
+		<div class="col-md-6">
+			<div class="videoWrapper">
+				<iframe src="https://player.vimeo.com/video/25968181?color=ff9933&title=0&byline=0&portrait=0&badge=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<p class="headers headers_padding text-uppercase">What we do</p>
+			<p class="text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+		</div>
+	</div>
+
+	<div class="row padding_40">
+		<div class="col-md-6">
+			<p class="headers headers_padding text-uppercase">Who we are</p>
+			<p class="text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+		</div>
+		<div class="col-md-6">
+			<img src="<%= image_path('placeholder.jpg') %>" class="img-responsive" />
+		</div>
+	</div>
+
+	<div class="row" style="text-align:center;padding-top: 60px;">
+		<div class="col-md-12">
+			<p class="headers">OUR GOAL</p>
+			<div class="row" style="padding-top: 26px; align-items: center;">
+				<div class="col-md-2 col-md-offset-3 col-xs-12 hover_text" id="heads">
+					<img src="<%= image_path('two_heads_icon.png') %>" style="margin-bottom: 16px;" />
+					<p class="headers prelaunch_text_engage" style="font-size:12px;padding-bottom:20px;">ENGAGE</p>
+				</div>
+				<div class="col-md-2 col-xs-12 hover_text" id="books">
+					<img src="<%= image_path('book_stack_icon.png') %>" style="margin-bottom: 16px;" />
+					<p class="headers prelaunch_text_engage" style="font-size:12px;position: relative;top: 5px;padding-bottom:20px;">EDUCATE</p>
+				</div>
+				<div class="col-md-2 col-xs-12 hover_text" id="fist">
+					<img src="<%= image_path('fist_icon.png') %>" style="margin-bottom: 16px;" />
+					<p class="headers prelaunch_text_engage" style="font-size:12px;padding-bottom:20px;">EMPOWER</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<p class="reveal_hover text" id="heads_reveal" style="display:none;">This is just to test</p>
+					<p class="reveal_hover text" id="books_reveal" style="display:none;">This is your chance to have your say on how your MP should vote on bills. At the click of a button Whip will generate a message on your behalf and sends it to your local MP. Then effortlessly share with friends to give the bill the exposure it needs.</p>
+					<p class="reveal_hover text" id="fist_reveal" style="display:none;">A Third Time</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
