@@ -141,3 +141,10 @@ img {
 	padding-top:40px;
 	padding-bottom:40px;
 }
+
+
+@media (min-width: 750px) {
+	.hidden_half {
+		display:none;
+	}
+}
