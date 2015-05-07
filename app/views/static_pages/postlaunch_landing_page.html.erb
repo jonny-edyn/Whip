@@ -175,6 +175,9 @@
 				<img src="<%= image_path('icon-engage.png') %>" style="margin-bottom: 16px;" class="image" />
 				<% end %>
 				<p class="headers prelaunch_text_engage" style="font-size:12px;padding-bottom:20px;">ENGAGE</p>
+				<div class="visible-xs-block">
+					<p>This is just to test</p>
+				</div>
 			</div>
 			<div class="col-md-2 col-xs-12 hover_text" id="books">
 				<% if _svg == true %>
@@ -203,6 +206,9 @@
 				<img src="<%= image_path('icon-educate.png') %>" style="margin-bottom: 16px;" class="image" />
 				<% end %>
 				<p class="headers prelaunch_text_engage" style="font-size:12px;position: relative;top: 5px;padding-bottom:20px;">EDUCATE</p>
+				<div class="visible-xs-block">
+					<p>This is your chance to have your say on how your MP should vote on bills. At the click of a button Whip will generate a message on your behalf and sends it to your local MP. Then effortlessly share with friends to give the bill the exposure it needs.</p>
+				</div>
 			</div>
 			<div class="col-md-2 col-xs-12 hover_text" id="fist">
 				<% if _svg == true %>
@@ -242,6 +248,9 @@
 				<img src="<%= image_path('icon-empower.png') %>" style="margin-bottom: 16px;" class="image" />
 				<% end %>
 				<p class="headers prelaunch_text_engage" style="font-size:12px;padding-bottom:20px;">EMPOWER</p>
+				<div class="visible-xs-block">
+					<p>A Third Time</p>
+				</div>
 			</div>
 		</div>
 		<div class="row">
@@ -295,16 +304,20 @@ ready = function() {
 
 	$(document).on({
 		mouseenter: function () {
-			var _this = $(this)
-			var _id = _this.attr("id");
-			$('.reveal_hover').css('display','none');
-			$('.reveal_hover#' + _id + '_reveal').fadeIn();
-			makeBigger(_this.children('.image'));
+			if ( $(window).width() >=750 ) {
+				var _this = $(this)
+				var _id = _this.attr("id");
+				$('.reveal_hover').css('display','none');
+				$('.reveal_hover#' + _id + '_reveal').fadeIn();
+				makeBigger(_this.children('.image'));
+			}
 		},
 		mouseleave: function () {
-			var _this = $(this)
-			$('.reveal_hover').css('display','none');
-			returnToOriginalSize(_this.children('.image'));
+			if ( $(window).width() >=750 ) {
+				var _this = $(this)
+				$('.reveal_hover').css('display','none');
+				returnToOriginalSize(_this.children('.image'));
+			}
 		}
 	}, ".hover_text");
 
