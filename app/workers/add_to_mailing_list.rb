@@ -8,10 +8,11 @@ class AddToMailingList
 	require 'mailchimp'
 	mailchimp = Mailchimp::API.new("#{ENV['MAILCHIMP_API_KEY']}")
 	
+	subscribers = [{ "EMAIL" => { "email" => contact_email},
+                 :EMAIL_TYPE => 'html',
+              }]
 
-	mailchimp.lists.subscribe("#{ENV['MAILCHIMP_LIST_ID']}", 
-                   { "email" => "#{contact_email}"
-                   })
+    mailchimp.lists.batch_subscribe(ENV['MAILCHIMP_LIST_ID'], subscribers, false, false, false)
 
   end
 
