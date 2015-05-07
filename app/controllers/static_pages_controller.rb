@@ -1,5 +1,5 @@
 class StaticPagesController < ApplicationController
-	skip_before_filter :check_if_admin, :only => [:mailing_list_request, :prelaunch_landing_page, :home, :old_home]
+	skip_before_filter :check_if_admin, :only => [:mailing_list_request, :prelaunch_landing_page, :home, :old_home, :privacy, :terms]
 
 	def home
 
@@ -22,6 +22,14 @@ class StaticPagesController < ApplicationController
 	end
 
 	def prelaunch_landing_page
+		
+	end
+
+	def privacy
+		
+	end
+
+	def terms
 		
 	end
 

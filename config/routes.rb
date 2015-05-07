@@ -70,11 +70,14 @@ Rails.application.routes.draw do
   match '/422', to: 'errors#unprocessable', via: :all
   match '/500', to: 'errors#internal_server_error', via: :all
 
+  get '/privacy' => 'static_pages#privacy'
+  get '/terms' => 'static_pages#terms'
+
   post 'mailing_list_request' => 'static_pages#mailing_list_request'
   #get '/prelaunch_landing_page' => 'static_pages#prelaunch_landing_page'
   get '/old_home' => 'static_pages#old_home'
   get '/home' => 'static_pages#home'
-  get '/postlaunch_landing_page' => 'static_pages#postlaunch_landing_page'
+  #get '/postlaunch_landing_page' => 'static_pages#postlaunch_landing_page'
   root  'static_pages#prelaunch_landing_page'
   #root 'static_pages#home'
 
