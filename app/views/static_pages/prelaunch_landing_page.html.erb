@@ -4,7 +4,7 @@
 
 	<div class="row top_form_padding" style="text-align: center;position: relative; top: 40%; transform: translateY(-60%);">
 		<div class="col-md-12" style="z-index: 10;">
-			<p><img src="<%= image_path('whip_circle_icon.png') %>" style="padding-right: 10px;height:32px;"><img src="<%= image_path('whip_text_landing.png') %>" style="height:28px;"></p>
+			<p><img src="<%= image_path('whip_logo.png') %>" style="height:32px;"></p>
 			<p class="headers" style="font-size:15px;margin-top:16px;">Parliament in your hands</p>
 			<div id="join_mailing_list_form">
 				<%= form_tag mailing_list_request_path, remote: true do %>
@@ -42,7 +42,7 @@
 			</div>
 			<div class="col-md-12 col-xs-12 to_half" style="text-align:center;">
 				<p class="headers hide_name headers_padding">RESEARCH</p>
-				<img style="position:relative;" src="<%= image_path('magnifying_glass_icon.png') %>">
+				<img style="position:relative;height:108px;" src="<%= image_path('research_icon.png') %>">
 			</div>
 		</div>
 	</div>
@@ -54,7 +54,7 @@
 		<div class="row" style="display: flex; align-items: center;">
 			<div class="col-md-12 col-xs-12 to_half" style="text-align:center;">
 				<p class="headers hide_name headers_padding">VOTE</p>
-				<img style="position:relative;" src="<%= image_path('ballet_box_icon.png') %>">
+				<img style="position:relative; height:112px;" src="<%= image_path('vote_icon.png') %>">
 			</div>
 			<div class="col-md-6 hidden_half" style="text-align:left;display:none;padding-right:30px;">
 				<p class="headers headers_padding">VOTE</p>
@@ -78,7 +78,7 @@
 			</div>
 			<div class="col-md-12 col-xs-12 to_half" style="text-align:center;">
 				<p class="headers hide_name headers_padding">COMPARE</p>
-				<img style="position:relative;" src="<%= image_path('research_icon.png') %>">
+				<img style="position:relative;height:107px;" src="<%= image_path('compare_icon.png') %>">
 			</div>
 		</div>
 	</div>
@@ -89,15 +89,15 @@
 		<p class="headers">OUR GOAL</p>
 		<div class="row" style="padding-top: 26px; align-items: center;">
 			<div class="col-md-2 col-md-offset-3 col-xs-12 hover_text" id="heads">
-				<img src="<%= image_path('two_heads_icon.png') %>" style="margin-bottom: 16px;">
+				<img src="<%= image_path('engage_icon.png') %>" style="margin-bottom: 16px; height:63px;">
 				<p class="headers prelaunch_text_engage" style="font-size:12px;padding-bottom:20px;">ENGAGE</p>
 			</div>
 			<div class="col-md-2 col-xs-12 hover_text" id="books">
-				<img src="<%= image_path('book_stack_icon.png') %>" style="margin-bottom: 16px;">
+				<img src="<%= image_path('educate_icon.png') %>" style="margin-bottom: 16px; height:54px;">
 				<p class="headers prelaunch_text_engage" style="font-size:12px;position: relative;top: 5px;padding-bottom:20px;">EDUCATE</p>
 			</div>
 			<div class="col-md-2 col-xs-12 hover_text" id="fist">
-				<img src="<%= image_path('fist_icon.png') %>" style="margin-bottom: 16px;">
+				<img src="<%= image_path('empower_icon.png') %>" style="margin-bottom: 16px; height:57px;">
 				<p class="headers prelaunch_text_engage" style="font-size:12px;padding-bottom:20px;">EMPOWER</p>
 			</div>
 		</div>
@@ -147,7 +147,7 @@ ready = function() {
 	    this_img.css({height: '+=10%', width: '+=10%'});
 	}
 	function returnToOriginalSize(this_img) {
-	    this_img.css({height: "", width: ""});
+	    this_img.css({height: "-=10%", width: "-=10%"});
 	}
 
 	$( ".hover_text" ).hover(
