@@ -65,7 +65,7 @@ class EmailNewMailingListUser
 
 
 
-	 <div style='text-align:center; width:100%;'>
+	 <div style='text-align:center; width:100%;margin-top:40px;'>
 	 	<div style='width: auto;display:inline-block;padding: 10px;'>
 			<a href='https://www.facebook.com/whipuk' target='_blank'><img src='http://www.whip.org.uk/assets/fb_icon-77e79838462dfb06153ec7dba9dd1301.png'></a>
 		</div>
