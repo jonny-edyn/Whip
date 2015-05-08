@@ -41,7 +41,7 @@ class EmailNewMailingListUser
 	  <div style='text-align:center;border-bottom: #d2d2d2 1px solid; width:100%;'>
 	  	<img style='width:35%;' src='http://www.whip.org.uk/assets/terms_image-9b756049cc502f946529767179cec2f3.png' alt='My image' />
 	  </div>
-	  <div>
+	  <div style='width:95%;'>
 	    <p>Hi,</p>
 		<p>Thank you for your interest in Whip, we’re very grateful!</p>
 		<p>We are currently in private beta testing our platform. We plan to launch the website on the 1st of June, until then check us out on Facebook, Twitter, Instagram and Tumblr. 
@@ -59,7 +59,7 @@ class EmailNewMailingListUser
 		<p>The Whip Team</p>
 	  </div>
 	  <div style='text-align:center;border-bottom: #d2d2d2 1px solid; width:100%;'>
-	  	<img style='width:35%;' src='http://www.whip.org.uk/assets/terms_image-9b756049cc502f946529767179cec2f3.png' alt='My image' />
+	  	<img style='width:35%;' src='http://www.whip.org.uk/assets/bottom_of_email-06c57391e071abe5d20ffa4e81a64a02.png' alt='My image' />
 	  </div>
 	 </html>",  
 	 :from_email=>"contact@whip.org.uk"  
