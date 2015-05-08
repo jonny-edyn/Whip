@@ -1,3 +1,5 @@
+<div class="container" style="max-width:924px;">
+
 <%= render 'bills/top_banner_with_names' %>
 <h2>TOP TRENDING BILLS</h2>
 
@@ -8,25 +10,30 @@
 		 %>
 		<div class="col-md-12" style="text-align:center;">
 			<div class="row" style="padding-bottom:20px;">
-				<div class="col-md-12" style="text-align:center;">
-					<%= link_to bill.simple_name, bill_path(bill) %>
+				<div class="col-md-12" id="main-bill">
+					<div style="position:absolute; top:50%; height:10em; margin-top:-5em;left: 50%;">
+						<div style="position: relative; left: -50%;">
+							<h1><%= link_to bill.simple_name, bill_path(bill) %></h1>
+							<h3><%= link_to bill.official_name, bill_path(bill) %></h3>
+						</div>
+					</div>
 				</div>
 			</div>
 
 
-			<div class="row" style="margin-bottom: 20px; border-bottom: 1px solid #030303; padding-bottom: 20px;">
-				<div class="col-md-6" style="text-align:center;">
-					<h2>ARGUMENT FOR</h2>
+			<div class="row" style="margin-bottom: 20px; ">
+				<div class="col-sm-6 main-bill-arguments">
+					<h2 class="header-argument-for text-center">ARGUMENT FOR</h2>
 					<%= bill.support %>
 				</div>
-				<div class="col-md-6" style="text-align:center;">
-					<h2>ARGUMENT AGAINST</h2>
+				<div class="col-sm-6 main-bill-arguments">
+					<h2 class="header-argument-against text-center">ARGUMENT AGAINST</h2>
 					<%= bill.opposition %>
 				</div>
 			</div>
 
 
-			<div class="row" style="margin-bottom: 20px; border-bottom: 1px solid #030303; padding-bottom: 20px;">
+			<div class="row" style="margin-bottom: 20px; border-bottom: 1px solid #c0c0c0; padding-bottom: 20px;">
 				<div class="col-md-6" style="text-align:right;">
 					<%= render 'bills/vote_yes_form', bill: bill.id %>
 				</div>
@@ -47,44 +54,50 @@
 		@common.each do |bill|
 	 %>
 	<div class="col-md-6" style="text-align:center;">
-		<div class="row" style="padding-bottom:20px;">
-			<div class="col-md-12" style="text-align:center;">
-				<%= link_to bill.simple_name, bill_path(bill) %>
-			</div>
-		</div>
+		<div class="panel panel-bills">
+			<div class="panel-body">
+				<div class="row" style="padding:20px;">
+					<div class="col-md-12" style="text-align:center;">
+						<%= link_to bill.simple_name, bill_path(bill) %>
+					</div>
+				</div>
 
 
-		<div class="row" style="margin-bottom: 20px; border-bottom: 1px solid #030303; padding-bottom: 20px;">
-			<div class="col-md-12" style="text-align:center;">
-				<h2>ARGUMENT FOR</h2>
-				<%= bill.support %>
-			</div>
-			<div class="col-md-12" style="text-align:center;">
-				<h2>ARGUMENT AGAINST</h2>
-				<%= bill.opposition %>
-			</div>
-		</div>
+				<div class="row" style="margin: 0 5px 20px 5px;padding: 0 5px 20px 5px;">
+					<div class="col-md-12" style="text-align:center; border-bottom: 1px solid #a1a1a1; ">
+						<h2 class="header-argument-for">ARGUMENT FOR</h2>
+						<%= bill.support %>
+					</div>
+					<div class="col-md-12" style="text-align:center; border-bottom: 1px solid #a1a1a1; ">
+						<h2 class="header-argument-against">ARGUMENT AGAINST</h2>
+						<%= bill.opposition %>
+					</div>
+				</div>
 
 
-		<div class="row" style="margin-bottom: 20px; border-bottom: 1px solid #030303; padding-bottom: 20px;">
-			<div class="col-md-6" style="text-align:right;">
-				<% if user_signed_in? %>
-					<%= render 'bills/vote_yes_form', bill: bill.id %>
-				<% else %>
-					<a class="navbar-brand" href="#" data-toggle="modal" data-target="#loginModal">SIGN IN</a>
-				<% end %>
-			</div>
-			<div class="col-md-6" style="text-align:left;">
-				<% if user_signed_in? %>
-					<%= render 'bills/vote_no_form', bill: bill.id %>
-				<% else %>
-					<a class="navbar-brand" href="#" data-toggle="modal" data-target="#loginModal">SIGN IN</a>
-				<% end %>
-			</div>
-		</div>
+				<div class="row" style="margin: 0 5px 20px 5px;padding: 0 5px 20px 5px;">
+					<div class="col-md-6" style="text-align:right;">
+						<% if user_signed_in? %>
+							<%= render 'bills/vote_yes_form', bill: bill.id %>
+						<% else %>
+							<a class="navbar-brand" href="#" data-toggle="modal" data-target="#loginModal">SIGN IN</a>
+						<% end %>
+					</div>
+					<div class="col-md-6" style="text-align:left;">
+						<% if user_signed_in? %>
+							<%= render 'bills/vote_no_form', bill: bill.id %>
+						<% else %>
+							<a class="navbar-brand" href="#" data-toggle="modal" data-target="#loginModal">SIGN IN</a>
+						<% end %>
+					</div>
+				</div>
+			</div><!--.panel-body-->
+		</div><!--.panel-->
 	</div>
 	<% end %>
 	<% end %>
+</div>
+
 </div>
 
 <script type="text/javascript">
