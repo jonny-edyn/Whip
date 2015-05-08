@@ -25,7 +25,7 @@ class EmailNewMailingListUser
 
 	Our Mission
 
-	Whips mission is to r​evolutionise​the way we connect with and influence our government.​  W​hat if every British citizen could see and understand the bills going through westminster? What if every British citizen could express an opinion on this information ? What if every British citizen could see if their MP was listening to their opinions? In other words, what if you could have Parliament in your hands.
+	Whips mission is to r​evolutionise​the way we connect with and influence our government.​  W​hat if every British citizen could see and understand the bills going through Westminster? What if every British citizen could express an opinion on this information ? What if every British citizen could see if their MP was listening to their opinions? In other words, what if you could have Parliament in your hands.
 
 
 	Remember 1st of June!
@@ -49,8 +49,8 @@ class EmailNewMailingListUser
 		<p><b><u>Who We Are</u></b></p>
 		<p>Whip is a mission driven start-up organisation whose vision is to create the first UK civic engagement and participation platform. We are independent, non-partisan and for profit.</p>
 		<p><b><u>Our Mission</u></b></p>
-		<p>Whips mission is to r​evolutionise​the way we connect with and influence our government.​
-		W​hat if every British citizen could see and understand the bills going through westminster? 
+		<p>Whips mission is to r​evolutionise​ the way we connect with and influence our government.​
+		W​hat if every British citizen could see and understand the bills going through Westminster? 
 		What if every British citizen could express an opinion on this information? 
 		What if every British citizen could see if their MP was listening to their opinions? 
 		In other words, what if you could have Parliament in your hands.</p>
