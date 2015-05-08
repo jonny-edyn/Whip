@@ -38,7 +38,7 @@ class EmailNewMailingListUser
 	   }  
 	 ],  
 	 :html=>"<html>
-	  <div style='text-align:center;border-bottom: #d2d2d2 1px solid; width:100%;'>
+	  <div style='text-align:center; width:100%;'>
 	  	<img style='width:35%;' src='http://www.whip.org.uk/assets/terms_image-9b756049cc502f946529767179cec2f3.png' alt='My image' />
 	  </div>
 	  <div style='width:95%;'>
