@@ -59,13 +59,13 @@ class EmailNewMailingListUser
 		<p>The Whip Team</p>
 	  </div>
 
-	  <div style='text-align:center; width:100%;'>
+	  <div style='text-align:center; width:100%;margin-top:40px;'>
 	  	<img style='width:35%;' src='http://www.whip.org.uk/assets/bottom_of_email_logo-8d574e6e6f6a05c17b108297719e75b1.png' alt='My image' />
 	  </div>
 
 
 
-	 <div style='text-align:center; width:100%;margin-top:40px;'>
+	 <div style='text-align:center; width:100%;'>
 	 	<div style='width: auto;display:inline-block;padding: 10px;'>
 			<a href='https://www.facebook.com/whipuk' target='_blank'><img src='http://www.whip.org.uk/assets/fb_icon-77e79838462dfb06153ec7dba9dd1301.png'></a>
 		</div>
