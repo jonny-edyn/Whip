@@ -18,6 +18,8 @@ class ApplicationController < ActionController::Base
       "blank"
     elsif controller_name == 'bills' && action_name == 'index'
       "blank"
+    elsif controller_name == 'bills' && action_name == 'show'
+      "blank"
     else
       "application"
     end

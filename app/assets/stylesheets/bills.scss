@@ -40,6 +40,9 @@
 	.vote-button-yes {
 		text-align:right;
 	}
+	.bill-progress-title {
+		font-size: 14px;
+	}
 }
 @media (max-width: 767px) {
 	.vote-button-no,.vote-button-yes {
@@ -48,5 +51,22 @@
 	.panel-bills .vote-button-no {
 		margin-top:10px;
 	}
+	.bill-progress-title {
+		font-size: 10px;
+	}
 }
 
+#bill-progress-table {
+	padding-bottom:20px;
+}
+#bill-progress-bar {
+	background-image: url("/assets/progress-line.png"); 
+	background-position: center center;
+	background-repeat: repeat-x;
+	background-color: #fff;
+}
+.bill-progress-cell {
+	padding:10px;
+	border:1px solid #a3a3a3;
+	background-color:#fff;
+}

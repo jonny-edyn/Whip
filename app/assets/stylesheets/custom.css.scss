@@ -19,10 +19,14 @@
   src: font-url('din_regular.eot?#iefix') format('embedded-opentype'),font-url('din_regular.woff') format('woff'),font-url('din_regular.ttf') format('truetype');
 }
 
-.text, .text-din {
+.text {
   font-family: dinRegular;
   font-size: 12px;
   color: black;
+}
+
+.text-din {
+  font-family: dinRegular;
 }
 
 .headers {
@@ -233,7 +237,7 @@ img {
 	width: 100%;
 	position: relative;
 }
-#main-bill h1 a, #main-bill h3 a {
+#main-bill h1 a, #main-bill h3 a,#main-bill h1,#main-bill h3 {
 	font-family: 'dinRegular';
 	color:#fff;
 	text-transform: uppercase;
