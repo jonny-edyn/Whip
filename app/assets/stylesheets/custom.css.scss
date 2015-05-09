@@ -19,7 +19,7 @@
   src: font-url('din_regular.eot?#iefix') format('embedded-opentype'),font-url('din_regular.woff') format('woff'),font-url('din_regular.ttf') format('truetype');
 }
 
-.text {
+.text, .text-din {
   font-family: dinRegular;
   font-size: 12px;
   color: black;
@@ -151,6 +151,12 @@ img {
     padding-right: 60px !important;
     padding-bottom: 0px;
   }
+  .arguments-left {
+  	padding-left:0 !important;
+  }
+  .arguments-right {
+  	padding-right:0 !important;
+  }
 }
 
 .light_blue_hover:hover {
@@ -208,21 +214,62 @@ img {
 	border:1px solid #a1a1a1 !important;
 	border-radius:0 !important;
 }
+.panel-bills-slider {
+	border-bottom:1px solid #a1a1a1 !important;
+	border-radius:0 !important;
+}
+.panel-bills-slider .panel-body {
+	padding-top: 0;
+}
+
 #main-bill {
 	text-align: center;
-	background: url("<%= image_path('bill-standard-background.png') %>") #535b64; 
+	background-image: url("/assets/bill-standard-background.jpg"); 
+	background-position: center top;
+	background-repeat: no-repeat;
+	background-color: #535b64;
 	/* need to change this */
-	min-height: 302px;
-	width: 992px;
+	height: 309px;
+	width: 100%;
 	position: relative;
 }
 #main-bill h1 a, #main-bill h3 a {
+	font-family: 'dinRegular';
 	color:#fff;
 	text-transform: uppercase;
 }
 .main-bill-arguments {
-	text-align: left;
-	border-bottom: 1px solid #c0c0c0;
-	padding-bottom: 20px;
+	font-family: 'dinRegular';
+	margin-bottom: 20px; border-bottom: 1px solid #c0c0c0; padding-bottom: 20px;
 }
 
+.vertical-align-wrap {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: table;
+}
+
+.vertical-align {
+  display: table-cell;
+}
+
+.vertical-align--middle {
+  vertical-align: middle;
+}
+
+.common-bill {
+	text-align: center;
+	background-image: url("/assets/bill-standard-background.jpg"); 
+	background-position: center top;
+	background-repeat: no-repeat;
+	background-color: #535b64;
+	height: 194px;
+	width: 100%;
+	position: relative;
+}
+
+.common-bill-title a {
+	color:#fff;
+	font-weight: bold;
+}

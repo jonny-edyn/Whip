@@ -12,11 +12,11 @@ class ApplicationController < ActionController::Base
       "blank"
     elsif controller_name == 'static_pages' && action_name == 'home'
       "blank"
-    elsif controller_name == 'static_pages' && action_name == 'postlaunch_landing_page'
-      "blank"
     elsif controller_name == 'static_pages' && action_name == 'terms'
       "blank"
     elsif controller_name == 'static_pages' && action_name == 'privacy'
+      "blank"
+    elsif controller_name == 'bills' && action_name == 'index'
       "blank"
     else
       "application"
