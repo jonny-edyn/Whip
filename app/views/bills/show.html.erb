@@ -60,7 +60,7 @@
 						<div class="panel-body">
 							<h2 class="header-argument-for text-center">ARGUMENT FOR</h2>
 							<div class="text-left">
-								<%= @bill.support %>
+								<%= @bill.support.html_safe %>
 							</div>
 						</div>
 					</div><!--.panel -->
@@ -77,7 +77,7 @@
 						<div class="panel-body">
 							<h2 class="header-argument-against text-center">ARGUMENT AGAINST</h2>
 							<div class="text-left">
-								<%= @bill.opposition %>
+								<%= @bill.opposition.html_safe %>
 							</div>
 						</div>
 					</div><!--.panel -->
@@ -137,7 +137,7 @@
 	<div class="row" style="padding-bottom:40px;">
 		<div class="col-md-12 text-left text-din">
 			<h2 class="text-din">MEANING</h2>
-			<%= @bill.meaning %>
+			<%= @bill.meaning.html_safe %>
 		</div>
 	</div>
 
@@ -145,7 +145,7 @@
 	<div class="row" style="padding-bottom:40px;">
 		<div class="col-md-12 text-left text-din">
 			<h2 class="text-din">WHO DOES IT IMPACT?</h2>
-			<%= @bill.impact %>
+			<%= @bill.impact.html_safe %>
 		</div>
 	</div>
 
@@ -153,7 +153,7 @@
 	<div class="row" style="padding-bottom:40px;">
 		<div class="col-md-12 text-left text-din">
 			<h2 class="text-din">POTENTIAL COSTS</h2>
-			<%= @bill.cost %>
+			<%= @bill.cost.html_safe %>
 		</div>
 	</div>
 
@@ -161,7 +161,7 @@
 	<div class="row" style="padding-bottom:80px;">
 		<div class="col-md-12 text-left  text-din">
 			<% @issues.each do |issue| %>
-				<p style="display: inline; border: 1px solid #030303; padding: 5px; margin-right: 30px;"><%= issue.name %></p>
+				<p class="text-uppercase" style="display: inline; color:#666; border: 1px solid #a8a8a8; padding: 8px; margin-right: 23px;"><%= issue.name %></p>
 			<% end %>
 		</div>
 	</div>
