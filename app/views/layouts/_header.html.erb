@@ -16,7 +16,7 @@
       <% end %>
             <!-- 'Sticky' (non-collapsing) right-side menu item(s) -->
            
-     <div class="collapse navbar-collapse pull-right" id="bs-example-navbar-collapse-1">
+     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
               <!-- This works well for static text, like a username -->
           <% if user_signed_in? && current_user.admin %>
@@ -92,16 +92,17 @@
                 </li>
             </ul>
           </li>
-          <li><%= link_to "FB", "#" %></li>
-          <li><%= link_to "TW", "#" %></li>
-          <li><%= link_to "EM", "#" %></li>
           <!--
-          <li>
-			<a href="https://www.facebook.com/whipuk" target="_blank"><i class="fa fa-facebook" style="margin-left: 20px;"></i></a>
-			<a href="https://twitter.com/whipuk" target="_blank"><i class="fa fa-twitter" style="margin-left: 10px;"></i></a>
-			<a href="https://instagram.com/whipuk/" target="_blank"><i class="fa fa-instagram" style="margin-right: 20px;margin-left: 10px;"></i></a>
+          <li><%= link_to '<i class="fa fa-facebook"></i>'.html_safe, "javascript:;" %></li>
+          <li><%= link_to '<i class="fa fa-twitter"></i>'.html_safe, "javascript:;" %></li>
+          <li><%= link_to '<i class="fa fa-instagram"></i>'.html_safe, "javascript:;" %></li>
+          
+          -->
+          <li style="padding-top:15px;">
+			<a href="https://www.facebook.com/whipuk" target="_blank" style="display:inline;padding: 10px 0;"><i class="fa fa-facebook" style=""></i></a>
+			<a href="https://twitter.com/whipuk" target="_blank" style="display:inline;padding: 10px 0;"><i class="fa fa-twitter" style="margin-left: 2px;"></i></a>
+			<a href="https://instagram.com/whipuk/" target="_blank" style="display:inline;padding: 10px 0;"><i class="fa fa-instagram" style="margin-left: 2px;"></i></a>
 		  </li>
-		-->
           
         </ul>
     </div><!-- /.navbar-collapse -->

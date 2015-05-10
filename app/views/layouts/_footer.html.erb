@@ -1,32 +1,19 @@
-<footer class="footer grey" style="width:100%;">
-	<div class="container" style="max-width:952px;">
-		<div class="col-sm-12" style="">
+<footer class="footer-full grey" style="width:100%;padding-bottom:60px;">
+	<div class="container" style="max-width:952px;height:220px;">
+
+
 			<div class="row">
-				<div class="col-sm-12" style="margin-bottom: 10px;border-bottom: 1px solid #bebebe;">
-					<div class="row">
-						<div class="col-sm-6">
-							<h2 style="font-size:12px;">ISSUES</h2>
-						</div>
-						<div class="col-sm-3">
-							<h2 style="font-size:12px;">INFO</h2>
-						</div>
-						<div class="col-sm-3 text-right" style="padding-right:0;">
-							<h2 style="font-size:12px;">
-								<a href="https://www.facebook.com/whipuk" target="_blank" style="display:inline;"><i class="fa fa-facebook" style="margin-left: 20px;"></i></a>
-								<a href="https://twitter.com/whipuk" target="_blank" style="display:inline;"><i class="fa fa-twitter" style="margin-left: 10px;"></i></a>
-								<a href="https://instagram.com/whipuk/" target="_blank" style="display:inline;"><i class="fa fa-instagram" style="margin-right: 20px;margin-left: 10px;"></i></a>
-							</h2>
-						</div>
+				<div class="col-sm-8" style="padding-left:0;padding-right:0;">
+					<div style="margin-bottom: 10px;border-bottom: 1px solid #bebebe;">
+						<h2 class="footer-content" style="font-size:12px;">ISSUES</h2>
 					</div>
-				</div>
-				<div class="col-sm-6 text-left" style="color:#666;font-size:11px;line-height:11px;">
-					<div class="row">
+					<div class="row footer-content footer-issues" style="">
 						<div class="col-sm-3">
 							<% 
 								if @first_issue_group.any?
 								@first_issue_group.each do |issue|
 							 %>
-								<p><a href="<%=  issue_name_path(issue.name) %>"><%= issue.name %></a></p>
+								<p><a href="<%=  issue_name_path(issue.name) %>" class="footer-issues-link"><%= issue.name %></a></p>
 							<% end %>
 							<% end %>
 						</div>
@@ -35,7 +22,7 @@
 								if @second_issue_group.any?
 								@second_issue_group.each do |issue|
 							 %>
-								<p><a href="<%=  issue_name_path(issue.name) %>"><%= issue.name %></a></p>
+								<p><a href="<%=  issue_name_path(issue.name) %>" class="footer-issues-link"><%= issue.name %></a></p>
 							<% end %>
 							<% end %>
 						</div>
@@ -44,7 +31,7 @@
 								if @third_issue_group.any?
 								@third_issue_group.each do |issue|
 							 %>
-								<p><a href="<%=  issue_name_path(issue.name) %>"><%= issue.name %></a></p>
+								<p><a href="<%=  issue_name_path(issue.name) %>" class="footer-issues-link"><%= issue.name %></a></p>
 							<% end %>
 							<% end %>
 						</div>
@@ -53,25 +40,41 @@
 								if @fourth_issue_group.any?
 								@fourth_issue_group.each do |issue|
 							 %>
-								<p><a href="<%=  issue_name_path(issue.name) %>"><%= issue.name %></a></p>
+								<p><a href="<%=  issue_name_path(issue.name) %>" class="footer-issues-link"><%= issue.name %></a></p>
 							<% end %>
 							<% end %>
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-3 text-left" style="color:#666;font-size:11px;line-height:11px;">
-					<p>About</p>
-					<p>Contact</p>
-					<p>Feedback</p>
-					<p>Jobs</p>
+				<div class="col-sm-1" style="padding-left:0;padding-right:0;">
+					<div style="margin-bottom: 10px;border-bottom: 1px solid #bebebe;">
+						<h2 class="footer-content" style="font-size:12px;">INFO</h2>
+					</div>
+					<div class="text-left footer-content" style="color:#666;font-size:11px;line-height:11px;">
+						<p>About</p>
+						<p>Contact</p>
+						<p>Feedback</p>
+						<p>Jobs</p>
+					</div>
 				</div>
-				<div class="col-sm-3 text-right" style="color:#666;font-size:11px;line-height:11px;">
-					<p>Privacy Policy</p>
-					<p>Team</p>
-					<p>Terms of service</p>
-					<p>WHIP guidlines</p>
+				<div class="col-sm-3 text-right" style="padding-left:0;padding-right:0;">
+					<div style="margin-bottom: 10px;border-bottom: 1px solid #bebebe;">
+						<h2 class="footer-content" style="font-size:12px;">
+							<a href="https://www.facebook.com/whipuk" target="_blank" style="color:#8a8a8a;display:inline;"><i class="fa fa-facebook" style=""></i></a>
+							<a href="https://twitter.com/whipuk" target="_blank" style="color:#8a8a8a;display:inline;"><i class="fa fa-twitter" style="margin-left: 2px;"></i></a>
+							<a href="https://instagram.com/whipuk/" target="_blank" style="color:#8a8a8a;display:inline;"><i class="fa fa-instagram" style="margin-left: 2px;"></i></a>
+						</h2>
+					</div>
+					<div style="color:#666;font-size:11px;line-height:11px;">
+						<div class="col-sm-6 col-sm-offset-6 text-left" >
+							<p>Privacy Policy</p>
+							<p>Team</p>
+							<p>Terms of service</p>
+							<p>WHIP guidlines</p>
+						</div>
+					</div>
 				</div>
-			</div>
-		</div>
+			</div><!-- .row -->
+
 	</div><!-- container -->
 </footer>
