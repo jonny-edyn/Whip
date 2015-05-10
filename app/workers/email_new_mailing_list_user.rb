@@ -20,7 +20,7 @@ class EmailNewMailingListUser
 
 	Who We Are
 
-	Whip is a mission driven start-up organisation whose vision is to create the first UK civic engagement and participation platform. We are independent, non-partisan and for profit.
+	Whip is a mission driven start-up organisation whose vision is to create the first UK civic engagement and participation platform. We are independent and non-partisan.
 
 
 	Our Mission
@@ -47,7 +47,7 @@ class EmailNewMailingListUser
 		<p>We are currently in private beta testing our platform. We plan to launch the website on the 1st of June, until then check us out on Facebook, Twitter, Instagram and Tumblr. 
 		I​f you want to become one of our first users then send us an email at contact@whip.org.uk. Please find more information about Whip below.</p>
 		<p><b><u>Who We Are</u></b></p>
-		<p>Whip is a mission driven start-up organisation whose vision is to create the first UK civic engagement and participation platform. We are independent, non-partisan and for profit.</p>
+		<p>Whip is a mission driven start-up organisation whose vision is to create the first UK civic engagement and participation platform. We are independent and non-partisan.</p>
 		<p><b><u>Our Mission</u></b></p>
 		<p>Whips mission is to r​evolutionise​ the way we connect with and influence our government.​
 		W​hat if every British citizen could see and understand the bills going through Westminster? 
