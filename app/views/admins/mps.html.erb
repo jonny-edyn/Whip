@@ -1,27 +1,47 @@
 <% if @setting.yes == false %>
 <%= link_to "Update MPs In DB", populate_mps_admins_path, {:method=> :post, data: {confirm: 'Are you sure? This will take a while!  Perform during a slow time (late at night).'}} %> <%= @mps.length %>
 <% else %>
-<p>Currently updating DB check back shortly!</p>
+<p>Currently updating DB check back shortly.</p>
 <% end %>
 <% if true %>
-<div class="row">
-	<div class="col-md-8">
-		<h2>
-		  Download:
-		  <%= link_to "Excel", mps_path(format: "xls") %>
+<div class="row admin-content">
+	<div class="col-md-9" role="main">
+		<h2 class="text-din text-uppercase">
+		  Download MPs
 		</h2>
+		<div class="form-group">
+			 <%# link_to "Excel", bills_path(format: "xls") %>
+			 <%= link_to(mps_path(format: "xls"), class: 'btn btn-sm btn-default') do %>
+				<i class="fa fa-file-excel-o"></i> Excel
+			 <% end %>
+		</div>
 
-		<h2>Mass Import MPs</h2>
+		<h2 class="text-din text-uppercase">Mass Import MPs</h2>
 		<%= form_tag mass_mp_import_admins_path, multipart: true do %>
-		  <%= file_field_tag :file %>
-		  <%= submit_tag "Import MPs" %>
+			<div class="form-group">
+				<%= file_field_tag :file %>
+			</div>
+			<%# submit_tag "Import Bills", class:'btn btn-default' %>
+			<div class="form-group">
+				<%= button_tag(type: 'submit', class: "btn btn-sm btn-default") do %>
+					<i class="glyphicon glyphicon-import"></i> Import Mps
+				<% end %>
+			</div>
 		<% end %>
-		<br>
-		<% if @mps.any? %>
-			<% @mps.each do |mp| %>
-				<%= mp.voting_name %> <%= mp.votes.first.in_favor if mp.votes.any? %><br>
+
+		<h2 class="text-din text-uppercase">Manage MPs</h2>
+		<div class="col-md-12">
+			<% if @mps.any? %>
+			<ul class="list-group">
+				<% @mps.each do |mp| %>
+					<li class="list-group-item">
+						<%= mp.voting_name %> <%= mp.votes.first.in_favor if mp.votes.any? %>
+					</lI>
+				<% end %>
+			</ul>
 			<% end %>
-		<% end %>
+		</div>
+
 	</div>
 	<%= render "admins/admin_sidebar" %>
 </div>

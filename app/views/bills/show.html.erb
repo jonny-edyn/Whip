@@ -1,86 +1,172 @@
-<%= render 'bills/top_banner_with_names' %>
-<div class="row" style="padding-bottom:20px;">
-	<div class="col-md-12" style="text-align:center;">
-		<%= @bill.simple_name %>
+<div class="container" style="max-width:924px;">
+	<%= render 'bills/top_banner_with_names' %>
+	
+	<!--
+	<div class="row" style="padding-bottom:20px;">
+		<div class="col-md-12" style="text-align:center;">
+			<%= @bill.simple_name %>
+		</div>
 	</div>
-</div>
 
 
-<div class="row" style="margin-bottom: 20px; border-bottom: 1px solid #030303; padding-bottom: 20px;">
-	<div class="col-md-6" style="text-align:center;">
-		<h2>ARGUMENT FOR</h2>
-		<%= @bill.support %>
+	<div class="row" style="margin-bottom: 20px; border-bottom: 1px solid #030303; padding-bottom: 20px;">
+		<div class="col-md-6" style="text-align:center;">
+			<h2 class="header-argument-for">ARGUMENT FOR</h2>
+			<%= @bill.support %>
+		</div>
+		<div class="col-md-6" style="text-align:center;">
+			<h2 class="header-argument-against">ARGUMENT AGAINST</h2>
+			<%= @bill.opposition %>
+		</div>
 	</div>
-	<div class="col-md-6" style="text-align:center;">
-		<h2>ARGUMENT AGAINST</h2>
-		<%= @bill.opposition %>
+
+
+	<div class="row" style="margin-bottom: 20px; border-bottom: 1px solid #030303; padding-bottom: 20px;">
+		<div class="col-md-6" style="text-align:right;">
+			<% if user_signed_in? %>
+				<%= render 'bills/vote_yes_form', bill: @bill.id %>
+			<% else %>
+				<a class="navbar-brand" href="#" data-toggle="modal" data-target="#loginModal">SIGN IN</a>
+			<% end %>
+		</div>
+		<div class="col-md-6" style="text-align:left;">
+			<% if user_signed_in? %>
+				<%= render 'bills/vote_no_form', bill: @bill.id %>
+			<% else %>
+				<a class="navbar-brand" href="#" data-toggle="modal" data-target="#loginModal">SIGN IN</a>
+			<% end %>
+		</div>
 	</div>
-</div>
+	-->
+	<div class="row main_bill_information" >
+		<div class="col-md-12 text-center">
+			<div class="row" style="padding-bottom:20px;">
+				<div class="col-md-12" id="main-bill">
+					<table style="width:100%;height:100%;">
+					  <tr>
+						 <td style="text-align: center; vertical-align: middle;">
+							<h1><%= @bill.simple_name %></h1>
+							<h3><%= @bill.official_name %></h3>
+						 </td>
+					  </tr>
+					</table>
+				</div>
+			</div>
 
 
-<div class="row" style="margin-bottom: 20px; border-bottom: 1px solid #030303; padding-bottom: 20px;">
-	<div class="col-md-6" style="text-align:right;">
-		<% if user_signed_in? %>
-			<%= render 'bills/vote_yes_form', bill: @bill.id %>
-		<% else %>
-			<a class="navbar-brand" href="#" data-toggle="modal" data-target="#loginModal">SIGN IN</a>
-		<% end %>
+			<div class="row" style="margin-bottom: 20px;">
+				<div class="col-sm-6 main-bill-arguments  arguments-left">
+					<div class="panel panel-bills-slider">
+						<div class="panel-body">
+							<h2 class="header-argument-for text-center">ARGUMENT FOR</h2>
+							<div class="text-left">
+								<%= @bill.support.html_safe %>
+							</div>
+						</div>
+					</div><!--.panel -->
+					<div class="vote-button-yes">
+						<% if user_signed_in? %>
+							<%= render 'bills/vote_yes_form', bill: @bill.id %>
+						<% else %>
+							<a class="navbar-brand" href="#" data-toggle="modal" data-target="#loginModal">SIGN IN</a>
+						<% end %>
+					</div>
+				</div>
+				<div class="col-sm-6 main-bill-arguments arguments-right">
+					<div class="panel panel-bills-slider">
+						<div class="panel-body">
+							<h2 class="header-argument-against text-center">ARGUMENT AGAINST</h2>
+							<div class="text-left">
+								<%= @bill.opposition.html_safe %>
+							</div>
+						</div>
+					</div><!--.panel -->
+					<div class="vote-button-no">
+						<% if user_signed_in? %>
+							<%= render 'bills/vote_no_form', bill: @bill.id %>
+						<% else %>
+							<a class="navbar-brand" href="#" data-toggle="modal" data-target="#loginModal">SIGN IN</a>
+						<% end %>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
 	</div>
-	<div class="col-md-6" style="text-align:left;">
-		<% if user_signed_in? %>
-			<%= render 'bills/vote_no_form', bill: @bill.id %>
-		<% else %>
-			<a class="navbar-brand" href="#" data-toggle="modal" data-target="#loginModal">SIGN IN</a>
-		<% end %>
+	
+	<div class="row" style="" id="bill-progress-table">
+		<h2 class="text-din text-center" style="padding-bottom:20px;">BILL PROGRESS</h2>
+		<div id="bill-progress-bar">
+			<table style="margin: 0 auto;">
+				<tr>
+					<td class="bill-progress-cell">
+						<div class="text-din text-center bill-progress-title" id="house_of_commons_div">
+							HOUSE&nbsp;OF&nbsp;COMMONS
+						</div>
+					</td>
+					<td style="width:34px;"></td>
+					<td class="bill-progress-cell">
+						<div class="text-din text-center bill-progress-title" id="house_of_lords_div">
+							HOUSE&nbsp;OF&nbsp;LORDS
+						</div>
+					</td>
+					<td style="width:34px;"></td>
+					<td class="bill-progress-cell">
+						<div class="text-din text-center bill-progress-title" id="royal_assent_div">
+							ROYAL&nbsp;ASSENT
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<!--
+		<div class="col-md-2 col-md-offset-3" style="text-align:center;" id="house_of_commons_div">
+			HOUSE&nbsp;OF&nbsp;COMMONS
+		</div>
+		<div class="col-md-2" style="text-align:center;" id="house_of_lords_div">
+			HOUSE&nbsp;OF&nbsp;LORDS
+		</div>
+		<div class="col-md-2" style="text-align:center;" id="royal_assent_div">
+			ROYAL&nbsp;ASSENT
+		</div>
+		-->
 	</div>
-</div>
 
 
-<div class="row" style="padding-bottom:20px;">
-	<h2 style="text-align:center; padding-bottom:20px;">BILL PROGRESS</h2>
-	<div class="col-md-2 col-md-offset-3" style="text-align:center;" id="house_of_commons_div">
-		HOUSE OF COMMONS
+	<div class="row" style="padding-bottom:40px;">
+		<div class="col-md-12 text-left text-din">
+			<h2 class="text-din">MEANING</h2>
+			<%= @bill.meaning.html_safe %>
+		</div>
 	</div>
-	<div class="col-md-2" style="text-align:center;" id="house_of_lords_div">
-		HOUSE OF LORDS
+
+
+	<div class="row" style="padding-bottom:40px;">
+		<div class="col-md-12 text-left text-din">
+			<h2 class="text-din">WHO DOES IT IMPACT?</h2>
+			<%= @bill.impact.html_safe %>
+		</div>
 	</div>
-	<div class="col-md-2" style="text-align:center;" id="royal_assent_div">
-		ROYAL ASSENT
+
+
+	<div class="row" style="padding-bottom:40px;">
+		<div class="col-md-12 text-left text-din">
+			<h2 class="text-din">POTENTIAL COSTS</h2>
+			<%= @bill.cost.html_safe %>
+		</div>
 	</div>
-</div>
 
 
-<div class="row" style="padding-bottom:40px;">
-	<div class="col-md-12" style="text-align:left;">
-		<h2>MEANING</h2>
-		<%= @bill.meaning %>
+	<div class="row" style="padding-bottom:80px;">
+		<div class="col-md-12 text-left  text-din">
+			<% @issues.each do |issue| %>
+				<p style="display: inline; border: 1px solid #030303; padding: 5px; margin-right: 30px;"><%= issue.name %></p>
+			<% end %>
+		</div>
 	</div>
-</div>
-
-
-<div class="row" style="padding-bottom:40px;">
-	<div class="col-md-12" style="text-align:left;">
-		<h2>WHO DOES IT IMPACT?</h2>
-		<%= @bill.impact %>
-	</div>
-</div>
-
-
-<div class="row" style="padding-bottom:40px;">
-	<div class="col-md-12" style="text-align:left;">
-		<h2>POTENTIAL COSTS</h2>
-		<%= @bill.cost %>
-	</div>
-</div>
-
-
-<div class="row" style="padding-bottom:80px;">
-	<div class="col-md-12" style="text-align:left;">
-		<% @issues.each do |issue| %>
-			<p style="display: inline; border: 1px solid #030303; padding: 5px; margin-right: 30px;"><%= issue.name %></p>
-		<% end %>
-	</div>
-</div>
+	
+</div><!--.container -->
 
 <script type="text/javascript">
 var ready;

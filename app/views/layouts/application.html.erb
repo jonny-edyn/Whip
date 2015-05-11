@@ -28,9 +28,9 @@
        }(document, 'script', 'facebook-jssdk'));
 	</script>
 </head>
-<body>
+<body class="grey">
 
-	<div id="holder">
+	<div id="holder" class="grey">
 
 		<div class="container-fluid">
 
@@ -43,7 +43,7 @@
 
 				</div> <%# end header div %>
 				
-				<div id="body" class="col-md-12" style="padding-top: 70px;padding-left: 60px;padding-right: 60px;">
+				<div id="body-full" class="row" style="padding-top: 70px;padding-left: 60px;padding-right: 60px;">
 
 					<%= yield %>
 
@@ -129,4 +129,36 @@ $('.modal').on('show.bs.modal', centerModal);
 $(window).on("resize", function () {
     $('.modal:visible').each(centerModal);
 });
+	
+	console.log( $(location).prop('pathname').split('/')[1] );
+	// add active class to main menu
+	var pathname = $(location).prop('pathname').split('/')[1]; // window.location.pathname;
+    var best_distance = 999; // var to hold best distance so far
+    var best_match = false;  // var to hold best match object
+    
+    $('#top-navbar ul.nav a').each(function() {
+        // if (pathname.indexOf($(this).attr('href')) == 0) {
+        if ($(this).attr('href').indexOf(pathname) >= 0) {
+        	console.log('match on ' + $(this).attr('href'));
+            // we know that the link is part of our path name.
+            // the next line calculates how many characters the path name is longer than our link
+            overlap_penalty = pathname.replace($(this).attr('href'), '').length;
+            if (overlap_penalty < best_distance) { // if we found a link that has less difference in length that all previous ones ...
+                best_distance = overlap_penalty; // remember the length difference
+                best_match = this; // remember the link
+            }
+        }
+        
+    });
+
+    if (best_match !== false) {
+    	console.log('applying');
+    	$(best_match).closest('.nav-parent-item').addClass('active');
+    }
+
+	// add active class to admin sidebar
+	$('#admin-sidebar ul.nav a').filter(function() {
+		return this.href == window.location;
+	}).parent().addClass('active');
+
 </script>

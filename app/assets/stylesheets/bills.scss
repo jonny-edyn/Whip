@@ -2,3 +2,71 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
+/* adjustments to slick arrows */
+.slick-prev, .slick-next {
+	top: 25% !important;
+	height: 38px !important;
+}
+
+.slick-prev:before, .slick-next:before {
+	font-family: 'fontawesome' !important;
+	font-size: 38px !important;
+	color: #fff !important;
+}
+.slick-prev {
+	left: 11px !important;
+}
+.slick-prev:before {
+	content: url('/assets/slick-left-arrow.png') !important;
+}
+[dir='rtl'] .slick-prev:before {
+	content: url('/assets/slick-left-arrow.png') !important;
+}
+.slick-next {
+	right: 11px !important;
+}
+.slick-next:before {
+	content: url('/assets/slick-right-arrow.png') !important;
+}
+[dir='rtl'] .slick-next:before {
+	content: url('/assets/slick-right-arrow.png') !important;
+}
+
+@media (min-width: 767px) {
+	.vote-button-no {
+		text-align:left;
+	}
+	.vote-button-yes {
+		text-align:right;
+	}
+	.bill-progress-title {
+		font-size: 14px;
+	}
+}
+@media (max-width: 767px) {
+	.vote-button-no,.vote-button-yes {
+		text-align:center;
+	}
+	.panel-bills .vote-button-no {
+		margin-top:10px;
+	}
+	.bill-progress-title {
+		font-size: 10px;
+	}
+}
+
+#bill-progress-table {
+	padding-bottom:20px;
+}
+#bill-progress-bar {
+	background-image: url("/assets/progress-line.png"); 
+	background-position: center center;
+	background-repeat: repeat-x;
+	background-color: #fff;
+}
+.bill-progress-cell {
+	padding:10px;
+	border:1px solid #a3a3a3;
+	background-color:#fff;
+}

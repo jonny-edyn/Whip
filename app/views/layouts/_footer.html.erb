@@ -1,81 +1,80 @@
-<footer class="footer" style="background:white; width:100%;padding-left: 60px;padding-right: 60px;">
-	<div class="col-md-12" style="">
-		<div class="row">
-			<div class="col-md-12" style="margin-bottom: 25px;border-bottom: 1px solid rgb(3, 3, 3);">
-				<div class="row">
-					<div class="col-md-6">
-						<h2>ISSUES</h2>
+<footer class="footer-full grey" style="width:100%;padding-bottom:60px;">
+	<div class="container" style="max-width:952px;height:220px;">
+
+
+			<div class="row">
+				<div class="col-sm-8" style="padding-left:0;padding-right:0;">
+					<div style="margin-bottom: 10px;border-bottom: 1px solid #bebebe;">
+						<h2 class="footer-content" style="font-size:12px;">ISSUES</h2>
 					</div>
-					<div class="col-md-1 col-md-offset-3">
-						<h2>INFO</h2>
-					</div>
-					<div class="col-md-1" style="text-align:right;min-width: 150px;">
-						<div class="row" style="margin-top: 26px;">
-							<div class="col-md-4">
-								<%= link_to "FB", "#" %>
-							</div>
-							<div class="col-md-4">
-								<%= link_to "TW", "#" %>
-							</div>
-							<div class="col-md-4">
-								<%= link_to "EM", "#" %>
-							</div>
+					<div class="row footer-content footer-issues" style="">
+						<div class="col-sm-3">
+							<% 
+								if @first_issue_group.any?
+								@first_issue_group.each do |issue|
+							 %>
+								<p><a href="<%=  issue_name_path(issue.name) %>" class="footer-issues-link"><%= issue.name %></a></p>
+							<% end %>
+							<% end %>
+						</div>
+						<div class="col-sm-3">
+							<% 
+								if @second_issue_group.any?
+								@second_issue_group.each do |issue|
+							 %>
+								<p><a href="<%=  issue_name_path(issue.name) %>" class="footer-issues-link"><%= issue.name %></a></p>
+							<% end %>
+							<% end %>
+						</div>
+						<div class="col-sm-3">
+							<% 
+								if @third_issue_group.any?
+								@third_issue_group.each do |issue|
+							 %>
+								<p><a href="<%=  issue_name_path(issue.name) %>" class="footer-issues-link"><%= issue.name %></a></p>
+							<% end %>
+							<% end %>
+						</div>
+						<div class="col-sm-3">
+							<% 
+								if @fourth_issue_group.any?
+								@fourth_issue_group.each do |issue|
+							 %>
+								<p><a href="<%=  issue_name_path(issue.name) %>" class="footer-issues-link"><%= issue.name %></a></p>
+							<% end %>
+							<% end %>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="col-md-6" style="text-align:left;">
-				<div class="row">
-					<div class="col-md-3">
-						<% 
-							if @first_issue_group.any?
-							@first_issue_group.each do |issue|
-						 %>
-							<p><a href="<%=  issue_name_path(issue.name) %>"><%= issue.name %></a></p>
-						<% end %>
-						<% end %>
+				<div class="col-sm-1" style="padding-left:0;padding-right:0;">
+					<div style="margin-bottom: 10px;border-bottom: 1px solid #bebebe;">
+						<h2 class="footer-content" style="font-size:12px;">INFO</h2>
 					</div>
-					<div class="col-md-3">
-						<% 
-							if @second_issue_group.any?
-							@second_issue_group.each do |issue|
-						 %>
-							<p><a href="<%=  issue_name_path(issue.name) %>"><%= issue.name %></a></p>
-						<% end %>
-						<% end %>
-					</div>
-					<div class="col-md-3">
-						<% 
-							if @third_issue_group.any?
-							@third_issue_group.each do |issue|
-						 %>
-							<p><a href="<%=  issue_name_path(issue.name) %>"><%= issue.name %></a></p>
-						<% end %>
-						<% end %>
-					</div>
-					<div class="col-md-3">
-						<% 
-							if @fourth_issue_group.any?
-							@fourth_issue_group.each do |issue|
-						 %>
-							<p><a href="<%=  issue_name_path(issue.name) %>"><%= issue.name %></a></p>
-						<% end %>
-						<% end %>
+					<div class="text-left footer-content" style="color:#666;font-size:11px;line-height:11px;">
+						<p>About</p>
+						<p>Contact</p>
+						<p>Feedback</p>
+						<p>Jobs</p>
 					</div>
 				</div>
-			</div>
-			<div class="col-md-1 col-md-offset-3" style="text-align:center;">
-				<p>About</p>
-				<p>Contact</p>
-				<p>Feedback</p>
-				<p>Jobs</p>
-			</div>
-			<div class="col-md-1" style="text-align:right;min-width: 150px;">
-				<p>Privacy Policy</p>
-				<p>Team</p>
-				<p>Terms of service</p>
-				<p>WHIP guidlines</p>
-			</div>
-		</div>
-	</div>
+				<div class="col-sm-3 text-right" style="padding-left:0;padding-right:0;">
+					<div style="margin-bottom: 10px;border-bottom: 1px solid #bebebe;">
+						<h2 class="footer-content" style="font-size:12px;">
+							<a href="https://www.facebook.com/whipuk" target="_blank" style="color:#8a8a8a;display:inline;"><i class="fa fa-facebook" style=""></i></a>
+							<a href="https://twitter.com/whipuk" target="_blank" style="color:#8a8a8a;display:inline;"><i class="fa fa-twitter" style="margin-left: 2px;"></i></a>
+							<a href="https://instagram.com/whipuk/" target="_blank" style="color:#8a8a8a;display:inline;"><i class="fa fa-instagram" style="margin-left: 2px;"></i></a>
+						</h2>
+					</div>
+					<div style="color:#666;font-size:11px;line-height:11px;">
+						<div class="col-sm-6 col-sm-offset-6 text-left" >
+							<p>Privacy Policy</p>
+							<p>Team</p>
+							<p>Terms of service</p>
+							<p>WHIP guidlines</p>
+						</div>
+					</div>
+				</div>
+			</div><!-- .row -->
+
+	</div><!-- container -->
 </footer>
