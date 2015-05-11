@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="z-index:10000;">
+<nav class="navbar navbar-default navbar-fixed-top" id="top-navbar" role="navigation" style="z-index:10000;">
   <div class="container" style="max-width:942px;">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header" style="width:100%;">
@@ -12,7 +12,7 @@
       <% if user_signed_in? %>
         <%= link_to("LOGOUT", destroy_user_session_path, :method => :delete, class: "navbar-brand")  %>
       <% else %>
-        <a class="navbar-brand" href="#" data-toggle="modal" data-target="#loginModal">SIGN IN</a>
+        <a class="navbar-brand" href="javascript;" data-toggle="modal" data-target="#loginModal">SIGN IN</a>
       <% end %>
             <!-- 'Sticky' (non-collapsing) right-side menu item(s) -->
            
@@ -20,10 +20,10 @@
         <ul class="nav navbar-nav navbar-right">
               <!-- This works well for static text, like a username -->
           <% if user_signed_in? && current_user.admin %>
-            <li><%= link_to "ADMIN", users_admins_path %></li>
+            <li class="nav-parent-item"><%= link_to "ADMIN", users_admins_path %></li>
           <% end %>
-          <li><%= link_to "TRENDING BILLS", bills_path %></li>
-          <li class="dropdown">
+          <li class="nav-parent-item"><%= link_to "TRENDING BILLS", bills_path %></li>
+          <li class="dropdown nav-parent-item">
             <a href="#" class="dropdown-toggle" role="button" aria-expanded="false">ISSUES</a>
             <ul class="dropdown-menu" role="menu">
                 <li>
@@ -69,9 +69,9 @@
             </ul>
           </li>
           <% if user_signed_in? %>
-            <li><%= link_to "MY VOTES", my_votes_path %></li>
+            <li class="nav-parent-item"><%= link_to "MY VOTES", my_votes_path %></li>
           <% end %>
-          <li class="dropdown">
+          <li class="dropdown nav-parent-item">
             <a href="#" class="dropdown-toggle" role="button" aria-expanded="false">INFO</a>
             <ul class="dropdown-menu" role="menu">
               <li>

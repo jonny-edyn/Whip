@@ -1,83 +1,85 @@
-<%= render 'bills/top_banner_with_names' %>
+<div class="container max_924">
+	<%= render 'bills/top_banner_with_names' %>
 
-<div class="row trending_bills" >
-	<% 
-		if @votes.any?
-		@votes.each do |vote|
-		bill = vote.bill
-	 %>
-	<div class="col-md-12" style="text-align:center;">
-		<div class="row" style="padding-bottom:20px;">
-			<div class="col-md-12" style="text-align:center;">
-				<%= link_to bill.simple_name, bill_path(bill) %>
-			</div>
-		</div>
-
-		<div class="row" style="margin-bottom: 20px; padding-bottom: 20px;">
-			<div class="col-md-6" style="text-align:left;">
-
-				<% if vote.in_favor %>
-					<h2>YOU VOTED YES</h2>
-					<h4>CHANGE VOTE TO</h4><%= render 'bills/vote_no_form', bill: bill.id %>
-				<% else %>
-					<h2>YOU VOTED NO</h2>
-					<h4>CHANGE VOTE TO</h4><%= render 'bills/vote_yes_form', bill: bill.id %>
-				<% end %>
-
+	<div class="row trending_bills" >
+		<% 
+			if @votes.any?
+			@votes.each do |vote|
+			bill = vote.bill
+		 %>
+		<div class="col-md-12" style="text-align:center;">
+			<div class="row" style="padding-bottom:20px;">
+				<div class="col-md-12" style="text-align:center;">
+					<%= link_to bill.simple_name, bill_path(bill) %>
+				</div>
 			</div>
 
-			<div class="col-md-6" style="text-align:right;">
-				<% 
-					if current_user.constituency && current_user.constituency.mp
-					@mp = current_user.constituency.mp
+			<div class="row" style="margin-bottom: 20px; padding-bottom: 20px;">
+				<div class="col-md-6" style="text-align:left;">
 
-				%>
-					<% 
-						if @mp.votes.where(bill_id: bill.id).any?
-						mp_vote = @mp.votes.where(bill_id: bill.id).first
-					 %>
-					 	<% if mp_vote.in_favor %>
-							<%= @mp.name.upcase %> VOTED YES
-						<% else %>
-							<%= @mp.name.upcase %> VOTED YES
-						<% end %>
+					<% if vote.in_favor %>
+						<h2>YOU VOTED YES</h2>
+						<h4>CHANGE VOTE TO</h4><%= render 'bills/vote_no_form', bill: bill.id %>
 					<% else %>
-						<%= @mp.name.upcase %> HAS NOT VOTED ON BILL
+						<h2>YOU VOTED NO</h2>
+						<h4>CHANGE VOTE TO</h4><%= render 'bills/vote_yes_form', bill: bill.id %>
 					<% end %>
-				<% end %>
+
+				</div>
+
+				<div class="col-md-6" style="text-align:right;">
+					<% 
+						if current_user.constituency && current_user.constituency.mp
+						@mp = current_user.constituency.mp
+
+					%>
+						<% 
+							if @mp.votes.where(bill_id: bill.id).any?
+							mp_vote = @mp.votes.where(bill_id: bill.id).first
+						 %>
+							<% if mp_vote.in_favor %>
+								<%= @mp.name.upcase %> VOTED YES
+							<% else %>
+								<%= @mp.name.upcase %> VOTED YES
+							<% end %>
+						<% else %>
+							<%= @mp.name.upcase %> HAS NOT VOTED ON BILL
+						<% end %>
+					<% end %>
+				</div>
 			</div>
-		</div>
 
 		
 
-		<div class="row" style="padding-bottom:20px;">
-			<h4 style="text-align:left; padding-bottom:20px;">BILL PROGRESS</h4>
-			<div class="col-md-2" style="text-align:center;">
-				HOUSE OF COMMONS
+			<div class="row" style="padding-bottom:20px;">
+				<h4 style="text-align:left; padding-bottom:20px;">BILL PROGRESS</h4>
+				<div class="col-md-2" style="text-align:center;">
+					HOUSE OF COMMONS
+				</div>
+				<div class="col-md-2" style="text-align:center;">
+					HOUSE OF LORDS
+				</div>
+				<div class="col-md-2" style="text-align:center;">
+					ROYAL ASSENT
+				</div>
+				<div class="col-md-6" style="text-align:center;">
+					<% if vote.comment != "" %>
+						<%= vote.comment %>
+					<% end %>
+				</div>
 			</div>
-			<div class="col-md-2" style="text-align:center;">
-				HOUSE OF LORDS
-			</div>
-			<div class="col-md-2" style="text-align:center;">
-				ROYAL ASSENT
-			</div>
-			<div class="col-md-6" style="text-align:center;">
-				<% if vote.comment != "" %>
-					<%= vote.comment %>
-				<% end %>
-			</div>
+
 		</div>
 
+
+
+
+
+		<% end %>
+		<% end %>
 	</div>
 
-
-
-
-
-	<% end %>
-	<% end %>
-</div>
-
+</div><!-- .container max 924 -->
 <script type="text/javascript">
 var ready;
 ready = function() {
