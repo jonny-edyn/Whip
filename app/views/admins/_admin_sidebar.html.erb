@@ -1,10 +1,26 @@
-<div class="col-md-2 col-md-offset-2" style="">
-  <p><a href="<%= users_admins_path %>">USERS</a></p>
-  <p><a href="<%= bills_admins_path %>">BILLS</a></p>
-  <p><a href="<%= parties_admins_path %>">PARTIES</a></p>
-  <p><a href="<%= issues_admins_path %>">ISSUES</a></p>
-  <p><a href="<%= constituencies_admins_path %>">CONSTITUENCIES</a></p>
-  <p><a href="<%= mps_admins_path %>">MPS</a></p>
-  <p><a href="<%= voting_results_admins_path %>">GET VOTING RESULTS</a></p>
-  <p><%= link_to("LOGOUT", destroy_user_session_path, :method => :delete)  %></p>
+<div class="col-md-3" role="complementary">
+	<nav class="bs-docs-sidebar hidden-print affix-top">
+		<ul class="nav bs-docs-sidenav">
+			<!--
+			<p><a href="<%= users_admins_path %>">USERS</a></p>
+			<p><a href="<%= bills_admins_path %>">BILLS</a></p>
+			<p><a href="<%= parties_admins_path %>">PARTIES</a></p>
+			<p><a href="<%= issues_admins_path %>">ISSUES</a></p>
+			<p><a href="<%= constituencies_admins_path %>">CONSTITUENCIES</a></p>
+			<p><a href="<%= mps_admins_path %>">MPS</a></p>
+			<p><a href="<%= voting_results_admins_path %>">GET VOTING RESULTS</a></p>
+			<p><%= link_to("LOGOUT", destroy_user_session_path, :method => :delete)  %></p>
+			-->
+
+
+			<li><a href="<%= users_admins_path %>">USERS</a></li>
+			<li><a href="<%= bills_admins_path %>">BILLS</a></li>
+			<li><a href="<%= parties_admins_path %>">PARTIES</a></li>
+			<li><a href="<%= issues_admins_path %>">ISSUES</a></li>
+			<li><a href="<%= constituencies_admins_path %>">CONSTITUENCIES</a></li>
+			<li><a href="<%= mps_admins_path %>">MPS</a></li>
+			<li><a href="<%= voting_results_admins_path %>">GET VOTING RESULTS</a></li>
+			<li><%= link_to("LOGOUT", destroy_user_session_path, :method => :delete)  %></li>
+		</ul>
+	</nav>
 </div>

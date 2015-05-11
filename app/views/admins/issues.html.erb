@@ -1,43 +1,63 @@
-<div class="row">
-	<div class="col-md-8">
+<div class="row" style="padding-bottom:60px;">
+	<div class="col-md-9" role="main">
 		<div class="row">
-			<div class="col-md-12">
-				<h2 style="margin-top: 0;">ISSUES</h2>
-				<br>
+			<div class="col-md-12" style="padding-bottom:12px;">
+				<h2 class="text-din" style="margin-top: 0;">ISSUES</h2>
 			</div>
 			<div class="col-md-12">
 				<% if @issues.any? %>
+				<ul class="list-group">
 				<% @issues.each do |issue| %>
-				<div class="row">
-					<div class="col-md-10">
-						<%= issue.name %>
-						<div style="display:none;" id="issue_<%= issue.id %>" class="edit_form">
-							<%= form_for issue do |f| %>
-								<%= f.text_field :name %>
-								<%= f.submit "Edit Issue" %>
+				<li class="list-group-item">
+					<div class="row">
+						<div class="col-sm-9">
+							<%= issue.name %>
+							<div style="display:none;" id="issue_<%= issue.id %>" class="edit_form">
+								<%= form_for issue do |f| %>
+									<div class="form-group" style="padding-top:9px;">
+										<%= f.text_field :name, class:'form-control' %>
+									</div>
+									<%# f.submit "Edit Issue" %>
+									<div class="form-group">
+									<%= button_tag(type: 'submit', class: "btn btn-xs btn-primary") do %>
+										<i class="fa fa-floppy-o"></i> Save Edit
+									<% end %>
+									</div>
+								<% end %>
+							</div>
+						</div>
+						<div class="col-sm-1"> 
+							<!--<a href="" id="<%= issue.id %>" class="show_edit">EDIT</a>-->
+							<a href="javascript:;" id="<%= issue.id %>" class="show_edit btn btn-xs btn-default"><span class="glyphicon glyphicon-pencil"></span> EDIT</a>
+						</div>
+						<div class="col-sm-2"> 
+							<%= form_for issue, method: :delete, html: {style: "display:inline;"}  do |f|%>
+								<%# f.submit "DELETE", style: "background: transparent; border: none;" %>
+								<%= button_tag(type: 'submit', class: "btn btn-xs btn-default") do %>
+									<i class="glyphicon glyphicon-trash"></i> DELETE
+								<% end %>
 							<% end %>
 						</div>
-					</div>
-					<div class="col-md-1"> 
-						<a href="" id="<%= issue.id %>" class="show_edit">EDIT</a>
-					</div>
-					<div class="col-md-1"> 
-						<%= form_for issue, method: :delete, html: {style: "display:inline;"}  do |f|%>
-							<%= f.submit "DELETE", style: "background: transparent; border: none;" %>
-						<% end %>
-					</div>
-				</div>	
-				<br>
+					</div>	
+				</li>
 				<% end %>
-				<% end %>
+				</ul>
+			<% end %>
 			</div>
 			<div class="col-md-12">
-				<h2>Add Issue</h2>
+				<h2 class="text-din">Add Issue</h2>
 			</div>
 			<div class="col-md-12">
 				<%= form_for @issue do |f| %>
-					<%= f.text_field :name %>
-					<%= f.submit "Add New Issue" %>
+					<div class="form-group">
+					<%= f.text_field :name, class:'form-control' %>
+					</div>
+					<div class="form-group">
+					<%# f.submit "Add New Issue" %>
+					<%= button_tag(type: 'submit', class: "btn btn-primary") do %>
+						<i class="glyphicon glyphicon-plus"></i> Add New Issue
+					<% end %>
+					</div>
 				<% end %>
 			</div>
 		</div>
