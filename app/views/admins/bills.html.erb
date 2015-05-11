@@ -208,13 +208,13 @@
 var ready;
 ready = function() {
 
-$('body').on('click','.show_add',function(e){
+$(document).on('click','.show_add',function(e){
 	e.preventDefault();
 	$('.show_add').fadeOut();
 	$('.add_form').fadeIn();
 });
 
-$('body').on('click','.show_edit',function(e){
+$(document).on('click','.show_edit',function(e){
 	e.preventDefault();
 
 	var id = $(this).attr('id');
@@ -229,7 +229,7 @@ $('body').on('click','.show_edit',function(e){
 	}
 });
 
-$('body').on('click','.show_issues',function(e){
+$(document).on('click','.show_issues',function(e){
 	e.preventDefault();
 
 	var id = $(this).attr('id');
@@ -259,7 +259,7 @@ $('body').on('click','.show_issues',function(e){
 	modal display to warn of deletion
 	some sort of visual feedback while saving
 	*/
-	$(document).on('submit','form.edit_bill', function(e){
+	/*$(document).on('submit','form.edit_bill', function(e){
 		console.log( 'delete' );
 		$('#warningModal').modal('show');
 		return false;
@@ -271,7 +271,7 @@ $('body').on('click','.show_issues',function(e){
 		//}
 		return false;
 	});
-	
+	*/
 
  };
 

@@ -1,19 +1,20 @@
+<div class="container max_924">
+
 <div class="row">
   <div class="col-md-12">
-    <h2 style="text-align: center;padding-bottom: 40px;">MEET</h2>
+    <h2 class="text-din text-center" style="padding-bottom: 40px;">MEET</h2>
   </div>
 </div>
 
-<div class="row" style="padding-bottom: 20px;border-bottom: 1px solid #030303;margin-bottom: 20px;">
+<div class="row" style="padding-bottom: 20px;border-bottom: 1px solid #c0c0c0;margin-bottom: 20px;">
   <div class="col-md-6">
     <div class="row">
-      <div class="col-md-3">
-        <img src="<%= @user.picture_url %>" style="height:80px;">
+      <div class="col-sm-4">
+        <img src="<%= @user.picture_url %>" style="height:141px;width:141px;background-color:#ef4747;">
       </div>
-      <div class="col-md-9">
-        HI <%= @user.name %><br>
-        Please enter your postcode.  We need <br>
-        this to find your local MP.<br>
+      <div class="col-sm-8" class="text-din">
+        <div class="text-uppercase">HI <%= @user.name %></div>
+        <p>Please enter your postcode.  We need this to find your local MP.<p>
         <%= form_tag add_post_code_join_constituency_user_path(current_user), id: "add_postcode" do %>
           <%= text_field_tag :postcode, @user.post_code %>
           <%= submit_tag 'submit', id: "postcode_check" %>
@@ -23,28 +24,28 @@
   </div>
   <div class="col-md-6">
     <div class="row">
-      <div class="col-md-4 col-md-offset-2">
-        MP PICTURE
+      <div class="col-sm-4">
+        <img src="" style="height:141px;width:141px;background-color:#10b8b8;">
       </div>
-      <div class="col-md-6">
-        <%= @mp.name if @mp %><br>
-        MP for <%= @constituency.name if @constituency %> <br>
-        Send message <br>
-        FB TW EM<br>
+      <div class="col-sm-8">
+        <div class="text-uppercase"><%= @mp.name if @mp %></div>
+        <div>MP for <%= @constituency.name if @constituency %>
+        Send message <br/>
+        FB TW EM<br/>
         Phone
       </div>
     </div>
   </div>
 </div>
 
-<div class="row" style="padding-bottom: 20px;border-bottom: 1px solid #030303;margin-bottom: 20px;">
-  <div class="col-md-12" style="text-align: center;">
-    <h2 style="text-align: center;padding-bottom: 40px;">PICK YOUR PARTY</h2>
+<div class="row" style="padding-bottom: 20px;border-bottom: 1px solid #c0c0c0;margin-bottom: 20px;">
+  <div class="col-md-12 text-center">
+    <h2 class="text-din text-center" style="padding-bottom: 40px;">PICK YOUR PARTY</h2>
     <% 
       if @parties.any? 
       @parties.each do |party|
     %>
-      <h4 style="display:inline;padding: 15px;line-height: 2.5em;"><a href="" class="add_user_to_party_link" id="<%= party.id %>"><%= party.name %></a></h4>
+      <h4 style="display:inline;padding: 15px;line-height: 2.5em;"><a href="javascript:;" class="add_user_to_party_link text-din text-uppercase" id="<%= party.id %>"><%= party.name %></a></h4>
     <% end %>
     <% end %>
     <div style="clear:both;"></div>
@@ -56,9 +57,9 @@
   </div>
 </div>
 
-<div class="row">
+<div class="row"  style="padding-bottom:60px;">
   <div class="col-md-12">
-    <h2 style="text-align: center;padding-bottom: 40px;">EDIT ACCOUNT INFO</h2>
+    <h2 class="text-din text-center" style="padding-bottom: 40px;">EDIT ACCOUNT INFO</h2>
       <%= form_for(@user, :url => { :action => "update_info" } ) do |f| %>
         <div class="field">
           <%= f.label :password, "Password" %><br />
@@ -92,6 +93,7 @@
   </div>
 </div>
 
+</div><!--.container max_924-->
 
 <script type="text/javascript">
 function testPostCode () {
