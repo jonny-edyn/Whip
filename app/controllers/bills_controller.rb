@@ -91,6 +91,7 @@ class BillsController < ApplicationController
 		@bill = Bill.find(params[:id])
 		impressionist(@bill)
 		@issues = @bill.issues
+		@vote = current_user.votes.where(bill_id: @bill.id).first
 	end
 
 	def add_issues

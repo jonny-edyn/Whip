@@ -42,6 +42,7 @@ class IssuesController < ApplicationController
 		count = []
 		@trending = []
 		@common = []
+		@name = params[:issue_name]
 
 		if Setting.first.yes
 
