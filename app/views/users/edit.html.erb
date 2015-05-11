@@ -6,7 +6,7 @@
   </div>
 </div>
 
-<div class="row" style="padding-bottom: 20px;border-bottom: 1px solid #c0c0c0;margin-bottom: 20px;">
+<div class="row" style="padding-bottom: 40px;border-bottom: 1px solid #c0c0c0;margin-bottom: 20px;">
   <div class="col-md-6">
     <div class="row">
       <div class="col-sm-4">
@@ -37,6 +37,7 @@
     </div>
   </div>
 </div>
+</div>
 
 <div class="row" style="padding-bottom: 20px;border-bottom: 1px solid #c0c0c0;margin-bottom: 20px;">
   <div class="col-md-12 text-center">
@@ -61,16 +62,16 @@
   <div class="col-md-12">
     <h2 class="text-din text-center" style="padding-bottom: 40px;">EDIT ACCOUNT INFO</h2>
       <%= form_for(@user, :url => { :action => "update_info" } ) do |f| %>
-        <div class="field">
-          <%= f.label :password, "Password" %><br />
-          <%= f.password_field :password, :autocomplete => "off"  %>
+        <div class="field form-group">
+          <%= f.label :password, "Password" %>
+          <%= f.password_field :password, :autocomplete => "off", :class => 'form-control'  %>
         </div>
-        <div class="field">
-          <%= f.label :password_confirmation %><br />
-          <%= f.password_field :password_confirmation %>
+        <div class="field form-group">
+          <%= f.label :password_confirmation %>
+          <%= f.password_field :password_confirmation, :class => 'form-control' %>
         </div>
-        <div class="field">
-          <%= f.label :allow_profile_view %><br />
+        <div class="field form-group">
+          <%= f.label :allow_profile_view %>
           <%= f.check_box :allow_profile_view %>
         </div>
         <div class="action_container">
@@ -127,7 +128,7 @@ $('body').on('click','.add_user_to_party_link', function(e){
 });
 
 <% if @user.party_id %>
-    $('.add_user_to_party_link#' + <%= @user.party_id %>).css('color','red');
+    $('.add_user_to_party_link#' + <%= @user.party_id %>).css({color: '#ef4747', border: '1px solid #333', padding: '5px 10px'});
 <% end %>
 };
 
