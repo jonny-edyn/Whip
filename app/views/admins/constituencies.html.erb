@@ -3,8 +3,8 @@
 <% else %>
 <p>Currently updating DB check back shortly!</p>
 <% end %>
-<div class="row">
-	<div class="col-md-8">
+<div class="row admin-content">
+	<div class="col-md-9" role="main">
 		<% if @constituencies.any? %>
 			<% @constituencies.each do |constituency| %>
 				<%= constituency.name %> / <%= constituency.mp.name if constituency.mp %><br>
