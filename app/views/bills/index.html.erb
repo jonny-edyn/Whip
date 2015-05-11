@@ -31,7 +31,7 @@
 						<div class="panel-body">
 							<h2 class="header-argument-for text-center">ARGUMENT FOR</h2>
 							<div class="text-left">
-								<%= bill.support %>
+								<%= bill.support.html_safe %>
 							</div>
 						</div>
 					</div><!--.panel -->
@@ -44,7 +44,7 @@
 						<div class="panel-body">
 							<h2 class="header-argument-against text-center">ARGUMENT AGAINST</h2>
 							<div class="text-left">
-								<%= bill.opposition %>
+								<%= bill.opposition.html_safe %>
 							</div>
 						</div>
 					</div><!--.panel -->
@@ -93,11 +93,11 @@
 				<div class="row" style="margin: 0 5px 20px 5px;padding: 0 5px;">
 					<div class="col-md-12 text-center text-din" style="padding-bottom:22px;border-bottom: 1px solid #a1a1a1; ">
 						<h2 class="header-argument-for">ARGUMENT FOR</h2>
-						<%= bill.support %>
+						<%= bill.support.html_safe %>
 					</div>
 					<div class="col-md-12 text-center text-din" style="padding-bottom:22px;border-bottom: 1px solid #a1a1a1; ">
 						<h2 class="header-argument-against">ARGUMENT AGAINST</h2>
-						<%= bill.opposition %>
+						<%= bill.opposition.html_safe %>
 					</div>
 				</div>
 
