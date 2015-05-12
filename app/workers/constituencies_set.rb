@@ -19,7 +19,7 @@ class ConstituenciesSet
 				@setting = Setting.find_by(name: 'updating_constituency_list')
 					@setting.yes = true
 				@setting.save
-			elsif index == constituencies.size - 1
+			elsif index == @constituencies.size - 1
 				@setting = Setting.find_by(name: 'updating_constituency_list')
 					@setting.yes = false
 				@setting.save

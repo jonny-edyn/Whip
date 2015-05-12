@@ -20,9 +20,15 @@ class BillsController < ApplicationController
 		@bill = Bill.find(params[:id])
 
 		if @bill.update_attributes(bill_params)
-			redirect_to :back
+			respond_to do |format|
+				format.html { redirect_to :back }
+				format.js { render :partial => 'edit_bill_success.js.erb' }
+			end
 		else
-			redirect_to :root_path
+			respond_to do |format|
+				format.html { redirect_to :root_path }
+				format.js { render :partial => 'edit_bill_fail.js.erb' }
+			end
 		end
 		
 	end

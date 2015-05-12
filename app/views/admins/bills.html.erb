@@ -53,7 +53,7 @@
 						<div class="col-md-8">
 							<%= bill.simple_name.upcase %>
 							<div style="display:none;" id="bill_<%= bill.id %>_edit" class="edit_form">
-								<%= form_for bill do |f| %>
+								<%= form_for bill, remote: true do |f| %>
 									<div class="form-group">
 										<%= f.label :simple_name, "Common Name" %>
 										<%= f.text_field :simple_name, class:'form-control' %>
@@ -94,7 +94,7 @@
 										<%= f.label :image_url %>
 										<%= f.file_field :image_url %>
 									</div>
-									<%= f.submit "Save Bill Edits", :class => 'btn btn-lg btn-default' %>
+									<%= f.submit "Save Bill Edits", :class => 'btn btn-lg btn-default', id: "edit_bill_btn" %>
 								<% end %>
 							</div>
 							<div style="display:none;" id="bill_<%= bill.id %>_issues" class="issues_form">
@@ -259,11 +259,14 @@ $(document).on('click','.show_issues',function(e){
 	modal display to warn of deletion
 	some sort of visual feedback while saving
 	*/
-	/*$(document).on('submit','form.edit_bill', function(e){
+	/*
+	$(document).on('submit','form.edit_bill', function(e){
+		e.preventDefault();
 		console.log( 'delete' );
 		$('#warningModal').modal('show');
-		return false;
 	});
+
+	
 
 	$(document).on('submit','form.new_bill', function(e){
 		//if ($(this).valid()) {
@@ -272,6 +275,16 @@ $(document).on('click','.show_issues',function(e){
 		return false;
 	});
 	*/
+
+	$('body').on('click', '#edit_bill_btn', function(e){
+		e.preventDefault();
+		console.log('btn pressed');
+		// here I have intercepted edit form from submitting
+		// this is good if using confirm modal and unecessary if going straight to loading modal
+		// add ability to show confirmation or loading modal here
+		// if using confirm modal you need to intercept that click, change modal to loading, and continue with form submit
+
+	});
 
  };
 
