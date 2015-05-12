@@ -1,4 +1,5 @@
 class IssuesController < ApplicationController
+	before_action :set_bill_count, only: [:find_issues]
 
 	def create
 

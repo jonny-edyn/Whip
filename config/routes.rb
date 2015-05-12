@@ -75,7 +75,7 @@ Rails.application.routes.draw do
 
   post 'mailing_list_request' => 'static_pages#mailing_list_request'
   #get '/prelaunch_landing_page' => 'static_pages#prelaunch_landing_page'
-  get '/old_home' => 'static_pages#old_home'
+  #get '/old_home' => 'static_pages#old_home'
   get '/home' => 'static_pages#home'
   #get '/postlaunch_landing_page' => 'static_pages#postlaunch_landing_page'
   root  'static_pages#prelaunch_landing_page'

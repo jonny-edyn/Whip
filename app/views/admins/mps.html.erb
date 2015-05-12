@@ -35,7 +35,7 @@
 			<ul class="list-group">
 				<% @mps.each do |mp| %>
 					<li class="list-group-item">
-						<%= mp.voting_name %> <%= mp.votes.first.in_favor if mp.votes.any? %>
+						<%= mp.voting_name %> / <%= mp.email %> / <%= mp.tw_link %> / <%= mp.fb_link %> / <%= mp.constituency.name %>
 					</lI>
 				<% end %>
 			</ul>

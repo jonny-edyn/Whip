@@ -49,7 +49,9 @@ class ApplicationController < ActionController::Base
     end
 
     def set_bill_count
-      @votes_count = current_user.votes.count
+      if user_signed_in?
+        @votes_count = current_user.votes.count
+      end
     end
 
     def set_issues

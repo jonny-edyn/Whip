@@ -6,17 +6,23 @@
 		<div class="col-md-6">
 			<div class="row">
 				<div class="col-md-12">
-					<div id="user-image" style="text-transform:uppercase;display:inline-block;vertical-align:top;padding-right:12px;">
-						<img src="<%= current_user.picture_url %>" style="height:65px;width:65px;background-color:#10b8b8;border:none;" />
-					</div>
+					<% if current_user.picture_url %>
+						<div id="user-image" style="text-transform:uppercase;display:inline-block;vertical-align:top;padding-right:12px;">
+							<img src="<%= current_user.picture_url %>" style="height:65px;width:65px;background-color:#10b8b8;border:none;" />
+						</div>
+					<% end %>
 					<div id="user-info" style="display:inline-block;">
 						<div style="text-transform:uppercase;padding-bottom:9px;" class="clearfix">
 							<%= current_user.name %>
 						</div>
 						<div id="user-statistics">
-							<div style="display:inline-block;padding-right:12px;">
-								<div style="vertical-align:top;">
-									<img src="<%= image_path('icon-vote.png') %>" style="width:21px" class="image" title="votes" />
+							<div style="display:inline-block;padding-right:12px;vertical-align:top;">
+								<div>
+									<a href="<%= my_votes_path %>">
+										<div style="vertical-align:top;">
+											<img src="<%= image_path('icon-vote.png') %>" style="width:21px;height:24px;" class="image" title="votes" />
+										</div>
+									</a>
 								</div>
 								<div id="votes-count" class="text-center">
 									<%= @votes_count %> 
@@ -24,7 +30,7 @@
 							</div>
 							<div style="display:inline-block;padding-right:12px;">
 								<div>
-								<a href="#">
+								<a href="<%= users_followed_path %>">
 									<% if _svg == true %>
 									<div style="width:21px;" title="followers">
 										<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 21 23.9" enable-background="new 0 0 21 23.9" xml:space="preserve">
@@ -51,7 +57,7 @@
 								</a><!-- add this functionality still -->
 								</div>
 								<div id="followers-count" class="text-center">
-									50
+									<%= current_user.followed_users.count %>
 								</div>
 							</div>
 							<div style="display:inline-block;vertical-align:top;">
@@ -86,7 +92,7 @@
 						</div><!-- #mp-statistics -->
 					</div><!-- #mp-info -->
 					<div id="mp-image" style="text-transform:uppercase;display:inline-block;vertical-align:top;padding-right:12px;">
-						<img src="<%= current_user.picture_url %>" style="height:65px;width:65px;background-color:#10b8b8;border:none;" />
+						<img src="<%= @mp.picture_url %>" style="height:65px;width:65px;background-color:#10b8b8;border:none;" />
 					</div>
 					<% end %>
 				</div>

@@ -208,12 +208,14 @@
 var ready;
 ready = function() {
 
+$(document).off('click','.show_add');
 $(document).on('click','.show_add',function(e){
 	e.preventDefault();
 	$('.show_add').fadeOut();
 	$('.add_form').fadeIn();
 });
 
+$(document).off('click','.show_edit');
 $(document).on('click','.show_edit',function(e){
 	e.preventDefault();
 
@@ -229,6 +231,7 @@ $(document).on('click','.show_edit',function(e){
 	}
 });
 
+$(document).off('click','.show_issues');
 $(document).on('click','.show_issues',function(e){
 	e.preventDefault();
 
@@ -276,15 +279,7 @@ $(document).on('click','.show_issues',function(e){
 	});
 	*/
 
-	$('body').on('click', '#edit_bill_btn', function(e){
-		e.preventDefault();
-		console.log('btn pressed');
-		// here I have intercepted edit form from submitting
-		// this is good if using confirm modal and unecessary if going straight to loading modal
-		// add ability to show confirmation or loading modal here
-		// if using confirm modal you need to intercept that click, change modal to loading, and continue with form submit
-
-	});
+	
 
  };
 
