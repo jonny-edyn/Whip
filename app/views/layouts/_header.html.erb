@@ -12,7 +12,12 @@
       <% if user_signed_in? %>
         <%= link_to("LOGOUT", destroy_user_session_path, :method => :delete, class: "navbar-brand")  %>
       <% else %>
+        <!--
         <a class="navbar-brand" href="javascript;" data-toggle="modal" data-target="#loginModal">SIGN IN</a>
+        -->
+        <div class="navbar-brand">
+			<a href="javascript;" data-toggle="modal" data-target="#loginModal" class="btn btn-xs btn-outline btn-square btn-c9-border">SIGN IN</a>
+		</div>
       <% end %>
             <!-- 'Sticky' (non-collapsing) right-side menu item(s) -->
            
