@@ -66,13 +66,18 @@
 
 
 
-<div class="row" style="padding-bottom:60px;">
+<div  style="padding-bottom:60px;">
 	<% 
 		if @common.any?
+		_index = 0
 		# @common.each do |bill|
 		@common.each_with_index do |bill, index|
+		_index = index
 		if index % 2 == 0
 			_align = "arguments-left"
+			%>
+			<div class="row">
+			<%
 		else 
 			_align = "arguments-right"
 		end
@@ -124,8 +129,18 @@
 				</div>
 			</div><!--.panel-body-->
 		</div><!--.panel-->
-	</div>
-	<% end %>
+	</div><!-- .col-sm-6 -->
+	<% 
+		if index % 2 != 0 
+			%></div><%
+		end
+	end
+	
+	if _index % 2 != 0 
+			%></div><%
+	end
+		
+	%>
 	<% end %>
 </div>
 
