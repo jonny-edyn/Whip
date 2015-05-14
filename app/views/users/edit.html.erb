@@ -9,13 +9,15 @@
 <div class="row" style="padding-bottom: 40px;border-bottom: 1px solid #c0c0c0;margin-bottom: 20px;">
   <div class="col-md-6">
     <div class="row">
-      <div class="col-sm-4">
-        <img src="<%= @user.picture_url %>" style="height:141px;width:141px;background-color:#ef4747;">
-      </div>
+      <% if @user.picture_url %>
+        <div class="col-sm-4">
+          <img src="<%= @user.picture_url %>" style="height:141px;width:141px;background-color:#ef4747;">
+        </div>
+      <% end %>
       <div class="col-sm-8" class="text-din">
         <div class="text-uppercase">HI <%= @user.name %></div>
         <p>Please enter your postcode.  We need this to find your local MP.<p>
-        <%= form_tag add_post_code_join_constituency_user_path(current_user), id: "add_postcode" do %>
+        <%= form_tag add_post_code_join_constituency_user_path(current_user), id: "add_postcode", remote: true do %>
           <%= text_field_tag :postcode, @user.post_code %>
           <%= submit_tag 'submit', id: "postcode_check" %>
         <% end %>
@@ -24,8 +26,9 @@
   </div>
   <div class="col-md-6">
     <div class="row">
+
       <div class="col-sm-4">
-        <img src="<%= @mp.picture_url %>" style="height:141px;width:141px;background-color:#10b8b8;">
+        <img src="<%= @mp.picture_url if @mp && @mp.picture_url %>" style="height:141px;width:141px;background-color:#10b8b8;">
       </div>
       <div class="col-sm-8">
         <div class="text-uppercase"><%= @mp.name if @mp %></div>
@@ -79,17 +82,59 @@
         </div>
       <% end %>
 
-      <% unless @idents.include?("twitter") %>
-        <a href="<%= root_url %>users/auth/twitter">MERGE TWITTER</a>
-      <% else %>
-        <a href="<%= remove_twitter_users_path %>">REMOVE TWITTER FROM ACCOUNT</a>
+      <%= form_for(@user, :url => { :action => "update_info" } ) do |f| %>
+        <div class="field form-group">
+          <%= f.text_field :bio, :class => 'form-control', placeholder: "ENTER YOUR BIO"  %>
+        </div>
+        <div class="field form-group">
+          <%= f.text_field :fb_link, :class => 'form-control', placeholder: "FACEBOOK"  %>
+        </div>
+        <div class="field form-group">
+          <%= f.text_field :tw_link, :class => 'form-control', placeholder: "TWITTER"  %>
+        </div>
+        <div class="field form-group">
+          <%= f.text_field :insta_link, :class => 'form-control', placeholder: "INSTAGRAM"  %>
+        </div>
+        <div class="field form-group">
+          <%= f.text_field :youtube_link, :class => 'form-control', placeholder: "YOUTUBE"  %>
+        </div>
+        <div class="field form-group">
+          <%= f.text_field :web_link, :class => 'form-control', placeholder: "WEBSITE"  %>
+        </div>
+        <div class="field form-group">
+          <%= f.text_field :street_addr, :class => 'form-control', placeholder: "STREET"  %>
+        </div>
+        <div class="field form-group">
+          <%= f.text_field :city, :class => 'form-control', placeholder: "CITY"  %>
+        </div>
+        <div class="field form-group">
+          <%= f.text_field :post_code, :class => 'form-control', placeholder: "POSTCODE", disabled: true  %>
+        </div>
+        <div class="field form-group">
+          <%= f.text_field :phone, :class => 'form-control', placeholder: "PHONE (OPTIONAL)"  %>
+        </div>
+        <div class="action_container">
+          <%= f.submit %>
+        </div>
       <% end %>
 
-      <% unless @idents.include?("facebook") %>
-        <a href="<%= root_url %>users/auth/facebook">MERGE FB</a>
-      <% else %>
-        <a href="<%= remove_twitter_users_path %>">REMOVE FB FROM ACCOUNT</a>
-      <% end %>
+
+
+
+      <div style="display:none;">
+          <% unless @idents.include?("twitter") %>
+            <a href="<%= root_url %>users/auth/twitter">MERGE TWITTER</a>
+          <% else %>
+            <a href="<%= remove_twitter_users_path %>">REMOVE TWITTER FROM ACCOUNT</a>
+          <% end %>
+
+          <% unless @idents.include?("facebook") %>
+            <a href="<%= root_url %>users/auth/facebook">MERGE FB</a>
+          <% else %>
+            <a href="<%= remove_twitter_users_path %>">REMOVE FB FROM ACCOUNT</a>
+          <% end %>
+      </div>
+     
       <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %>
   </div>
 </div>

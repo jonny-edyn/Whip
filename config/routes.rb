@@ -10,7 +10,8 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks', :sessions => "sessions", :registrations => "registrations" }
 
-  get '/users_followed' => 'users#users_followed'
+  get '/following' => 'users#following'
+  get '/followers' => 'users#followers'
   resources :users, only: [:edit, :show] do
     collection do
       patch :update_info
@@ -72,6 +73,9 @@ Rails.application.routes.draw do
 
   get '/privacy' => 'static_pages#privacy'
   get '/terms' => 'static_pages#terms'
+  get '/contact' => 'static_pages#contact'
+  get '/about' => 'static_pages#about'
+  get '/jobs' => 'static_pages#jobs'
 
   post 'mailing_list_request' => 'static_pages#mailing_list_request'
   #get '/prelaunch_landing_page' => 'static_pages#prelaunch_landing_page'

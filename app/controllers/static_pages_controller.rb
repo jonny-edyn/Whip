@@ -35,6 +35,18 @@ class StaticPagesController < ApplicationController
 		
 	end
 
+	def contact
+		
+	end
+
+	def about
+		
+	end
+
+	def jobs
+		
+	end
+
 	
 end
 

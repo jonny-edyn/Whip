@@ -89,7 +89,10 @@ class UsersController < ApplicationController
       @user.post_code = params[:postcode]
       @user.constituency_id = @constituency.id
     if @user.save
-      redirect_to :back
+      respond_to do |format|
+        format.html {redirect_to :back}
+        format.js {render :partial => 'show_user_mp.js.erb'}
+      end
     end
   end
 
@@ -102,7 +105,11 @@ class UsersController < ApplicationController
     end
   end
 
-  def users_followed
+  def followers
+    @users = current_user.followers
+  end
+
+  def following
     @users = current_user.followed_users
   end
   
@@ -116,7 +123,7 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      accessible = [ :name, :email, :allow_profile_view ] # extend with your own params
+      accessible = [ :name, :email, :allow_profile_view, :bio, :fb_link, :tw_link, :insta_link, :youtube_link, :web_link, :street_addr, :city, :phone ] # extend with your own params
       accessible << [ :password, :password_confirmation ] unless params[:user][:password].blank?
       params.require(:user).permit(accessible)
     end

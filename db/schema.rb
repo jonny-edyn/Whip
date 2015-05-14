@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150425184031) do
+ActiveRecord::Schema.define(version: 20150514210621) do
 
   create_table "bill_issues", force: :cascade do |t|
     t.integer  "bill_id",    limit: 4
@@ -122,12 +122,12 @@ ActiveRecord::Schema.define(version: 20150425184031) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  limit: 255, default: "",    null: false
-    t.string   "encrypted_password",     limit: 255, default: "",    null: false
+    t.string   "email",                  limit: 255,   default: "",    null: false
+    t.string   "encrypted_password",     limit: 255,   default: "",    null: false
     t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          limit: 4,   default: 0,     null: false
+    t.integer  "sign_in_count",          limit: 4,     default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",     limit: 255
@@ -142,10 +142,19 @@ ActiveRecord::Schema.define(version: 20150425184031) do
     t.integer  "party_id",               limit: 4
     t.integer  "postcode_id",            limit: 4
     t.string   "picture_url",            limit: 255
-    t.boolean  "admin",                  limit: 1,   default: false
+    t.boolean  "admin",                  limit: 1,     default: false
     t.integer  "constituency_id",        limit: 4
     t.string   "post_code",              limit: 255
-    t.boolean  "allow_profile_view",     limit: 1,   default: false
+    t.boolean  "allow_profile_view",     limit: 1,     default: false
+    t.text     "bio",                    limit: 65535
+    t.string   "fb_link",                limit: 255
+    t.string   "tw_link",                limit: 255
+    t.string   "insta_link",             limit: 255
+    t.string   "youtube_link",           limit: 255
+    t.string   "web_link",               limit: 255
+    t.string   "street_addr",            limit: 255
+    t.string   "city",                   limit: 255
+    t.string   "phone",                  limit: 255
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
