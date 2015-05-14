@@ -3,12 +3,16 @@
 %>
 <% if user_signed_in? %>
 	<div class="row" style="margin-bottom: 20px; border-bottom: 1px solid #030303; padding-bottom: 20px;">
-		<div class="col-md-6">
+		<div class="col-md-6" style="padding-left:0;">
 			<div class="row">
 				<div class="col-md-12">
 					<% if current_user.picture_url %>
 						<div id="user-image" style="text-transform:uppercase;display:inline-block;vertical-align:top;padding-right:12px;">
 							<img src="<%= current_user.picture_url %>" style="height:65px;width:65px;background-color:#10b8b8;border:none;" />
+						</div>
+					<% else %>
+						<div id="user-image" style="text-transform:uppercase;display:inline-block;vertical-align:top;padding-right:12px;">
+							<img src="<%= image_path('blank.png') %>" style="height:65px;width:65px;background-color:#10b8b8;border:none;" />
 						</div>
 					<% end %>
 					<div id="user-info" style="display:inline-block;">

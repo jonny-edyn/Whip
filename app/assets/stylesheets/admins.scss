@@ -161,6 +161,27 @@
   background: #97d9ff;
 }
 
+.modal-whip-comment .modal-header {
+	margin-bottom: 20px;
+	/*padding: 25px 0 18px 0;*/
+	text-shadow: 0 1px 0 rgba(0,0,0,0.15);
+	border-bottom: 4px solid rgba(0,0,0,0.08);
+}
+
+.modal-whip-comment .modal-header {
+	color: #ffffff;
+	background: #c6b2c5;
+}
+
+.modal-whip-vote-yes .modal-header {
+	color: #ffffff;
+	background: #f58b8b;
+}
+
+.modal-whip-vote-no .modal-header {
+	color: #ffffff;
+	background: #97d9ff;
+}
 
 /* flat buttons */
 .btn.btn-flat {

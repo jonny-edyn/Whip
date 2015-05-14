@@ -10,11 +10,10 @@
       </button>
       <a class="navbar-brand" href="<%= root_path %>"><img src="<%= image_path('whip_logo.png') %>" style="height:16px;"></a>
       <% if user_signed_in? %>
-        <%= link_to("LOGOUT", destroy_user_session_path, :method => :delete, class: "navbar-brand")  %>
+      	<div class="navbar-brand">
+			<%= link_to("LOGOUT", destroy_user_session_path, :method => :delete, class: "btn btn-xs btn-outline btn-square btn-c9-border")  %>
+        </div>
       <% else %>
-        <!--
-        <a class="navbar-brand" href="javascript;" data-toggle="modal" data-target="#loginModal">SIGN IN</a>
-        -->
         <div class="navbar-brand">
 			<a href="javascript;" data-toggle="modal" data-target="#loginModal" class="btn btn-xs btn-outline btn-square btn-c9-border">SIGN IN</a>
 		</div>
