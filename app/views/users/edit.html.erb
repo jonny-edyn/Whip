@@ -17,7 +17,6 @@
       <div class="col-sm-8" class="text-din">
         <div class="text-uppercase">HI <%= @user.name %></div>
         <p>Please enter your postcode.  We need this to find your local MP.<p>
-<<<<<<< HEAD
         <%= form_tag add_post_code_join_constituency_user_path(current_user), id: "add_postcode", remote: true do %>
           <div class="form-group">
              <%= text_field_tag :postcode, @user.post_code, class:'form-control' %>
@@ -28,18 +27,7 @@
            <i class="fa fa-map-marker"></i> Submit
          <% end %>
          </div>
-=======
-        <%= form_tag add_post_code_join_constituency_user_path(current_user), id: "add_postcode" do %>
-        	<div class="form-group">
-          <%= text_field_tag :postcode, @user.post_code, class:'form-control' %>
-          	</div>
-          <%# submit_tag 'submit', id: "postcode_check" %>
-          <div class="form-group">
-			<%= button_tag(type: 'submit', id: "postcode_check", class: "btn btn-default") do %>
-				<i class="fa fa-map-marker"></i> Submit
-			<% end %>
-			</div>
->>>>>>> cd453eb7387120b47b6b3bed9ea1bc03eba3550a
+
         <% end %>
       </div>
     </div>
@@ -48,11 +36,8 @@
     <div class="row">
 
       <div class="col-sm-4">
-<<<<<<< HEAD
         <img src="<%= @mp.picture_url if @mp && @mp.picture_url %>" style="height:141px;width:141px;background-color:#10b8b8;">
-=======
-        <img src="<%= @mp.picture_url if @mp %>" style="height:141px;width:141px;background-color:#10b8b8;">
->>>>>>> cd453eb7387120b47b6b3bed9ea1bc03eba3550a
+
       </div>
       <div class="col-sm-8">
         <div class="text-uppercase"><%= @mp.name if @mp %></div>
@@ -102,7 +87,6 @@
           <%= f.check_box :allow_profile_view %>
         </div>
         <div class="action_container form-group">
-<<<<<<< HEAD
              <%# f.submit %>
               <%= button_tag(type: 'submit', class: "btn btn-default") do %>
            <i class="fa fa-map-marker"></i> Update User
@@ -168,32 +152,7 @@
       <%# would like to add html to this button --> <i class="fa fa-user-times"></i>  %>
       <%= button_to 'Cancel my account'.html_safe, registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class:'btn btn-default' %>
      </div>
-=======
-          <%# f.submit %>
-          <%= button_tag(type: 'submit', class: "btn btn-default") do %>
-				<i class="fa fa-map-marker"></i> Update User
-			<% end %>
-        </div>
-      <% end %>
 
-		 <div class="form-group">
-      <% unless @idents.include?("twitter") %>
-        <a href="<%= root_url %>users/auth/twitter" class="btn btn-default"><i class="fa fa-twitter"></i> MERGE TWITTER</a>
-      <% else %>
-        <a href="<%= remove_twitter_users_path %>" class="btn btn-default"><i class="fa fa-twitter"></i> REMOVE TWITTER FROM ACCOUNT</a>
-      <% end %>
-
-      <% unless @idents.include?("facebook") %>
-        <a href="<%= root_url %>users/auth/facebook" class="btn btn-default"><i class="fa fa-facebook"></i> MERGE FACEBOOK</a>
-      <% else %>
-        <a href="<%= remove_twitter_users_path %>" class="btn btn-default"><i class="fa fa-facebook"></i> REMOVE FACEBOOK FROM ACCOUNT</a>
-      <% end %>
-      </div>
-      <div class="form-group">
-      <%# would like to add html to this button --> <i class="fa fa-user-times"></i>  %>
-      <%= button_to 'Cancel my account'.html_safe, registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class:'btn btn-default' %>
-      </div>
->>>>>>> cd453eb7387120b47b6b3bed9ea1bc03eba3550a
   </div>
 </div>
 

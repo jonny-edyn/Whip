@@ -66,12 +66,8 @@
 
 
 
-<<<<<<< HEAD
 <div style="padding-bottom:60px;">
 
-=======
-<div  style="padding-bottom:60px;">
->>>>>>> cd453eb7387120b47b6b3bed9ea1bc03eba3550a
 	<% 
 		if @common.any?
 		_index = 0
@@ -81,11 +77,8 @@
 		if index % 2 == 0
 			_align = "arguments-left"
 			%>
-<<<<<<< HEAD
 				<div class="row">
-=======
-			<div class="row">
->>>>>>> cd453eb7387120b47b6b3bed9ea1bc03eba3550a
+
 			<%
 		else 
 			_align = "arguments-right"
@@ -151,20 +144,7 @@
 		end
 			
 		%>
-=======
-	</div><!-- .col-sm-6 -->
-	<% 
-		if index % 2 != 0 
-			%></div><%
-		end
-	end
-	
-	if _index % 2 != 0 
-			%></div><%
-	end
-		
-	%>
->>>>>>> cd453eb7387120b47b6b3bed9ea1bc03eba3550a
+
 	<% end %>
 </div>
 
