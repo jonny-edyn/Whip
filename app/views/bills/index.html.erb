@@ -131,7 +131,7 @@
 				</div>
 			</div><!--.panel-body-->
 		</div><!--.panel-->
-<<<<<<< HEAD
+
 		</div><!-- .col-sm-6 -->
 		<% 
 			if index % 2 != 0 
@@ -168,9 +168,11 @@ ready = function() {
 	  	var comment_section = $(this_form).children('.hidden_comment');
 	  	
 	  	if ( this_form.hasClass('vote_yes') ) {
-	  		$('#commentModal').addClass('modal-whip-vote-yes');
+	  		//$('#commentModal').addClass('modal-whip-vote-yes');
+	  		$('#myModalLabelVote').html('<span class="text-vote-yes">VOTED FOR</span>');
 	  	} else {
-	  		$('#commentModal').addClass('modal-whip-vote-no');
+	  		//$('#commentModal').addClass('modal-whip-vote-no');
+	  		$('#myModalLabelVote').html('<span class="text-vote-no">VOTED AGAINST</span>');
 	  	}
 
 	  	comment_section.val('testing');

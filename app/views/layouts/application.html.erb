@@ -96,13 +96,14 @@
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        <h4 class="modal-title" id="myModalLabel">THANKS FOR VOTING</h4>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top:-45px;padding-right:15px;opacity:1;"><span aria-hidden="true"><img src="<%= image_path('btn-modal-close.png') %>" /></span></button>
+	        <h4 class="modal-title text-din" id="myModalLabel">THANKS FOR VOTING</h4>
+	        <h4 class="modal-title text-din" id="myModalLabelVote"></h4>
 	      </div>
 	      <div class="modal-body">
 	        <div id="flash_messages_3">
 	        </div>
 	        <%= render 'votes/add_comment_for_modal' %>
-	        <br>
 	        <%= render 'votes/post_vote_on_social_for_modal' %>
 	      </div>
 	    </div>

@@ -161,17 +161,46 @@
   background: #97d9ff;
 }
 
-.modal-whip-comment .modal-header {
-	margin-bottom: 20px;
-	/*padding: 25px 0 18px 0;*/
-	text-shadow: 0 1px 0 rgba(0,0,0,0.15);
-	border-bottom: 4px solid rgba(0,0,0,0.08);
+@media (min-width: 500px) {
+  .modal-whip-comment .modal-dialog {
+    width: 480px;
+  }
 }
 
-.modal-whip-comment .modal-header {
-	color: #ffffff;
-	background: #c6b2c5;
+/* bootstrap over rides */
+.modal-content {
+	border-radius: 0 !important;
+	-moz-border-radius: 0 !important;
+	-webkit-border-radius: 0 !important;
 }
+.modal-body {
+	padding: 0 30px 30px 30px !important;
+}
+
+.form-control {
+	border-color: #bcbcbc !important;
+	border-radius: 0 !important;
+	-moz-border-radius: 0 !important;
+	-webkit-border-radius: 0 !important;
+}
+.modal-backdrop.in {
+	opacity: 0.7 !important;
+	filter: alpha(opacity=70) !important;
+}
+/* end bootstrap over rides */
+
+.modal-whip-comment .modal-header {
+	margin-bottom: 20px;
+	padding: 50px 0 0 0;
+	text-align:center;
+	background: #ffffff;
+	border-bottom: none !important;
+}
+
+.modal-whip-comment .modal-header h4 {
+	font-weight: normal;
+}
+
 
 .modal-whip-vote-yes .modal-header {
 	color: #ffffff;
