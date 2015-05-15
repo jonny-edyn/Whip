@@ -41,19 +41,19 @@
   <%= devise_error_messages! %>
   	<input style="display:none"><input type="password" style="display:none"><!-- hack to trick autocomplete on chrome -->
 	<div class="form-group">
-	  <%= text_field_tag :contact_first_name,'', placeholder: "FIRST NAME", class: "headers form-control", id: "first_name", style: "font-size:13px;background: transparent;" %>
+	  <%= text_field_tag :first_name,'', placeholder: "FIRST NAME", class: "headers form-control", id: "first_name", style: "font-size:13px;background: transparent;" %>
 	</div>
 	<div class="form-group">
-	  <%= text_field_tag :contact_last_name,'', placeholder: "LAST NAME", class: "headers form-control", id: "last_name", style: "font-size:13px;background: transparent;" %>
+	  <%= text_field_tag :last_name,'', placeholder: "LAST NAME", class: "headers form-control", id: "last_name", style: "font-size:13px;background: transparent;" %>
 	</div>
 	<div class="form-group">
-	  <%= email_field_tag :contact_email,'', placeholder: "EMAIL", class: "headers form-control", id: "email",  autocomplete: "off", style: "font-size:13px;background: transparent;" %>
+	  <%= f.email_field :email, placeholder: "EMAIL", class: "headers form-control", id: "email",  autocomplete: "off", style: "font-size:13px;background: transparent;" %>
 	</div>
 	<div class="form-group">
-	  <%= password_field_tag :contact_password,'', placeholder: "PASSWORD", class: "headers form-control", id: "password",  autocomplete: "off", style: "font-size:13px;background: transparent;" %>
+	  <%= f.password_field :password, placeholder: "PASSWORD", class: "headers form-control", id: "password",  autocomplete: "off", style: "font-size:13px;background: transparent;" %>
 	</div>
 	<div class="form-group">
-	  <%= submit_tag 'SIGN UP', class: "headers btn btn-signup", id: "sign_up_btn", style: "padding: 8px 20px 6px 20px;" %>
+	  <%= f.submit 'SIGN UP', class: "headers btn btn-signup", id: "sign_up_btn", style: "padding: 8px 20px 6px 20px;" %>
 	</div>
 	<div class="form-group">
 	  <a href="javascript:;" data-toggle="modal" data-target="#loginModal">SIGN IN</a>

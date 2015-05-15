@@ -3,7 +3,7 @@ class RegistrationsController < Devise::RegistrationsController
 	 # POST /resource
 	def create
 		build_resource(sign_up_params)
-		resource.name = params[:name]
+		resource.name = "#{params[:first_name]} #{params[:last_name]}" 
 		resource.save
 		yield resource if block_given?
 		if resource.persisted?
