@@ -4,7 +4,7 @@
 
 <div class="viewport_size" style="position:relative;">
 
-	<div class="row top_form_padding" style="text-align: center;position: relative; top: 40%; transform: translateY(-60%);">
+	<div class="row top_form_padding" style="text-align: center;position: relative; top: 40%; transform: translateY(-60%);z-index:1;">
 		<div class="col-sm-8" style="z-index: 10;">
 			<div id="masthead">
 				<% if _svg == true %>
@@ -38,7 +38,7 @@
 			
 		</div>
 		<div class="col-sm-4">
-			<div id="join_mailing_list_form">
+			<div id="join_mailing_list_form" style="z-index: 14;">
 					<%= render 'devise/registrations/new_for_modal' %>
 			</div>
 			<div id="joined_mailing_list_notification" style="display:none;">
@@ -49,7 +49,7 @@
 
 	
 	<div style="position: absolute; bottom: 0px;width: 100%;">
-		<img class="bottom_line_gray" src="<%= image_path('building_background.png') %>" style="width:100%;" id="westminster_bottom">
+		<img class="bottom_line_gray" src="<%= image_path('hop-master.png') %>" style="width:100%;" id="westminster_bottom">
 	</div>
 		
 

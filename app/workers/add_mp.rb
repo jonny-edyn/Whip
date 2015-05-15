@@ -34,6 +34,9 @@ class AddMp
 	if @doc_4.xpath('//email') && @doc_4.xpath('//email').first
 		@email = @doc_4.xpath('//email').first.text
 	end
+	if @doc_4.xpath('//phone') && @doc_4.xpath('//phone').first
+		@phone = @doc_4.xpath('//phone').first.text
+	end
 
 	mp = Mp.new
 		mp.name = @mp_name
@@ -43,6 +46,7 @@ class AddMp
 		mp.fb_link = @facebook_link
 		mp.tw_link = @twitter_link
 		mp.email = @email
+		mp.phone = @phone
 		mp.picture_url = "http://data.parliament.uk/membersdataplatform/services/images/MemberPhoto/#{@member_id}/"
 	mp.save
 

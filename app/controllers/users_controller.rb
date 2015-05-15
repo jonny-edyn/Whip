@@ -86,6 +86,7 @@ class UsersController < ApplicationController
     constituency_name_web = @node.next_element.text
     @constituency = Constituency.find_by(name: constituency_name_web)
     @user = User.find(params[:id])
+    @mp = @constituency.mp if @constituency
       @user.post_code = params[:postcode]
       @user.constituency_id = @constituency.id
     if @user.save
@@ -98,10 +99,14 @@ class UsersController < ApplicationController
 
   def add_user_to_party
     @party = Party.find_by(name: params[:party_name])
+    @parties = Party.all
     @user = User.find(params[:id])
       @user.party_id = @party.id
     if @user.save
-      redirect_to :back
+      respond_to do |format|
+        format.html {redirect_to :back}
+        format.js {render :partial => 'add_user_to_party.js.erb'}
+      end
     end
   end
 

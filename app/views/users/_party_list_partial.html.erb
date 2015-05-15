@@ -1,0 +1,18 @@
+<div class="row" style="padding-bottom: 20px;border-bottom: 1px solid #c0c0c0;margin-bottom: 20px;">
+  <div class="col-md-12 text-center">
+    <h4 class="text-din text-center" style="padding-bottom: 40px;">PICK YOUR PARTY</h4>
+    <% 
+      if @parties.any? 
+      @parties.each do |party|
+    %>
+      <p style="display:inline;padding: 15px;line-height: 2.5em;"><a href="javascript:;" class="add_user_to_party_link text-din text-uppercase" id="<%= party.id %>"><%= party.name %></a></p>
+    <% end %>
+    <% end %>
+    <div style="clear:both;"></div>
+    <div style="display:none;">
+      <%= form_tag add_user_to_party_user_path(@user), id: "add_party", remote: true do %>
+        <%= hidden_field_tag :party_name, "" %>
+      <% end %>
+    </div>
+  </div>
+</div>
