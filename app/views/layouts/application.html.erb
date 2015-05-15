@@ -157,6 +157,9 @@ $(window).on("resize", function () {
     	$(best_match).closest('.nav-parent-item').addClass('active');
     }
 
+	// turn on tooltips
+	$('[data-toggle="tooltip"]').tooltip();
+	
 	// add active class to admin sidebar
 	$('#admin-sidebar ul.nav a').filter(function() {
 		return this.href == window.location;

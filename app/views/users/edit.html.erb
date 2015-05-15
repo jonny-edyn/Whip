@@ -53,12 +53,12 @@
 
 <div class="row" style="padding-bottom: 20px;border-bottom: 1px solid #c0c0c0;margin-bottom: 20px;">
   <div class="col-md-12 text-center">
-    <h2 class="text-din text-center" style="padding-bottom: 40px;">PICK YOUR PARTY</h2>
+    <h4 class="text-din text-center" style="padding-bottom: 40px;">PICK YOUR PARTY</h4>
     <% 
       if @parties.any? 
       @parties.each do |party|
     %>
-      <h4 style="display:inline;padding: 15px;line-height: 2.5em;"><a href="javascript:;" class="add_user_to_party_link text-din text-uppercase" id="<%= party.id %>"><%= party.name %></a></h4>
+      <p style="display:inline;padding: 15px;line-height: 2.5em;"><a href="javascript:;" class="add_user_to_party_link text-din text-uppercase" id="<%= party.id %>"><%= party.name %></a></p>
     <% end %>
     <% end %>
     <div style="clear:both;"></div>
@@ -72,7 +72,7 @@
 
 <div class="row"  style="padding-bottom:60px;">
   <div class="col-md-12">
-    <h2 class="text-din text-center" style="padding-bottom: 40px;">EDIT ACCOUNT INFO</h2>
+    <h4 class="text-din text-center" style="padding-bottom: 40px;">EDIT ACCOUNT INFORMATION</h4>
       <%= form_for(@user, :url => { :action => "update_info" } ) do |f| %>
         <div class="field form-group">
           <%= f.label :password, "Password" %>
@@ -88,45 +88,77 @@
         </div>
         <div class="action_container form-group">
              <%# f.submit %>
-              <%= button_tag(type: 'submit', class: "btn btn-default") do %>
-           <i class="fa fa-map-marker"></i> Update User
-         <% end %>
+			<%= button_tag(type: 'submit', class: "btn btn-outline btn-square") do %>
+           		<i class="fa fa-user"></i> Update User
+         	<% end %>
         </div>
       <% end %>
 
       <%= form_for(@user, :url => { :action => "update_info" } ) do |f| %>
         <div class="field form-group">
-          <%= f.text_field :bio, :class => 'form-control', placeholder: "ENTER YOUR BIO"  %>
+          <h4 class="text-din">ABOUT YOU</h4>
         </div>
         <div class="field form-group">
-          <%= f.text_field :fb_link, :class => 'form-control', placeholder: "FACEBOOK"  %>
+          <%= f.text_area :bio, :class => 'form-control text-din', placeholder: "ENTER YOUR BIO"  %>
         </div>
         <div class="field form-group">
-          <%= f.text_field :tw_link, :class => 'form-control', placeholder: "TWITTER"  %>
+          <h4 class="text-din">SOCIAL MEDIA LINKS</h4>
+        </div>
+        <div class="row">
+        	<div class="col-sm-6">
+				<div class="field form-group">
+				  <%= f.text_field :fb_link, :class => 'form-control text-din', placeholder: "FACEBOOK"  %>
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<div class="field form-group">
+				  <%= f.text_field :tw_link, :class => 'form-control text-din', placeholder: "TWITTER"  %>
+				</div>
+			</div>
+		</div>
+        <div class="row">
+        	<div class="col-sm-6">
+				<div class="field form-group">
+				  <%= f.text_field :insta_link, :class => 'form-control text-din', placeholder: "INSTAGRAM"  %>
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<div class="field form-group">
+				  <%= f.text_field :youtube_link, :class => 'form-control text-din', placeholder: "YOUTUBE"  %>
+				</div>
+			</div>
+		</div>
+        <div class="field form-group">
+          <%= f.text_field :web_link, :class => 'form-control text-din', placeholder: "WEBSITE"  %>
         </div>
         <div class="field form-group">
-          <%= f.text_field :insta_link, :class => 'form-control', placeholder: "INSTAGRAM"  %>
+          <h4 class="text-din">ADDRESS</h4>
         </div>
         <div class="field form-group">
-          <%= f.text_field :youtube_link, :class => 'form-control', placeholder: "YOUTUBE"  %>
+          <%= f.text_field :street_addr, :class => 'form-control text-din', placeholder: "STREET"  %>
         </div>
+        <div class="row">
+        	<div class="col-sm-6">
+				<div class="field form-group">
+				  <%= f.text_field :city, :class => 'form-control text-din', placeholder: "CITY"  %>
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<div class="field form-group">
+				  <%= f.text_field :post_code, :class => 'form-control text-din', placeholder: "POSTCODE", disabled: true  %>
+				</div>
+			</div>
+		</div>
         <div class="field form-group">
-          <%= f.text_field :web_link, :class => 'form-control', placeholder: "WEBSITE"  %>
+          <%= f.text_field :phone, :class => 'form-control text-din', placeholder: "PHONE (OPTIONAL)"  %>
         </div>
-        <div class="field form-group">
-          <%= f.text_field :street_addr, :class => 'form-control', placeholder: "STREET"  %>
-        </div>
-        <div class="field form-group">
-          <%= f.text_field :city, :class => 'form-control', placeholder: "CITY"  %>
-        </div>
-        <div class="field form-group">
-          <%= f.text_field :post_code, :class => 'form-control', placeholder: "POSTCODE", disabled: true  %>
-        </div>
-        <div class="field form-group">
-          <%= f.text_field :phone, :class => 'form-control', placeholder: "PHONE (OPTIONAL)"  %>
-        </div>
-        <div class="action_container">
-          <%= f.submit %>
+        <div class="action_container clearfix">
+        	<div class="pull-right">
+          <%# f.submit %>
+			<%= button_tag(type: 'submit', class: "btn btn-outline text-uppercase btn-square") do %>
+           		<i class="fa fa-floppy-o"></i> Save Details
+         	<% end %>
+         	</div>
         </div>
       <% end %>
 
@@ -148,9 +180,9 @@
           <% end %>
       </div>
      </div>
-     <div class="form-group">
+     <div class="form-group" style="padding-top:12px;">
       <%# would like to add html to this button --> <i class="fa fa-user-times"></i>  %>
-      <%= button_to 'Cancel my account'.html_safe, registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class:'btn btn-default' %>
+      <%= button_to 'Cancel my account'.html_safe, registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class:'btn btn-default btn-square' %>
      </div>
 
   </div>

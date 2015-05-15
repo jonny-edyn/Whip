@@ -22,7 +22,7 @@
 						<div id="user-statistics">
 							<div style="display:inline-block;padding-right:12px;vertical-align:top;">
 								<div>
-									<a href="<%= my_votes_path %>">
+									<a href="<%= my_votes_path %>" data-toggle="tooltip" data-placement="bottom" title="Votes">
 										<div style="vertical-align:top;">
 											<img src="<%= image_path('icon-vote.png') %>" style="width:21px;height:24px;" class="image" title="votes" />
 										</div>
@@ -34,7 +34,7 @@
 							</div>
 							<div style="display:inline-block;padding-right:12px;">
 								<div>
-								<a href="<%= following_path %>">
+								<a href="<%= following_path %>" data-toggle="tooltip" data-placement="bottom" title="Following">
 									<% if _svg == true %>
 									<div style="width:21px;" title="following">
 										<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 21 23.9" enable-background="new 0 0 21 23.9" xml:space="preserve">
@@ -56,7 +56,7 @@
 										</svg>
 									</div>
 									<% else %>
-									<img src="<%= image_path('icon-engage-single.png') %>" style="width:21px" class="image" title="following" />
+									<img src="<%= image_path('icon-engage-single.png') %>" style="width:21px" class="image" title="Following" />
 									<% end %>
 								</a><!-- add this functionality still -->
 								</div>
@@ -67,9 +67,9 @@
 
 							<div style="display:inline-block;padding-right:12px;">
 								<div>
-								<a href="<%= followers_path %>">
+								<a href="<%= followers_path %>" data-toggle="tooltip" data-placement="bottom" title="Followers">
 									<% if _svg == true %>
-									<div style="width:21px;" title="followers">
+									<div style="width:21px;" class="flipped-horizontal" title="followers">
 										<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 21 23.9" enable-background="new 0 0 21 23.9" xml:space="preserve">
 										<path fill="#898989" d="M9.6,0.5L9.6,0.5c3,0,5.3,0.8,7,2.6c1,1,1.6,2.3,1.8,4c0.1,0.9,0.1,1.9-0.1,2.9c-0.1,0.5,0.1,1,0.2,1.3
 											c0.3,0.6,0.6,1.1,1,1.5c0.1,0.1,0.2,0.3,0.3,0.4c0.2,0.3,0.4,0.6,0.6,0.9c0.1,0.1,0,0.1,0,0.2c-0.3,0.2-0.6,0.4-0.9,0.4
@@ -89,7 +89,7 @@
 										</svg>
 									</div>
 									<% else %>
-									<img src="<%= image_path('icon-engage-single.png') %>" style="width:21px" class="image" title="followers" />
+									<img src="<%= image_path('icon-engage-single.png') %>" style="width:21px" class="image flipped-horizontal" title="followers" />
 									<% end %>
 								</a><!-- add this functionality still -->
 								</div>
@@ -102,7 +102,7 @@
 
 
 							<div style="display:inline-block;vertical-align:top;">
-								<a href="<%= edit_user_path(current_user) %>"><i class="fa fa-cog fa-2x" style="color:#8a8a8a;" title="settings"></i></a>
+								<a href="<%= edit_user_path(current_user) %>" data-toggle="tooltip" data-placement="bottom" title="Settings"><i class="fa fa-cog fa-2x" style="color:#8a8a8a;" title="settings"></i></a>
 							</div>
 						</div><!--#user-statistics-->
 					</div><!-- #user-info -->

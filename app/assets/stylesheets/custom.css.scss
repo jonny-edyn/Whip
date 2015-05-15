@@ -29,6 +29,10 @@
   font-family: 'dinRegular';
 }
 
+.text-din-medium {
+  font-family: 'dinMedium';
+}
+
 .headers {
   font-family: 'dinMedium';
   font-size: 14px;
@@ -332,4 +336,18 @@ a.footer-issues-link {
 }
 .text-vote-no {
 	color:#97d9ff;
+}
+.flipped-horizontal {
+        -moz-transform: scaleX(-1);
+        -o-transform: scaleX(-1);
+        -webkit-transform: scaleX(-1);
+        transform: scaleX(-1);
+        filter: FlipH;
+        -ms-filter: "FlipH";
+}
+.padding_bottom_40 {
+	padding-bottom: 40px;
+}
+.padding_bottom_60 {
+	padding-bottom: 60px;
 }
