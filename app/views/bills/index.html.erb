@@ -193,17 +193,17 @@ ready = function() {
 	  	// actual submission happens on close of modal
 	  	// also need to have social share icons slide up / center in modal after other stuff is hidden
 
-	  	/*
+	  	
 	  	$('#commentModal').off('click','#add_comment');
 	  	$('#commentModal').on('click','#add_comment',function(e){
 	  		var new_comment = $(this).siblings('#content').val();
 	  		comment_section.val(new_comment);
-	  		
-	  		$('#commentModal').modal('hide');
-
-	  		this_form.trigger("submit.rails");
+	  		$('#vote-modal-comment').hide();
+	  		$('#vote-modal-social').fadeIn();
+	  		//$('#commentModal').modal('hide');
+	  		//this_form.trigger("submit.rails");
 	  	});
-	  	*/
+	  	
 
 	  });
 
