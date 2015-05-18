@@ -33,7 +33,7 @@
   font-family: 'dinMedium';
 }
 
-.text-vote-yes {
+.text-vote-yes, a.text-vote-yes {
 	color: #f58b8b;
 }
 
@@ -368,4 +368,49 @@ a.footer-issues-link {
 }
 .bg-grey {
 	background-color: #efefef;
+}
+
+/* my votes page */
+.btn-link-vote-no {
+	color: #97d9ff;
+	border: 0;
+	background-color: transparent;
+}
+
+.btn-link-vote-yes {
+	color:#f58b8b;
+	border: 0;
+	background-color: transparent;
+}
+.text-you-voted {
+font-size:18px;color:#666;margin-bottom:0;
+}
+.text-change-vote {
+font-size:12px;color:#666;
+}
+.bill-progress-bar {
+	background-image: url("/assets/progress-line.png"); 
+	background-position: center center;
+	background-repeat: repeat-x;
+	background-color: #fff;
+}
+
+.myvotes-bill-progress-title {
+	font-size: 11px;
+	padding:8px;
+	border:1px solid #a3a3a3;
+	background-color:#fff;
+}
+
+td.myvotes-bill-progress-cell > * {
+    vertical-align : middle;
+}
+.myvotes-comment {
+	 border:1px solid #999;
+}
+
+@media (max-width: 767px) {
+	.myvotes-comment {
+		margin-top:10px;
+	}
 }

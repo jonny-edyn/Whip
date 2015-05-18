@@ -28,8 +28,8 @@
 				</div>
 			</div>
 
-			<div class="row" style="margin-bottom: 20px; padding-bottom: 20px;">
-				<div class="col-md-6 text-left" style="padding-left:-15px;">
+			<div class="row" style="margin-bottom: 20px;">
+				<div class="col-md-6 text-left" style="padding-left:-15px;margin-left:-15px;">
 					<% if current_user.picture_url %>
 						<div id="user-image" style="text-transform:uppercase;display:inline-block;vertical-align:top;padding-right:12px;">
 							<img src="<%= current_user.picture_url %>" style="height:50px;width:50px;background-color:#10b8b8;border:none;" />
@@ -42,13 +42,12 @@
 					<div style="display:inline-block;">
 
 						<% if vote.in_favor %>
-							<p class="text-din-medium" style="font-size:18px;color:#666;">YOU VOTED <span class="text-vote-yes">YES</span></p>
-							<p class="text-din" style="font-size:12px;color:#666;">CHANGE VOTE TO NO</p>
-							<%# render 'bills/vote_no_form', bill: bill.id %>
+							<p class="text-din-medium text-you-voted" style="">YOU VOTED <span class="text-vote-yes">YES</span></p>
+							<div class="text-din text-change-vote">CHANGE VOTE TO <%= render 'bills/vote_no_short_form', bill: bill.id %></div>
 						<% else %>
-							<p class="text-din-medium" style="font-size:18px;color:#666;">YOU VOTED <span class="text-vote-no">NO</span></p>
-							<p class="text-din" style="font-size:12px;color:#666;">CHANGE VOTE TO YES</p>
-							<%# render 'bills/vote_yes_form', bill: bill.id %>
+							<p class="text-din-medium text-you-voted">YOU VOTED <span class="text-vote-no">NO</span></p>
+							<div class="text-din text-change-vote">CHANGE VOTE TO <%= render 'bills/vote_yes_short_form', bill: bill.id %></div>
+							
 						<% end %>
 				
 					</div>
@@ -79,7 +78,31 @@
 		
 
 			<div class="row" style="padding-bottom:20px;">
-				<h4 style="text-align:left; padding-bottom:20px;">BILL PROGRESS</h4>
+				<p class="text-left text-din" style="">BILL PROGRESS</p>
+				<div class="col-sm-6 bill-progress-bar">
+					<table>
+						<tr>
+							<td class="myvotes-bill-progress-cell"  style="padding-top:5px;">
+								<div class="text-din text-center myvotes-bill-progress-title house_of_commons_div">
+									HOUSE&nbsp;OF&nbsp;COMMONS
+								</div>
+							</td>
+							<td style="width:34px;"></td>
+							<td class="myvotes-bill-progress-cell"  style="padding-top:5px;">
+								<div class="text-din text-center myvotes-bill-progress-title house_of_lords_div">
+									HOUSE&nbsp;OF&nbsp;LORDS
+								</div>
+							</td>
+							<td style="width:34px;"></td>
+							<td class="myvotes-bill-progress-cell"  style="padding-top:5px;">
+								<div class="text-din text-center myvotes-bill-progress-title royal_assent_div">
+									ROYAL&nbsp;ASSENT
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<!--
 				<div class="col-md-2 text-center">
 					HOUSE OF COMMONS
 				</div>
@@ -89,10 +112,15 @@
 				<div class="col-md-2 text-center">
 					ROYAL ASSENT
 				</div>
-				<div class="col-md-6 text-center">
-					<% if vote.comment != "" %>
-						<%= vote.comment %>
-					<% end %>
+				-->
+				<div class="col-sm-6 myvotes-comment">
+					<div class="text-din text-left" style="height:100%;padding-top:5px;">
+						<% if vote.comment != "" %>
+							<%= vote.comment %>
+						<% else %>
+							YOU HAVE NO COMMENT<br /><br />
+						<% end %>
+					</div>
 				</div>
 			</div>
 

@@ -1,0 +1,9 @@
+<%= form_tag votes_path, {class: "bill_voting vote_no", style: "display:inline;"} do |f| %>
+  <%= hidden_field_tag 'bill_id', bill %>
+  <%= hidden_field_tag 'in_favor', false %>
+  <%= hidden_field_tag 'comment', "", class: "hidden_comment" %>
+  <%# submit_tag "VOTE NO", class: "btn btn-vote-no" %>
+  <%= button_tag(type: 'submit', class: "btn btn-link-vote-no", style: "display:inline;margin:0;padding:0;font-size:12px;") do %>
+	  NO
+  <% end %>
+<% end %>
