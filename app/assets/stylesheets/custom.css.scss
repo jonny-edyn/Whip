@@ -352,6 +352,9 @@ a.footer-issues-link {
 	padding-bottom: 60px;
 }
 
-#vote-modal-social {
+#vote-modal-social, #additional_user_settings, #user_picture_holder {
 	display:none;
+}
+#postcode_check, #user_intitial_display #postcode {
+	width: 30%;display: inline;min-width: 90px;
 }

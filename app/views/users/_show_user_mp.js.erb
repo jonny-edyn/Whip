@@ -1,3 +1,8 @@
-$("#mp_side").html("<%= escape_javascript(render partial: "users/mp_side_partial_fade") %>");
-$('#hidden_mp').fadeIn(4000);
-$('#meet_div').fadeIn(4000);
+$('#user_intitial_display').fadeOut( 1000, function() {
+	$('#user_intitial_display').removeClass('col-sm-6').removeClass('col-sm-offset-3').removeClass('text-center').addClass('col-sm-8');
+	$('#user_picture_holder').addClass("col-sm-4");
+	$("#mp_side").html("<%= escape_javascript(render partial: "users/mp_side_partial_fade") %>");
+	$('#hidden_mp').fadeIn(4000);
+	$('#meet_div').fadeIn(4000);
+	$('#additional_user_settings').fadeIn(4000);
+});
