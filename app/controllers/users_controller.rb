@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :update, :destroy, :finish_signup]
+  before_action :set_user, only: [:show, :update, :destroy, :finish_signup, :edit]
+  before_action :correct_user, only: [:edit, :update, :destroy]
   before_action :set_idents, only: [:edit]
   before_action :profile_action, only: [:show]
   before_filter :authenticate_user!
@@ -8,13 +9,12 @@ class UsersController < ApplicationController
   def show
     # authorize! :read, @user
     @votes = @user.votes
-    @vote_count = @votes.count
+    @votes_count = @votes.count
   end
 
   # GET /users/:id/edit
   def edit
     # authorize! :update, @user
-    @user = current_user
     @parties = Party.all
     @constituency = @user.constituency
     @mp = @constituency.mp if @constituency
@@ -134,13 +134,12 @@ class UsersController < ApplicationController
     end
 
     def profile_action
-      if current_user.id == @user.id
+      
+    end
+
+    def correct_user
+      unless @user == current_user
         redirect_to root_path
-        return
-      end
-      unless @user.allow_profile_view 
-        redirect_to root_path
-        return
       end
     end
 end

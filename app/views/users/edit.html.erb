@@ -1,186 +1,180 @@
 <div class="container max_924">
 
 
-	<div class="row" id="meet_div" style="display:none;">
-	  <div class="col-md-12">
-		<h2 class="text-din text-center" style="padding-bottom: 40px;">MEET</h2>
-	  </div>
-	</div>
+<div class="row" id="meet_div" style="display:none;">
+  <div class="col-md-12">
+    <h2 class="text-din text-center" style="padding-bottom: 40px;">MEET</h2>
+  </div>
+</div>
 
-	<div class="row" style="padding-bottom: 40px;border-bottom: 1px solid #c0c0c0;margin-bottom: 20px;">
-	  <div id="user_side" class="col-sm-12">
-		<div class="row">
-			<div id="user_picture_holder" class="">
-				<div style="height:141px;width:141px;">
-			  <% if @user.picture_url
-			   	_user_img = @user.picture_url
-			   	else 
-			   	_user_img = image_path('blank.png')
-			   	end
-			   	 %>
-			  	<img id="user_picture_img" src="<%= _user_img %>" style="height:141px;width:141px;background-color:#ef4747;">
-			  </div>
-			</div>
-		  <div id="user_intitial_display" class="col-sm-6 col-sm-offset-3 text-din text-center">
-			<div class="text-uppercase text-din-medium" style="padding-top:40px;">HI <%= @user.name %></div>
-			<p>Please enter your postcode.  We need this to find your local MP.</p>
-			<%= form_tag add_post_code_join_constituency_user_path(current_user), id: "add_postcode", remote: true do %>
-			  <div class="form-group" style="">
-				 <%= text_field_tag :postcode, @user.post_code, class: 'form-control text-center', style: "" %>
-			   </div>
-				<%# submit_tag 'submit', id: "postcode_check" %>
-				<div class="form-group" style="">
-				   <%= button_tag(type: 'submit', id: "postcode_check", class: "btn btn-outline btn-square btn-c9-border text-center", style: "") do %>
-					 SUBMIT <i class="fa fa-caret-right"></i>
-				   <% end %>
-				 </div>
+<div class="row" style="padding-bottom: 40px;border-bottom: 1px solid #c0c0c0;margin-bottom: 20px;">
+  <div class="col-md-6">
+    <div class="row">
+        <div class="col-sm-4">
+          <% if @user.picture_url %>
+            <img src="<%= @user.picture_url %>" style="height:141px;width:141px;background-color:#ef4747;">
+          <% else %>
+            <div style="height:141px;width:124px;background-color:#ef4747;"></div>
+          <% end %>
+        </div>
+      <div class="col-sm-8" class="text-din">
+        <div class="text-uppercase">HI <%= @user.name %></div>
+        <p>Please enter your postcode.  We need this to find your local MP.</p>
+        <%= form_tag add_post_code_join_constituency_user_path(current_user), id: "add_postcode", remote: true do %>
+          <div class="form-group" style="">
+             <%= text_field_tag :postcode, @user.post_code, class: 'form-control', style: "width: 30%;display: inline;min-width: 90px;text-align:center;" %>
+           </div>
+            <%# submit_tag 'submit', id: "postcode_check" %>
+            <div class="form-group" style="">
+               <%= button_tag(type: 'submit', id: "postcode_check", class: "btn btn-default", style: "border-radius: 0px;width: 30%;display: inline;min-width: 90px; text-align: center;") do %>
+                 SUBMIT <i class="fa fa-caret-right"></i>
+               <% end %>
+             </div>
 
-			<% end %>
-		  </div>
-		</div>
-	  </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 
-	  <div id="mp_side">
-		<% if @mp %>
-		  <%= render "users/mp_side_partial" %>
-		<% end %>
-	  </div>
+  <div id="mp_side">
+    <% if @mp %>
+      <%= render "users/mp_side_partial" %>
+    <% end %>
+  </div>
 
-	</div><!-- row -->
+</div>
  
+</div>
 
-<div id="additional_user_settings">
+<div id="party_list">
+  <%= render "users/party_list_partial" %>
+</div>
 
-	<div id="party_list">
-	  <%= render "users/party_list_partial" %>
-	</div>
 
-	<p style="text-align:right;padding-bottom: 80px;"><a href="<%= bills_path %>" class="btn btn-default btn-square" >INFLUENCE YOUR MP</a></p>
+<p style="text-align:right;padding-bottom: 80px;"><a href="<%= bills_path %>" class="btn btn-default btn-square" >INFLUENCE YOUR MP</a></p>
 
-	<div class="row"  style="padding-bottom:20px; border-bottom: 1px solid #c0c0c0;">
-	  <div class="col-md-12">
-		<div style="display:none;">
-			<h4 class="text-din text-center" style="padding-bottom: 40px;">EDIT ACCOUNT INFORMATION</h4>
-			  <%= form_for(@user, :url => { :action => "update_info" } ) do |f| %>
+<div class="row"  style="padding-bottom:20px; border-bottom: 1px solid #c0c0c0;">
+  <div class="col-md-12">
+    <div style="display:none;">
+        <h4 class="text-din text-center" style="padding-bottom: 40px;">EDIT ACCOUNT INFORMATION</h4>
+          <%= form_for(@user, :url => { :action => "update_info" } ) do |f| %>
+            <div class="field form-group">
+              <%= f.label :password, "Password" %>
+              <%= f.password_field :password, :autocomplete => "off", :class => 'form-control'  %>
+            </div>
+            <div class="field form-group">
+              <%= f.label :password_confirmation %>
+              <%= f.password_field :password_confirmation, :class => 'form-control' %>
+            </div>
+            <div class="field form-group">
+              <%= f.label :allow_profile_view %>
+              <%= f.check_box :allow_profile_view %>
+            </div>
+            <div class="action_container form-group">
+                 <%# f.submit %>
+          <%= button_tag(type: 'submit', class: "btn btn-outline btn-square") do %>
+                  <i class="fa fa-user"></i> Update User
+              <% end %>
+            </div>
+          <% end %>
+    </div>
+    
+
+      <%= form_for(@user, :url => { :action => "update_info" } ) do |f| %>
+        <div class="field form-group">
+          <h4 class="text-din">ABOUT YOU</h4>
+        </div>
+        <div class="field form-group">
+          <%= f.text_area :bio, :class => 'form-control text-din', placeholder: "ENTER YOUR BIO"  %>
+        </div>
+        <div class="field form-group">
+          <h4 class="text-din">SOCIAL MEDIA LINKS</h4>
+        </div>
+        <div class="row">
+        	<div class="col-sm-6">
 				<div class="field form-group">
-				  <%= f.label :password, "Password" %>
-				  <%= f.password_field :password, :autocomplete => "off", :class => 'form-control'  %>
+				  <%= f.text_field :fb_link, :class => 'form-control text-din', placeholder: "FACEBOOK"  %>
 				</div>
+			</div>
+			<div class="col-sm-6">
 				<div class="field form-group">
-				  <%= f.label :password_confirmation %>
-				  <%= f.password_field :password_confirmation, :class => 'form-control' %>
+				  <%= f.text_field :tw_link, :class => 'form-control text-din', placeholder: "TWITTER"  %>
 				</div>
-				<div class="field form-group">
-				  <%= f.label :allow_profile_view %>
-				  <%= f.check_box :allow_profile_view %>
-				</div>
-				<div class="action_container form-group">
-					 <%# f.submit %>
-			  <%= button_tag(type: 'submit', class: "btn btn-outline btn-square") do %>
-					  <i class="fa fa-user"></i> Update User
-				  <% end %>
-				</div>
-			  <% end %>
+			</div>
 		</div>
-	
-
-		  <%= form_for(@user, :url => { :action => "update_info" } ) do |f| %>
-			<div class="field form-group">
-			  <h4 class="text-din">ABOUT YOU</h4>
-			</div>
-			<div class="field form-group">
-			  <%= f.text_area :bio, :class => 'form-control text-din', placeholder: "ENTER YOUR BIO"  %>
-			</div>
-			<div class="field form-group">
-			  <h4 class="text-din">SOCIAL MEDIA LINKS</h4>
-			</div>
-			<div class="row">
-				<div class="col-sm-6">
-					<div class="field form-group">
-					  <%= f.text_field :fb_link, :class => 'form-control text-din', placeholder: "FACEBOOK"  %>
-					</div>
-				</div>
-				<div class="col-sm-6">
-					<div class="field form-group">
-					  <%= f.text_field :tw_link, :class => 'form-control text-din', placeholder: "TWITTER"  %>
-					</div>
+        <div class="row">
+        	<div class="col-sm-6">
+				<div class="field form-group">
+				  <%= f.text_field :insta_link, :class => 'form-control text-din', placeholder: "INSTAGRAM"  %>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-sm-6">
-					<div class="field form-group">
-					  <%= f.text_field :insta_link, :class => 'form-control text-din', placeholder: "INSTAGRAM"  %>
-					</div>
-				</div>
-				<div class="col-sm-6">
-					<div class="field form-group">
-					  <%= f.text_field :youtube_link, :class => 'form-control text-din', placeholder: "YOUTUBE"  %>
-					</div>
+			<div class="col-sm-6">
+				<div class="field form-group">
+				  <%= f.text_field :youtube_link, :class => 'form-control text-din', placeholder: "YOUTUBE"  %>
 				</div>
 			</div>
-			<div class="field form-group">
-			  <%= f.text_field :web_link, :class => 'form-control text-din', placeholder: "WEBSITE"  %>
-			</div>
-			<div class="field form-group">
-			  <h4 class="text-din">ADDRESS</h4>
-			</div>
-			<div class="field form-group">
-			  <%= f.text_field :street_addr, :class => 'form-control text-din', placeholder: "STREET"  %>
-			</div>
-			<div class="row">
-				<div class="col-sm-6">
-					<div class="field form-group">
-					  <%= f.text_field :city, :class => 'form-control text-din', placeholder: "CITY"  %>
-					</div>
-				</div>
-				<div class="col-sm-6">
-					<div class="field form-group">
-					  <%= f.text_field :post_code, :class => 'form-control text-din', placeholder: "POSTCODE", disabled: true  %>
-					</div>
+		</div>
+        <div class="field form-group">
+          <%= f.text_field :web_link, :class => 'form-control text-din', placeholder: "WEBSITE"  %>
+        </div>
+        <div class="field form-group">
+          <h4 class="text-din">ADDRESS</h4>
+        </div>
+        <div class="field form-group">
+          <%= f.text_field :street_addr, :class => 'form-control text-din', placeholder: "STREET"  %>
+        </div>
+        <div class="row">
+        	<div class="col-sm-6">
+				<div class="field form-group">
+				  <%= f.text_field :city, :class => 'form-control text-din', placeholder: "CITY"  %>
 				</div>
 			</div>
-			<div class="field form-group">
-			  <%= f.text_field :phone, :class => 'form-control text-din', placeholder: "PHONE (OPTIONAL)"  %>
-			</div>
-			<div class="action_container clearfix">
-				<div class="pull-right">
-			  <%# f.submit %>
-				<%= button_tag(type: 'submit', class: "btn btn-default btn-square") do %>
-					SAVE DETAILS
-				<% end %>
+			<div class="col-sm-6">
+				<div class="field form-group">
+				  <%= f.text_field :post_code, :class => 'form-control text-din', placeholder: "POSTCODE", disabled: true  %>
 				</div>
 			</div>
-		  <% end %>
+		</div>
+        <div class="field form-group">
+          <%= f.text_field :phone, :class => 'form-control text-din', placeholder: "PHONE (OPTIONAL)"  %>
+        </div>
+        <div class="action_container clearfix">
+        	<div class="pull-right">
+          <%# f.submit %>
+			<%= button_tag(type: 'submit', class: "btn btn-default btn-square") do %>
+           		SAVE DETAILS
+         	<% end %>
+         	</div>
+        </div>
+      <% end %>
 
 
 
 
-		  <div style="display:none;">
-			<div class="form-group">
-			  <% unless @idents.include?("twitter") %>
-			   <a href="<%= root_url %>users/auth/twitter" class="btn btn-default"><i class="fa fa-twitter"></i> MERGE TWITTER</a>
-			  <% else %>
-			   <a href="<%= remove_twitter_users_path %>" class="btn btn-default"><i class="fa fa-twitter"></i> REMOVE TWITTER FROM ACCOUNT</a>
-			  <% end %>
+      <div style="display:none;">
+        <div class="form-group">
+          <% unless @idents.include?("twitter") %>
+           <a href="<%= root_url %>users/auth/twitter" class="btn btn-default"><i class="fa fa-twitter"></i> MERGE TWITTER</a>
+          <% else %>
+           <a href="<%= remove_twitter_users_path %>" class="btn btn-default"><i class="fa fa-twitter"></i> REMOVE TWITTER FROM ACCOUNT</a>
+          <% end %>
 
-			  <% unless @idents.include?("facebook") %>
-				 <a href="<%= root_url %>users/auth/facebook" class="btn btn-default"><i class="fa fa-facebook"></i> MERGE FACEBOOK</a>
-			  <% else %>
-			   <a href="<%= remove_twitter_users_path %>" class="btn btn-default"><i class="fa fa-facebook"></i> REMOVE FACEBOOK FROM ACCOUNT</a>
-			  <% end %>
-		  </div>
-		 </div>
-	 
+          <% unless @idents.include?("facebook") %>
+             <a href="<%= root_url %>users/auth/facebook" class="btn btn-default"><i class="fa fa-facebook"></i> MERGE FACEBOOK</a>
+          <% else %>
+           <a href="<%= remove_twitter_users_path %>" class="btn btn-default"><i class="fa fa-facebook"></i> REMOVE FACEBOOK FROM ACCOUNT</a>
+          <% end %>
+      </div>
+     </div>
+     
 
-	  </div>
-	</div><!-- .row -->
+  </div>
+</div>
 
-	<div class="form-group" style="padding-top:20px;text-align: right;padding-bottom: 60px;">
+<div class="form-group" style="padding-top:20px;text-align: right;padding-bottom: 60px;">
       <%# would like to add html to this button --> <i class="fa fa-user-times"></i>  %>
       <%= button_to 'CANCEL MY ACCOUNT'.html_safe, registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class:'btn btn-default btn-square' %>
      </div>
-     
-</div>
 
 </div><!--.container max_924-->
 
@@ -203,27 +197,20 @@ $('body').on('click','#postcode_check', function(e){
 <script type="text/javascript">
 var ready;
 ready = function() {
-
 $('body').off('click','.add_user_to_party_link');
 $('body').on('click','.add_user_to_party_link', function(e){
   e.preventDefault();
-
   var _this = $(this).text();
   $('#party_name').val(_this);
   $('#add_party').trigger("submit.rails");
-
-
 });
-
 <% if @mp %>
   $('#meet_div').css('display','block');
 <% end %>
-
 <% if @user.party_id %>
     $('.add_user_to_party_link#' + <%= @user.party_id %>).css({color: '#ef4747', border: '1px solid #333', padding: '10px 14px 7px'});
 <% end %>
 };
-
 $(document).ready(ready);
 $(document).on('page:load', ready);
 </script>

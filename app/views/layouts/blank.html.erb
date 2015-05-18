@@ -21,6 +21,12 @@
         
       <div id="body" class="col-md-12 blank-padding" >
 
+        <% unless params[:action] == "home" %>
+          <% flash.each do |message_type, message| %>
+            <div class="alert alert-<%= message_type %>" style="color:red;"><%= message %></div>
+          <% end %>
+        <% end %>
+
         <%= yield %>
 
       </div> <%# end body div %>

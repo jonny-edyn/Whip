@@ -27,7 +27,7 @@
   </div>
 <% end %>
 -->
-
+	
 	<div class="bottom_line_gray" style="padding-bottom:20px;">
 		<p class="headers">SOCIAL SIGN UP</p>
 		<a href="<%= root_url %>users/auth/facebook?image_size=large"><!--SIGN IN WITH FACEBOOK--><i class="fa fa-facebook fa-2x" style="color:#3b589e;padding-right: 10px;"></i></a>
@@ -36,6 +36,9 @@
 	</div>
 	<div style="padding-top:20px;">
 		<p class="headers">EMAIL SIGN UP</p>
+		<% flash.each do |message_type, message| %>
+		  <div class="alert alert-<%= message_type %>" style="color:red;"><%= message %></div>
+		<% end %>
 	</div>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>

@@ -44,6 +44,11 @@
 				</div> <%# end header div %>
 				
 				<div id="body-full" class="row" style="padding-top: 70px;padding-left: 60px;padding-right: 60px;">
+					<% unless params[:action] == "home" %>
+						<% flash.each do |message_type, message| %>
+						  <div class="alert alert-<%= message_type %>"><%= message %></div>
+						<% end %>
+					<% end %>
 
 					<%= yield %>
 

@@ -1,11 +1,21 @@
 <div class="container max_924">
 	<%= render 'bills/top_banner_with_names' %>
+	<div class="row" style="margin-bottom: 20px; border-bottom: 1px solid #c0c0c0;border-right: 1px solid #C0C0C0;">
+		<div class="col-sm-2 bg-grey  text-uppercase" style="padding: 10px; border-right: 1px solid #c0c0c0;border-left:1px solid #c0c0c0;">
+			<a href="" class="text-din-medium">follow johnny</a>
+		</div>
+		<div class="col-sm-10 text-din text-uppercase" style="padding: 10px;">
+			50 Following
+		</div>
+	</div>
 
 	<div class="row trending_bills" >
 		<% 
 			if @votes.any?
 			@votes.each do |vote|
 			bill = vote.bill
+			progress = bill.progress
+			finder_name = progress + "_div"
 		 %>
 		<div class="col-md-12 text-center">
 			<div class="row" style="padding-bottom:20px;">
@@ -79,23 +89,23 @@
 
 			<div class="row" style="padding-bottom:20px;">
 				<p class="text-left text-din" style="">BILL PROGRESS</p>
-				<div class="col-sm-6 bill-progress-bar">
+				<div class="col-sm-6 bill-progress-bar" style="padding-left: 0;">
 					<table>
 						<tr>
 							<td class="myvotes-bill-progress-cell"  style="padding-top:5px;">
-								<div class="text-din text-center myvotes-bill-progress-title house_of_commons_div">
+								<div class="text-din text-center myvotes-bill-progress-title house_of_commons_div" style="<%= 'background-color:#DAD7D7;' if finder_name == 'house_of_commons_div' %>">
 									HOUSE&nbsp;OF&nbsp;COMMONS
 								</div>
 							</td>
 							<td style="width:34px;"></td>
 							<td class="myvotes-bill-progress-cell"  style="padding-top:5px;">
-								<div class="text-din text-center myvotes-bill-progress-title house_of_lords_div">
+								<div class="text-din text-center myvotes-bill-progress-title house_of_lords_div" style="<%= 'background-color:#DAD7D7;' if finder_name == 'house_of_lords_div' %>">
 									HOUSE&nbsp;OF&nbsp;LORDS
 								</div>
 							</td>
 							<td style="width:34px;"></td>
 							<td class="myvotes-bill-progress-cell"  style="padding-top:5px;">
-								<div class="text-din text-center myvotes-bill-progress-title royal_assent_div">
+								<div class="text-din text-center myvotes-bill-progress-title royal_assent_div" style="<%= 'background-color:#DAD7D7;' if finder_name == 'royal_assent_div' %>">
 									ROYAL&nbsp;ASSENT
 								</div>
 							</td>

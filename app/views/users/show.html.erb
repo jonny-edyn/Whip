@@ -1,63 +1,200 @@
-<div class="row" style="margin-bottom: 20px; border-bottom: 1px solid #030303; padding-bottom: 20px;">
-	<div class="col-md-6">
-		<%= @user.name %><br>
-		<%= @vote_count %> Votes<br>
-		<%= render 'follow_form' if signed_in? %>
-	</div>
-</div>
+<div class="container max_924">
+	<%= render 'bills/top_banner_with_names' %>
+	<%= render 'follow_form' if signed_in? %>
 
-<div class="row trending_bills" >
-	<% 
-		if @votes.any?
-		@votes.each do |vote|
-		bill = vote.bill
-	 %>
-	<div class="col-md-12 text-center">
-		<div class="row" style="padding-bottom:20px;">
-			<div class="col-md-12 text-center">
-				<%= link_to bill.simple_name, bill_path(bill) %>
-			</div>
-		</div>
-
-		<div class="row" style="margin-bottom: 20px; padding-bottom: 20px;">
-			<div class="col-md-6 text-left">
-
-				<% if vote.in_favor %>
-					<h2><%= @user.name %> VOTED YES</h2>
-				<% else %>
-					<h2><%= @user.name %> VOTED NO</h2>
+	<div class="row trending_bills" >
+		<% 
+			if @votes.any?
+			@votes.each do |vote|
+			bill = vote.bill
+			progress = bill.progress
+			finder_name = progress + "_div"
+		 %>
+		<div class="col-md-12 text-center">
+			<div class="row" style="padding-bottom:20px;">
+				<!--<div class="col-md-12 text-center">
+					<%= link_to bill.simple_name, bill_path(bill) %>
+				</div>-->
+				<% if bill.image_url %>
+			    <div class="col-md-12" id="main-bill" style="background-image:<%= bill.image_url %>">
+			    <% else %>
+				<div class="col-md-12" id="main-bill">
 				<% end %>
-
+					<table style="width:100%;height:100%;">
+					  <tr>
+						 <td style="text-align: center; vertical-align: middle;">
+							<h1><%= link_to bill.simple_name, bill_path(bill) %></h1>
+							<h3><%= link_to bill.official_name, bill_path(bill) %></h3>
+						 </td>
+					  </tr>
+					</table>
+				</div>
 			</div>
 
-		</div>
+			<div class="row" style="margin-bottom: 20px;">
+				<div class="col-md-6 text-left" style="padding-left:-15px;margin-left:-15px;">
+					<% if current_user.picture_url %>
+						<div id="user-image" style="text-transform:uppercase;display:inline-block;vertical-align:top;padding-right:12px;">
+							<img src="<%= current_user.picture_url %>" style="height:50px;width:50px;background-color:#10b8b8;border:none;" />
+						</div>
+					<% else %>
+						<div id="user-image" style="text-transform:uppercase;display:inline-block;vertical-align:top;padding-right:12px;">
+							<img src="<%= image_path('blank.png') %>" style="height:50px;width:50px;background-color:#10b8b8;border:none;" />
+						</div>
+					<% end %>
+					<div style="display:inline-block;">
+
+						<% if vote.in_favor %>
+							<p class="text-din-medium text-you-voted" style="">YOU VOTED <span class="text-vote-yes">YES</span></p>
+							<div class="text-din text-change-vote">CHANGE VOTE TO <%= render 'bills/vote_no_short_form', bill: bill.id %></div>
+						<% else %>
+							<p class="text-din-medium text-you-voted">YOU VOTED <span class="text-vote-no">NO</span></p>
+							<div class="text-din text-change-vote">CHANGE VOTE TO <%= render 'bills/vote_yes_short_form', bill: bill.id %></div>
+							
+						<% end %>
+				
+					</div>
+
+				</div>
+
+				<div class="col-md-6 text-right">
+					<% 
+						if current_user.constituency && current_user.constituency.mp
+						@mp = current_user.constituency.mp
+					%>
+						<% 
+							if @mp.votes.where(bill_id: bill.id).any?
+							mp_vote = @mp.votes.where(bill_id: bill.id).first
+						 %>
+							<% if mp_vote.in_favor %>
+								<%= @mp.name.upcase %> VOTED YES
+							<% else %>
+								<%= @mp.name.upcase %> VOTED YES
+							<% end %>
+						<% else %>
+							<%= @mp.name.upcase %> HAS NOT VOTED ON BILL
+						<% end %>
+					<% end %>
+				</div>
+			</div>
 
 		
 
-		<div class="row" style="padding-bottom:20px;">
-			<h4 style="text-align:left; padding-bottom:20px;">BILL PROGRESS</h4>
-			<div class="col-md-2 text-center">
-				HOUSE OF COMMONS
+			<div class="row" style="padding-bottom:20px;">
+				<p class="text-left text-din" style="">BILL PROGRESS</p>
+				<div class="col-sm-6 bill-progress-bar" style="padding-left: 0;">
+					<table>
+						<tr>
+							<td class="myvotes-bill-progress-cell"  style="padding-top:5px;">
+								<div class="text-din text-center myvotes-bill-progress-title house_of_commons_div" style="<%= 'background-color:#DAD7D7;' if finder_name == 'house_of_commons_div' %>">
+									HOUSE&nbsp;OF&nbsp;COMMONS
+								</div>
+							</td>
+							<td style="width:34px;"></td>
+							<td class="myvotes-bill-progress-cell"  style="padding-top:5px;">
+								<div class="text-din text-center myvotes-bill-progress-title house_of_lords_div" style="<%= 'background-color:#DAD7D7;' if finder_name == 'house_of_lords_div' %>">
+									HOUSE&nbsp;OF&nbsp;LORDS
+								</div>
+							</td>
+							<td style="width:34px;"></td>
+							<td class="myvotes-bill-progress-cell"  style="padding-top:5px;">
+								<div class="text-din text-center myvotes-bill-progress-title royal_assent_div" style="<%= 'background-color:#DAD7D7;' if finder_name == 'royal_assent_div' %>">
+									ROYAL&nbsp;ASSENT
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<!--
+				<div class="col-md-2 text-center">
+					HOUSE OF COMMONS
+				</div>
+				<div class="col-md-2 text-center">
+					HOUSE OF LORDS
+				</div>
+				<div class="col-md-2 text-center">
+					ROYAL ASSENT
+				</div>
+				-->
+				<div class="col-sm-6 myvotes-comment">
+					<div class="text-din text-left" style="height:100%;padding-top:5px;">
+						<% if vote.comment != "" %>
+							<%= vote.comment %>
+						<% else %>
+							YOU HAVE NO COMMENT<br /><br />
+						<% end %>
+					</div>
+				</div>
 			</div>
-			<div class="col-md-2 text-center">
-				HOUSE OF LORDS
-			</div>
-			<div class="col-md-2 text-center">
-				ROYAL ASSENT
-			</div>
-			<div class="col-md-6 text-center">
-				<% if vote.comment != "" %>
-					<%= vote.comment %>
-				<% end %>
-			</div>
+
 		</div>
 
+
+
+
+
+		<% end %>
+		<% end %>
 	</div>
 
+</div><!-- .container max 924 -->
+<script type="text/javascript">
+var ready;
+ready = function() {
+
+
+	  $('body').off('click','.bill_voting');
+	  $('body').on('click','.bill_voting', function(e){
+	  	e.preventDefault();
+
+	  	var this_form = $(this);
+	  	var comment_section = $(this_form).children('.hidden_comment');
+
+	  	if ( this_form.hasClass('vote_yes') ) {
+	  		//$('#commentModal').addClass('modal-whip-vote-yes');
+	  		$('#myModalLabelVote').html('<span class="text-vote-yes">VOTED FOR</span>');
+	  	} else {
+	  		//$('#commentModal').addClass('modal-whip-vote-no');
+	  		$('#myModalLabelVote').html('<span class="text-vote-no">VOTED AGAINST</span>');
+	  	}
+
+	  	comment_section.val('testing');
+	  	
+	  	$('#commentModal').modal('show');
+
+	  	$('#commentModal').on('hide.bs.modal', function(e){
+	  		var new_comment = $('#add_comment').siblings('#content').val();
+	  		comment_section.val(new_comment);
+	  		
+	  		this_form.trigger("submit.rails");
+	  	});
+
+	  	// Need to rework this still
+	  	// so far creates modal when vote btn is clicked
+	  	// and submits vote on closing of modal
+	  	// need to add right facing triangle action btn to 'submit' vote
+	  	// this will actually just hide comment box and text at top of modal
+	  	// actual submission happens on close of modal
+	  	// also need to have social share icons slide up / center in modal after other stuff is hidden
+
+	  	/*
+	  	$('#commentModal').off('click','#add_comment');
+	  	$('#commentModal').on('click','#add_comment',function(e){
+	  		var new_comment = $(this).siblings('#content').val();
+	  		comment_section.val(new_comment);
+	  		
+	  		$('#commentModal').modal('hide');
+
+	  		this_form.trigger("submit.rails");
+	  	});
+	  	*/
+
+	  });
 
 
 
+};
 
-	<% end %>
-	<% end %>
-</div>
+$(document).ready(ready);
+$(document).on('page:load', ready);
+</script>

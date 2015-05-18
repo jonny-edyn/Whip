@@ -1,7 +1,22 @@
-<% 
-	if @users.any?
-	@users.each do |user|
-%>
-<p><%= user.name %> <a href="<%= user_path(user.id) %>">View Profile</a></p>
-<% end %>
-<% end %>
+<div class="container max_924" style="padding-bottom:60px;">
+	<h4 class="text-din" style="padding-bottom: 24px;">Users You Are Following</h4>
+	<% 
+		if @users.any?
+		@users.each do |user|
+	%>
+	<div class="row" style="padding-bottom: 20px;">
+		<div class="col-sm-2">
+			<p style="margin: 6px 0px 10px;"><a href="<%= user_path(user.id) %>" style="font-size: 18px;"><%= user.name %></a></p>
+		</div>
+		<div class="col-sm-4">
+			<div class="btn btn-default btn-square">
+				<%= form_for(current_user.relationships.find_by(followed_id: user),
+		             html: { method: :delete }) do |f| %>
+				  <%= f.submit "Unfollow", class: "text-din-medium", style: "background: transparent none repeat scroll 0% 0%;width: 100%;height: 24px; border: none;" %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+	<% end %>
+	<% end %>
+</div>

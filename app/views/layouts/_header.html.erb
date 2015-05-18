@@ -74,7 +74,7 @@
             </ul>
           </li>
           <% if user_signed_in? %>
-            <li class="nav-parent-item"><%= link_to "MY VOTES", my_votes_path %></li>
+            <li class="nav-parent-item"><%= link_to "MY VOTES", user_path(current_user.id) %></li>
           <% end %>
           <li class="dropdown nav-parent-item">
             <a href="#" class="dropdown-toggle" role="button" aria-expanded="false">INFO</a>
