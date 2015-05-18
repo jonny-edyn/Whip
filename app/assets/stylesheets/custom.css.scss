@@ -33,6 +33,14 @@
   font-family: 'dinMedium';
 }
 
+.text-vote-yes {
+	color: #f58b8b;
+}
+
+.text-vote-no {
+	color: #97d9ff;
+}
+
 .headers {
   font-family: 'dinMedium';
   font-size: 14px;
@@ -357,4 +365,7 @@ a.footer-issues-link {
 }
 #postcode_check, #user_intitial_display #postcode {
 	width: 30%;display: inline;min-width: 90px;
+}
+.bg-grey {
+	background-color: #efefef;
 }
