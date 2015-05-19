@@ -7,6 +7,18 @@
 		<% 
 			if @trending.any?
 			@trending.each do |bill|
+
+			@vote = current_user.votes.where(bill_id: bill.id).first
+			@for = false
+			@against = false
+			if @vote && @vote.in_favor
+				@for = true
+			end
+			if @vote
+				unless @vote.in_favor
+					@against = true
+				end
+			end
 		 %>
 		<div class="col-md-12 text-center" style="padding-bottom: 50px;">
 			<div class="row" style="padding-bottom:20px;">
@@ -40,7 +52,7 @@
 						</div>
 					</div><!--.panel -->
 					<div class="vote-button-yes">
-						<%= render 'bills/vote_yes_form', bill: bill.id %>
+						<%= render :partial => 'bills/vote_yes_form', :locals => { :bill => bill.id, :favor => @for } %>
 					</div>
 				</div>
 				<div class="col-sm-6 main-bill-arguments arguments-right">
@@ -53,7 +65,7 @@
 						</div>
 					</div><!--.panel -->
 					<div class="vote-button-no">
-						<%= render 'bills/vote_no_form', bill: bill.id %>
+						<%= render :partial => 'bills/vote_no_form', :locals => { :bill => bill.id, :against => @against } %>
 					</div>
 
 				</div>
@@ -71,6 +83,19 @@
 		if @common.any?
 		# @common.each do |bill|
 		@common.each_with_index do |bill, index|
+
+		@vote = current_user.votes.where(bill_id: bill.id).first
+		@for = false
+		@against = false
+		if @vote && @vote.in_favor
+			@for = true
+		end
+		if @vote
+			unless @vote.in_favor
+				@against = true
+			end
+		end
+
 		if index % 2 == 0
 			_align = "arguments-left"
 		else 
@@ -113,14 +138,14 @@
 				<div class="row" style="margin: 0 5px 10px 5px;padding: 0 5px;">
 					<div class="col-sm-6 vote-button-yes">
 						<% if user_signed_in? %>
-							<%= render 'bills/vote_yes_form', bill: bill.id %>
+							<%= render :partial => 'bills/vote_yes_form', :locals => { :bill => bill.id, :favor => @for } %>
 						<% else %>
 							<a class="navbar-brand" href="#" data-toggle="modal" data-target="#loginModal">SIGN IN</a>
 						<% end %>
 					</div>
 					<div class="col-sm-6 vote-button-no">
 						<% if user_signed_in? %>
-							<%= render 'bills/vote_no_form', bill: bill.id %>
+							<%= render :partial => 'bills/vote_no_form', :locals => { :bill => bill.id, :against => @against } %>
 						<% else %>
 							<a class="navbar-brand" href="#" data-toggle="modal" data-target="#loginModal">SIGN IN</a>
 						<% end %>
