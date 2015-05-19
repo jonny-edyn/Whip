@@ -42,7 +42,6 @@
     <% end %>
   </div>
 
-</div>
  
 </div>
 
@@ -211,6 +210,9 @@ $('body').on('click','.add_user_to_party_link', function(e){
     $('.add_user_to_party_link#' + <%= @user.party_id %>).css({color: '#ef4747', border: '1px solid #333', padding: '10px 14px 7px'});
 <% end %>
 };
+
+
+
 $(document).ready(ready);
 $(document).on('page:load', ready);
 </script>

@@ -13,7 +13,7 @@ class SessionsController < Devise::SessionsController
   def failure
   	flash[:notice] = 'Invalid Email Address Or Password!'
 	respond_to do |format|
-        format.html { redirect_to home_path }
+        format.html { redirect_to root_path }
       end
   end
 

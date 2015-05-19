@@ -1,55 +1,23 @@
 <div class="container" style="max-width:924px;">
 	<%= render 'bills/top_banner_with_names' %>
-	
-	<!--
-	<div class="row" style="padding-bottom:20px;">
-		<div class="col-md-12" style="text-align:center;">
-			<%= @bill.simple_name %>
-		</div>
-	</div>
-
-
-	<div class="row" style="margin-bottom: 20px; border-bottom: 1px solid #030303; padding-bottom: 20px;">
-		<div class="col-md-6" style="text-align:center;">
-			<h2 class="header-argument-for">ARGUMENT FOR</h2>
-			<%= @bill.support %>
-		</div>
-		<div class="col-md-6" style="text-align:center;">
-			<h2 class="header-argument-against">ARGUMENT AGAINST</h2>
-			<%= @bill.opposition %>
-		</div>
-	</div>
-
-
-	<div class="row" style="margin-bottom: 20px; border-bottom: 1px solid #030303; padding-bottom: 20px;">
-		<div class="col-md-6" style="text-align:right;">
-			<% if user_signed_in? %>
-				<%= render 'bills/vote_yes_form', bill: @bill.id %>
-			<% else %>
-				<a class="navbar-brand" href="#" data-toggle="modal" data-target="#loginModal">SIGN IN</a>
-			<% end %>
-		</div>
-		<div class="col-md-6" style="text-align:left;">
-			<% if user_signed_in? %>
-				<%= render 'bills/vote_no_form', bill: @bill.id %>
-			<% else %>
-				<a class="navbar-brand" href="#" data-toggle="modal" data-target="#loginModal">SIGN IN</a>
-			<% end %>
-		</div>
-	</div>
-	-->
 	<div class="row main_bill_information" >
-		<div class="col-md-12 text-center">
+		<div class="col-md-12 text-center" style="padding-bottom: 50px;">
 			<div class="row" style="padding-bottom:20px;">
-				<div class="col-md-12" id="main-bill">
-					<table style="width:100%;height:100%;">
-					  <tr>
-						 <td style="text-align: center; vertical-align: middle;">
-							<h1><%= @bill.simple_name %></h1>
-							<h3><%= @bill.official_name %></h3>
-						 </td>
-					  </tr>
-					</table>
+				<% if @bill.image_url %>
+			    	<div class="col-md-12" id="main-bill" style="background-image: url('https:<%= @bill.image_url %>');padding: 0px;">
+			    <% else %>
+					<div class="col-md-12" id="main-bill" style="background-image: url(/assets/bill-standard-background.jpg);padding: 0px;">
+				<% end %>
+					<div style="background-color: rgba(12, 11, 11, 0.24);height: 100%;width: 100%;">
+						<table style="width:100%;height:100%;">
+						  <tr>
+							 <td style="text-align: center; vertical-align: middle;">
+								<h1><%= link_to @bill.simple_name, bill_path(@bill) %></h1>
+								<h3><%= link_to @bill.official_name, bill_path(@bill) %></h3>
+							 </td>
+						  </tr>
+						</table>
+					</div>
 				</div>
 			</div>
 
@@ -66,7 +34,7 @@
 					</div><!--.panel -->
 					<div class="vote-button-yes">
 						<% if user_signed_in? %>
-							<%= render 'bills/vote_yes_form', bill: @bill.id %>
+							<%= render :partial => 'bills/vote_yes_form', :locals => { :bill => @bill.id, :favor => @for } %>
 						<% else %>
 							<a class="navbar-brand" href="#" data-toggle="modal" data-target="#loginModal">SIGN IN</a>
 						<% end %>
@@ -83,7 +51,7 @@
 					</div><!--.panel -->
 					<div class="vote-button-no">
 						<% if user_signed_in? %>
-							<%= render 'bills/vote_no_form', bill: @bill.id %>
+							<%= render :partial => 'bills/vote_no_form', :locals => { :bill => @bill.id, :against => @against } %>
 						<% else %>
 							<a class="navbar-brand" href="#" data-toggle="modal" data-target="#loginModal">SIGN IN</a>
 						<% end %>
@@ -95,7 +63,7 @@
 		</div>
 	</div>
 	
-	<div class="row" style="" id="bill-progress-table">
+	<div class="row" style="" id="bill-progress-table" data-bill-progress='<%= @bill.progress %>'>
 		<h2 class="text-din text-center" style="padding-bottom:20px;">BILL PROGRESS</h2>
 		<div id="bill-progress-bar">
 			<table style="margin: 0 auto;">
@@ -171,7 +139,7 @@
 <script type="text/javascript">
 var ready;
 ready = function() {
-var current_progess = "<%= @bill.progress %>";
+var current_progess = $('#bill-progress-table').data('bill-progress');
 var finder_name = current_progess + "_div"
 $('#' + finder_name).css('color','red');
 };
@@ -206,8 +174,10 @@ ready = function() {
 	  	$('#commentModal').modal('show');
 
 	  	$('#commentModal').on('hide.bs.modal', function(e){
-	  		var new_comment = $('#add_comment').siblings('#content').val();
-	  		comment_section.val(new_comment);
+	  		var comment_modal = $(this);
+	  		var new_comment = $(comment_modal).find('#content').val();
+	  		comment_section.val(new_comment);var new_comment = $('#add_comment').siblings('#content').val();
+	  		
 	  		
 	  		this_form.trigger("submit.rails");
 	  	});

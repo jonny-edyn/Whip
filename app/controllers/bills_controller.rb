@@ -98,6 +98,16 @@ class BillsController < ApplicationController
 		impressionist(@bill)
 		@issues = @bill.issues
 		@vote = current_user.votes.where(bill_id: @bill.id).first
+		@for = false
+		@against = false
+		if @vote && @vote.in_favor
+			@for = true
+		end
+		if @vote
+			unless @vote.in_favor
+				@against = true
+			end
+		end
 	end
 
 	def add_issues

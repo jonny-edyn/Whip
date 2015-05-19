@@ -16,7 +16,10 @@ class VotesController < ApplicationController
 
 		if @vote.save
 			Resque.enqueue(NewVoteMessage, @vote.id)
-	      	redirect_to :back
+			respond_to do |format|
+	      		format.html {redirect_to :back}
+	      		format.js { render :partial => 'vote_success.js.erb' }
+	      	end
 	  	else
 	    	render 'static_pages/home'
 	  	end

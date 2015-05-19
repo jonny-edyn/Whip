@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   
 
   #authenticated :user do
-  # root :to => 'bills#index', :as => :authenticated_root
+   #root :to => 'bills#index', :as => :authenticated_root
   #end
 
 

@@ -1,32 +1,16 @@
-<div id="add-email" class="container">
-  <% flash.each do |key, value| %>
-    <div class="alert alert-<%= key %>">
-      <a href="#" data-dismiss="alert" class="close">×</a>
-        <ul>
-          <li>
-            <%= value %>
-          </li>
-        </ul>
-    </div>
-  <% end %>
-  <h1>Add Email</h1>
-  <%= form_for(current_user, :as => 'user', :url => finish_signup_path(current_user), :html => { role: 'form'}) do |f| %>
-    <% if @show_errors && current_user.errors.any? %>
-      <div id="error_explanation">
-        <% current_user.errors.full_messages.each do |msg| %>
-          <%= msg %><br>
-        <% end %>
-      </div>
+<div id="add-email" class="container max_924" style="padding-bottom:60px;padding-top:30px;">
+  <h4 class="text-din text-left" style="font-size: 24px;">ADD EMAIL</h4>
+  <% flash.each do |message_type, message| %>
+      <div class="alert alert-<%= message_type %>" style="color:red;"><%= message %></div>
     <% end %>
+  <%= form_for(current_user, :as => 'user', :url => finish_signup_path(current_user), :html => { role: 'form'}) do |f| %>
     <div class="form-group">
-      <%= f.label :email %>
       <div class="controls">
-        <%= f.text_field :email, :autofocus => true, :value => '', class: 'form-control input-lg', placeholder: 'Example: email@me.com' %>
-        <p class="help-block">Please confirm your email address. No spam.</p>
+        <%= f.text_field :email, :autofocus => true, :value => '', class: 'form-control input-lg' %>
       </div>
     </div>
-    <div class="actions">
-      <%= f.submit 'Continue', :class => 'btn btn-primary' %>
+    <div class="actions" style="text-align:right;">
+      <%= f.submit 'Continue', :class => 'btn btn-default btn-square' %>
     </div>
   <% end %>
 </div>

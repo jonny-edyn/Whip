@@ -53,7 +53,7 @@
 						<div class="col-md-8">
 							<%= bill.simple_name.upcase %>
 							<div style="display:none;" id="bill_<%= bill.id %>_edit" class="edit_form">
-								<%= form_for bill, remote: true do |f| %>
+								<%= form_for bill do |f| %>
 									<div class="form-group">
 										<%= f.label :simple_name, "Common Name" %>
 										<%= f.text_field :simple_name, class:'form-control' %>
@@ -279,7 +279,26 @@ $(document).on('click','.show_issues',function(e){
 	});
 	*/
 
-	
+	/*
+
+This a demo for Coke
+
+$('body').off('click','#edit_bill_btn');
+$('body').on('click','#edit_bill_btn', function(e){
+  e.preventDefault();
+  
+  code to display loading Spinner and nothing else
+  Submit of actual form is handled else where
+  now go to bills_controller update function
+  you will see if @bill.update_attributes(bill_params)
+  format.js { render :partial => 'edit_bill_success.js.erb' } this file is where js and ruby code go if update is successful i.e., change loading modal to success notification and close
+  format.js { render :partial => 'edit_bill_fail.js.erb' } this file is where js and ruby code go if update is unsuccessful i.e., change loading modal to failure notification and close
+  This is basic workflow
+  Make sense?
+
+});
+
+*/
 
  };
 

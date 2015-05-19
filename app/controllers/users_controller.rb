@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   def show
     # authorize! :read, @user
     @votes = @user.votes
-    @votes_count = @votes.count
+    @votes_count = current_user.votes.count
   end
 
   # GET /users/:id/edit
@@ -38,7 +38,7 @@ class UsersController < ApplicationController
 
   # GET/PATCH /users/:id/finish_signup
   def finish_signup
-    if @user.email
+    unless @user.email.include? "change@me"
       redirect_to edit_user_path(@user.id)
     else
     # authorize! :update, @user 
@@ -47,7 +47,7 @@ class UsersController < ApplicationController
           sign_in(@user, bypass: true)
           redirect_to edit_user_path(@user.id), notice: 'Your profile was successfully updated.'
         else
-          flash[:notice] = "Email already taken!  If you already have an account, login and with Facebook or Email and add your Twitter account on Settings page."
+          flash[:notice] = "Email already taken!  If you already have an account, try logging in with either Facebook or Email."
           @show_errors = true
         end
       end
@@ -94,6 +94,8 @@ class UsersController < ApplicationController
         format.html {redirect_to :back}
         format.js {render :partial => 'show_user_mp.js.erb'}
       end
+    else
+      redirect_to edit_user_path(current_user.id)
     end
   end
 
