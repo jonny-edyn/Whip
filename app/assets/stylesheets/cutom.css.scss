@@ -23,6 +23,11 @@ html,body{
 #body-full {
     padding-bottom: 0 !important;
     background-color:#fff;
+    padding-top: 70px;
+    /*
+    padding-left: 60px;
+    padding-right: 60px;
+    */
 }
 
 .footer{
@@ -36,6 +41,7 @@ html,body{
 }
 .footer-full {
     position: relative;
+  	padding-bottom: 40px;
 }
 
 a {

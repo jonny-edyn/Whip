@@ -30,35 +30,21 @@
 </head>
 <body class="grey">
 
-	<div id="holder" class="grey">
 
-		<div class="container-fluid">
+	<div id="header">
 
-			<div class="row">
+	<%= render 'layouts/header' %>
 
+	</div> <%# end header div %>
 
-				<div id="header">
-				    
-					<%= render 'layouts/header' %>
+	<div id="body-full">
 
-				</div> <%# end header div %>
-				
-				<div id="body-full" class="row" style="padding-top: 70px;padding-left: 60px;padding-right: 60px;">
+	<%= yield %>
 
-					<%= yield %>
-
-				</div> <%# end body div %>
+	</div> <%# end body div %>
 
 
-					<%= render 'layouts/footer' %>
-
-
-			</div> <%# end row div %>
-
-		</div> <%# end container-fluid div %>
-
-
-	</div> <%# end holder div %>
+	<%= render 'layouts/footer' %>
 
 	<div class="modal fade modal-whip-blue" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
 	  <div class="modal-dialog">

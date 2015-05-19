@@ -207,17 +207,29 @@ img {
 	border-radius: 0 !important;
 	background-color: #fff;
 }
-.btn-vote-yes {
+btn-vote-yes {
 	color: #fff;
 	border: 1px solid #f58b8b !important;
 	border-radius: 0 !important;
 	background-color: #f58b8b;
+}
+.btn-vote-yes-voted {
+	color: #fff;
+	background-color: #f61f1f; 
+	border: 1px solid #f61f1f !important;
+	border-radius: 0 !important;
 }
 .btn-vote-no {
 	color: #fff;
 	border: 1px solid #97d9ff !important;
 	border-radius: 0 !important;
 	background-color: #97d9ff;
+}
+.btn-vote-no-voted {
+	color: #fff;
+	background-color: #0585f2; 
+	border: 1px solid #0585f2 !important;
+	border-radius: 0 !important;
 }
 .header-argument-for {
 	color: #f58b8b;

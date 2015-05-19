@@ -1,13 +1,13 @@
 <% 
 	if favor
-		@styles =  "background-color: #F61F1F; border: 1px solid #F61F1F !important;"
+		@classes =  "btn btn-vote-yes-voted text-din"
 	else
-		@styles = ""
+		@classes = "btn btn-vote-yes text-din"
 	end
 %>
 <%= form_tag votes_path, {class: "bill_voting vote_yes"} do |f| %>
   <div><%= hidden_field_tag 'bill_id', bill %></div>
   <div><%= hidden_field_tag 'in_favor', true %></div>
   <%= hidden_field_tag 'comment', "", class: "hidden_comment" %>
-  <%= submit_tag "VOTE YES", class: "btn btn-vote-yes", style: @styles %>
+  <%= submit_tag "VOTE YES", class: @classes %>
 <% end %>

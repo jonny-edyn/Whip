@@ -1,13 +1,13 @@
 <% 
 	if against
-		@styles = "background-color: #0585F2; border: 1px solid #0585F2 !important;"
+		@classes =  "btn btn-vote-no-voted text-din"
 	else
-		@styles = ""
+		@classes = "btn btn-vote-no text-din"
 	end
 %>
 <%= form_tag votes_path, {class: "bill_voting vote_no"} do |f| %>
   <div><%= hidden_field_tag 'bill_id', bill %></div>
   <div><%= hidden_field_tag 'in_favor', false %></div>
   <%= hidden_field_tag 'comment', "", class: "hidden_comment" %>
-  <%= submit_tag "VOTE NO", class: "btn btn-vote-no", style: @styles %>
+  <%= submit_tag "VOTE NO", class: @classes %>
 <% end %>
