@@ -1,5 +1,6 @@
+<div class="container">
 <div class="row admin-content">
-	<div class="col-md-9" role="main">
+	<div class="col-sm-9" role="main">
 		<div class="row">
 			<div class="col-md-12">
 				<h2 class="text-din text-uppercase" style="margin-top: 0;">BILLS</h2>
@@ -104,13 +105,9 @@
 								<% end %>
 							</div>
 						</div>
-						<div class="col-md-1"> 
+						<div class="col-md-4"> 
 							<a href="" id="<%= bill.id %>" class="show_edit btn btn-xs btn-default"><span class="glyphicon glyphicon-pencil"></span> EDIT</a>
-						</div>
-						<div class="col-md-1"> 
 							<a href="" id="<%= bill.id %>" class="show_issues btn btn-xs btn-default"><span class="glyphicon glyphicon-plus-sign"></span> ISSUES</a>
-						</div>
-						<div class="col-md-2"> 
 							<%= form_for bill, method: :delete, html: {style: "display:inline;"}  do |f|%>
 								<%# f.submit '<span class="glyphicon glyphicon-trash"></span> DELETE', style: "", :class=>'btn btn-sm btn-default' %>
 								<%= button_tag(type: 'submit', class: "btn btn-xs btn-default") do %>
@@ -184,6 +181,7 @@
 	</div>
 	<%= render "admins/admin_sidebar" %>
 </div>
+</div><!-- .container -->
 
 <div class="modal fade modal-alert modal-danger" id="warningModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">

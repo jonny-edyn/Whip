@@ -1,19 +1,21 @@
+<div class="container">
 <% if @setting.yes == false %>
 <%= link_to "Update Constituencies In DB", populate_constituencies_admins_path, {:method=> :post, data: {confirm: 'Are you sure? This will take a while!  Perform during a slow time (late at night).'}} %> <%= @constituencies.length %>
 <% else %>
 <p>Currently updating DB check back shortly.</p>
 <% end %>
-<div class="row admin-content">
-	<div class="col-md-9" role="main">
-		<% if @constituencies.any? %>
-			<ul class="list-group">
-			<% @constituencies.each do |constituency| %>
-				<li class="list-group-item">
-					<%= constituency.name %> / <%= constituency.mp.name if constituency.mp %>
-				</li>
+	<div class="row admin-content">
+		<div class="col-sm-9" role="main">
+			<% if @constituencies.any? %>
+				<ul class="list-group">
+				<% @constituencies.each do |constituency| %>
+					<li class="list-group-item">
+						<%= constituency.name %> / <%= constituency.mp.name if constituency.mp %>
+					</li>
+				<% end %>
+				</ul>
 			<% end %>
-			</ul>
-		<% end %>
+		</div>
+		<%= render "admins/admin_sidebar" %>
 	</div>
-	<%= render "admins/admin_sidebar" %>
-</div>
+</div> <!-- .container -->
