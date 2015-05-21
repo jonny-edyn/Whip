@@ -1,13 +1,21 @@
-<div class="container max_924" style="padding-bottom:60px;">
-	<h4 class="text-din" style="padding-bottom: 24px;">Users Following You</h4>
+<div class="container max_924 padding_bottom_60">
+
+<%= render 'bills/top_banner_with_names' %>
+
+	<h4 class="text-din padding_bottom_24">Users Following You</h4>
 	<% 
 		if @users.any?
 		@users.each do |user|
 	%>
-	<div class="row" style="padding-bottom: 20px;">
+	<!--
+	<div class="row padding_bottom_20">
 		<div class="col-sm-2">
 			<p style="margin: 6px 0px 10px;"><a href="<%= user_path(user.id) %>" style="font-size: 18px;"><%= user.name %></a></p>
 		</div>
+	</div>
+	-->
+	<div class="list-group-item">
+		<p><a href="<%= user_path(user.id) %>" style="font-size: 18px;"><%= user.name %></a></p>
 	</div>
 	<% end %>
 	<% end %>
