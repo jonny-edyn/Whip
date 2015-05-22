@@ -243,7 +243,7 @@
 .btn.btn-outline.btn-flat.btn-primary {
   background: none;
   color: #555555;
-  background: url('../images/pixel-admin/blank.png')\9;
+  background: image-url('pixel-admin/blank.png')\9;
 }
 .btn.btn-outline,
 .btn.btn-outline.btn-flat,
@@ -272,13 +272,13 @@
   background: none;
   border-color: #e0e0e0;
   border-color: rgba(0, 0, 0, 0.12);
-  background: url('../images/blank.png')\9;
+  background: image-url('blank.png')\9;
 }
 .btn.btn-outline.dark,
 .btn.btn-outline.dark.btn-primary {
   color: #fff;
   color: rgba(255, 255, 255, 0.8);
-  background: url('../images/blank.png')\9;
+  background: image-url('blank.png')\9;
 }
 .btn.btn-outline.dark,
 .btn.btn-outline.dark.btn-primary,

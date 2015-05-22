@@ -18,19 +18,19 @@
 	left: 11px !important;
 }
 .slick-prev:before {
-	content: url('/assets/slick-left-arrow.png') !important;
+	content: image-url('slick-left-arrow.png') !important;
 }
 [dir='rtl'] .slick-prev:before {
-	content: url('/assets/slick-left-arrow.png') !important;
+	content: image-url('slick-left-arrow.png') !important;
 }
 .slick-next {
 	right: 11px !important;
 }
 .slick-next:before {
-	content: url('/assets/slick-right-arrow.png') !important;
+	content: image-url('slick-right-arrow.png') !important;
 }
 [dir='rtl'] .slick-next:before {
-	content: url('/assets/slick-right-arrow.png') !important;
+	content: image-url('slick-right-arrow.png') !important;
 }
 
 @media (min-width: 767px) {
@@ -60,7 +60,7 @@
 	padding-bottom:20px;
 }
 #bill-progress-bar {
-	background-image: url("/assets/progress-line.png"); 
+	background-image: image-url("progress-line.png"); 
 	background-position: center center;
 	background-repeat: repeat-x;
 	background-color: #fff;
