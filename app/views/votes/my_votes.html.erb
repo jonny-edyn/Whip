@@ -6,8 +6,9 @@
 			if @votes.any?
 			@votes.each do |vote|
 			bill = vote.bill
-			progress = bill.progress
-			finder_name = progress + "_div"
+			if bill
+				progress = bill.progress
+				finder_name = progress + "_div"
 		 %>
 		<div class="col-md-12 text-center" style="padding-bottom: 50px;">
 			<div class="row" style="padding-bottom:20px;">
@@ -133,7 +134,7 @@
 
 
 
-
+		<% end %>
 		<% end %>
 		<% end %>
 	</div>

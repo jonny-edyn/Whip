@@ -2,7 +2,7 @@ class Bill < ActiveRecord::Base
 	is_impressionable
 
 	
-	has_many :votes
+	has_many :votes, dependent: :destroy
 
 	has_many :bill_issues
 	has_many :issues, through: :bill_issues
