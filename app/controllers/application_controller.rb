@@ -12,10 +12,6 @@ class ApplicationController < ActionController::Base
       "blank"
     elsif controller_name == 'static_pages' && action_name == 'home'
       "blank"
-    elsif controller_name == 'static_pages' && action_name == 'terms'
-      "blank"
-    elsif controller_name == 'static_pages' && action_name == 'privacy'
-      "blank"
     else
       "application"
     end
