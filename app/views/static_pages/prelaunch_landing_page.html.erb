@@ -35,8 +35,9 @@
 			<% end %>
 			<p class="headers" style="font-size:15px;margin-top:16px;">Parliament in your hands</p>
 			<div id="join_mailing_list_form">
-				<%= form_tag mailing_list_request_path, remote: true do %>
+				<%= form_tag mailing_list_request_path, id: "add_postcode", remote: true do %>
 
+					  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
 		              <%= text_field_tag :contact_email,'', autofocus: true, placeholder: "Enter email now to find out more", class: "headers", id: "prelaunch_text_box", style: "font-size:13px;text-align: center;" %>
 		              <br>
 
@@ -324,7 +325,6 @@ ready = function() {
 	  }
 	); 
 	*/
-	$(document).off();
 	$(document).on({
 		mouseenter: function () {
 			if ( $(window).width() >=768 ) {
