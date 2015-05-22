@@ -1,10 +1,17 @@
-<div class="container max_924" style="padding-bottom:60px;">
-	<h4 class="text-din" style="padding-bottom: 24px;">Users You Are Following</h4>
+<div class="container max_924 padding_bottom_60">
+
+<%= render 'bills/top_banner_with_names' %>
+
+	<h4 class="text-din padding_bottom_24">Users You Are Following</h4>
 	<% 
 		if @users.any?
+		%>
+		<ul class="list-group">
+		<%
 		@users.each do |user|
 	%>
-	<div class="row" style="padding-bottom: 20px;">
+	<!--
+	<div class="row padding_bottom_20">
 		<div class="col-sm-2">
 			<p style="margin: 6px 0px 10px;"><a href="<%= user_path(user.id) %>" style="font-size: 18px;"><%= user.name %></a></p>
 		</div>
@@ -17,6 +24,23 @@
 			</div>
 		</div>
 	</div>
+	-->
+	<li class="list-group-item">
+		<div class="row">
+			<div class="col-sm-2">
+				<%# set the line-height to the height of the div to vertically center, in this case, the height of the button %>
+				<a href="<%= user_path(user.id) %>" style="font-size: 18px;line-height:34px;"><%= user.name %></a>
+			</div>
+			<div class="col-sm-4">
+				<%= form_for(current_user.relationships.find_by(followed_id: user),
+					 html: { method: :delete }) do |f| %>
+				  <%= f.submit "Unfollow", class: "btn btn-outline btn-square text-din-medium" %>
+				<% end %>
+			</div>
+		</div>
+	</li>
+
 	<% end %>
+	</ul>
 	<% end %>
-</div>
+</div> <!--.container max_924 -->

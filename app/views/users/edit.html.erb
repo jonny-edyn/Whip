@@ -171,7 +171,6 @@
 </div>
 
 <div class="form-group" style="padding-top:20px;text-align: right;padding-bottom: 60px;">
-      <%# would like to add html to this button --> <i class="fa fa-user-times"></i>  %>
       <%= button_to 'CANCEL MY ACCOUNT'.html_safe, registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class:'btn btn-default btn-square' %>
      </div>
 
@@ -183,8 +182,11 @@ function testPostCode () {
   if (newPostCode) {
     document.getElementById('postcode').value = newPostCode;
     $('#add_postcode').trigger("submit.rails");
-  } 
-  else alert ("Postcode has invalid format");
+  }  else {
+  	// alert ("Postcode has invalid format");
+  	$('#warningModal .modal-body').html('<p>Postcode has invalid format</p>');
+  	$('#warningModal').modal('show');
+  	}
 }
 $('body').off('click','#postcode_check');
 $('body').on('click','#postcode_check', function(e){
