@@ -1,14 +1,15 @@
-<div class="container" style="max-width:924px;">
+<div class="container max_924">
+
 	<%= render 'bills/top_banner_with_names' %>
 	<div class="row main_bill_information" >
 		<div class="col-md-12 text-center" style="padding-bottom: 50px;">
 			<div class="row" style="padding-bottom:20px;">
 				<% if @bill.image_url %>
-			    	<div class="col-md-12" id="main-bill" style="background-image: url('https:<%= @bill.image_url %>');padding-left: 0px; padding-right: 0px;">
+			    	<div class="col-md-12 main-bill" style="background-image: url('https:<%= @bill.image_url %>');padding-left: 0px; padding-right: 0px;">
 			    <% else %>
-					<div class="col-md-12" id="main-bill" style="background-image: url(<%= asset_path 'bill-standard-background.jpg' %>); padding-left: 0px; padding-right: 0px;">
+					<div class="col-md-12 main-bill" style="background-image: url(<%= asset_path 'bill-standard-background.jpg' %>); padding-left: 0px; padding-right: 0px;">
 				<% end %>
-					<div style="background-color: rgba(12, 11, 11, 0.24);height: 100%;width: 100%;">
+					<div class="bill-overlay">
 						<table style="width:100%;height:100%;">
 						  <tr>
 							 <td style="text-align: center; vertical-align: middle;">

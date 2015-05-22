@@ -1,7 +1,7 @@
 <div class="container max_924">
 
 <%= render 'bills/top_banner_with_names' %>
-<h2>TOP TRENDING BILLS</h2>
+<h2 class="text-din">TOP TRENDING BILLS</h2>
 
 	<div class="row trending_bills" >
 		<% 
@@ -25,11 +25,11 @@
 		<div class="col-md-12 text-center" style="padding-bottom: 50px;">
 			<div class="row" style="padding-bottom:20px;">
 			    <% if bill.image_url %>
-			    	<div class="col-md-12" id="main-bill" style="background-image: url('https:<%= bill.image_url %>');padding-left: 0px;padding-right: 0px;">
+			    	<div class="col-md-12 main-bill" style="background-image: url('https:<%= bill.image_url %>');padding-left: 0px;padding-right: 0px;">
 			    <% else %>
-					<div class="col-md-12" id="main-bill" style="background-image: url(<%= asset_path 'bill-standard-background.jpg' %>);padding-left: 0px;padding-right: 0px;">
+					<div class="col-md-12 main-bill" style="background-image: url(<%= asset_path 'bill-standard-background.jpg' %>);padding-left: 0px;padding-right: 0px;">
 				<% end %>
-					<div style="background-color: rgba(12, 11, 11, 0.24);height: 100%;width: 100%;">
+					<div class="bill-overlay">
 						<table style="width:100%;height:100%;">
 						  <tr>
 							 <td style="text-align: center; vertical-align: middle;">
@@ -43,6 +43,49 @@
 			</div>
 
 
+			<div class="row" style="margin-bottom: 20px;">
+				<div class="col-sm-12 main-bill-arguments" style="padding-left:0;padding-right:0;">
+					<table>
+						<tr>
+							<td>
+								<div class="panel panel-bills-slider">
+									<div class="panel-body">
+										<h2 class="header-argument-for text-center">ARGUMENT FOR</h2>
+										<div class="text-left">
+											<%= bill.support.html_safe %>
+										</div>
+									</div>
+								</div><!--.panel -->
+							</td><td style="width:30px;">
+							</td><td>
+								<div class="panel panel-bills-slider">
+									<div class="panel-body">
+										<h2 class="header-argument-against text-center">ARGUMENT AGAINST</h2>
+										<div class="text-left">
+											<%= bill.opposition.html_safe %>
+										</div>
+									</div>
+								</div><!--.panel -->
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div class="vote-button-yes">
+									<%= render :partial => 'bills/vote_yes_form', :locals => { :bill => bill.id, :favor => @for } %>
+								</div>
+							</td><td>
+							</td><td>
+								<div class="vote-button-no">
+									<%= render :partial => 'bills/vote_no_form', :locals => { :bill => bill.id, :against => @against } %>
+								</div>
+							</tr>
+						</tr>
+					</table>
+				</div>
+			</div>
+			
+			<% if false %>
+			<!-- original, in case designer changes his mind -->
 			<div class="row" style="margin-bottom: 20px;">
 				<div class="col-sm-6 main-bill-arguments  arguments-left">
 					<div class="panel panel-bills-slider">
@@ -72,6 +115,8 @@
 
 				</div>
 			</div>
+			<% end %>
+
 
 		</div>
 		<% end %>
@@ -79,6 +124,7 @@
 	</div>
 
 
+<h2 class="text-din padding_bottom_20">OTHER BILLS</h2>
 
 <div style="padding-bottom:60px;">
 
