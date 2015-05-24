@@ -1,14 +1,14 @@
 <footer class="footer-full grey">
-	<div class="container" style="max-width:952px;height:220px;”>
+	<div class="container" style="padding-bottom:20px;">
 
 
 			<div class="row">
-				<div class="col-sm-8" style="padding-left:0;padding-right:0;">
+				<div class="col-sm-9" style="padding-left:0;padding-right:0;">
 					<div style="margin-bottom: 10px;border-bottom: 1px solid #bebebe;">
 						<h2 class="footer-content" style="font-size:12px;">ISSUES</h2>
 					</div>
 					<div class="row footer-content footer-issues" style="">
-						<div class="col-sm-3">
+						<div class="col-sm-3" style="width:auto;">
 							<% 
 								if @first_issue_group.any?
 								@first_issue_group.each do |issue|
@@ -17,7 +17,7 @@
 							<% end %>
 							<% end %>
 						</div>
-						<div class="col-sm-3">
+						<div class="col-sm-3" style="width:auto;">
 							<% 
 								if @second_issue_group.any?
 								@second_issue_group.each do |issue|
@@ -26,7 +26,7 @@
 							<% end %>
 							<% end %>
 						</div>
-						<div class="col-sm-3">
+						<div class="col-sm-3" style="width:auto;">
 							<% 
 								if @third_issue_group.any?
 								@third_issue_group.each do |issue|
@@ -35,7 +35,7 @@
 							<% end %>
 							<% end %>
 						</div>
-						<div class="col-sm-3">
+						<div class="col-sm-3" style="width:auto;">
 							<% 
 								if @fourth_issue_group.any?
 								@fourth_issue_group.each do |issue|
@@ -57,7 +57,7 @@
 						<p><a href="<%= jobs_path %>">Jobs</a></p>
 					</div>
 				</div>
-				<div class="col-sm-3 text-right" style="padding-left:0;padding-right:0;">
+				<div class="col-sm-2 text-right" style="padding-left:0;padding-right:0;">
 					<div style="margin-bottom: 10px;border-bottom: 1px solid #bebebe;">
 						<h2 class="footer-content" style="font-size:12px;">
 							<a href="https://www.facebook.com/whipuk" target="_blank" style="color:#8a8a8a;display:inline;"><i class="fa fa-facebook" style=""></i></a>
@@ -66,7 +66,7 @@
 						</h2>
 					</div>
 					<div style="color:#666;font-size:11px;line-height:11px;">
-						<div class="col-sm-6 col-sm-offset-6 text-left" >
+						<div class="col-sm-7 col-sm-offset-5 text-left" >
 							<p><a href="<%= privacy_path %>">Privacy Policy</a></p>
 							<p>Team</p>
 							<p><a href="<%= terms_path %>">Terms of service</a></p>
