@@ -6,10 +6,11 @@
 #
 default: &default
   adapter: mysql2
-  pool: 5
+  pool: <%= ENV["MAX_THREADS"] %>
   timeout: 5000
   username: root
   password: xy7br345
+
 
 development:
   <<: *default
@@ -25,3 +26,4 @@ test:
 production:
   <<: *default
   database: whip_production
+  url:  <%= ENV['DATABASE_URL'] %>
