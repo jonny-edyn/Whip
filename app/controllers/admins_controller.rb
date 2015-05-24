@@ -25,7 +25,7 @@ class AdminsController < ApplicationController
 	end
 
 	def constituencies
-		@constituencies = Constituency.all
+		@constituencies = Constituency.all.order(name: :asc)
 		@setting = Setting.find_by(name: 'updating_constituency_list')
 	end
 

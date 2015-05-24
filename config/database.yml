@@ -6,7 +6,7 @@
 #
 default: &default
   adapter: mysql2
-  pool: <%= ENV["MAX_THREADS"] %>
+  pool: 10
   timeout: 5000
   username: root
   password: xy7br345
