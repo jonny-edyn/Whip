@@ -16,9 +16,20 @@ class ConstituenciesSet
 	if @constituencies.any?
 		@constituencies.each_with_index do |constituency_add, index|
 			if Constituency.where(web_id: constituency_add['constituency_web_id']).any?
-				Resque.enqueue(UpdateConstituency, constituency_add['name'], constituency_add['constituency_web_id'])
+				if false
+					Resque.enqueue(UpdateConstituency, constituency_add['name'], constituency_add['constituency_web_id'])
+				end
+				c = Constituency.find_by(web_id: constituency_add['constituency_web_id'])
+					c.name = constituency_add['name']
+				c.save
 			else
-				Resque.enqueue(AddConstituency, constituency_add['name'], constituency_add['constituency_web_id'])
+				if false
+					Resque.enqueue(AddConstituency, constituency_add['name'], constituency_add['constituency_web_id'])
+				end
+				c = Constituency.new
+					c.web_id = constituency_add['constituency_web_id']
+					c.name = constituency_add['name']
+				c.save
 			end
 		end
 	end
