@@ -15,7 +15,7 @@ on_worker_boot do
   
   # If you are using Redis but not Resque, change this
   if defined?(Resque)
-    Resque.redis = ENV["OPENREDIS_URL"] || "redis://127.0.0.1:6379"
+    Resque.redis = ENV["REDISCLOUD_URL"] || "redis://127.0.0.1:6379"
     Rails.logger.info('Connected to Redis')
   end
 end
