@@ -42,7 +42,7 @@
 				</div>
 			</div>
 
-
+			<% if false %>
 			<div class="row" style="margin-bottom: 20px;">
 				<div class="col-sm-12 main-bill-arguments" style="padding-left:0;padding-right:0;">
 					<table>
@@ -83,12 +83,12 @@
 					</table>
 				</div>
 			</div>
+			<% end %>
 			
-			<% if false %>
 			<!-- original, in case designer changes his mind -->
-			<div class="row" style="margin-bottom: 20px;">
+			<div class="row" style="">
 				<div class="col-sm-6 main-bill-arguments  arguments-left">
-					<div class="panel panel-bills-slider" style="box-shadow:none;">
+					<div class="panel panel-bills-slider" style="box-shadow:none;margin-bottom:0;">
 						<div class="panel-body">
 							<h2 class="header-argument-for text-center">ARGUMENT FOR</h2>
 							<div class="text-left">
@@ -96,12 +96,9 @@
 							</div>
 						</div>
 					</div><!--.panel -->
-					<div class="vote-button-yes">
-						<%= render :partial => 'bills/vote_yes_form', :locals => { :bill => bill.id, :favor => @for } %>
-					</div>
 				</div>
 				<div class="col-sm-6 main-bill-arguments arguments-right">
-					<div class="panel panel-bills-slider" style="box-shadow:none;">
+					<div class="panel panel-bills-slider" style="box-shadow:none;margin-bottom:0;">
 						<div class="panel-body">
 							<h2 class="header-argument-against text-center">ARGUMENT AGAINST</h2>
 							<div class="text-left">
@@ -109,13 +106,22 @@
 							</div>
 						</div>
 					</div><!--.panel -->
-					<div class="vote-button-no">
+				</div>
+			</div>
+			<div class="row " style="margin-bottom: 20px;">
+				<div class="col-sm-6 main-bill-votes arguments-left">
+					<div class="vote-button-yes vote-button-yes-main">
+						<%= render :partial => 'bills/vote_yes_form', :locals => { :bill => bill.id, :favor => @for } %>
+					</div>
+				</div>
+				<div class="col-sm-6 main-bill-votes arguments-right">
+					<div class="vote-button-no vote-button-no-main">
 						<%= render :partial => 'bills/vote_no_form', :locals => { :bill => bill.id, :against => @against } %>
 					</div>
 
 				</div>
 			</div>
-			<% end %>
+			
 
 
 		</div>

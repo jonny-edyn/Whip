@@ -303,7 +303,17 @@ img {
 }
 .main-bill-arguments {
 	font-family: 'dinRegular';
-	margin-bottom: 20px; border-bottom: 1px solid #c0c0c0; padding-bottom: 20px;
+	margin-bottom: 20px; 
+	/*
+	border-bottom: 1px solid #c0c0c0; 
+	padding-bottom: 20px;
+	*/
+}
+.main-bill-votes {
+	font-family: 'dinRegular';
+	margin-bottom: 20px; 
+	border-bottom: 1px solid #c0c0c0; 
+	padding-bottom: 20px;
 }
 .bill-overlay {
 	background-color: rgba(12, 11, 11, 0.24);
