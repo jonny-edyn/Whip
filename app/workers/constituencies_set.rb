@@ -24,7 +24,4 @@ class ConstituenciesSet
 	end
 
   end
-
-    
-
 end
