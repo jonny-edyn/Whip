@@ -281,16 +281,18 @@ img {
 
 .main-bill {
 	text-align: center;
-	background-position: center top;
-	background-repeat: no-repeat;
 	background-color: #535b64;
 	border-radius: 12px;
 	-webkit-border-radius: 12px;
 	-webkit-box-shadow: 3px 3px 6px 3px rgba(0,0,0,0.1);
 	-moz-box-shadow: 3px 3px 6px 3px rgba(0,0,0,0.1);
 	box-shadow: 3px 3px 6px 3px rgba(0,0,0,0.1);
-	padding-left: 0px;padding-right: 0px;background-position: center center;background-repeat: no-repeat;background-size: cover;
-	/* need to change this */
+	padding-left: 0px !important;
+	padding-right: 0px !important;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	/* need to change this? */
 	height: 309px;
 	width: 100%;
 	position: relative;
