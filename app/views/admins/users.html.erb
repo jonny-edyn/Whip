@@ -6,11 +6,13 @@
 			</div>
 			<div class="col-md-12">
 				<% if @users.any? %>
+				<ul class="list-group">
 					<% @users.each do |user| %>
-						<div class="form-group">
+						<li class="list-group-item">
 						<%= user.email %>
-						</div>
+						</li>
 					<% end %>
+				</ul>
 				<% end %>
 			</div>
 		</div>
