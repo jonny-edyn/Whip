@@ -35,7 +35,7 @@ class AdminsController < ApplicationController
 	end
 
 	def mps
-		@mps = Mp.all
+		@mps = Mp.all.order(name: :asc)
 		@setting = Setting.find_by(name: 'updating_mp_list')
 	end
 
