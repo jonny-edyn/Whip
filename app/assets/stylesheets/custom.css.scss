@@ -289,7 +289,11 @@ img {
 	-webkit-box-shadow: 3px 3px 6px 3px rgba(0,0,0,0.1);
 	-moz-box-shadow: 3px 3px 6px 3px rgba(0,0,0,0.1);
 	box-shadow: 3px 3px 6px 3px rgba(0,0,0,0.1);
-	padding-left: 0px;padding-right: 0px;background-position: center center;background-repeat: no-repeat;background-size: cover;
+	padding-left: 0px !important;
+	padding-right: 0px !important;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
 	/* need to change this */
 	height: 309px;
 	width: 100%;
