@@ -7,6 +7,8 @@ class Bill < ActiveRecord::Base
 	has_many :bill_issues
 	has_many :issues, through: :bill_issues
 
+	has_many :media_links
+
 	scope :with_matching_issue, ->(name = params[:issue_name]) {joins(:issues).merge(Issue.equal_to(name))}
 
 	def self.import(file)

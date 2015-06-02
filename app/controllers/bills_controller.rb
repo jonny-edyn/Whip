@@ -95,6 +95,7 @@ class BillsController < ApplicationController
 
 	def show
 		@bill = Bill.find(params[:id])
+		@media_links = @bill.media_links
 		impressionist(@bill)
 		@issues = @bill.issues
 		@vote = current_user.votes.where(bill_id: @bill.id).first

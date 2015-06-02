@@ -50,12 +50,15 @@
 .terms_li {
   margin-left: 54px;
   padding-left: 30px;
+  padding-right: 30px;
+  text-align: justify
 }
 
 .terms_li_no_bullet {
-  margin-left: 54px;
   padding-left: 30px;
-  list-style: none;
+  list-style: outside none none;
+  padding-right: 30px;
+  text-align: justify;
 }
 
 .headers_padding {
@@ -67,6 +70,7 @@
   margin-bottom: 0;
   margin-top: 24px;
   margin-bottom: 6px;
+  padding-left: 30px;
 }
 
 //
@@ -305,7 +309,7 @@ img {
 }
 .main-bill-arguments {
 	font-family: 'dinRegular';
-	margin-bottom: 20px; 
+	margin-bottom: 0px; 
 	/*
 	border-bottom: 1px solid #c0c0c0; 
 	padding-bottom: 20px;
@@ -315,7 +319,7 @@ img {
 	font-family: 'dinRegular';
 	margin-bottom: 20px; 
 	border-bottom: 1px solid #c0c0c0; 
-	padding-bottom: 20px;
+	padding-bottom: 15px;
 }
 .bill-overlay {
 	background-color: rgba(12, 11, 11, 0.24);

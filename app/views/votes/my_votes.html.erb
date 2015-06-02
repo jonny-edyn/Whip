@@ -69,12 +69,12 @@
 							mp_vote = @mp.votes.where(bill_id: bill.id).first
 						 %>
 							<% if mp_vote.in_favor %>
-								<%= @mp.name.upcase %> VOTED YES
+								<p class="text-din-medium text-you-voted"><%= @mp.name.upcase %> VOTED <span class="text-vote-yes">YES</span></p>
 							<% else %>
-								<%= @mp.name.upcase %> VOTED YES
+								<p class="text-din-medium text-you-voted"><%= @mp.name.upcase %> VOTED <span class="text-vote-no">NO</span></p>
 							<% end %>
 						<% else %>
-							<%= @mp.name.upcase %> HAS NOT VOTED ON BILL
+							<p class="text-din-medium text-you-voted"><%= @mp.name.upcase %> HAS NOT VOTED ON BILL</p>
 						<% end %>
 					<% end %>
 				</div>
@@ -88,13 +88,13 @@
 					<table>
 						<tr>
 							<td class="myvotes-bill-progress-cell"  style="padding-top:5px;">
-								<div class="text-din text-center myvotes-bill-progress-title house_of_commons_div" style="<%= 'background-color:#DAD7D7;' if finder_name == 'house_of_commons_div' %>">
+								<div class="text-din text-center myvotes-bill-progress-title house_of_commons_div" style="<%= 'background-color:#DAD7D7;' if finder_name == 'house_of_commons_div' || finder_name == 'house_of_lords_div' || finder_name == 'royal_assent_div'%>">
 									HOUSE&nbsp;OF&nbsp;COMMONS
 								</div>
 							</td>
 							<td style="width:34px;"></td>
 							<td class="myvotes-bill-progress-cell"  style="padding-top:5px;">
-								<div class="text-din text-center myvotes-bill-progress-title house_of_lords_div" style="<%= 'background-color:#DAD7D7;' if finder_name == 'house_of_lords_div' %>">
+								<div class="text-din text-center myvotes-bill-progress-title house_of_lords_div" style="<%= 'background-color:#DAD7D7;' if finder_name == 'house_of_lords_div' || finder_name == 'royal_assent_div'%>">
 									HOUSE&nbsp;OF&nbsp;LORDS
 								</div>
 							</td>

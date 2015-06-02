@@ -23,7 +23,7 @@
 			#https://css-tricks.com/centering-in-the-unknown/
 		 %>
 		<div class="col-md-12 text-center" style="padding-bottom: 0px;">
-			<div class="row" style="padding-bottom:20px;">
+			<div class="row" style="padding-bottom:10px;">
 			    <% if bill.image_url %>
 			    	<div class="col-md-12 main-bill" style="background-image: url('https:<%= bill.image_url %>');padding-left: 0px;padding-right: 0px;">
 			    <% else %>
@@ -91,7 +91,7 @@
 					<div class="panel panel-bills-slider" style="box-shadow:none;margin-bottom:0;">
 						<div class="panel-body">
 							<h2 class="header-argument-for text-center">ARGUMENT FOR</h2>
-							<div class="text-left">
+							<div class="text-left" style="font-size:12px;">
 								<%= bill.support.html_safe %>
 							</div>
 						</div>
@@ -101,7 +101,7 @@
 					<div class="panel panel-bills-slider" style="box-shadow:none;margin-bottom:0;">
 						<div class="panel-body">
 							<h2 class="header-argument-against text-center">ARGUMENT AGAINST</h2>
-							<div class="text-left">
+							<div class="text-left" style="font-size:12px;">
 								<%= bill.opposition.html_safe %>
 							</div>
 						</div>

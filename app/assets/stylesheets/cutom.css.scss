@@ -7,6 +7,10 @@ ul.nav li.dropdown:hover > ul.dropdown-menu {
     margin: 0;
 }
 
+.navbar-nav > li > a {
+    letter-spacing: 2px;
+}
+
 html,body{
     height: 100%
 }

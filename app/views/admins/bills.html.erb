@@ -51,7 +51,7 @@
 				%>
 				<li class="list-group-item">
 					<div class="row">
-						<div class="col-md-8">
+						<div class="col-md-7">
 							<%= bill.simple_name.upcase %>
 							<div style="display:none;" id="bill_<%= bill.id %>_edit" class="edit_form">
 								<%= form_for bill do |f| %>
@@ -104,10 +104,49 @@
 									<%= submit_tag "Add Issues To Bills", :class => 'btn btn-default' %>
 								<% end %>
 							</div>
+
+
+
+							<div style="display:none;" id="bill_<%= bill.id %>_media_links" class="issues_form">
+								<h4>MEDIA LINKS</h4>
+								<% media_links = bill.media_links %>
+								<% if media_links.any? %>
+									<% media_links.each do |media_link| %>
+											<div class="row" style="padding-top: 10px;padding-bottom: 20px;border-bottom: 1px solid #C9C9C9;margin-bottom: 20px;">
+												<div class="col-md-7">
+													<%= media_link.web_url %>
+												</div>
+												<div class="col-md-5">
+													<%= form_for media_link, method: :delete, html: {style: "display:inline;"}  do |f|%>
+														<%# f.submit '<span class="glyphicon glyphicon-trash"></span> DELETE', style: "", :class=>'btn btn-sm btn-default' %>
+														<%= button_tag(type: 'submit', class: "btn btn-xs btn-default") do %>
+															<i class="glyphicon glyphicon-trash"></i> DELETE
+														<% end %>
+													<% end %>
+												</div>
+											</div>
+									<% end %>
+								<% end %>
+								<div class="row">
+									<div class="col-md-12">
+										<%= form_for(bill.media_links.build(bill_id: bill.id)) do |f| %>
+										  <div><%= f.hidden_field :bill_id %></div>
+										  <%= f.text_field :web_url, placeholder: "MEDIA LINK", style: "height: 34px;position: relative;top: 2px;width: 288px;" %>
+										  <%= f.submit "Add Media Link To Bill", :class => 'btn btn-default' %>
+										<% end %>
+									</div>
+								</div>
+							</div>
+
+
+
+
+
 						</div>
-						<div class="col-md-4"> 
+						<div class="col-md-5"> 
 							<a href="" id="<%= bill.id %>" class="show_edit btn btn-xs btn-default"><span class="glyphicon glyphicon-pencil"></span> EDIT</a>
 							<a href="" id="<%= bill.id %>" class="show_issues btn btn-xs btn-default"><span class="glyphicon glyphicon-plus-sign"></span> ISSUES</a>
+							<a href="" id="<%= bill.id %>" class="show_media_links btn btn-xs btn-default"><span class="glyphicon glyphicon-plus-sign"></span> MEDIA LINKS</a>
 							<%= form_for bill, method: :delete, html: {style: "display:inline;"}  do |f|%>
 								<%# f.submit '<span class="glyphicon glyphicon-trash"></span> DELETE', style: "", :class=>'btn btn-sm btn-default' %>
 								<%= button_tag(type: 'submit', class: "btn btn-xs btn-default") do %>
@@ -235,6 +274,22 @@ $(document).on('click','.show_issues',function(e){
 
 	var id = $(this).attr('id');
 	var fin = 'bill_' + id + '_issues'
+
+	if ( $('#' + fin).is(':visible') ) {
+		$('#' + fin).fadeOut();
+	} else {
+		$('.edit_form').css('display','none');
+		$('.issues_form').css('display','none');
+		$('#' + fin).fadeIn();
+	}
+});
+
+$(document).off('click','.show_media_links');
+$(document).on('click','.show_media_links',function(e){
+	e.preventDefault();
+
+	var id = $(this).attr('id');
+	var fin = 'bill_' + id + '_media_links'
 
 	if ( $('#' + fin).is(':visible') ) {
 		$('#' + fin).fadeOut();
