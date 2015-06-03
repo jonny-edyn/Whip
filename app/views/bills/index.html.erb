@@ -22,6 +22,7 @@
 			
 			#https://css-tricks.com/centering-in-the-unknown/
 		 %>
+		 
 		<div class="col-md-12 text-center" style="padding-bottom: 0px;">
 			<div class="row" style="padding-bottom:10px;">
 			    <% if bill.image_url %>
@@ -84,7 +85,7 @@
 				</div>
 			</div>
 			<% end %>
-			
+			<a href="<%= bill_path(bill) %>">
 			<!-- original, in case designer changes his mind -->
 			<div class="row" style="">
 				<div class="col-sm-6 main-bill-arguments  arguments-left">
@@ -108,6 +109,7 @@
 					</div><!--.panel -->
 				</div>
 			</div>
+			</a>
 			<div class="row " style="margin-bottom: 20px;">
 				<div class="col-sm-6 main-bill-votes arguments-left">
 					<div class="vote-button-yes vote-button-yes-main">
@@ -125,6 +127,7 @@
 
 
 		</div>
+
 		<% end %>
 		<% end %>
 	</div>
@@ -163,8 +166,9 @@
 			_align = "arguments-right"
 		end
 	 %>
+	 <a href="<%= bill_path(bill) %>">
 	<div class="col-sm-6 <%= _align %> text-center">
-		<div class="panel panel-bills">
+		<div class="panel panel-bills small-bill-highlight">
 			<div class="panel-body">
 				<div class="row" style="padding:20px;">
 					<% if bill.image_url %>
@@ -216,6 +220,7 @@
 		</div><!--.panel-->
 
 		</div><!-- .col-sm-6 -->
+		</a>
 		<% 
 			if index % 2 != 0 
 				%></div><%

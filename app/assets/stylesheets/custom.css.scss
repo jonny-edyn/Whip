@@ -152,6 +152,10 @@ img {
   max-height: 100%;
 }
 
+.small-bill-highlight:hover {
+	background-color: rgba(0, 0, 0, 0.08);
+}
+
 @media (max-width: 767px) {
   .hide_name {
 	 display:none;
