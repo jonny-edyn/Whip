@@ -26,6 +26,16 @@ class VotesController < ApplicationController
 	    
 	end
 
+	def change_vote_comment
+		@vote = Vote.find(params[:id])
+
+		if @vote.update_attributes(vote_params)
+			redirect_to :back
+		else
+			render 'static_pages/home'
+		end
+	end
+
 	def my_votes
 
 		unless user_signed_in?
@@ -35,5 +45,11 @@ class VotesController < ApplicationController
 		end
 		
 	end
+
+	private
+
+	  def vote_params
+	  	params.require(:vote).permit(:comment, :in_favor)
+	  end
 
 end

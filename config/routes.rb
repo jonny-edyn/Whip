@@ -65,7 +65,11 @@ Rails.application.routes.draw do
 
   get '/my_votes' => 'votes#my_votes'
 
-  resources :votes
+  resources :votes do
+    member do
+      patch :change_vote_comment
+    end
+  end
 
   resources :media_links
 

@@ -118,15 +118,18 @@
 					ROYAL ASSENT
 				</div>
 				-->
-				<div class="col-sm-6 myvotes-comment" style="min-height: 45px;">
-					<div class="text-din text-left" style="height:100%;padding-top:5px;">
+				<%= form_for vote, url: change_vote_comment_vote_path(vote.id) do |f| %>
+				<div class="col-sm-6 myvotes-comment" style="padding: 0px;min-height: 45px;border: medium none;">
+					<div class="text-din text-left" style="height: 100%;width: 100%;padding: 0px;min-height: 45px;">
 						<% if vote.comment != "" %>
-							<%= vote.comment %>
+							<%= f.text_area :comment, style:"padding-top: 8px;resize: none;width: 100%;height: 100%;padding-left: 10px;", class: "text-din text-left comment_field" %>
 						<% else %>
-							YOU HAVE NO COMMENT<br /><br />
+							<%= f.text_area :comment, placeholder: "YOU HAVE NO COMMENT", style:"padding-top: 8px;resize: none;width: 100%;height: 100%;padding-left: 10px;", class: "text-din text-left comment_field" %>
 						<% end %>
+						<%= f.submit "Change Comment", style: "position: absolute;right: 0px;height: 96%; display:none;", class: "hidden-comment-btn" %>
 					</div>
 				</div>
+				<% end %>
 			</div>
 
 		</div>
@@ -193,6 +196,25 @@ ready = function() {
 	  	
 
 	  });
+
+
+	$('.comment_field').off('focus');
+	$('.comment_field').on('focus', function(e){
+
+		var _this = $(this)
+		_this.siblings('.hidden-comment-btn').css('display','inline');
+		_this.siblings('.hidden-comment-btn').fadeIn();
+
+	});
+
+	$('.comment_field').off('focusout');
+	$('.comment_field').on('focusout', function(e){
+
+		var _this = $(this)
+		_this.siblings('.hidden-comment-btn').fadeOut();
+		_this.siblings('.hidden-comment-btn').css('display','inline');
+
+	});
 
 
 
