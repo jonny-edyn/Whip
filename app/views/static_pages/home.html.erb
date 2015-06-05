@@ -4,7 +4,7 @@
 
 <div class="viewport_size" style="position:relative;">
 
-	<div class="row top_form_padding" style="text-align: center;position: relative; top: 40%; transform: translateY(-60%);z-index:1;">
+	<div class="row top_form_padding" id="home_masthead">
 		<div class="col-sm-8" style="z-index: 10;">
 			<div id="masthead">
 				<% if _svg == true %>
@@ -63,7 +63,7 @@
 				<p class="headers headers_padding">RESEARCH</p>
 				<p class="text">Learn about the government bills that matter to you. We will break bills down into Layman's terms, providing you with a detailed summary. Read about the arguments for, arguments against, cost and potential impacts with links to additional resources.</p>
 			</div>
-			<div class="col-sm-12 col-xs-12 to_half" style="text-align:center;">
+			<div class="col-sm-12 col-xs-12 to_half text-center">
 				<p class="headers hide_name headers_padding">RESEARCH</p>
 				<% if _svg == true %>
 				<div class="image" style="width:107px;position:relative;margin: 0 auto;">
@@ -83,9 +83,9 @@
 
 <div class="row bottom_line_gray light_blue_hover hover_expand_left" id="infoVote" style="margin: 0;">
 	<!--<div class="col-md-12" style="padding-top: 50px;padding-bottom: 50px;padding-right: 30px;">-->
-	<div class="col-md-12" style="padding-top: 50px;padding-bottom: 50px;">
+	<div class="col-md-12 padding_top_50 padding_bottom_50">
 		<div class="row" style="align-items: center;">
-			<div class="col-sm-12 col-xs-12 to_half" style="text-align:center;">
+			<div class="col-sm-12 col-xs-12 to_half text-center">
 				<p class="headers hide_name headers_padding">VOTE</p>
 				<% if _svg == true %>
 				<div class="image" style="width:123px;position:relative;margin: 0 auto;">
@@ -108,13 +108,13 @@
 
 <div class="row bottom_line_gray light_pink_hover hover_expand_right" id="infoCompare" style="margin: 0;">
 	<!--<div class="col-md-12" style="padding-top: 50px;padding-bottom: 50px;padding-left: 30px;">-->
-	<div class="col-md-12" style="padding-top: 50px;padding-bottom: 50px;">
-		<div class="row" style="align-items: center;">
-			<div class="col-sm-6 hidden_half" style="text-align:left;">
+	<div class="col-md-12 padding_top_50 padding_bottom_50">
+		<div class="row align_center">
+			<div class="col-sm-6 hidden_half text-left">
 				<p class="headers headers_padding">COMPARE</p>
 				<p class="text">See how your vote compares with what your MP is actually doing. We log your vote and once your MP has voted you can see whether they are listening to you.</p>
 			</div>
-			<div class="col-sm-12 col-xs-12 to_half" style="text-align:center;">
+			<div class="col-sm-12 col-xs-12 to_half text-center">
 				<p class="headers hide_name headers_padding">COMPARE</p>
 				<% if _svg == true %>
 				<div class="image" style="width:126px;position:relative;margin: 0 auto;">
@@ -137,7 +137,7 @@
 	</div>
 </div>
 
-<div class="row" style="text-align:center;padding-top: 60px;">
+<div class="row text-center padding_top_60">
 	<div class="col-md-12">
 		<p class="headers">OUR GOAL</p>
 		<div class="row" style="padding-top: 26px; align-items: center;">
@@ -168,7 +168,7 @@
 				<% else %>
 				<img src="<%= image_path('icon-engage.png') %>" style="margin-bottom: 16px;" class="image" />
 				<% end %>
-				<p class="headers prelaunch_text_engage" style="font-size:12px;padding-bottom:20px;">ENGAGE</p>
+				<p class="headers prelaunch_text_engage padding_bottom_20 font_size_12">ENGAGE</p>
 				<div class="visible-xs-block">
 					<p>Whip is a platform where people can easily participate and become involved in politics.</p>
 				</div>
@@ -241,7 +241,7 @@
 				<% else %>
 				<img src="<%= image_path('icon-empower.png') %>" style="margin-bottom: 16px;" class="image" />
 				<% end %>
-				<p class="headers prelaunch_text_engage" style="font-size:12px;padding-bottom:20px;">EMPOWER</p>
+				<p class="headers prelaunch_text_engage font_size_12 padding_bottom_20">EMPOWER</p>
 				<div class="visible-xs-block">
 					<p>Whip is revolutionizing the way we connect with and influence our government.</p>
 				</div>

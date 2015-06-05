@@ -38,7 +38,7 @@ class EmailNewMailingListUser
 	   }  
 	 ],  
 	 :html=>"<html>
-	  <div style='text-align:center; border-bottom: #d2d2d2 1px solid; width:100%;'>
+	  <div class='text-center' style='border-bottom: #d2d2d2 1px solid; width:100%;'>
 	  	<img style='width:35%;' src='http://www.whip.org.uk/assets/terms_image-9b756049cc502f946529767179cec2f3.png' alt='My image' />
 	  </div>
 	  <div style='width:95%;'>
@@ -59,13 +59,13 @@ class EmailNewMailingListUser
 		<p>The Whip Team</p>
 	  </div>
 
-	  <div style='text-align:center; width:100%;margin-top:40px;'>
+	  <div class='text-center' style='width:100%;margin-top:40px;'>
 	  	<img style='width:35%;' src='http://www.whip.org.uk/assets/bottom_of_email_logo-8d574e6e6f6a05c17b108297719e75b1.png' alt='My image' />
 	  </div>
 
 
 
-	 <div style='text-align:center; width:100%;'>
+	 <div class='text-center' style='twidth:100%;'>
 	 	<div style='width: auto;display:inline-block;padding: 10px;'>
 			<a href='https://www.facebook.com/whipuk' target='_blank'><img src='http://www.whip.org.uk/assets/fb_icon-77e79838462dfb06153ec7dba9dd1301.png'></a>
 		</div>
@@ -86,7 +86,7 @@ class EmailNewMailingListUser
 
 
 
-	  <div style='text-align:center; width:100%;'>
+	  <div class='text-center' style='width:100%;'>
 	  	<img style='width:35%;' src='http://www.whip.org.uk/assets/bottom_of_email_address-94f5a19f70f2e0cacd03dac6700d05e8.png' alt='My image' />
 	  </div>
 
