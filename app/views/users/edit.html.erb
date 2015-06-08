@@ -136,7 +136,7 @@
           <%= f.text_field :phone, :class => 'form-control text-din', placeholder: "PHONE (OPTIONAL)"  %>
         </div>
         <h4 class="text-din">PUBLIC PROFILE</h4>
-        <%= f.label :allow_profile_view, "ALLOW OTHERS TO VIEW YOUR PROFILE?", style: "font-family: dinRegular;font-size: 12px;font-weight: normal;" %>
+        <%= f.label :allow_profile_view, "MAKE YOUR PROFILE PRIVATE?", style: "font-family: dinRegular;font-size: 12px;font-weight: normal;" %>
         <%= f.check_box :allow_profile_view %>
         <p style="font-family: dinRegular;font-size: 12px;font-weight: normal;">LINK TO YOUR PROFILE: www.whip.org.uk/users/<%= current_user.id %></p>
         <div class="action_container clearfix">

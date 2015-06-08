@@ -137,7 +137,7 @@ class UsersController < ApplicationController
 
     def profile_action
       @user = User.find(params[:id])
-      unless @user.allow_profile_view
+      if @user.allow_profile_view
         redirect_to bills_path
       end
     end

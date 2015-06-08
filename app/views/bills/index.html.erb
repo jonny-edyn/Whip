@@ -92,7 +92,7 @@
 					<div class="panel panel-bills-slider" style="box-shadow:none;margin-bottom:0;">
 						<div class="panel-body">
 							<h2 class="header-argument-for text-center">ARGUMENT FOR</h2>
-							<div class="text-left" style="font-size:12px;">
+							<div class="text-left" style="">
 								<%= bill.support.html_safe %>
 							</div>
 						</div>
@@ -102,7 +102,7 @@
 					<div class="panel panel-bills-slider" style="box-shadow:none;margin-bottom:0;">
 						<div class="panel-body">
 							<h2 class="header-argument-against text-center">ARGUMENT AGAINST</h2>
-							<div class="text-left" style="font-size:12px;">
+							<div class="text-left" style="">
 								<%= bill.opposition.html_safe %>
 							</div>
 						</div>
@@ -170,16 +170,16 @@
 	<div class="col-sm-6 <%= _align %> text-center">
 		<div class="panel panel-bills small-bill-highlight">
 			<div class="panel-body">
-				<div class="row" style="padding:20px;">
+				<div class="row" style="padding:20px; padding-bottom:10px;">
 					<% if bill.image_url %>
-				    	<div class="col-md-12 common-bill" style="background-image: url('https:<%= bill.image_url %>')">
+				    	<div class="col-md-12 common-bill" style="background-image: url('https:<%= bill.image_url %>'); border-radius: 12px;">
 				    <% else %>
-						<div class="col-md-12 common-bill" style="background-image: url(<%= asset_path 'bill-standard-background.jpg' %>)">
+						<div class="col-md-12 common-bill" style="background-image: url(<%= asset_path 'bill-standard-background.jpg' %>); border-radius: 12px;">
 					<% end %>
 						<table style="width:100%;height:100%;">
 						  <tr>
 							 <td style="text-align: center; vertical-align: middle;">
-								<p class="common-bill-title text-uppercase"><%= link_to bill.simple_name, bill_path(bill) %></p>
+								<p class="common-bill-title text-uppercase" style="font-size: 18px;"><%= link_to bill.simple_name, bill_path(bill) %></p>
 								<p class="common-bill-title text-uppercase"><small><%= link_to "#{bill.official_name}" + "#{' - ' + bill.issues.first.name if bill.issues.first}", bill_path(bill) %></small></p>
 							 </td>
 						  </tr>
@@ -194,7 +194,7 @@
 						<%= bill.support.html_safe %>
 					</div>
 					<div class="col-md-12 text-center text-din" style="padding-bottom:22px;border-bottom: 1px solid #a1a1a1; ">
-						<h2 class="header-argument-against">ARGUMENT AGAINST</h2>
+						<h2 class="header-argument-against" style="margin-top:20px;">ARGUMENT AGAINST</h2>
 						<%= bill.opposition.html_safe %>
 					</div>
 				</div>
@@ -250,59 +250,11 @@ ready = function() {
 
 	  });
 
-	  $('body').off('click','.bill_voting');
-	  $('body').on('click','.bill_voting', function(e){
-	  	e.preventDefault();
-
-	  	var this_form = $(this);
-	  	var comment_section = $(this_form).children('.hidden_comment');
-
-	  	if ( this_form.hasClass('vote_yes') ) {
-	  		//$('#commentModal').addClass('modal-whip-vote-yes');
-	  		$('#myModalLabelVote').html('<span class="text-vote-yes">VOTED FOR</span>');
-	  	} else {
-	  		//$('#commentModal').addClass('modal-whip-vote-no');
-	  		$('#myModalLabelVote').html('<span class="text-vote-no">VOTED AGAINST</span>');
-	  	}
-
-	  	comment_section.val('testing');
-	  	
-	  	$('#commentModal').modal('show');
-
-	  	$('#commentModal').on('hide.bs.modal', function(e){
-	  		var comment_modal = $(this);
-	  		var new_comment = $(comment_modal).find('#content').val();
-	  		comment_section.val(new_comment);
-	  		
-	  		this_form.trigger("submit.rails");
-	  	});
-
-	  	// Need to rework this still
-	  	// so far creates modal when vote btn is clicked
-	  	// and submits vote on closing of modal
-	  	// need to add right facing triangle action btn to 'submit' vote
-	  	// this will actually just hide comment box and text at top of modal
-	  	// actual submission happens on close of modal
-	  	// also need to have social share icons slide up / center in modal after other stuff is hidden
-
-	  	
-	  	$('#commentModal').off('click','#add_comment');
-	  	$('#commentModal').on('click','#add_comment',function(e){
-	  		var new_comment = $(this).siblings('#content').val();
-	  		comment_section.val(new_comment);
-	  		$('#vote-modal-comment').hide();
-	  		$('#vote-modal-social').fadeIn();
-	  		//$('#commentModal').modal('hide');
-	  		//this_form.trigger("submit.rails");
-	  	});
-	  	
-
-	  });
-
-
 
 };
 
 $(document).ready(ready);
 $(document).on('page:load', ready);
 </script>
+
+<%= render 'layouts/voting_modal' %>

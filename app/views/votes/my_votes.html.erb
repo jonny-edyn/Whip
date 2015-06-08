@@ -74,7 +74,7 @@
 								<p class="text-din-medium text-you-voted"><%= @mp.name.upcase %> VOTED <span class="text-vote-no">NO</span></p>
 							<% end %>
 						<% else %>
-							<p class="text-din-medium text-you-voted"><%= @mp.name.upcase %> HAS NOT VOTED ON BILL</p>
+							<p class="text-din-medium text-you-voted"><%= @mp.name.upcase %> HAS YET TO VOTE ON BILL</p>
 						<% end %>
 					<% end %>
 				</div>
@@ -148,56 +148,6 @@ var ready;
 ready = function() {
 
 
-	 $('body').off('click','.bill_voting');
-	  $('body').on('click','.bill_voting', function(e){
-	  	e.preventDefault();
-
-	  	var this_form = $(this);
-	  	var comment_section = $(this_form).children('.hidden_comment');
-
-	  	if ( this_form.hasClass('vote_yes') ) {
-	  		//$('#commentModal').addClass('modal-whip-vote-yes');
-	  		$('#myModalLabelVote').html('<span class="text-vote-yes">VOTED FOR</span>');
-	  	} else {
-	  		//$('#commentModal').addClass('modal-whip-vote-no');
-	  		$('#myModalLabelVote').html('<span class="text-vote-no">VOTED AGAINST</span>');
-	  	}
-
-	  	comment_section.val('testing');
-	  	
-	  	$('#commentModal').modal('show');
-
-	  	$('#commentModal').on('hide.bs.modal', function(e){
-	  		var comment_modal = $(this);
-	  		var new_comment = $(comment_modal).find('#content').val();
-	  		comment_section.val(new_comment);
-	  		
-	  		this_form.trigger("submit.rails");
-	  	});
-
-	  	// Need to rework this still
-	  	// so far creates modal when vote btn is clicked
-	  	// and submits vote on closing of modal
-	  	// need to add right facing triangle action btn to 'submit' vote
-	  	// this will actually just hide comment box and text at top of modal
-	  	// actual submission happens on close of modal
-	  	// also need to have social share icons slide up / center in modal after other stuff is hidden
-
-	  	
-	  	$('#commentModal').off('click','#add_comment');
-	  	$('#commentModal').on('click','#add_comment',function(e){
-	  		var new_comment = $(this).siblings('#content').val();
-	  		comment_section.val(new_comment);
-	  		$('#vote-modal-comment').hide();
-	  		$('#vote-modal-social').fadeIn();
-	  		//$('#commentModal').modal('hide');
-	  		//this_form.trigger("submit.rails");
-	  	});
-	  	
-
-	  });
-
-
 	$('.comment_field').off('focus');
 	$('.comment_field').on('focus', function(e){
 
@@ -223,3 +173,5 @@ ready = function() {
 $(document).ready(ready);
 $(document).on('page:load', ready);
 </script>
+
+<%= render 'layouts/voting_modal' %>

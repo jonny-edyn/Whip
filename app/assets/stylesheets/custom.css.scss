@@ -140,6 +140,7 @@ html,body{
 
 a {
   color: black;
+  font-family: "dinRegular";
 }
 
 a:hover {
@@ -153,7 +154,13 @@ img {
 }
 
 .small-bill-highlight:hover {
-	background-color: rgba(0, 0, 0, 0.08);
+	background-color: rgba(0, 0, 0, 0.04);
+}
+
+.top_banner_num_text {
+	font-size: 12px;
+	font-family: dinRegular;
+	padding-top: 2px;
 }
 
 @media (max-width: 767px) {
@@ -259,10 +266,14 @@ img {
 .header-argument-for {
 	color: #f58b8b;
 	font-family: dinRegular;
+	font-size: 26px;
+	margin-top:10px;
 }
 .header-argument-against {
 	color: #97d9ff;
 	font-family: dinRegular;
+	font-size: 26px;
+	margin-top:10px;
 }
 #masthead {
 	padding-top: 160px;
@@ -362,6 +373,10 @@ img {
 .common-bill-title a {
 	color:#fff;
 	font-weight: bold;
+}
+
+.common-bill-title {
+	font-family: "dinRegular";
 }
 
 .navbar-brand, .navbar-default .navbar-nav > li > a {
