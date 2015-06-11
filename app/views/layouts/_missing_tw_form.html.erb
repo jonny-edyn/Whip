@@ -1,0 +1,14 @@
+<div id="">
+	<p class="text-center text-din max_300 margin_0_auto" style="padding-bottom: 20px;">Tell your MP why they should have a Twitter account, and we will let them know for you.</p>
+	<%= form_tag send_mp_notification_tw_users_path, remote: true do %>
+	<div class="form-group">
+		<%= text_area_tag "content", "", placeholder: "YOUR COMMENT", class: 'form-control vote_comment_placeholder', style: "background-color:#eaeaea;" %>
+		<%# submit_tag "Add Comment", id: "add_comment" %>
+	</div>
+	<div class="form-group text-center ">
+		<%= button_tag(type: 'submit',  id: "", class: "btn btn-xs btn-outline btn-square btn-c9-border") do %>
+			<i class="">SEND</i>
+		<% end %>
+	</div>
+	<% end %>
+</div>

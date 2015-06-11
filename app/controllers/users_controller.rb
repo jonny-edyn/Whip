@@ -119,6 +119,20 @@ class UsersController < ApplicationController
   def following
     @users = current_user.followed_users
   end
+
+  def send_mp_notification_fb
+    Resque.enqueue(NotifyMpFb, params[:content], current_user.id)
+    respond_to do |format|
+      format.js {render :partial => 'close_notify_modal_fb.js.erb'}
+    end
+  end
+
+  def send_mp_notification_tw
+    Resque.enqueue(NotifyMpTw, params[:content], current_user.id)
+    respond_to do |format|
+      format.js {render :partial => 'close_notify_modal_tw.js.erb'}
+    end
+  end
   
   private
     def set_user

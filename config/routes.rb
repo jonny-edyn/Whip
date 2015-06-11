@@ -17,6 +17,8 @@ Rails.application.routes.draw do
       patch :update_info
       get :remove_twitter
       get :remove_facebook
+      post :send_mp_notification_fb
+      post :send_mp_notification_tw
     end
     member do
       post :add_post_code_join_constituency
