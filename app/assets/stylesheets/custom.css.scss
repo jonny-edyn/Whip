@@ -170,6 +170,19 @@ img {
 	padding-right: 15px;
 }
 
+.change_image_btn {
+	position: absolute;
+	bottom: 0px;
+	height: 20%;
+	width: 124px;
+	background-color: rgba(255, 255, 255, 0.49);
+	border: none;
+	color: white;
+	text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.6);
+	font-size: 16px;
+	font-family: dinRegular;
+}
+
 @media (max-width: 767px) {
   .hide_name {
 	 display:none;

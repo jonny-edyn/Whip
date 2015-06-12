@@ -18,6 +18,7 @@ class UsersController < ApplicationController
     @parties = Party.all
     @constituency = @user.constituency
     @mp = @constituency.mp if @constituency
+    @s3_direct_user_image = S3_BUCKET.presigned_post(key: "uploads/user_photos/#{SecureRandom.uuid}/${filename}", success_action_status: 201, acl: :public_read)
   end
 
   # PATCH/PUT /users/:id.:format
@@ -144,7 +145,7 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      accessible = [ :name, :email, :allow_profile_view, :bio, :fb_link, :tw_link, :insta_link, :youtube_link, :web_link, :street_addr, :city, :phone ] # extend with your own params
+      accessible = [ :name, :email, :allow_profile_view, :bio, :fb_link, :tw_link, :insta_link, :youtube_link, :web_link, :street_addr, :city, :phone, :picture_url ] # extend with your own params
       accessible << [ :password, :password_confirmation ] unless params[:user][:password].blank?
       params.require(:user).permit(accessible)
     end

@@ -12,9 +12,20 @@
     <div class="row">
         <div class="col-sm-4">
           <% if @user.picture_url %>
-            <img src="<%= @user.picture_url %>" style="height:141px;width:141px;background-color:#ef4747;">
+            <div style="height:141px;width:141px;background-color:#ef4747;">
+              <img src="<%= @user.picture_url %>" style="height:141px;width:141px;background-color:#ef4747;">
+              <%= form_for @user, url: update_info_users_path, html: {class: "user_image_form"} do |f| %>
+                <%= f.file_field :picture_url, style: "position: absolute;bottom: 0px;opacity: 0;z-index: 99999;cursor: pointer;width: 141px;" %>
+                <%= f.submit "Change Image", style: "", class: "change_image_btn" %>
+              <% end %>
+            </div>
           <% else %>
-            <div style="height:141px;width:124px;background-color:#ef4747;"></div>
+            <div style="height:141px;width:141px;background-color:#ef4747;">
+              <%= form_for @user, url: update_info_users_path, html: {class: "user_image_form"} do |f| %>
+                <%= f.file_field :picture_url, style: "position: absolute;bottom: 0px;opacity: 0;z-index: 99999;cursor: pointer;width: 141px;" %>
+                <%= f.submit "Change Image", style: "", class: "change_image_btn" %>
+              <% end %>
+            </div>
           <% end %>
         </div>
       <div class="col-sm-8" class="text-din">
@@ -183,6 +194,8 @@
 
 </div><!--.container max_924-->
 
+<%= render "users/aws_upload" %>
+
 <script type="text/javascript">
 function testPostCode () {
   var newPostCode = checkPostCode  (document.getElementById('postcode').value);
@@ -219,6 +232,18 @@ $('body').on('click','.add_user_to_party_link', function(e){
     $('.add_user_to_party_link#' + <%= @user.party_id %>).css({color: '#ef4747', border: '1px solid #333', padding: '10px 14px 7px'});
 <% end %>
 };
+
+$('body').on('click','.change_image_btn', function(e){
+  e.preventDefault();
+
+
+});
+
+$('body').on('change','#user_picture_url',function(e){
+  e.preventDefault();
+
+
+});
 
 
 
