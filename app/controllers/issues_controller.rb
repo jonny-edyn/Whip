@@ -76,6 +76,10 @@ class IssuesController < ApplicationController
 			end
 
 		end
+
+		@commons = Kaminari.paginate_array(@common).page(params[:page]).per(20)
+
+		
 	end
 
 	private

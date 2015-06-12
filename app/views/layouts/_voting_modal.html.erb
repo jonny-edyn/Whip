@@ -28,6 +28,7 @@ ready = function() {
 	  		var new_comment = $(comment_modal).find('#content').val();
 	  		comment_section.val(new_comment);
 	  		
+	  		ga('send', 'event', 'Users', 'Voted');
 	  		this_form.trigger("submit.rails");
 	  	});
 

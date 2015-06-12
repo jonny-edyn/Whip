@@ -6,17 +6,19 @@
 <script type="text/javascript">
 	$('body').on('click','#fb_share',function(e){
 		e.preventDefault();
+		ga('send', 'social', 'FB', 'share');
 
 		FB.ui(
 			 {
 			  method: 'feed',
-			  href: 'http://whip-production.herokuapp.com/',
+			  href: 'http://whip.org.uk',
 			  caption: 'I just voted on Whip!',
 			}, function(response){});
 	});
 
 	$('body').on('click','#tw_share',function(e){
 		e.preventDefault();
+		ga('send', 'social', 'TW', 'share');
 
 		$('.twitter-share-button').trigger('click');
 
