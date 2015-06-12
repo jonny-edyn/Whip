@@ -184,7 +184,7 @@
 
 				<div class="row" style="padding-bottom:80px;">
 					<div class="col-md-12 text-left  text-din">
-						<h2 class="text-din">ISSUES</h2>
+						<h2 class="text-din" style="padding-bottom: 10px;">ISSUES</h2>
 						<% @issues.each do |issue| %>
 							<a href="<%= issue_name_path(issue.name) %>" class="text-uppercase" style="display: inline; color:#666; border: 1px solid #a8a8a8; padding: 8px; margin-right: 23px;"><%= issue.name %></a>
 						<% end %>
