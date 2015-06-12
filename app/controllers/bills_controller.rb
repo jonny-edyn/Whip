@@ -85,8 +85,11 @@ class BillsController < ApplicationController
 
 		end
 
+		@commons = Kaminari.paginate_array(@common).page(params[:page]).per(20)
+
 		respond_to do |format|
 			format.html
+			format.js
 		    format.xls { send_data @bills.to_csv(col_sep: "\t") }
 		end
 
