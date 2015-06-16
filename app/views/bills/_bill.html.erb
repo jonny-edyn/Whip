@@ -27,7 +27,7 @@
 						<table style="width:100%;height:100%;">
 						  <tr>
 							 <td style="text-align: center; vertical-align: middle;">
-								<p class="common-bill-title text-uppercase" style="font-size: 18px;"><%= link_to bill.simple_name, bill_path(bill) %></p>
+								<p class="common-bill-title text-uppercase" style="font-size: 18px;padding-top: 22px;"><%= link_to bill.simple_name, bill_path(bill) %></p>
 								<p class="common-bill-title text-uppercase"><small><%= link_to "#{bill.official_name}" + "#{' - ' + bill.issues.first.name if bill.issues.first}", bill_path(bill) %></small></p>
 							 </td>
 						  </tr>

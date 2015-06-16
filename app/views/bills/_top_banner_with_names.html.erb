@@ -8,11 +8,11 @@
 				<div class="col-sm-12">
 					<% if current_user.picture_url %>
 						<div id="user-image" style="text-transform:uppercase;display:inline-block;vertical-align:top;padding-right:12px;">
-							<img src="<%= current_user.picture_url %>" style="height:65px;width:65px;background-color:#10b8b8;border:none;" />
+							<img src="<%= current_user.picture_url %>" style="height:65px;width:65px;background-color:#10b8b8;border:none;border-radius:50%;" />
 						</div>
 					<% else %>
 						<div id="user-image" style="text-transform:uppercase;display:inline-block;vertical-align:top;padding-right:12px;">
-							<img src="<%= image_path('blank.png') %>" style="height:65px;width:65px;background-color:#10b8b8;border:none;" />
+							<img src="<%= image_path('blank.png') %>" style="height:65px;width:65px;background-color:#10b8b8;border:none;border-radius:50%;" />
 						</div>
 					<% end %>
 					<div id="user-info" style="display:inline-block;">
@@ -109,7 +109,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-4" style="text-align: center;">
+		<div class="col-sm-4" style="text-align: center;border-bottom: 1px solid #C9C9C9;">
 			<img src="<%= image_path('terms-image-850.png') %>" class="width_100" style="height: 73px;width: 190px;">
 		</div>
 		<div class="col-sm-4 text-right">
@@ -153,7 +153,7 @@
 						</div><!-- #mp-statistics -->
 					</div><!-- #mp-info -->
 					<div id="mp-image" style="text-transform:uppercase;display:inline-block;vertical-align:top;padding-left:12px;">
-						<img src="<%= @mp.picture_url %>" style="height:65px;width:65px;background-color:#10b8b8;border:none;" />
+						<img src="<%= @mp.picture_url %>" style="height:65px;width:65px;background-color:#10b8b8;border:none;border-radius:50%;" />
 					</div>
 					<% end %>
 				</div>
