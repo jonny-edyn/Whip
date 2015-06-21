@@ -22,7 +22,7 @@ class NotifyMpTw
 	 I will be using Whip for all my political insights!",  
 	 :to=>[  
 	   {  
-	     :email=> "test@mps.com",  
+	     :email=> "#{voter.constituency.mp.email}",  
 	     :name=> "#{voter.constituency.mp.name}"  
 	   }  
 	 ],  
