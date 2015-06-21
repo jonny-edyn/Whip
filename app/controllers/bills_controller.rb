@@ -53,6 +53,8 @@ class BillsController < ApplicationController
 		count = []
 		@trending = []
 		@common = []
+		@failed = true if session[:failed_reg]
+		session[:failed_reg] = nil
 
 		if user_signed_in?
 			@bills_first.each do |bill_first|

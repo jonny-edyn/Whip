@@ -238,4 +238,8 @@
 		return this.href == window.location;
 	}).parent().addClass('active');
 
+	if (<%= @failed %>) {
+		$('#emailsignUpModal').modal('show');
+	}
+
 </script>
