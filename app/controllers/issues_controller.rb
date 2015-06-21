@@ -39,11 +39,23 @@ class IssuesController < ApplicationController
 	end
 
 	def find_issues
-		@bills = Bill.with_matching_issue(params[:issue_name])
+		@bills_first = Bill.with_matching_issue(params[:issue_name])
+		@bills = []
 		count = []
 		@trending = []
 		@common = []
 		@name = params[:issue_name]
+
+		if user_signed_in?
+			@bills_first.each do |bill_first|
+				@vote = current_user.votes.where(bill_id: bill_first.id).first
+				unless @vote
+					@bills << bill_first
+				end
+			end
+		else
+			@bills = @bills_first
+		end
 
 		if Setting.first.yes
 
@@ -79,7 +91,7 @@ class IssuesController < ApplicationController
 
 		@commons = Kaminari.paginate_array(@common).page(params[:page]).per(20)
 
-		
+
 	end
 
 	private

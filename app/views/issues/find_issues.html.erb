@@ -8,7 +8,7 @@
 			if @trending.any?
 			@trending.each do |bill|
 
-			@vote = current_user.votes.where(bill_id: bill.id).first
+			@vote = current_user.votes.where(bill_id: bill.id).first if user_signed_in?
 			@for = false
 			@against = false
 			if @vote && @vote.in_favor

@@ -48,10 +48,22 @@ class BillsController < ApplicationController
 	def index
 
 
-		@bills = Bill.all
+		@bills_first = Bill.all
+		@bills = []
 		count = []
 		@trending = []
 		@common = []
+
+		if user_signed_in?
+			@bills_first.each do |bill_first|
+				@vote = current_user.votes.where(bill_id: bill_first.id).first
+				unless @vote
+					@bills << bill_first
+				end
+			end
+		else
+			@bills = @bills_first
+		end
 
 		if Setting.first.yes
 

@@ -74,16 +74,34 @@
 	  </div>
 	</div>
 
-	<div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="signUpModalLabel" aria-hidden="true">
+	<div class="modal fade modal-whip-white" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="signUpModalLabel" aria-hidden="true">
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	      <div class="modal-header">
+	      	<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top:-45px;padding-right:15px;opacity:1;"><span aria-hidden="true"><img src="<%= image_path('btn-modal-close.png') %>" /></span></button>
 	        <h4 class="modal-title" id="myModalLabel">JOIN NOW</h4>
 	      </div>
 	      <div class="modal-body">
 	        <div id="flash_messages_3">
 	        </div>
 	        <%= render 'devise/registrations/new_for_modal' %>
+	        <br>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+	<div class="modal fade modal-whip-white" id="emailsignUpModal" tabindex="-1" role="dialog" aria-labelledby="emailsignUpModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	      	<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top:-45px;padding-right:15px;opacity:1;"><span aria-hidden="true"><img src="<%= image_path('btn-modal-close.png') %>" /></span></button>
+	        <h4 class="modal-title" id="myModalLabel">JOIN NOW</h4>
+	      </div>
+	      <div class="modal-body">
+	        <div id="flash_messages_3">
+	        </div>
+	        <%= render 'devise/registrations/email_new_for_modal' %>
 	        <br>
 	      </div>
 	    </div>

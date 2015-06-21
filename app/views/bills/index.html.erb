@@ -8,7 +8,7 @@
 			if @trending.any?
 			@trending.each do |bill|
 
-			@vote = current_user.votes.where(bill_id: bill.id).first
+			@vote = current_user.votes.where(bill_id: bill.id).first if user_signed_in?
 			@for = false
 			@against = false
 			if @vote && @vote.in_favor
@@ -72,12 +72,20 @@
 			<div class="row " style="margin-bottom: 20px;">
 				<div class="col-sm-6 main-bill-votes arguments-left">
 					<div class="vote-button-yes vote-button-yes-main">
-						<%= render :partial => 'bills/vote_yes_form', :locals => { :bill => bill.id, :favor => @for } %>
+						<% if user_signed_in? %>
+							<%= render :partial => 'bills/vote_yes_form', :locals => { :bill => bill.id, :favor => @for } %>
+						<% else %>
+							<a class="btn btn-vote-yes" href="#" data-toggle="modal" data-target="#loginModal">VOTE YES</a>
+						<% end %>
 					</div>
 				</div>
 				<div class="col-sm-6 main-bill-votes arguments-right">
 					<div class="vote-button-no vote-button-no-main">
-						<%= render :partial => 'bills/vote_no_form', :locals => { :bill => bill.id, :against => @against } %>
+						<% if user_signed_in? %>
+							<%= render :partial => 'bills/vote_no_form', :locals => { :bill => bill.id, :against => @against } %>
+						<% else %>
+							<a class="btn btn-vote-no" href="#" data-toggle="modal" data-target="#loginModal">VOTE NO</a>
+						<% end %>
 					</div>
 
 				</div>
