@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   layout :layout_by_resource
   before_action :set_issues
-  before_action :check_if_admin
 
 
   def layout_by_resource
