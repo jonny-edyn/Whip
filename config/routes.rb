@@ -19,6 +19,7 @@ Rails.application.routes.draw do
       get :remove_facebook
       post :send_mp_notification_fb
       post :send_mp_notification_tw
+      post :send_mp_email
     end
     member do
       post :add_post_code_join_constituency

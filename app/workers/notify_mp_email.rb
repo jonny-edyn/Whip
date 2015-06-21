@@ -1,4 +1,4 @@
-class NotifyMpTw
+class NotifyMpEmail
 
   @queue = :message_queue
 
@@ -10,9 +10,9 @@ class NotifyMpTw
     require 'mandrill'
 	mandrill = Mandrill::API.new "#{ENV['MANDRILL_APIKEY']}"
 	message = {  
-	 :subject=> "Whip User Requesting You Get Twitter",  
+	 :subject=> "Email From Whip User",  
 	 :from_name=> "#{user.name}",  
-	 :text=>"A user from Whip has requested you get Twitter
+	 :text=>"A user from Whip has sent you a message
 
 	 User Name: #{user.name}
 	 Contact Email: #{user.email}
@@ -27,7 +27,7 @@ class NotifyMpTw
 	   }  
 	 ],  
 	 :html=>"<html>
-	 <h2>A user from Whip has requested you get Twitter</h2><br>
+	 <h2>A user from Whip has sent you a message</h2><br>
 	 <p>User Name: #{user.name}</p>
 	 <p>Contact Email: #{user.email}</p><br>
 

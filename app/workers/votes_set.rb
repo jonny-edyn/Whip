@@ -23,13 +23,47 @@ class VotesSet
 
   	if @yes_votes.any?
 		@yes_votes.each do |name|
-			Resque.enqueue(VoteYes, name, bill_id)
+
+			new_name = name.gsub('rh', '').gsub(/\s+/, ' ')
+  			mp = Mp.find_by(voting_name: new_name)
+
+			if mp
+		  		unless mp.votes.where(bill_id: bill_id).any?
+					@vote = mp.votes.build
+						@vote.bill_id = bill_id
+						@vote.in_favor = true
+					@vote.save
+				else
+					@vote = mp.votes.find_by(bill_id: bill_id)
+						@vote.in_favor = true
+					@vote.save
+				end
+		  	end
+
 		end
 	end
 
 	if @no_votes.any?
 		@no_votes.each do |name|
-			Resque.enqueue(VoteNo, name, bill_id)
+
+
+			new_name = name.gsub('rh', '').gsub(/\s+/, ' ')
+		  	mp = Mp.find_by(voting_name: new_name)
+
+		  	if mp
+		  		unless mp.votes.where(bill_id: bill_id).any?
+					@vote = mp.votes.build
+						@vote.bill_id = bill_id
+						@vote.in_favor = false
+					@vote.save
+				else
+					@vote = mp.votes.find_by(bill_id: bill_id)
+						@vote.in_favor = false
+					@vote.save
+				end
+		  	end
+
+		  	
 		end
   	end
 

@@ -134,6 +134,13 @@ class UsersController < ApplicationController
       format.js {render :partial => 'close_notify_modal_tw.js.erb'}
     end
   end
+
+  def send_mp_email
+    Resque.enqueue(NotifyMpEmail, params[:content], current_user.id)
+    respond_to do |format|
+      format.js {render :partial => 'close_notify_modal_email.js.erb'}
+    end
+  end
   
   private
     def set_user

@@ -11,7 +11,7 @@ class NotifyMpFb
 	mandrill = Mandrill::API.new "#{ENV['MANDRILL_APIKEY']}"
 	message = {  
 	 :subject=> "Whip User Requesting You Get Facebook",  
-	 :from_name=> "#{voter.name}",  
+	 :from_name=> "#{user.name}",  
 	 :text=>"A user from Whip has requested you get Facebook
 
 	 User Name: #{user.name}
@@ -23,7 +23,7 @@ class NotifyMpFb
 	 :to=>[  
 	   {  
 	     :email=> "test@mps.com",  
-	     :name=> "My MP"  
+	     :name=> "#{voter.constituency.mp.name}"  
 	   }  
 	 ],  
 	 :html=>"<html>

@@ -26,6 +26,7 @@ class NewVoteMessage
 
 	 Voter Name: #{voter.name}
 	 Contact Email: #{voter.email}
+	 Voter Address: #{voter.street_addr} #{voter.city}, #{voter.post_code}
 
 	 Bill Name: #{bill.official_name}
 	 Vote: #{position_on_bill}
@@ -35,7 +36,7 @@ class NewVoteMessage
 	 :to=>[  
 	   {  
 	     :email=> "test@mps.com",  
-	     :name=> "My MP"  
+	     :name=> "#{voter.constituency.mp.name}"  
 	   }  
 	 ],  
 	 :html=>"<html>

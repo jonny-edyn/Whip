@@ -250,3 +250,37 @@ $('body').on('change','#user_picture_url',function(e){
 $(document).ready(ready);
 $(document).on('page:load', ready);
 </script>
+
+<script type="text/javascript">
+var ready;
+ready = function() {
+
+  $('body').off('click','#no_fb_modal');
+  $('body').on('click', '#no_fb_modal', function(e){
+    e.preventDefault();
+
+    $('#noFBModal').modal('show');
+
+  });
+
+  $('body').off('click','#no_tw_modal');
+  $('body').on('click', '#no_tw_modal', function(e){
+    e.preventDefault();
+
+    $('#noTWModal').modal('show');
+
+  });
+
+  $('body').off('click','#mp_email_modal');
+  $('body').on('click', '#mp_email_modal', function(e){
+    e.preventDefault();
+
+    $('#mpEmailModal').modal('show');
+
+  });
+
+};
+
+$(document).ready(ready);
+$(document).on('page:load', ready);
+</script>
