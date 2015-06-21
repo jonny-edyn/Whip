@@ -113,7 +113,7 @@ class BillsController < ApplicationController
 		@media_links = @bill.media_links
 		impressionist(@bill)
 		@issues = @bill.issues
-		@vote = current_user.votes.where(bill_id: @bill.id).first
+		@vote = current_user.votes.where(bill_id: @bill.id).first if user_signed_in?
 		@for = false
 		@against = false
 		if @vote && @vote.in_favor

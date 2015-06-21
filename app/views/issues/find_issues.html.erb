@@ -34,8 +34,16 @@
 						<table style="width:100%;height:100%;">
 						  <tr>
 							 <td style="text-align: center; vertical-align: middle;">
-								<h1><%= link_to bill.simple_name, bill_path(bill) %></h1>
-								<h3><%= link_to "#{bill.official_name}" + "#{' - ' + bill.issues.first.name if bill.issues.first}", bill_path(bill) %></h3>
+							 	<% if user_signed_in? %>
+									<h1><%= link_to bill.simple_name, bill_path(bill) %></h1>
+								<% else %>
+									<a class="" href="#" data-toggle="modal" data-target="#loginModal"><h1><%= bill.simple_name %></h1></a>
+								<% end %>
+								<% if user_signed_in? %>
+									<h3><%= link_to "#{bill.official_name}" + "#{' - ' + bill.issues.first.name if bill.issues.first}", bill_path(bill) %></h3>
+								<% else %>
+									<a class="" href="#" data-toggle="modal" data-target="#loginModal"><h3><%= "#{bill.official_name}" + "#{' - ' + bill.issues.first.name if bill.issues.first}" %></h3></a>
+								<% end %>
 							 </td>
 						  </tr>
 						</table>
@@ -44,7 +52,11 @@
 			</div>
 
 			
-			<a href="<%= bill_path(bill) %>">
+			<% if user_signed_in? %>
+				<a href="<%= bill_path(bill) %>">
+			<% else %>
+				<a class="" href="#" data-toggle="modal" data-target="#loginModal">
+			<% end %>
 			<!-- original, in case designer changes his mind -->
 			<div class="row" style="">
 				<div class="col-sm-6 main-bill-arguments  arguments-left">
