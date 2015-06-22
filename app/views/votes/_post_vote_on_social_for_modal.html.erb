@@ -1,7 +1,7 @@
 <div class="text-center" id="vote-modal-social">
 	<p class="text-din">SHARE YOUR VOTE</p>
 	<a href="" id="fb_share" class="text-muted"><i class="fa fa-facebook fa-2x"></i></a>
-	<a class="twitter popup text-muted" href="http://twitter.com/share?text=I%20just%20voted%20on%20Whip!%20Check%20it%20out%20at%0D%0A&url=http://whip-production.herokuapp.com/"><i class="fa fa-twitter fa-2x"></i></a>
+	<a class="twitter popup text-muted" href="http://twitter.com/share?text=I%20just%20voted%20on%20Whip!%20Check%20it%20out%20at%0D%0A&url=http://www.whip.org.uk/"><i class="fa fa-twitter fa-2x"></i></a>
 </div>
 <script type="text/javascript">
 	$('body').on('click','#fb_share',function(e){
@@ -10,7 +10,7 @@
 
 		FB.ui(
 			 {
-			  method: 'feed',
+			  method: 'share',
 			  href: 'http://whip.org.uk',
 			  caption: 'I just voted on Whip!',
 			}, function(response){});

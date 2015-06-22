@@ -37,11 +37,11 @@
 				<div class="col-md-6 text-left" style="padding-left:-15px;margin-left:-15px;">
 					<% if current_user.picture_url %>
 						<div id="user-image" style="text-transform:uppercase;display:inline-block;vertical-align:top;padding-right:12px;">
-							<img src="<%= current_user.picture_url %>" style="height:50px;width:50px;background-color:#10b8b8;border:none;" />
+							<img src="<%= current_user.picture_url %>" style="height:50px;width:50px;background-color:#10b8b8;border:none;border-radius: 50%;" />
 						</div>
 					<% else %>
 						<div id="user-image" style="text-transform:uppercase;display:inline-block;vertical-align:top;padding-right:12px;">
-							<img src="<%= image_path('blank.png') %>" style="height:50px;width:50px;background-color:#10b8b8;border:none;" />
+							<img src="<%= image_path('blank.png') %>" style="height:50px;width:50px;background-color:#10b8b8;border:none;border-radius: 50%;" />
 						</div>
 					<% end %>
 					<div style="display:inline-block;">
