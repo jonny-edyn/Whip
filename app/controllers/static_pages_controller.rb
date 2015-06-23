@@ -47,6 +47,10 @@ class StaticPagesController < ApplicationController
 		
 	end
 
+	def guidlines
+		
+	end
+
 	
 end
 
