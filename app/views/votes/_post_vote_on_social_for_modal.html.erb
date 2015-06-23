@@ -6,7 +6,7 @@
 <script type="text/javascript">
 	$('body').on('click','#fb_share',function(e){
 		e.preventDefault();
-		ga('send', 'social', 'FB', 'share');
+		ga('send', 'event', 'Social', 'FB', 'share');
 
 		FB.ui(
 			 {
@@ -18,7 +18,7 @@
 
 	$('body').on('click','#tw_share',function(e){
 		e.preventDefault();
-		ga('send', 'social', 'TW', 'share');
+		ga('send', 'event', 'Social', 'TW', 'share');
 
 		$('.twitter-share-button').trigger('click');
 

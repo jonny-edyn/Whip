@@ -47,7 +47,11 @@ class StaticPagesController < ApplicationController
 		
 	end
 
-	def guidlines
+	def guidelines
+		
+	end
+
+	def feedback
 		
 	end
 

@@ -85,7 +85,8 @@ Rails.application.routes.draw do
   get '/contact' => 'static_pages#contact'
   get '/about' => 'static_pages#about'
   get '/jobs' => 'static_pages#jobs'
-  get '/guidlines' => 'static_pages#guidlines'
+  get '/guidelines' => 'static_pages#guidelines'
+  get '/feedback' => 'static_pages#feedback'
 
   post 'mailing_list_request' => 'static_pages#mailing_list_request'
   #get '/prelaunch_landing_page' => 'static_pages#prelaunch_landing_page'
