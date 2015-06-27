@@ -6,14 +6,32 @@
 <script type="text/javascript">
 	$('body').on('click','#fb_share',function(e){
 		e.preventDefault();
+		var vote_text = $('#myModalLabelVote').text();
+		var needed_bill = $('.find_bill_id').text();
+		
+		$.ajax({
+		    type: "GET",
+		    url: "/bills/" + needed_bill,    
+		    dataType: "json",
+		    success: function(data){
+		      console.log(data);
+
+		      FB.ui(
+				 {
+				  method: 'feed',
+				  name: "Whip",
+				  link: 'http://whip.org.uk',
+				  description: "I just " + vote_text + data.official_name + ".",
+				  picture: data.image_url,
+				}, function(response){});
+
+
+		    }
+		  });
+
 		ga('send', 'event', 'Social', 'FB', 'share');
 
-		FB.ui(
-			 {
-			  method: 'share',
-			  href: 'http://whip.org.uk',
-			  caption: 'I just voted on Whip!',
-			}, function(response){});
+		
 	});
 
 	$('body').on('click','#tw_share',function(e){

@@ -1,5 +1,5 @@
 class BillsController < ApplicationController
-	before_action :set_idents, only: [:index]
+	before_action :set_idents, only: [:index, :show]
 	before_action :set_bill_count, only: [:index, :show]
 
 	def create
@@ -126,6 +126,12 @@ class BillsController < ApplicationController
 				@against = true
 			end
 		end
+
+		respond_to do |format|
+			format.html
+			format.json { render :json => @bill }
+		end
+
 	end
 
 	def add_issues

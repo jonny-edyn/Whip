@@ -8,6 +8,8 @@ ready = function() {
 
 	  	var this_form = $(this);
 	  	var comment_section = $(this_form).children('.hidden_comment');
+	  	var find_bill = $(this_form).find("#bill_id").val();
+
 
 	  	if ( this_form.hasClass('vote_yes') ) {
 	  		//$('#commentModal').addClass('modal-whip-vote-yes');
@@ -18,6 +20,8 @@ ready = function() {
 	  		$('#myModalLabelVote').html('<span class="text-vote-no">VOTED AGAINST</span>');
 	  		$('.vote_comment_placeholder').attr("placeholder", "YOUR COMMENT - WHY SHOULD OTHERS VOTE AGAINST?");
 	  	}
+
+	  	$('.find_bill_id').text(find_bill);
 
 	  	comment_section.val('testing');
 	  	

@@ -50,12 +50,18 @@ class User < ActiveRecord::Base
 
       # Create the user if it's a new registration
       if user.nil?
-        user = User.new(
-          name: auth.extra.raw_info.name,
-          picture_url: auth.info.image,
-          email: email ? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
-          password: Devise.friendly_token[0,20]
-        )
+        user = User.new
+          user.name = auth.extra.raw_info.name,
+          user.picture_url = auth.info.image,
+          user.email = email ? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
+          user.password = Devise.friendly_token[0,20]
+          if auth.provider == twitter
+            user.tw_link = auth.info.urls.twitter
+          end
+
+          if auth.provider == facebook
+            user.fb_link = auth.extra.raw_info.link
+          end
         user.save!
       end
     end
