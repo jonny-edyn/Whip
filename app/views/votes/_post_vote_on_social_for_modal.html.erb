@@ -16,6 +16,11 @@
 		    success: function(data){
 		      console.log(data);
 		      console.log(data.image_url);
+		      if (data.social_image_url) {
+		      	var right_image = data.social_image_url
+		      } else {
+		      	var right_image = data.image_url
+		      }
 
 		      FB.ui(
 				 {
@@ -23,7 +28,7 @@
 				  name: "WHIP",
 				  link: 'http://whip.org.uk',
 				  description: "I just " + vote_text + ": " + data.simple_name + ".",
-				  picture: 'https:' + data.social_image_url,
+				  picture: 'https:' + right_image,
 				}, function(response){});
 
 
