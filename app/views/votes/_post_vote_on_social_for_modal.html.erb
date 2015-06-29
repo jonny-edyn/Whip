@@ -11,7 +11,7 @@
 		
 		$.ajax({
 		    type: "GET",
-		    url: "/bills/" + needed_bill,    
+		    url: "/bills/" + needed_bill,
 		    dataType: "json",
 		    success: function(data){
 		      console.log(data);
@@ -20,10 +20,10 @@
 		      FB.ui(
 				 {
 				  method: 'feed',
-				  name: "Whip",
+				  name: "WHIP",
 				  link: 'http://whip.org.uk',
-				  description: "I just " + vote_text + " " + data.simple_name + ".",
-				  picture: 'https:' + data.image_url,
+				  description: "I just " + vote_text + ": " + data.simple_name + ".",
+				  picture: 'https:' + data.social_image_url,
 				}, function(response){});
 
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150602200928) do
+ActiveRecord::Schema.define(version: 20150629193211) do
 
   create_table "bill_issues", force: :cascade do |t|
     t.integer  "bill_id",    limit: 4
@@ -21,18 +21,19 @@ ActiveRecord::Schema.define(version: 20150602200928) do
   end
 
   create_table "bills", force: :cascade do |t|
-    t.string   "progress",      limit: 255
-    t.text     "meaning",       limit: 65535
-    t.text     "impact",        limit: 65535
-    t.text     "cost",          limit: 65535
-    t.boolean  "trending",      limit: 1,     default: false
-    t.string   "simple_name",   limit: 255
-    t.string   "official_name", limit: 255
-    t.text     "support",       limit: 65535
-    t.text     "opposition",    limit: 65535
-    t.datetime "created_at",                                  null: false
-    t.datetime "updated_at",                                  null: false
-    t.string   "image_url",     limit: 255
+    t.string   "progress",         limit: 255
+    t.text     "meaning",          limit: 65535
+    t.text     "impact",           limit: 65535
+    t.text     "cost",             limit: 65535
+    t.boolean  "trending",         limit: 1,     default: false
+    t.string   "simple_name",      limit: 255
+    t.string   "official_name",    limit: 255
+    t.text     "support",          limit: 65535
+    t.text     "opposition",       limit: 65535
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
+    t.string   "image_url",        limit: 255
+    t.string   "social_image_url", limit: 255
   end
 
   create_table "constituencies", force: :cascade do |t|
