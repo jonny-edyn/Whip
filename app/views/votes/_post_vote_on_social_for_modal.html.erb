@@ -1,7 +1,7 @@
 <div class="text-center" id="vote-modal-social">
 	<p class="text-din">SHARE YOUR VOTE</p>
 	<a href="" id="fb_share" class="text-muted"><i class="fa fa-facebook fa-2x"></i></a>
-	<a class="twitter popup text-muted" href="http://twitter.com/share?text=I%20just%20voted%20on%20Whip!%20Check%20it%20out%20at%0D%0A&url=http://www.whip.org.uk/"><i class="fa fa-twitter fa-2x"></i></a>
+	<a class="twitter popup tw_share text-muted" href="http://twitter.com/intent/tweet?text="><i class="fa fa-twitter fa-2x"></i></a>
 </div>
 <script type="text/javascript">
 	$('body').on('click','#fb_share',function(e){
@@ -32,31 +32,40 @@
 
 		ga('send', 'event', 'Social', 'FB', 'share');
 
-		
 	});
 
-	$('body').on('click','#tw_share',function(e){
-		e.preventDefault();
+	$('.tw_share').click(function(event) {
+		event.preventDefault();
 		ga('send', 'event', 'Social', 'TW', 'share');
+		var vote_text = $('#myModalLabelVote').text();
+		var needed_bill = $('.find_bill_id').text();
+		$.ajax({
+		    type: "GET",
+		    url: "/bills/" + needed_bill,    
+		    dataType: "json",
+		    success: function(data){
+		      console.log(data);
+		      console.log(data.image_url);
 
-		$('.twitter-share-button').trigger('click');
+		      var width  = 575,
+		        height = 400,
+		        left   = ($(window).width()  - width)  / 2,
+		        top    = ($(window).height() - height) / 2,
+		        url    = "http://twitter.com/intent/tweet?text=I just " + vote_text + " " + data.simple_name + " at&url=http://www.whip.org.uk/",
+		        opts   = 'status=1' +
+		                 ',width='  + width  +
+		                 ',height=' + height +
+		                 ',top='    + top    +
+		                 ',left='   + left;
+		    
+		    window.open(url, 'twitter', opts);
+		 
 
-	});
 
-	 $('.popup').click(function(event) {
-	    var width  = 575,
-	        height = 400,
-	        left   = ($(window).width()  - width)  / 2,
-	        top    = ($(window).height() - height) / 2,
-	        url    = this.href,
-	        opts   = 'status=1' +
-	                 ',width='  + width  +
-	                 ',height=' + height +
-	                 ',top='    + top    +
-	                 ',left='   + left;
-	    
-	    window.open(url, 'twitter', opts);
-	 
-	    return false;
+		    }
+		  });
 	  });
+
+	
+	    
 </script>

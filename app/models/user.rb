@@ -55,11 +55,11 @@ class User < ActiveRecord::Base
           user.picture_url = auth.info.image,
           user.email = email ? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
           user.password = Devise.friendly_token[0,20]
-          if auth.provider == twitter
+          if auth.provider == "twitter"
             user.tw_link = auth.info.urls.twitter
           end
 
-          if auth.provider == facebook
+          if auth.provider == "facebook"
             user.fb_link = auth.extra.raw_info.link
           end
         user.save!

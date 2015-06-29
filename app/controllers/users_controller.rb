@@ -141,6 +141,7 @@ class UsersController < ApplicationController
       format.js {render :partial => 'close_notify_modal_email.js.erb'}
     end
   end
+
   
   private
     def set_user
