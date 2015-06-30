@@ -18,9 +18,9 @@
 	  <meta property="og:url" content="<%= request.original_url %>"></meta>
 	  <meta property="og:image" content="https:<%= @bill.social_image_url || @bill.image_url %>"></meta>
 	  <meta property="og:description" content="<%= @bill.meaning %>"></meta>
+	  <meta property="og:title" content="<%= @bill.simple_name %>"></meta>
   <% end %>
 
-<meta property="og:title" content=""Regulate Marijuana Like Alcohol Act" - House Bill - Countable"></meta>
   <%= favicon_link_tag 'favicon.ico' %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
