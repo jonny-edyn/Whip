@@ -26,15 +26,10 @@
 		      var final_image = "https:" + right_image;
 
 		      FB.api(
-				  'me/objects/whip_uk:bill',
+				  'me/whip_uk:shared',
 				  'post',
 				  {
-				    og:url: right_url,
-				    og:title: data.simple_name,
-				    og:type: whip_uk:bill,
-				    og:image: final_image,
-				    og:description: data.meaning,
-				    fb:app_id: 962288367166716,
+				    bill: "http://samples.ogp.me/1025615397500679"
 				  },
 				  function(response) {
 				    // handle the response
