@@ -17,24 +17,21 @@
 		      console.log(data);
 		      console.log(data.image_url);
 		      if (data.social_image_url) {
-		      	var right_image = data.social_image_url;
+		      	var right_image = data.social_image_url
 		      } else {
-		      	var right_image = data.image_url;
+		      	var right_image = data.image_url
 		      }
 
-		      var right_url = "http://whip.org.uk/bills/" + data.id;
-		      var final_image = "https:" + right_image;
-
-		      FB.api(
-				  'me/whip_uk:shared',
-				  'post',
-				  {
-				    bill: "http://samples.ogp.me/1025615397500679"
-				  },
-				  function(response) {
-				    // handle the response
-				  }
-				);
+		      FB.ui(
+				 {
+				  method: 'feed',
+				  name: "WHIP",
+				  link: 'http://whip.org.uk',
+				  href: "https://www.facebook.com/whipuk",
+				  actions: [{ "name" : "Our Facebook Page", "link" : "https://www.facebook.com/whipuk"}],
+				  description: "I just " + vote_text + ": " + data.simple_name + ".",
+				  picture: 'https:' + right_image,
+				}, function(response){});
 
 
 		    }
