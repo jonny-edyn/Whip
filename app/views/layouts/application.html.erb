@@ -12,6 +12,15 @@
   <meta name="twitter:title" content="Whip: Parliament in your hands">
   <meta name="twitter:description" content="Learn about the government bills that matter to you, have your say on how your MP should vote and see whether they are listening to you.">
   <meta name="twitter:image" content="<%= image_path('terms-image-850.png') %>">
+  <% if params[:controller] == 'bills' && params[:action] == 'show' %>
+	  <meta property="fb:app_id" content="<%= ENV["FB_ID"] %>"></meta>
+	  <meta property="og:type" content="whip_uk:bill"></meta>
+	  <meta property="og:url" content="<%= request.original_url %>"></meta>
+	  <meta property="og:image" content="https:<%= @bill.social_image_url || @bill.image_url %>"></meta>
+	  <meta property="og:description" content="<%= @bill.meaning %>"></meta>
+  <% end %>
+
+<meta property="og:title" content=""Regulate Marijuana Like Alcohol Act" - House Bill - Countable"></meta>
   <%= favicon_link_tag 'favicon.ico' %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
