@@ -19,7 +19,7 @@
 	  <meta property="og:description" content="<%= @bill.meaning %>"></meta>
 	  <meta property="og:title" content="<%= @bill.simple_name %>"></meta>
   <% else %>
-  	  <meta property="og:image" content="https://www.whip.org.uk/assets/terms-image-850-8e4fe43c2d7eb15ac0d8189393877164.png"></meta>
+  	  <meta property="og:image" content="https:<%= Bill.last.image_url %>"></meta>
 	  <meta property="og:description" content="Learn about the government bills that matter to you, have your say on how your MP should vote and see whether they are listening to you."></meta>
   <% end %>
 
