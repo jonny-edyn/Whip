@@ -14,6 +14,7 @@
   <meta name="twitter:image" content="<%= image_path('terms-image-850.png') %>">
   <% if params[:controller] == 'bills' && params[:action] == 'show' %>
 	  <meta property="fb:app_id" content="<%= ENV["FB_ID"] %>"></meta>
+	  <meta property="og:type" content="whip_uk:bill"></meta>
 	  <meta property="og:url" content="<%= request.original_url %>"></meta>
 	  <meta property="og:image" content="https:<%= @bill.social_image_url || @bill.image_url %>"></meta>
 	  <meta property="og:description" content="<%= @bill.meaning %>"></meta>
