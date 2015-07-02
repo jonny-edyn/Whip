@@ -193,6 +193,18 @@
 	    </div>
 	  </div>
 	</div>
+
+	<div class="modal fade modal-whip-comment" id="acceptTermsModal" tabindex="-1" role="dialog" aria-labelledby="acceptTermsModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	      </div>
+	      <div class="modal-body">
+        	<%= render 'layouts/accept_terms_form' %>
+	      </div>
+	    </div>
+	  </div>
+	</div>
   
 	<div class="modal fade modal-alert modal-danger" id="warningModal" tabindex="-1" role="dialog" aria-labelledby="warningModal" aria-hidden="true">
 	  <div class="modal-dialog">
@@ -262,4 +274,44 @@
 		if (<%= @failed || false %>) {
 			$('#emailsignUpModal').modal('show');
 		};
+		var current_page_controller = '<%= params[:controller] %>';
+</script>
+
+
+<script type="text/javascript">
+
+var ready;
+ready = function() {
+	if (current_page_controller != "static_pages") {
+	<% if current_user %>
+
+		$.ajax({
+		    type: "GET",
+		    url: "/users/" + <%= current_user.id %> + "/edit",
+		    dataType: "json",
+		    success: function(data){
+		      console.log(data);
+		      
+		      if (!data.accepted_terms){
+					$('#acceptTermsModal').modal({
+					    backdrop: 'static',
+					    keyboard: false
+					});
+					$('#acceptTermsModal').modal('show');
+
+				}
+
+    		}
+
+		  });
+
+	<% end %>
+	
+	}
+
+};
+
+$(document).ready(ready);
+$(document).on('page:load', ready);
+
 </script>

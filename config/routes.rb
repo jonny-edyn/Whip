@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       post :send_mp_notification_fb
       post :send_mp_notification_tw
       post :send_mp_email
+      post :accepted_terms
     end
     member do
       post :add_post_code_join_constituency

@@ -19,6 +19,11 @@ class UsersController < ApplicationController
     @constituency = @user.constituency
     @mp = @constituency.mp if @constituency
     @s3_direct_user_image = S3_BUCKET.presigned_post(key: "uploads/user_photos/#{SecureRandom.uuid}/${filename}", success_action_status: 201, acl: :public_read)
+
+    respond_to do |format|
+      format.html
+      format.json { render :json => @user }
+    end
   end
 
   # PATCH/PUT /users/:id.:format
@@ -139,6 +144,16 @@ class UsersController < ApplicationController
     Resque.enqueue(NotifyMpEmail, params[:content], current_user.id)
     respond_to do |format|
       format.js {render :partial => 'close_notify_modal_email.js.erb'}
+    end
+  end
+
+  def accepted_terms
+    user = current_user
+      user.accepted_terms = true
+    user.save
+
+    respond_to do |format|
+      format.js {render :partial => 'close_notify_modal_terms.js.erb'}
     end
   end
 
