@@ -33,6 +33,7 @@
 							 <td style="text-align: center; vertical-align: middle;">
 								<p class="common-bill-title" style="font-size: 18px;padding-top: 22px;"><%= link_to bill.simple_name, bill_path(bill) %></p>
 								<p class="common-bill-title"><small><%= link_to "#{bill.official_name}" + "#{' - ' + bill.issues.first.name if bill.issues.first}", bill_path(bill) %></small></p>
+								<p><%= link_to "MORE INFO", bill_path(bill), class: "more_info" %></p>
 							 </td>
 						  </tr>
 						</table>

@@ -44,6 +44,7 @@
 								<% else %>
 									<a class="" href="#" data-toggle="modal" data-target="#loginModal"><h3><%= "#{bill.official_name}" + "#{' - ' + bill.issues.first.name if bill.issues.first}" %></h3></a>
 								<% end %>
+								<p><%= link_to "MORE INFO", bill_path(bill), class: "more_info" %></p>
 							 </td>
 						  </tr>
 						</table>
