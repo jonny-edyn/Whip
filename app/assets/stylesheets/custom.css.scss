@@ -200,13 +200,26 @@ img {
 
 @media (max-width: 480px) {
 	.extra_mp_padding {
-		padding-top:20px;
+		padding-top:30px;
 	}
 }
 
 @media (min-width: 481px) {
 	.extra_mp_padding {
 		
+	}
+}
+
+@media (max-width: 480px) {
+	.extra_social_padding {
+		text-align: center;
+	}
+}
+
+@media (min-width: 481px) {
+	.extra_social_padding {
+		padding-left:0;
+		text-align: center;
 	}
 }
 
