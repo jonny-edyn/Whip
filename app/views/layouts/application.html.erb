@@ -16,7 +16,7 @@
 	  <meta property="og:type" content="whip_uk:bill"></meta>
 	  <meta property="og:url" content="<%= request.original_url %>"></meta>
 	  <meta property="og:image" content="https:<%= @bill.social_image_url || @bill.image_url %>"></meta>
-	  <meta property="og:description" content="<%= @bill.meaning %>"></meta>
+	  <meta property="og:description" content="<%= @bill.meaning.gsub(/<p>/, "").gsub(/<\/p>/, "").gsub(/<br>/, "") %>"></meta>
 	  <meta property="og:title" content="<%= @bill.simple_name %>"></meta>
   <% else %>
   	  <meta property="og:image" content="https://s3-eu-west-1.amazonaws.com/whip/uploads/bill_photos/fb_logo.png"></meta>
