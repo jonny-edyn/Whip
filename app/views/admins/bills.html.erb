@@ -92,10 +92,18 @@
 										<%= f.select :progress, options_for_select([ ["HOUSE OF COMMONS","house_of_commons"], ["HOUSE OF LORDS","house_of_lords"],["ROYAL ASSENT","royal_assent"] ], bill.progress),{}, {:class=>'form-control'} %>
 									</div>
 									<div class="form-group">
+										<% if bill.image_url != "" %>
+											<p>Current Bill Image</p>
+											<img src="<%= bill.image_url %>">
+										<% end %>
 										<%= f.label :image_url %>
 										<%= f.file_field :image_url %>
 									</div>
 									<div class="form-group">
+										<% if bill.social_image_url != "" %>
+											<p>Current Social Image</p>
+											<img src="<%= bill.social_image_url %>">
+										<% end %>
 										<%= f.label :social_image_url %>
 										<%= f.file_field :social_image_url %>
 									</div>
