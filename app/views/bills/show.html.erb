@@ -81,7 +81,7 @@
 							<div class="col-sm-6 main-bill-arguments  arguments-left">
 								<div class="panel panel-bills-slider" style="box-shadow:none;margin-bottom:0;">
 									<div class="panel-body">
-										<h2 class="header-argument-for text-center">ARGUMENT FOR</h2>
+										<h2 class="header-argument-for text-center">ARGUMENTS FOR</h2>
 										<div class="text-left" style="font-size:14px;">
 											<%= @bill.support.html_safe %>
 										</div>
@@ -91,7 +91,7 @@
 							<div class="col-sm-6 main-bill-arguments arguments-right">
 								<div class="panel panel-bills-slider" style="box-shadow:none;margin-bottom:0;">
 									<div class="panel-body">
-										<h2 class="header-argument-against text-center">ARGUMENT AGAINST</h2>
+										<h2 class="header-argument-against text-center">ARGUMENTS AGAINST</h2>
 										<div class="text-left" style="font-size:14px;">
 											<%= @bill.opposition.html_safe %>
 										</div>
@@ -119,7 +119,7 @@
 					</div>
 				</div>
 				
-				<div class="row" style="" id="bill-progress-table" data-bill-progress='<%= @bill.progress %>'>
+				<div class="row" style="overflow: scroll;" id="bill-progress-table" data-bill-progress='<%= @bill.progress %>'>
 					<h2 class="text-din text-center" style="padding-bottom:20px;">BILL PROGRESS</h2>
 					<div id="bill-progress-bar">
 						<table style="margin: 0 auto;">
@@ -175,7 +175,7 @@
 						<div class="col-md-12 text-left text-din">
 							<h2 class="text-din">MEDIA LINKS</h2>
 							<% @media_links.each do |media_link| %>
-								<a href="<%= media_link.web_url %>" class="" style="" target="_blank"><%= media_link.web_url %></a>
+								<p>- <a href="<%= media_link.web_url %>" class="" style="" target="_blank"><%= media_link.web_url %></a></p>
 							<% end %>
 						</div>
 					</div>
