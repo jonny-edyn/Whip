@@ -275,6 +275,7 @@
 			$('#emailsignUpModal').modal('show');
 		};
 		var current_page_controller = '<%= params[:controller] %>';
+		var current_page_action = '<%= params[:action] %>';
 </script>
 
 
@@ -282,7 +283,7 @@
 
 var ready;
 ready = function() {
-	if (current_page_controller != "static_pages") {
+	if (current_page_controller != "static_pages" || current_page_action != "finish_signup") {
 	<% if current_user %>
 
 		$.ajax({
