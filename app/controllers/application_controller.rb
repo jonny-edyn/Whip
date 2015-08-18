@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   layout :layout_by_resource
   before_action :set_issues
+  before_action :check_email_format
 
 
   def layout_by_resource
@@ -50,6 +51,12 @@ class ApplicationController < ActionController::Base
       @second_issue_group = Issue.offset(4).first(4)
       @third_issue_group = Issue.offset(8).first(4)
       @fourth_issue_group = Issue.offset(12).first(4)
+    end
+
+    def check_email_format
+      if user_signed_in? && current_user.email =~ /\Achange@me/
+        redirect_to finish_signup_path(current_user)
+      end
     end
 
 end

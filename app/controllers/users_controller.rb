@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update, :destroy]
   before_action :set_idents, only: [:edit]
   before_action :profile_action, only: [:show]
+  skip_filter :check_email_format
   before_filter :authenticate_user!
 
   # GET /users/:id.:format
@@ -48,12 +49,12 @@ class UsersController < ApplicationController
       redirect_to edit_user_path(@user.id)
     else
     # authorize! :update, @user 
-      if request.patch? && params[:user] #&& params[:user][:email]
+      if request.patch? && params[:user] && params[:user][:email]
         if @user.update_attributes(user_params)
           sign_in(@user, bypass: true)
           redirect_to edit_user_path(@user.id), notice: 'Your profile was successfully updated.'
         else
-          flash[:notice] = "Email already taken!  If you already have an account, try logging in with either Facebook or Email."
+          flash[:notice] = "Email blank or already taken!  If you already have an account, try logging in with either Facebook or Email."
           @show_errors = true
         end
       end
