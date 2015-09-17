@@ -71,6 +71,7 @@ Rails.application.routes.draw do
 
   resources :votes do
     member do
+      patch :upvote
       patch :change_vote_comment
     end
   end

@@ -103,7 +103,14 @@
 				</div>
 			</div>
 			
+		<%
+			if bill.votes.any?
+				top_comment = []
+				top_comment[0] = bill.votes.order(comment_score: :desc).first 
+			end
+		%>
 
+		<%= render partial: "votes/comment", collection: top_comment, as: :vote %>
 
 		</div>
 

@@ -46,6 +46,30 @@ class VotesController < ApplicationController
 		
 	end
 
+	def upvote
+		@vote = Vote.find(params[:id])
+			@vote.comment_score += 1
+
+		if @vote.save
+			redirect_to :back
+		else
+			redirect_to :back
+		end
+
+	end
+
+	def update
+		@vote = Vote.find(params[:id])
+
+		
+		if @vote.update_attributes(vote_params)
+			redirect_to :back
+		else
+			redirect_to :back
+		end
+
+	end
+
 	private
 
 	  def vote_params

@@ -29,50 +29,6 @@
 						</div>
 
 
-						<% if false %>
-						<div class="row" style="margin-bottom: 20px;">
-							<div class="col-sm-12 main-bill-arguments" style="padding-left:0;padding-right:0;">
-								<table>
-									<tr>
-										<td>
-											<div class="panel panel-bills-slider" style="box-shadow:none;">
-												<div class="panel-body">
-													<h2 class="header-argument-for text-center">ARGUMENTS FOR</h2>
-													<div class="text-left">
-														<%= @bill.support.html_safe %>
-													</div>
-												</div>
-											</div><!--.panel -->
-										</td><td style="width:30px;">
-										</td><td>
-											<div class="panel panel-bills-slider" style="box-shadow:none;">
-												<div class="panel-body">
-													<h2 class="header-argument-against text-center">ARGUMENTS AGAINST</h2>
-													<div class="text-left">
-														<%= @bill.opposition.html_safe %>
-													</div>
-												</div>
-											</div><!--.panel -->
-										</td>
-									</tr>
-									<tr>
-										<td style="border-top: 1px solid #A1A1A1 !important; padding-top: 20px;">
-											<div class="vote-button-yes">
-												<%= render :partial => 'bills/vote_yes_form', :locals => { :bill => @bill.id, :favor => @for } %>
-											</div>
-										</td><td>
-										</td><td style="border-top: 1px solid #A1A1A1 !important; padding-top: 20px;">
-											<div class="vote-button-no">
-												<%= render :partial => 'bills/vote_no_form', :locals => { :bill => @bill.id, :against => @against } %>
-											</div>
-										</tr>
-									</tr>
-								</table>
-							</div>
-						</div>
-						<% end %>
-
-
 
 
 
@@ -112,84 +68,42 @@
 
 							</div>
 						</div>
-
-
-
-
 					</div>
 				</div>
+
+				<div class="row">
+					<div class="col-sm-12">
+						<h2 class="text-din" style="padding-bottom:20px;">TOP COMMENTS</h2>
+						<%= render partial: "votes/comment", collection: @votes_top_3, as: :vote %>
+					</div>
+				</div>
+
+				<!-- Nav tabs -->
+				  <ul class="nav nav-tabs" role="tablist">
+				    <li role="presentation" class="active"><a href="#bill_info" aria-controls="bill_info" role="tab" data-toggle="tab">BILL INFO</a></li>
+				    <li role="presentation"><a href="#community" aria-controls="community" role="tab" data-toggle="tab">COMMUNITY</a></li>
+				  </ul>
+
+				  <!-- Tab panes -->
+				  <div class="tab-content">
+				    <div role="tabpanel" class="tab-pane active" id="bill_info">
+				    	<%= render partial: "bills/bill_info" %>
+				    </div>
+				    <div role="tabpanel" class="tab-pane" id="community">
+				    	<% if user_signed_in? && @bill.votes.find_by(voteable: current_user) %>
+				    		<% user_vote = @bill.votes.find_by(voteable: current_user) %>
+
+				    		<%= form_for user_vote, url: vote_path(user_vote) do |f| %>
+				    			<%= f.text_area :comment %>
+				    			<%= f.submit %>
+				    		<% end %>
+							
+				    	<% end %>
+				    	<%= render partial: "votes/comment", collection: @votes, as: :vote %>
+				    </div>
+				  </div>
 				
-				<div class="row" style="overflow: scroll;" id="bill-progress-table" data-bill-progress='<%= @bill.progress %>'>
-					<h2 class="text-din text-center" style="padding-bottom:20px;">BILL PROGRESS</h2>
-					<div id="bill-progress-bar">
-						<table style="margin: 0 auto;">
-							<tr>
-								<td class="bill-progress-cell">
-									<div class="text-din text-center bill-progress-title house_of_commons_div house_of_lords_div royal_assent_div">
-										HOUSE&nbsp;OF&nbsp;COMMONS
-									</div>
-								</td>
-								<td style="width:34px;"></td>
-								<td class="bill-progress-cell">
-									<div class="text-din text-center bill-progress-title house_of_lords_div royal_assent_div">
-										HOUSE&nbsp;OF&nbsp;LORDS
-									</div>
-								</td>
-								<td style="width:34px;"></td>
-								<td class="bill-progress-cell">
-									<div class="text-din text-center bill-progress-title royal_assent_div">
-										ROYAL&nbsp;ASSENT
-									</div>
-								</td>
-							</tr>
-						</table>
-					</div>
-				</div>
-
-
-				<div class="row bill-details">
-					<div class="col-md-12 text-left text-din">
-						<h2 class="text-din">MEANING</h2>
-						<%= @bill.meaning.html_safe %>
-					</div>
-				</div>
-
-
-				<div class="row bill-details">
-					<div class="col-md-12 text-left text-din">
-						<h2 class="text-din">WHO DOES IT IMPACT?</h2>
-						<%= @bill.impact.html_safe %>
-					</div>
-				</div>
-
-
-				<div class="row bill-details" style="padding-bottom:40px;">
-					<div class="col-md-12 text-left text-din">
-						<h2 class="text-din">POTENTIAL COSTS</h2>
-						<%= @bill.cost.html_safe %>
-					</div>
-				</div>
-
-				<% if @media_links.any? %>
-					<div class="row bill-details" style="padding-bottom:40px;">
-						<div class="col-md-12 text-left text-din">
-							<h2 class="text-din">MEDIA LINKS</h2>
-							<% @media_links.each do |media_link| %>
-								<p style="word-wrap: break-word;">- <a href="<%= media_link.web_url %>" class="" style="" target="_blank"><%= media_link.web_url %></a></p>
-							<% end %>
-						</div>
-					</div>
-				<% end %>
-
-
-				<div class="row" style="padding-bottom:80px;">
-					<div class="col-md-12 text-left  text-din">
-						<h2 class="text-din" style="padding-bottom: 10px;">ISSUES</h2>
-						<% @issues.each do |issue| %>
-							<a href="<%= issue_name_path(issue.name) %>" class="text-uppercase" style="display: inline; color:#666; border: 1px solid #a8a8a8; padding: 8px; margin-right: 23px;"><%= issue.name %></a>
-						<% end %>
-					</div>
-				</div>
+				
 
 			</div>
 		</div>
