@@ -236,6 +236,36 @@ img {
 	font-family: dinRegular;
 }
 
+.upvote_btn {
+	background: transparent;
+	border: none;
+	color: rgb(151, 217, 255);
+	font-size: 12px;
+}
+
+.upvote_btn:hover {
+	background: transparent;
+	border: none;
+	color: rgb(151, 217, 255);
+	font-size: 12px;
+	text-decoration: underline;
+	font-weight: bold;
+}
+
+.edit_comment_btn {
+	background: transparent;
+	border: 1px solid #97d9ff;
+    color: #97d9ff;
+    font-size: 14px;
+}
+
+.edit_comment_btn:hover {
+	background: rgba(151, 217, 255, 0.24);
+	border: 1px solid #97d9ff;
+    color: #97d9ff;
+    font-size: 14px;
+}
+
 .alert {
 	padding: 0px;
 	margin-bottom: 0px;	
