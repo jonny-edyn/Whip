@@ -1,0 +1,6 @@
+var vote_id = <%= vote.id %>;
+var upvote_score = <%= vote.comment_score %>;
+console.log(vote_id);
+console.log(upvote_score);
+$("#vote_" + vote_id + "_div").hide();
+$("#vote_" + vote_id + "_score").text("- " + upvote_score + " upvotes");

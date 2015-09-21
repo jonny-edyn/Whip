@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150917191726) do
+ActiveRecord::Schema.define(version: 20150921163501) do
 
   create_table "bill_issues", force: :cascade do |t|
     t.integer  "bill_id",    limit: 4
@@ -34,6 +34,13 @@ ActiveRecord::Schema.define(version: 20150917191726) do
     t.datetime "updated_at",                                     null: false
     t.string   "image_url",        limit: 255
     t.string   "social_image_url", limit: 255
+  end
+
+  create_table "comment_votes", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.integer  "vote_id",    limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   create_table "constituencies", force: :cascade do |t|

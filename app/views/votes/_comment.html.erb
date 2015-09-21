@@ -14,7 +14,7 @@
 		<div style="text-transform:uppercase;padding-bottom:6px;font-family: 'dinRegular'; display:inline-block;">
 			<%= voter.name if voter %>
 		</div>
-		<div style="display: inline-block;font-family: 'dinRegular';color: rgb(153, 153, 153);">
+		<div style="display: inline-block;font-family: 'dinRegular';color: rgb(153, 153, 153);" id="vote_<%= vote.id %>_score">
 			- <%= vote.comment_score %> upvotes
 		</div>
 	</div>
@@ -23,15 +23,19 @@
 			<%= vote.comment if vote.comment != "" %>
 		</p>
 	</div>
-	<div class="col-sm-12" style="padding-left: 58px;">
+	<div class="col-sm-12" style="padding-left: 58px;" id="vote_<%= vote.id %>_div">
+
+		<% unless current_user.upvoted?(vote) %>
 		
-		<div style="display: inline-block;">
-			<% if user_signed_in? %>
-				<%= form_for vote, url: upvote_vote_path(vote) do |f| %>
-					<%= f.submit "UPVOTE", class: "upvote_btn" %>
+			<div style="display: inline-block;">
+				<% if user_signed_in? %>
+					<%= form_for vote, url: upvote_vote_path(vote), remote: true do |f| %>
+						<%= f.submit "UPVOTE", class: "upvote_btn" %>
+					<% end %>
 				<% end %>
-			<% end %>
-		</div>
+			</div>
+
+		<% end %>
 		
 	</div>
 </div>

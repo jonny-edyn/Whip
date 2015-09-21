@@ -51,7 +51,11 @@ class VotesController < ApplicationController
 			@vote.comment_score += 1
 
 		if @vote.save
-			redirect_to :back
+			current_user.upvote!(@vote)
+			respond_to do |format|
+				format.html {redirect_to :back}
+				format.js {render :partial => 'upvote_success.js.erb', :locals => { :vote => @vote }}
+			end
 		else
 			redirect_to :back
 		end

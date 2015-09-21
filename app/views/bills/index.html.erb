@@ -81,7 +81,7 @@
 				</div>
 			</div>
 			</a>
-			<div class="row " style="margin-bottom: 10px;">
+			<div class="row " style="margin-bottom: 0px;">
 				<div class="col-sm-6 main-bill-votes arguments-left">
 					<div class="vote-button-yes vote-button-yes-main">
 						<% if user_signed_in? %>
@@ -111,7 +111,6 @@
 		%>
 
 		<% if bill.votes.any? && top_comment.first.comment != "" %>
-			<h2 class="text-din" style="text-align: left; font-size: 24px; margin-top: 0px;">TOP BILL COMMENT</h2>
 			<%= render partial: "votes/comment", collection: top_comment, as: :vote %>
 		<% end %>
 		</div>

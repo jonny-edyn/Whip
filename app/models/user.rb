@@ -19,6 +19,8 @@ class User < ActiveRecord::Base
   belongs_to :party
   belongs_to :constituency
 
+  has_many :comment_votes
+
 
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable
@@ -87,6 +89,14 @@ class User < ActiveRecord::Base
 
   def vote!(other_user)
     votes.create!(followed_id: other_user.id)
+  end
+
+  def upvote!(comment)
+    comment_votes.create!(vote_id: comment.id)
+  end
+
+  def upvoted?(comment)
+    comment_votes.find_by(vote_id: comment.id)
   end
   
 end
