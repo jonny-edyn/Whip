@@ -105,14 +105,25 @@
 			
 		<%
 			if bill.votes.any?
-				top_comment = []
-				top_comment[0] = bill.votes.order(comment_score: :desc).first 
+				top_yes_comment = []
+				top_yes_comment[0] = bill.votes.where(in_favor: true).where("comment != ?", "").order(comment_score: :desc).first
+				top_no_comment = []
+				top_no_comment[0] = bill.votes.where(in_favor: false).where("comment != ?", "").order(comment_score: :desc).first
 			end
 		%>
-
-		<% if bill.votes.any? && top_comment.first.comment != "" %>
-			<%= render partial: "votes/comment", collection: top_comment, as: :vote %>
-		<% end %>
+			<div class="row">
+				<div class="col-sm-6">
+					<% if bill.votes.any? && top_yes_comment.any? && top_yes_comment.first.comment != "" %>
+						<%= render partial: "votes/comment", collection: top_yes_comment, as: :vote %>
+					<% end %>
+				</div>
+				<div class="col-sm-6">
+					<% if bill.votes.any? && top_no_comment.any? && top_no_comment.first.comment != "" %>
+						<%= render partial: "votes/comment", collection: top_no_comment, as: :vote %>
+					<% end %>
+				</div>
+			</div>
+		
 		</div>
 
 		<% end %>

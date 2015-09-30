@@ -71,19 +71,25 @@
 					</div>
 				</div>
 
-				<% if false %>
-				<div class="row">
-					<div class="col-sm-12">
-						<h2 class="text-din" style="padding-bottom:20px;">TOP COMMENTS</h2>
-						<%= render partial: "votes/comment", collection: @votes_top_3, as: :vote %>
+					<div class="row">
+						<div class="col-sm-6" style="">
+							<% if @bill.votes.any? && @votes_top_3_yes.any? %>
+								<%= render partial: "votes/comment", collection: @votes_top_3_yes, as: :vote %>
+							<% end %>
+						</div>
+						<div class="col-sm-6">
+							<% if @bill.votes.any? && @votes_top_3_no.any? %>
+								<%= render partial: "votes/comment", collection: @votes_top_3_no, as: :vote %>
+							<% end %>
+						</div>
 					</div>
-				</div>
-				<% end %>
+				
+
 
 				<!-- Nav tabs -->
 				  <ul class="nav nav-tabs" role="tablist" style="margin: 30px 0px;">
 				    <li role="presentation" class="active"><a href="#bill_info" aria-controls="bill_info" role="tab" data-toggle="tab" style="padding: 10px 40px;">BILL INFO</a></li>
-				    <li role="presentation"><a href="#community" aria-controls="community" role="tab" data-toggle="tab" style="padding: 10px 40px;">COMMENTS</a></li>
+				    <li role="presentation"><a href="#community" aria-controls="community" role="tab" data-toggle="tab" style="padding: 10px 40px;">OPINIONS</a></li>
 				  </ul>
 
 				  <!-- Tab panes -->
@@ -100,7 +106,7 @@
 					    		<% user_vote = @bill.votes.find_by(voteable: current_user) %>
 
 					    		<%= form_for user_vote, url: vote_path(user_vote) do |f| %>
-					    			<%= f.text_area :comment, style: "    width: 400px;height: 120px; resize: none; border: 1px solid #ddd; font-size: 14px; font-family: dinRegular;" %><br>
+					    			<%= f.text_area :comment, style: "    width: 400px;height: 120px; resize: none; border: 1px solid #ddd; font-size: 14px; font-family: dinRegular;padding: 8px;" %><br>
 					    			<%= f.submit "EDIT COMMENT", class: "edit_comment_btn" %>
 					    		<% end %>
 
