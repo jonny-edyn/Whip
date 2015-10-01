@@ -12,16 +12,16 @@
 		 %>
 		 <% if bill %>
 		<div class="col-md-12 text-center" style="padding-bottom: 50px;">
-			<div class="row" style="padding-bottom:20px;">
+			<div class="row" style="padding-bottom:20px;padding-left: 0;padding-right: 0;">
 				<!--<div class="col-md-12 text-center">
 					<%= link_to bill.simple_name, bill_path(bill) %>
 				</div>-->
 				<% if bill.image_url %>
-			    	<div class="col-md-12" id="main-bill" style="background-image: url('https:<%= bill.image_url %>');padding-left: 0px; padding-right: 0px;">
+			    	<div class="col-md-12 main-bill" style="background-image: url('https:<%= bill.image_url %>'); padding-left: 0px; padding-right: 0px;">
 			    <% else %>
-					<div class="col-md-12" id="main-bill" style="background-image: url(<%= asset_path 'bill-standard-background.jpg' %>);padding-left: 0px; padding-right: 0px;">
+					<div class="col-md-12 main-bill" style="background-image: url(<%= asset_path 'bill-standard-background.jpg' %>); padding-left: 0px; padding-right: 0px;">
 				<% end %>
-					<div style="background-color: rgba(12, 11, 11, 0.24);height: 100%;width: 100%;">
+					<div class="bill-overlay">
 						<table style="width:100%;height:100%;">
 						  <tr>
 							 <td style="text-align: center; vertical-align: middle;">
@@ -38,46 +38,47 @@
 				<div class="col-md-6 text-left" style="padding-left:-15px;margin-left:-15px;">
 					<% if current_user.picture_url %>
 						<div id="user-image" style="text-transform:uppercase;display:inline-block;vertical-align:top;padding-right:12px;">
-							<img src="<%= current_user.picture_url %>" style="height:50px;width:50px;background-color:#10b8b8;border:none;" />
+							<img src="<%= current_user.picture_url %>" style="height:50px;width:50px;background-color:#10b8b8;border:none;border-radius: 50%;" />
 						</div>
 					<% else %>
 						<div id="user-image" style="text-transform:uppercase;display:inline-block;vertical-align:top;padding-right:12px;">
-							<img src="<%= image_path('blank.png') %>" style="height:50px;width:50px;background-color:#10b8b8;border:none;" />
+							<img src="<%= image_path('blank.png') %>" style="height:50px;width:50px;background-color:#10b8b8;border:none;border-radius: 50%;" />
 						</div>
 					<% end %>
 					<div style="display:inline-block;">
 
 						<% if vote.in_favor %>
-							<p class="text-din-medium text-you-voted" style=""><%= @user.name.upcase %> VOTED <span class="text-vote-yes">YES</span></p>
+							<p class="text-din-medium text-you-voted" style="">YOU VOTED <span class="text-vote-yes">YES</span></p>
+							<div class="text-din text-change-vote">CHANGE VOTE TO <%= render 'bills/vote_no_short_form', bill: bill.id %></div>
 						<% else %>
-							<p class="text-din-medium text-you-voted"><%= @user.name.upcase %> VOTED <span class="text-vote-no">NO</span></p>
+							<p class="text-din-medium text-you-voted">YOU VOTED <span class="text-vote-no">NO</span></p>
+							<div class="text-din text-change-vote">CHANGE VOTE TO <%= render 'bills/vote_yes_short_form', bill: bill.id %></div>
+							
 						<% end %>
 				
 					</div>
 
 				</div>
 
-				<% if false %>
-					<div class="col-md-6 text-right">
+				<div class="col-md-6 text-right">
+					<% 
+						if current_user.constituency && current_user.constituency.mp
+						@mp = current_user.constituency.mp
+					%>
 						<% 
-							if current_user.constituency && current_user.constituency.mp
-							@mp = current_user.constituency.mp
-						%>
-							<% 
-								if @mp.votes.where(bill_id: bill.id).any?
-								mp_vote = @mp.votes.where(bill_id: bill.id).first
-							 %>
-								<% if mp_vote.in_favor %>
-									<%= @mp.name.upcase %> VOTED YES
-								<% else %>
-									<%= @mp.name.upcase %> VOTED YES
-								<% end %>
+							if @mp.votes.where(bill_id: bill.id).any?
+							mp_vote = @mp.votes.where(bill_id: bill.id).first
+						 %>
+							<% if mp_vote.in_favor %>
+								<p class="text-din-medium text-you-voted"><%= @mp.name.upcase %> VOTED <span class="text-vote-yes">YES</span></p>
 							<% else %>
-								<%= @mp.name.upcase %> HAS YET TO VOTE ON BILL
+								<p class="text-din-medium text-you-voted"><%= @mp.name.upcase %> VOTED <span class="text-vote-no">NO</span></p>
 							<% end %>
+						<% else %>
+							<p class="text-din-medium text-you-voted"><%= @mp.name.upcase %> HAS YET TO VOTE ON BILL</p>
 						<% end %>
-					</div>
-				<% end %>
+					<% end %>
+				</div>
 			</div>
 
 		
@@ -88,13 +89,13 @@
 					<table>
 						<tr>
 							<td class="myvotes-bill-progress-cell"  style="padding-top:5px;">
-								<div class="text-din text-center myvotes-bill-progress-title house_of_commons_div" style="<%= 'background-color:#DAD7D7;' if finder_name == 'house_of_commons_div' %>">
+								<div class="text-din text-center myvotes-bill-progress-title house_of_commons_div" style="<%= 'background-color:#DAD7D7;' if finder_name == 'house_of_commons_div' || finder_name == 'house_of_lords_div' || finder_name == 'royal_assent_div'%>">
 									HOUSE&nbsp;OF&nbsp;COMMONS
 								</div>
 							</td>
 							<td style="width:34px;"></td>
 							<td class="myvotes-bill-progress-cell"  style="padding-top:5px;">
-								<div class="text-din text-center myvotes-bill-progress-title house_of_lords_div" style="<%= 'background-color:#DAD7D7;' if finder_name == 'house_of_lords_div' %>">
+								<div class="text-din text-center myvotes-bill-progress-title house_of_lords_div" style="<%= 'background-color:#DAD7D7;' if finder_name == 'house_of_lords_div' || finder_name == 'royal_assent_div'%>">
 									HOUSE&nbsp;OF&nbsp;LORDS
 								</div>
 							</td>
@@ -118,15 +119,18 @@
 					ROYAL ASSENT
 				</div>
 				-->
-				<div class="col-sm-6 myvotes-comment" style="min-height:48px;">
-					<div class="text-din text-left" style="height:100%;padding-top:5px;">
+				<%= form_for vote, url: change_vote_comment_vote_path(vote.id) do |f| %>
+				<div class="col-sm-6 myvotes-comment" style="padding: 0px;min-height: 45px;border: medium none;">
+					<div class="text-din text-left" style="height: 100%;width: 100%;padding: 0px;min-height: 45px;">
 						<% if vote.comment != "" %>
-							<%= vote.comment %>
+							<%= f.text_area :comment, style:"padding-top: 8px;resize: none;width: 100%;height: 100%;padding-left: 10px;", class: "text-din text-left comment_field" %>
 						<% else %>
-							YOU HAVE NO COMMENT<br /><br />
+							<%= f.text_area :comment, placeholder: "YOU HAVE NO COMMENT", style:"padding-top: 8px;resize: none;width: 100%;height: 100%;padding-left: 10px;", class: "text-din text-left comment_field" %>
 						<% end %>
+						<%= f.submit "Change Comment", style: "position: absolute;right: 0px;height: 96%; display:none;", class: "hidden-comment-btn" %>
 					</div>
 				</div>
+				<% end %>
 			</div>
 
 		</div>
