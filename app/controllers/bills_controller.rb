@@ -116,7 +116,7 @@ class BillsController < ApplicationController
 		impressionist(@bill)
 		@issues = @bill.issues
 		@vote = current_user.votes.where(bill_id: @bill.id).first if user_signed_in?
-		@votes = @bill.votes.order(comment_score: :desc)
+		@votes = @bill.votes.order(comment_score: :desc).where("comment != ?", "")
 		@votes_top_3_yes = @bill.votes.where(in_favor: true).where("comment != ?", "").order(comment_score: :desc).first(3)
 		@votes_top_3_no = @bill.votes.where(in_favor: false).where("comment != ?", "").order(comment_score: :desc).first(3)
 		@for = false
