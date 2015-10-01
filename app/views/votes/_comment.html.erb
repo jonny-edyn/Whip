@@ -25,25 +25,23 @@
 		<div style="float:left;">
 			<div id="" style="text-transform:uppercase;margin-right:22px;width:50px;height:50px;border-radius:50%;border: 1px solid #c0c0c0;text-align:center;margin-left:5px;margin-top: 4px;">
 				<div class="" style="" id="vote_<%= vote.id %>_div">
-					<% unless current_user.upvoted?(vote) %>
-						<div style="display: inline-block;padding-top: 2px;">
-							<% if user_signed_in? %>
+					<% if user_signed_in? %>
+						<% unless current_user.upvoted?(vote) %>
+							<div style="display: inline-block;padding-top: 2px;">
 								<%= form_for vote, url: upvote_vote_path(vote), remote: true do |f| %>
 									<button type="submit" class="btn upvote_btn" style="padding: 0;">
 						                <i class="fa fa-arrow-up" style="font-size: 18px;"></i>
 						            </button>
 								<% end %>
-							<% end %>
-						</div>
+							</div>
+						<% else %>
+							<div style="height:14px;">
+
+							</div>
+						<% end %>
 					<% else %>
-						<div style="display: inline-block; visibility:hidden;">
-							<% if user_signed_in? %>
-								<%= form_for vote, url: upvote_vote_path(vote), remote: true do |f| %>
-									<button type="submit" class="btn upvote_btn" style="padding: 0;">
-						                <i class="fa fa-arrow-up" style="font-size: 20px;"></i>
-						            </button>
-								<% end %>
-							<% end %>
+						<div style="height:14px;">
+
 						</div>
 					<% end %>
 				</div>
