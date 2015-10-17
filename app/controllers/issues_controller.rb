@@ -1,6 +1,4 @@
 class IssuesController < ApplicationController
-	before_action :set_bill_count, only: [:find_issues]
-	before_action :set_idents, only: [:find_issues]
 
 	def create
 
@@ -40,59 +38,15 @@ class IssuesController < ApplicationController
 	end
 
 	def find_issues
-		@bills_first = Bill.with_matching_issue(params[:issue_name])
-		@bills = []
-		count = []
-		@trending = []
-		@common = []
+		@bills = Bill.get_index_bills(current_user, params[:issue_name])
+		trending_setting = Setting.first.yes
+		@trending = Bill.set_trending_bills(@bills, trending_setting)
+		@common = Bill.set_common_bills(@bills, trending_setting)
+
 		@name = params[:issue_name]
 
-		if user_signed_in?
-			@bills_first.each do |bill_first|
-				@vote = current_user.votes.where(bill_id: bill_first.id).first
-				unless @vote
-					@bills << bill_first
-				end
-			end
-		else
-			@bills = @bills_first
-		end
-
-		if Setting.first.yes
-
-			@bills.each do |bill|
-				count << [bill, bill.impressionist_count]
-			end
-
-			orderd_count = count.sort_by{|k|k[1]}.reverse
-
-			@trending_both = orderd_count.first(3)
-			@trending_both.each do |trending|
-				@trending << trending[0]
-			end
-			@common_both = orderd_count.drop(3)
-			@common_both.each do |common|
-				@common << common[0]
-			end
-		else
-
-			
-			@bills.each do |bill|
-				if bill.trending
-					@trending << bill
-				end
-			end
-			@bills.each do |bill|
-				unless bill.trending
-					@common << bill
-				end
-			end
-
-		end
 
 		@commons = Kaminari.paginate_array(@common).page(params[:page]).per(20)
-
-
 	end
 
 	private

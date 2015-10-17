@@ -1,6 +1,4 @@
 class BillsController < ApplicationController
-	before_action :set_idents, only: [:index, :show]
-	before_action :set_bill_count, only: [:index, :show]
 
 	def create
 
@@ -47,78 +45,35 @@ class BillsController < ApplicationController
 
 	def index
 
-
-		@bills_first = Bill.all
-		@bills = []
-		count = []
-		@trending = []
-		@common = []
 		@failed = true if session[:failed_reg]
 		session[:failed_reg] = nil
 
-		if user_signed_in?
-			@bills_first.each do |bill_first|
-				@vote = current_user.votes.where(bill_id: bill_first.id).first
-				unless @vote
-					@bills << bill_first
-				end
-			end
-		else
-			@bills = @bills_first
-		end
-
-		if Setting.first.yes
-
-			@bills.each do |bill|
-				count << [bill, bill.impressionist_count]
-			end
-
-			orderd_count = count.sort_by{|k|k[1]}.reverse
-
-			@trending_both = orderd_count.first(3)
-			@trending_both.each do |trending|
-				@trending << trending[0]
-			end
-			@common_both = orderd_count.drop(3)
-			@common_both.each do |common|
-				@common << common[0]
-			end
-		else
-
-			
-			@bills.each do |bill|
-				if bill.trending
-					@trending << bill
-				end
-			end
-			@bills.each do |bill|
-				unless bill.trending
-					@common << bill
-				end
-			end
-
-		end
+		@bills = Bill.get_index_bills(current_user)
+		trending_setting = Setting.first.yes
+		@trending = Bill.set_trending_bills(@bills, trending_setting)
+		@common = Bill.set_common_bills(@bills, trending_setting)
 
 		@commons = Kaminari.paginate_array(@common).page(params[:page]).per(20)
 
 		respond_to do |format|
 			format.html
 			format.js
-		    format.xls { send_data @bills.to_csv(col_sep: "\t") }
+		  format.xls { send_data @bills.to_csv(col_sep: "\t") }
 		end
-
-			
+		
 	end
 
 	def show
 		@bill = Bill.find(params[:id])
-		@media_links = @bill.media_links
 		impressionist(@bill)
+		
+		@media_links = @bill.media_links
 		@issues = @bill.issues
 		@vote = current_user.votes.where(bill_id: @bill.id).first if user_signed_in?
 		@votes = @bill.votes.order(comment_score: :desc).where("comment != ?", "")
 		@votes_top_3_yes = @bill.votes.where(in_favor: true).where("comment != ?", "").order(comment_score: :desc).first(3)
 		@votes_top_3_no = @bill.votes.where(in_favor: false).where("comment != ?", "").order(comment_score: :desc).first(3)
+
 		@for = false
 		@against = false
 		if @vote && @vote.in_favor
@@ -139,17 +94,13 @@ class BillsController < ApplicationController
 
 	def add_issues
 		@bill = Bill.find(params[:id])
-
 		@bill.issues.clear
-
 		@issues = params[:bill_issues]
 
 		if @issues.any?
-
 			@issues.each do |issue|
 				@bill.bill_issues.create!(issue_id: issue)
 			end
-
 		end
 
 		respond_to do |format|

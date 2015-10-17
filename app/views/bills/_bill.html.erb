@@ -1,16 +1,7 @@
-<% @vote = current_user.votes.where(bill_id: bill.id).first if user_signed_in?
+<% 
 		@for = false
 		@against = false
 
-
-		if @vote && @vote.in_favor
-			@for = true
-		end
-		if @vote
-			unless @vote.in_favor
-				@against = true
-			end
-		end
  %>
 
 

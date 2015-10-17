@@ -8,17 +8,8 @@
 			if @trending.any?
 			@trending.each do |bill|
 
-			@vote = current_user.votes.where(bill_id: bill.id).first if user_signed_in?
 			@for = false
 			@against = false
-			if @vote && @vote.in_favor
-				@for = true
-			end
-			if @vote
-				unless @vote.in_favor
-					@against = true
-				end
-			end
 			
 			#https://css-tricks.com/centering-in-the-unknown/
 		 %>
@@ -105,10 +96,8 @@
 			
 		<%
 			if bill.votes.any?
-				top_yes_comment = []
-				top_yes_comment[0] = bill.votes.where(in_favor: true).where("comment != ?", "").order(comment_score: :desc).first
-				top_no_comment = []
-				top_no_comment[0] = bill.votes.where(in_favor: false).where("comment != ?", "").order(comment_score: :desc).first
+				top_yes_comment = [bill.votes.order(comment_score: :desc).select { |b| b.in_favor && b.comment != "" }.first]
+				top_no_comment = [bill.votes.order(comment_score: :desc).select { |b| b.in_favor && b.comment != "" }.first]
 			end
 		%>
 			<div class="row">

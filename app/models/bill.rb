@@ -1,5 +1,5 @@
 class Bill < ActiveRecord::Base
-	is_impressionable
+	is_impressionable :counter_cache => true
 
 	
 	has_many :votes, dependent: :destroy
@@ -39,4 +39,38 @@ class Bill < ActiveRecord::Base
 	    end
 	  end
 	end
+
+	def self.get_index_bills(user, issue_name=nil)
+		bills = find_bills_matching_issue(issue_name)
+
+		if user
+			bills = bills.select { |b| !b.votes.select { |v| v.voteable_id == user.id }.any? }
+		end
+		return bills
+	end
+
+	def self.find_bills_matching_issue(issue_name)
+		if issue_name
+			return Bill.with_matching_issue(issue_name).includes(:votes, :issues).order(:impressions_count)
+		else
+			return Bill.includes(:votes, :issues).order(:impressions_count)
+		end
+	end
+
+	def self.set_trending_bills(bills, trending_setting)
+		if trending_setting
+			return bills.first(3)
+		else
+			return bills.select { |b| b.trending }
+		end
+	end
+
+	def self.set_common_bills(bills, trending_setting)
+		if trending_setting
+			return bills.offset(3)
+		else
+			return bills.select { |b| !b.trending }
+		end
+	end
+
 end

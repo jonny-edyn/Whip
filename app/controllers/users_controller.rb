@@ -10,7 +10,6 @@ class UsersController < ApplicationController
   def show
     # authorize! :read, @user
     @votes = @user.votes
-    @votes_count = current_user.votes.count
   end
 
   # GET /users/:id/edit
@@ -72,16 +71,14 @@ class UsersController < ApplicationController
   end
 
   def remove_twitter
-    @user = current_user
-    @ident = @user.identities.find_by(provider: "twitter")
-    @ident.destroy!
+    current_user.identities.find_by(provider: "twitter").destroy!
+
     redirect_to root_path
   end
 
   def remove_facebook
-    @user = current_user
-    @ident = @user.identities.find_by(provider: "facebook")
-    @ident.destroy!
+    current_user.identities.find_by(provider: "facebook").destroy!
+
     redirect_to root_path
   end
 
@@ -184,6 +181,16 @@ class UsersController < ApplicationController
     def correct_user
       unless @user == current_user
         redirect_to root_path
+      end
+    end
+
+    def set_idents
+      @idents = []
+
+      if user_signed_in?
+        current_user.identities.each do |i|
+          @idents << i.provider
+        end
       end
     end
 end

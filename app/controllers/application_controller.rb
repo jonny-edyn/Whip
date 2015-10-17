@@ -18,45 +18,29 @@ class ApplicationController < ActionController::Base
   end
 
 
-  	def check_if_admin
-      unless user_signed_in? && current_user.admin
-        redirect_to root_path
-      end
+  def check_if_admin
+    unless user_signed_in? && current_user.admin
+      redirect_to root_path
     end
+  end
 
-    def check_if_signed_in
-      unless user_signed_in?
-        redirect_to root_path
-      end
+  def check_if_signed_in
+    unless user_signed_in?
+      redirect_to root_path
     end
+  end
 
-    def set_idents
-      @idents = []
+  def set_issues
+    @first_issue_group = Issue.first(4)
+    @second_issue_group = Issue.offset(4).first(4)
+    @third_issue_group = Issue.offset(8).first(4)
+    @fourth_issue_group = Issue.offset(12).first(4)
+  end
 
-      if user_signed_in?
-        current_user.identities.each do |i|
-          @idents << i.provider
-        end
-      end
+  def check_email_format
+    if user_signed_in? && current_user.email =~ /\Achange@me/
+      redirect_to finish_signup_path(current_user)
     end
-
-    def set_bill_count
-      if user_signed_in?
-        @votes_count = current_user.votes.count
-      end
-    end
-
-    def set_issues
-      @first_issue_group = Issue.first(4)
-      @second_issue_group = Issue.offset(4).first(4)
-      @third_issue_group = Issue.offset(8).first(4)
-      @fourth_issue_group = Issue.offset(12).first(4)
-    end
-
-    def check_email_format
-      if user_signed_in? && current_user.email =~ /\Achange@me/
-        redirect_to finish_signup_path(current_user)
-      end
-    end
+  end
 
 end
