@@ -67,23 +67,11 @@ class BillsController < ApplicationController
 		@bill = Bill.find(params[:id])
 		impressionist(@bill)
 		
-		@media_links = @bill.media_links
-		@issues = @bill.issues
-		@vote = current_user.votes.where(bill_id: @bill.id).first if user_signed_in?
-		@votes = @bill.votes.order(comment_score: :desc).where("comment != ?", "")
-		@votes_top_3_yes = @bill.votes.where(in_favor: true).where("comment != ?", "").order(comment_score: :desc).first(3)
-		@votes_top_3_no = @bill.votes.where(in_favor: false).where("comment != ?", "").order(comment_score: :desc).first(3)
+		@vote = @bill.get_user_vote(current_user)
+		@votes = @bill.commented_votes
 
-		@for = false
-		@against = false
-		if @vote && @vote.in_favor
-			@for = true
-		end
-		if @vote
-			unless @vote.in_favor
-				@against = true
-			end
-		end
+		@votes_top_3_yes = @bill.top_comments(3)
+		@votes_top_3_no = @bill.top_comments(3, false)
 
 		respond_to do |format|
 			format.html

@@ -1,67 +1,60 @@
-<% 
-		@for = false
-		@against = false
+<div class="text-center masonary_sizing">
+	<% if user_signed_in? %>
+		<a href="<%= bill_path(bill) %>" class="bricks">
+	<% else %>
+		<a class="" href="#" data-toggle="modal" data-target="#loginModal">
+	<% end %>
+	<div class="panel panel-bills small-bill-highlight">
+		<div class="panel-body">
+			<div class="row" style="padding:20px; padding-bottom:10px;">
+				<% if bill.image_url %>
+			    	<div class="col-md-12 common-bill" style="background-image: url('https:<%= bill.image_url %>'); border-radius: 12px;">
+			    <% else %>
+					<div class="col-md-12 common-bill" style="background-image: url(<%= asset_path 'bill-standard-background.jpg' %>); border-radius: 12px;">
+				<% end %>
+					<table style="width:100%;height:100%;">
+					  <tr>
+						 <td style="text-align: center; vertical-align: middle;">
+							<p class="common-bill-title" style="font-size: 18px;padding-top: 22px;"><%= link_to bill.simple_name, bill_path(bill) %></p>
+							<p class="common-bill-title"><small><%= link_to "#{bill.official_name}" + "#{' - ' + bill.issues.first.name if bill.issues.first}", bill_path(bill) %></small></p>
+							<p><%= link_to "MORE INFO", bill_path(bill), class: "more_info" %></p>
+						 </td>
+					  </tr>
+					</table>
+				</div>
+			</div>
 
- %>
+
+			<div class="row" style="margin: 0 5px 20px 5px;padding: 0 5px;">
+				<div class="col-md-12 text-center text-din" style="padding-bottom:22px;border-bottom: 1px solid #a1a1a1; ">
+					<h2 class="header-argument-for">ARGUMENTS FOR</h2>
+					<%= bill.support.html_safe %>
+				</div>
+				<div class="col-md-12 text-center text-din" style="padding-bottom:22px;border-bottom: 1px solid #a1a1a1; ">
+					<h2 class="header-argument-against" style="margin-top:20px;">ARGUMENTS AGAINST</h2>
+					<%= bill.opposition.html_safe %>
+				</div>
+			</div>
 
 
-	<div class="text-center masonary_sizing">
-		<% if user_signed_in? %>
-			<a href="<%= bill_path(bill) %>" class="bricks">
-		<% else %>
-			<a class="" href="#" data-toggle="modal" data-target="#loginModal">
-		<% end %>
-		<div class="panel panel-bills small-bill-highlight">
-			<div class="panel-body">
-				<div class="row" style="padding:20px; padding-bottom:10px;">
-					<% if bill.image_url %>
-				    	<div class="col-md-12 common-bill" style="background-image: url('https:<%= bill.image_url %>'); border-radius: 12px;">
-				    <% else %>
-						<div class="col-md-12 common-bill" style="background-image: url(<%= asset_path 'bill-standard-background.jpg' %>); border-radius: 12px;">
+			<div class="row" style="margin: 0 5px 10px 5px;padding: 0 5px;">
+				<div class="col-sm-6 vote-button-yes">
+					<% if user_signed_in? %>
+						<%= render :partial => 'bills/vote_yes_form', :locals => { :bill => bill.id, :vote => false } %>
+					<% else %>
+						<a class="btn btn-vote-yes" href="#" data-toggle="modal" data-target="#loginModal">VOTE YES</a>
 					<% end %>
-						<table style="width:100%;height:100%;">
-						  <tr>
-							 <td style="text-align: center; vertical-align: middle;">
-								<p class="common-bill-title" style="font-size: 18px;padding-top: 22px;"><%= link_to bill.simple_name, bill_path(bill) %></p>
-								<p class="common-bill-title"><small><%= link_to "#{bill.official_name}" + "#{' - ' + bill.issues.first.name if bill.issues.first}", bill_path(bill) %></small></p>
-								<p><%= link_to "MORE INFO", bill_path(bill), class: "more_info" %></p>
-							 </td>
-						  </tr>
-						</table>
-					</div>
 				</div>
-
-
-				<div class="row" style="margin: 0 5px 20px 5px;padding: 0 5px;">
-					<div class="col-md-12 text-center text-din" style="padding-bottom:22px;border-bottom: 1px solid #a1a1a1; ">
-						<h2 class="header-argument-for">ARGUMENTS FOR</h2>
-						<%= bill.support.html_safe %>
-					</div>
-					<div class="col-md-12 text-center text-din" style="padding-bottom:22px;border-bottom: 1px solid #a1a1a1; ">
-						<h2 class="header-argument-against" style="margin-top:20px;">ARGUMENTS AGAINST</h2>
-						<%= bill.opposition.html_safe %>
-					</div>
+				<div class="col-sm-6 vote-button-no">
+					<% if user_signed_in? %>
+						<%= render :partial => 'bills/vote_no_form', :locals => { :bill => bill.id, :vote => false } %>
+					<% else %>
+						<a class="btn btn-vote-no" href="#" data-toggle="modal" data-target="#loginModal">VOTE NO</a>
+					<% end %>
 				</div>
-
-
-				<div class="row" style="margin: 0 5px 10px 5px;padding: 0 5px;">
-					<div class="col-sm-6 vote-button-yes">
-						<% if user_signed_in? %>
-							<%= render :partial => 'bills/vote_yes_form', :locals => { :bill => bill.id, :favor => @for } %>
-						<% else %>
-							<a class="btn btn-vote-yes" href="#" data-toggle="modal" data-target="#loginModal">VOTE YES</a>
-						<% end %>
-					</div>
-					<div class="col-sm-6 vote-button-no">
-						<% if user_signed_in? %>
-							<%= render :partial => 'bills/vote_no_form', :locals => { :bill => bill.id, :against => @against } %>
-						<% else %>
-							<a class="btn btn-vote-no" href="#" data-toggle="modal" data-target="#loginModal">VOTE NO</a>
-						<% end %>
-					</div>
-				</div>
-			</div><!--.panel-body-->
-		</div><!--.panel-->
-		</a>
-		</div><!-- .col-sm-6 -->
+			</div>
+		</div><!--.panel-body-->
+	</div><!--.panel-->
+	</a>
+	</div><!-- .col-sm-6 -->
 		

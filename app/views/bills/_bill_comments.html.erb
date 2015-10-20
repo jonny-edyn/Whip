@@ -1,9 +1,8 @@
 <div style="padding:0px 0px 15px;">
 
-	<% if user_signed_in? && @bill.votes.find_by(voteable: current_user) %>
+	<% if user_vote %>
 		<h2 class="text-din" style="margin-bottom:0px;">THANKS FOR VOTING</h2>
 		<p style="font-family: dinRegular; margin-bottom:24px;">If desired, update your previous thoughts in the space below!</p>
-		<% user_vote = @bill.votes.find_by(voteable: current_user) %>
 
 		<%= form_for user_vote, url: vote_path(user_vote) do |f| %>
 			<%= f.text_area :comment, style: "    width: 400px;height: 120px; resize: none; border: 1px solid #ddd; font-size: 14px; font-family: dinRegular;padding: 8px;" %><br>
@@ -18,4 +17,4 @@
 </div>
 
 <h2 class="text-din" style="">BILL COMMENTS</h2>
-<%= render partial: "votes/comment", collection: @votes, as: :vote %>
+<%= render partial: "votes/comment", collection: votes, as: :vote %>

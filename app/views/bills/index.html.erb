@@ -7,9 +7,6 @@
 		<% 
 			if @trending.any?
 			@trending.each do |bill|
-
-			@for = false
-			@against = false
 			
 			#https://css-tricks.com/centering-in-the-unknown/
 		 %>
@@ -76,7 +73,7 @@
 				<div class="col-sm-6 main-bill-votes arguments-left">
 					<div class="vote-button-yes vote-button-yes-main">
 						<% if user_signed_in? %>
-							<%= render :partial => 'bills/vote_yes_form', :locals => { :bill => bill.id, :favor => @for } %>
+							<%= render :partial => 'bills/vote_yes_form', :locals => { :bill => bill.id, :vote => false } %>
 						<% else %>
 							<a class="btn btn-vote-yes" href="#" data-toggle="modal" data-target="#loginModal">VOTE YES</a>
 						<% end %>
@@ -85,7 +82,7 @@
 				<div class="col-sm-6 main-bill-votes arguments-right">
 					<div class="vote-button-no vote-button-no-main">
 						<% if user_signed_in? %>
-							<%= render :partial => 'bills/vote_no_form', :locals => { :bill => bill.id, :against => @against } %>
+							<%= render :partial => 'bills/vote_no_form', :locals => { :bill => bill.id, :vote => false } %>
 						<% else %>
 							<a class="btn btn-vote-no" href="#" data-toggle="modal" data-target="#loginModal">VOTE NO</a>
 						<% end %>
@@ -95,19 +92,17 @@
 			</div>
 			
 		<%
-			if bill.votes.any?
-				top_yes_comment = [bill.votes.order(comment_score: :desc).select { |b| b.in_favor && b.comment != "" }.first]
-				top_no_comment = [bill.votes.order(comment_score: :desc).select { |b| b.in_favor && b.comment != "" }.first]
-			end
+			top_yes_comment = bill.top_comments
+			top_no_comment = bill.top_comments(1, false)
 		%>
 			<div class="row">
 				<div class="col-sm-6">
-					<% if bill.votes.any? && top_yes_comment.any? && top_yes_comment.first.comment != "" %>
+					<% if top_yes_comment.any? %>
 						<%= render partial: "votes/comment", collection: top_yes_comment, as: :vote %>
 					<% end %>
 				</div>
 				<div class="col-sm-6">
-					<% if bill.votes.any? && top_no_comment.any? && top_no_comment.first.comment != "" %>
+					<% if top_no_comment.any? %>
 						<%= render partial: "votes/comment", collection: top_no_comment, as: :vote %>
 					<% end %>
 				</div>

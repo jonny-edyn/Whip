@@ -73,4 +73,29 @@ class Bill < ActiveRecord::Base
 		end
 	end
 
+	def top_comments(num=1, upvote=true)
+		if votes.any?
+			if upvote
+				top_votes = votes.order(comment_score: :desc).select { |b| b.in_favor && b.comment != "" }.first(num)
+			else
+				top_votes = votes.order(comment_score: :desc).select { |b| !b.in_favor && b.comment != "" }.first(num)
+			end
+			return top_votes.to_a
+		else
+			return []
+		end
+	end
+
+	def commented_votes
+		return votes.order(comment_score: :desc).where("comment != ?", "")
+	end
+
+	def get_user_vote(user)
+		if user
+			return votes.select { |v| v.voteable_id == user.id }.first
+		else
+			return false
+		end
+	end
+
 end

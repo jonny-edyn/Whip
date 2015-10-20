@@ -9,6 +9,8 @@
 				
 				<div class="row main_bill_information" >
 					<div class="col-md-12 text-center" style="">
+
+						<!-- Bills Image Section -->
 						<div class="row" style="padding-bottom:20px;">
 							<% if @bill.image_url %>
 						    	<div class="col-md-12 main-bill" style="background-image: url('https:<%= @bill.image_url %>');padding-left: 0px; padding-right: 0px;">
@@ -28,11 +30,7 @@
 							</div>
 						</div>
 
-
-
-
-
-						<!-- original, in case designer changes his mind -->
+						<!-- Arguments For And Against Section -->
 						<div class="row" style="">
 							<div class="col-sm-6 main-bill-arguments  arguments-left">
 								<div class="panel panel-bills-slider" style="box-shadow:none;margin-bottom:0;">
@@ -58,50 +56,47 @@
 						<div class="row " style="margin-bottom: 20px;">
 							<div class="col-sm-6 main-bill-votes arguments-left">
 								<div class="vote-button-yes vote-button-yes-main">
-									<%= render :partial => 'bills/vote_yes_form', :locals => { :bill => @bill.id, :favor => @for } %>
+									<%= render :partial => 'bills/vote_yes_form', :locals => { :bill => @bill.id, :vote => @vote } %>
 								</div>
 							</div>
 							<div class="col-sm-6 main-bill-votes arguments-right">
 								<div class="vote-button-no vote-button-no-main">
-									<%= render :partial => 'bills/vote_no_form', :locals => { :bill => @bill.id, :against => @against } %>
+									<%= render :partial => 'bills/vote_no_form', :locals => { :bill => @bill.id, :vote => @vote } %>
 								</div>
-
 							</div>
 						</div>
+
+
 					</div>
 				</div>
 
-					<div class="row">
-						<div class="col-sm-6" style="">
-							<% if @bill.votes.any? && @votes_top_3_yes.any? %>
-								<%= render partial: "votes/comment", collection: @votes_top_3_yes, as: :vote %>
-							<% end %>
-						</div>
-						<div class="col-sm-6">
-							<% if @bill.votes.any? && @votes_top_3_no.any? %>
-								<%= render partial: "votes/comment", collection: @votes_top_3_no, as: :vote %>
-							<% end %>
-						</div>
+				<!-- TOP Comments Section -->
+				<div class="row">
+					<div class="col-sm-6" style="">
+						<%= render partial: "votes/comment", collection: @votes_top_3_yes, as: :vote %>
 					</div>
+					<div class="col-sm-6">
+						<%= render partial: "votes/comment", collection: @votes_top_3_no, as: :vote %>
+					</div>
+				</div>
 				
 
 
 				<!-- Nav tabs -->
-				  <ul class="nav nav-tabs" role="tablist" style="margin: 30px 0px;">
-				    <li role="presentation" class="active"><a href="#bill_info" aria-controls="bill_info" role="tab" data-toggle="tab" style="padding: 10px 40px;">BILL INFO</a></li>
-				    <li role="presentation"><a href="#community" aria-controls="community" role="tab" data-toggle="tab" style="padding: 10px 40px;">OPINIONS</a></li>
-				  </ul>
+			  <ul class="nav nav-tabs" role="tablist" style="margin: 30px 0px;">
+			    <li role="presentation" class="active"><a href="#bill_info" aria-controls="bill_info" role="tab" data-toggle="tab" style="padding: 10px 40px;">BILL INFO</a></li>
+			    <li role="presentation"><a href="#community" aria-controls="community" role="tab" data-toggle="tab" style="padding: 10px 40px;">OPINIONS</a></li>
+			  </ul>
 
-				  <!-- Tab panes -->
-				  <div class="tab-content">
-				    <div role="tabpanel" class="tab-pane active" id="bill_info">
-				    	<%= render partial: "bills/bill_info" %>
-				    </div>
-				    <div role="tabpanel" class="tab-pane" id="community">
-				    	<%= render partial: "bills/bill_comments" %>
-				    </div>
-				  </div>
-				
+			  <!-- Tab panes -->
+			  <div class="tab-content">
+			    <div role="tabpanel" class="tab-pane active" id="bill_info">
+			    	<%= render partial: "bills/bill_info", :locals => { :bill => @bill, :media_links => @bill.media_links, :issues => @bill.issues } %>
+			    </div>
+			    <div role="tabpanel" class="tab-pane" id="community">
+			    	<%= render partial: "bills/bill_comments", :locals => { :user_vote => @vote, :votes => @votes } %>
+			    </div>
+			  </div>
 				
 
 			</div>

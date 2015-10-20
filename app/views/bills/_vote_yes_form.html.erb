@@ -1,5 +1,5 @@
 <% 
-	if favor
+	if vote && vote.in_favor 
 		@classes =  "btn btn-vote-yes-voted text-din"
 	else
 		@classes = "btn btn-vote-yes text-din"

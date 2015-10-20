@@ -7,18 +7,6 @@
 		<% 
 			if @trending.any?
 			@trending.each do |bill|
-
-			@vote = current_user.votes.where(bill_id: bill.id).first if user_signed_in?
-			@for = false
-			@against = false
-			if @vote && @vote.in_favor
-				@for = true
-			end
-			if @vote
-				unless @vote.in_favor
-					@against = true
-				end
-			end
 			
 			#https://css-tricks.com/centering-in-the-unknown/
 		 %>
@@ -86,7 +74,7 @@
 				<div class="col-sm-6 main-bill-votes arguments-left">
 					<div class="vote-button-yes vote-button-yes-main">
 						<% if user_signed_in? %>
-							<%= render :partial => 'bills/vote_yes_form', :locals => { :bill => bill.id, :favor => @for } %>
+							<%= render :partial => 'bills/vote_yes_form', :locals => { :bill => bill.id, :vote => false } %>
 						<% else %>
 							<a class="btn btn-vote-yes" href="#" data-toggle="modal" data-target="#loginModal">VOTE YES</a>
 						<% end %>
@@ -95,7 +83,7 @@
 				<div class="col-sm-6 main-bill-votes arguments-right">
 					<div class="vote-button-no vote-button-no-main">
 						<% if user_signed_in? %>
-							<%= render :partial => 'bills/vote_no_form', :locals => { :bill => bill.id, :against => @against } %>
+							<%= render :partial => 'bills/vote_no_form', :locals => { :bill => bill.id, :vote => false } %>
 						<% else %>
 							<a class="btn btn-vote-no" href="#" data-toggle="modal" data-target="#loginModal">VOTE NO</a>
 						<% end %>
