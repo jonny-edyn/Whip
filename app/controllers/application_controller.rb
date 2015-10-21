@@ -6,7 +6,6 @@ class ApplicationController < ActionController::Base
   before_action :set_issues
   before_action :check_email_format
 
-
   def layout_by_resource
     if controller_name == 'static_pages' && action_name == 'prelaunch_landing_page'
       "blank"
@@ -31,10 +30,11 @@ class ApplicationController < ActionController::Base
   end
 
   def set_issues
-    @first_issue_group = Issue.first(4)
-    @second_issue_group = Issue.offset(4).first(4)
-    @third_issue_group = Issue.offset(8).first(4)
-    @fourth_issue_group = Issue.offset(12).first(4)
+    issues = Issue.all.to_a
+    @first_issue_group = issues[0..3]
+    @second_issue_group = issues[4..7] || []
+    @third_issue_group = issues[8..11] || []
+    @fourth_issue_group = issues[12..15] || []
   end
 
   def check_email_format

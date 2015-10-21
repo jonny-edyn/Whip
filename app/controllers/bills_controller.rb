@@ -1,4 +1,5 @@
 class BillsController < ApplicationController
+	after_action :update_impressions_count, only: [:show]
 
 	def create
 
@@ -64,8 +65,7 @@ class BillsController < ApplicationController
 	end
 
 	def show
-		@bill = Bill.find(params[:id])
-		impressionist(@bill)
+		@bill = Bill.includes(:media_links, :issues).find(params[:id])
 		
 		@vote = @bill.get_user_vote(current_user)
 		@votes = @bill.commented_votes
@@ -102,6 +102,10 @@ class BillsController < ApplicationController
 
 	  def bill_params
 	  	params.require(:bill).permit(:progress, :meaning, :impact, :cost, :trending, :simple_name, :official_name, :support, :opposition, :image_url, :social_image_url)
+	  end
+
+	  def update_impressions_count
+	  	impressionist(@bill)
 	  end
 	  
 

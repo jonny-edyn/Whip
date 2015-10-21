@@ -64,7 +64,10 @@
 
 	</div> <%# end header div %>
 
-	<div id="body-full">
+	<div id="body-full" data-controller="<%= params[:controller] %>" data-action="<%= params[:action] %>">
+
+		<%= content_tag "div", id: "json_data", data: {user: current_user } do %>
+		<% end %>
 
 	<%= yield %>
 
@@ -224,96 +227,3 @@
 </body>
 
 </html>
-
-<script type="text/javascript">
-	function centerModal() {
-		$(this).css('display', 'block');
-		var $dialog = $(this).find(".modal-dialog");
-		var offset = ($(window).height() - $dialog.height()) / 2;
-		//Make sure you don't hide the top part of the modal w/ a negative margin if it's longer than the screen height, and keep the margin equal to the bottom margin of the modal
-		var bottomMargin = $dialog.css('marginBottom');
-		bottomMargin = parseInt(bottomMargin);
-		if(offset < bottomMargin) offset = bottomMargin;
-		$dialog.css("margin-top", offset);
-	}
-
-	$('.modal').on('show.bs.modal', centerModal);
-	$(window).on("resize", function () {
-		$('.modal:visible').each(centerModal);
-	});
-	
-	var pathname = $(location).prop('pathname').split('/')[1]; 
-    var best_distance = 999; 
-    var best_match = false;
-    
-    $('#top-navbar ul.nav a').each(function() {
-        if ($(this).attr('href').indexOf(pathname) >= 0) {
-        	overlap_penalty = pathname.replace($(this).attr('href'), '').length;
-            if (overlap_penalty < best_distance) { 
-                best_distance = overlap_penalty; 
-                best_match = this; 
-            }
-        }
-        
-    });
-
-    if (best_match !== false) {
-    	$(best_match).closest('.nav-parent-item').addClass('active');
-    }
-
-	$('[data-toggle="tooltip"]').tooltip();
-	
-	$('#admin-sidebar ul.nav a').filter(function() {
-		return this.href == window.location;
-	}).parent().addClass('active');
-
-</script>
-
-<script type="text/javascript">
-		
-		if (<%= @failed || false %>) {
-			$('#emailsignUpModal').modal('show');
-		};
-		var current_page_controller = '<%= params[:controller] %>';
-		var current_page_action = '<%= params[:action] %>';
-</script>
-
-
-<script type="text/javascript">
-
-var ready;
-ready = function() {
-	console.log(current_page_action)
-	if (current_page_controller != "static_pages" && current_page_action != "finish_signup") {
-	<% if current_user %>
-
-		$.ajax({
-		    type: "GET",
-		    url: "/users/" + <%= current_user.id %> + "/edit",
-		    dataType: "json",
-		    success: function(data){
-		      console.log(data);
-		      
-		      if (!data.accepted_terms){
-					$('#acceptTermsModal').modal({
-					    backdrop: 'static',
-					    keyboard: false
-					});
-					$('#acceptTermsModal').modal('show');
-
-				}
-
-    		}
-
-		  });
-
-	<% end %>
-	
-	}
-
-};
-
-$(document).ready(ready);
-$(document).on('page:load', ready);
-
-</script>

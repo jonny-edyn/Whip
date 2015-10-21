@@ -40,6 +40,18 @@ class Bill < ActiveRecord::Base
 	  end
 	end
 
+	# learn to incorporate default options hash instead
+	##def obliterate(things, options = {})
+	##  default_options = {
+	##    :gently => true, # obliterate with soft-delete
+	##    :except => [], # skip obliterating these things
+	##    :at => Time.now, # don't obliterate them until later
+	##  }
+	##  options.reverse_merge!(default_options)
+
+	##  ...
+	##end
+
 	def self.get_index_bills(user, issue_name=nil)
 		bills = find_bills_matching_issue(issue_name)
 
@@ -53,7 +65,7 @@ class Bill < ActiveRecord::Base
 		if issue_name
 			return Bill.with_matching_issue(issue_name).includes(:votes, :issues).order(:impressions_count)
 		else
-			return Bill.includes(:votes, :issues).order(:impressions_count)
+			return Bill.includes(:issues,:votes => :voteable).order(:impressions_count)
 		end
 	end
 
@@ -92,7 +104,7 @@ class Bill < ActiveRecord::Base
 
 	def get_user_vote(user)
 		if user
-			return votes.select { |v| v.voteable_id == user.id }.first
+			return votes.includes(:voteable).select { |v| v.voteable_id == user.id }.first
 		else
 			return false
 		end

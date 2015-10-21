@@ -7,10 +7,13 @@ class AdminsController < ApplicationController
 	end
 
 	def bills
-		@bills = Bill.all
+		@bills = Bill.includes(:media_links, :issues).all.to_a
 		@bill = Bill.new
 		@issues = Issue.all
 		@setting = Setting.first
+
+		@bills = Kaminari.paginate_array(@bills).page(params[:page]).per(10)
+
 		@s3_direct_post_primary = S3_BUCKET.presigned_post(key: "uploads/bill_photos/#{SecureRandom.uuid}/${filename}", success_action_status: 201, acl: :public_read)
 	end
 
@@ -25,7 +28,11 @@ class AdminsController < ApplicationController
 	end
 
 	def constituencies
-		@constituencies = Constituency.all.order(name: :asc)
+		@constituencies = Constituency.includes(:mp).all.order(name: :asc).to_a
+		@constituency_count = @constituencies.length
+
+		@constituencies = Kaminari.paginate_array(@constituencies).page(params[:page]).per(10)
+
 		@setting = Setting.find_by(name: 'updating_constituency_list')
 	end
 
@@ -35,7 +42,11 @@ class AdminsController < ApplicationController
 	end
 
 	def mps
-		@mps = Mp.all.order(name: :asc)
+		@mps = Mp.includes(:constituency).all.order(name: :asc).to_a
+		@mp_count = @mps.length
+
+		@mps = Kaminari.paginate_array(@mps).page(params[:page]).per(10)
+
 		@setting = Setting.find_by(name: 'updating_mp_list')
 	end
 

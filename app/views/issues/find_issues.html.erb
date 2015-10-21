@@ -127,36 +127,4 @@
 
 </div> <!--.container max_924 -->
 
-<script type="text/javascript">
-var ready;
-ready = function() {
-
-	  $('.trending_bills').slick({
-	    accessibility: true,
-	    adaptiveHeight: true,
-
-	  });
-
-
-	  $('#hold_common_bills').masonry({
-	    // options
-	    itemSelector : '.masonary_sizing',
-	  });
-
-	  $("#hold_common_bills").infinitescroll({
-	    navSelector: "nav.pagination",
-	    nextSelector: "nav.pagination a[rel=next]",
-	    itemSelector: ".masonary_sizing",
-	    debug: true,          
-	  }, function( newElements ) {
-		    var $newElems = $( newElements );
-		    $("#hold_common_bills").masonry( 'appended', $newElems );
-	  });
-
-};
-
-$(document).ready(ready);
-$(document).on('page:load', ready);
-</script>
-
 <%= render 'layouts/voting_modal' %>

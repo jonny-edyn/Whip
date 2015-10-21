@@ -104,17 +104,4 @@
 	</div>
 </div><!--.container -->
 
-<script type="text/javascript">
-var ready;
-ready = function() {
-var current_progess = $('#bill-progress-table').data('bill-progress');
-var finder_name = current_progess + "_div"
-$('.' + finder_name).parent().css('background-color','#DAD7D7');
-};
-
-$(document).ready(ready);
-$(document).on('page:load', ready);
-
-</script>
-
 <%= render 'layouts/voting_modal' %>

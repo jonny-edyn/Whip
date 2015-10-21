@@ -143,35 +143,5 @@
 	</div>
 
 </div><!-- .container max 924 -->
-<script type="text/javascript">
-var ready;
-ready = function() {
-
-
-	$('.comment_field').off('focus');
-	$('.comment_field').on('focus', function(e){
-
-		var _this = $(this)
-		_this.siblings('.hidden-comment-btn').css('display','inline');
-		_this.siblings('.hidden-comment-btn').fadeIn();
-
-	});
-
-	$('.comment_field').off('focusout');
-	$('.comment_field').on('focusout', function(e){
-
-		var _this = $(this)
-		_this.siblings('.hidden-comment-btn').fadeOut();
-		_this.siblings('.hidden-comment-btn').css('display','inline');
-
-	});
-
-
-
-};
-
-$(document).ready(ready);
-$(document).on('page:load', ready);
-</script>
 
 <%= render 'layouts/voting_modal' %>

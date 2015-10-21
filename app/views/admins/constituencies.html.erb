@@ -1,14 +1,17 @@
 <div class="container">
-	<h4 class="text-din text-left" style="">Constituencies In Database - <%= @constituencies.length %> Total</h4>
+	<h4 class="text-din text-left" style="">Constituencies In Database - <%= @constituency_count %> Total</h4>
 	<div class="row admin-content">
+		<div class="row">
+		 	<div class="col-md-12" style="padding-top: 15px;">
+		 		<% if @constituencies.any? %>
+					<%= paginate @constituencies %>
+				<% end %>
+		 	</div>
+		</div>
 		<div class="col-sm-9" role="main">
 			<% if @constituencies.any? %>
 				<ul class="list-group">
-				<% @constituencies.each do |constituency| %>
-					<li class="list-group-item">
-						<%= constituency.name %> / <%= constituency.mp.name if constituency.mp %>
-					</li>
-				<% end %>
+					<%= render partial: "admins/constituency", collection: @constituencies, as: :constituency %>
 				</ul>
 			<% end %>
 		</div>

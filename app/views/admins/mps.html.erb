@@ -1,5 +1,5 @@
 <div class="container">
-	<h4 class="text-din text-left" style="">MPs In Database - <%= @mps.length %> Total</h4>
+	<h4 class="text-din text-left" style="">MPs In Database - <%= @mp_count %> Total</h4>
 	<div class="row admin-content">
 		<div class="col-sm-9" role="main">
 			<h2 class="text-din text-uppercase">
@@ -25,14 +25,17 @@
 				</div>
 			<% end %>
 
+			<div class="row">
+			 	<div class="col-md-12" style="padding-top: 15px;">
+			 		<% if @mps.any? %>
+						<%= paginate @mps %>
+					<% end %>
+			 	</div>
+			</div>
 			<h2 class="text-din text-uppercase">Manage MPs</h2>
 				<% if @mps.any? %>
 				<ul class="list-group">
-					<% @mps.each do |mp| %>
-						<li class="list-group-item">
-							<%= mp.voting_name %> / <%= mp.email %> / <%= mp.tw_link %> / <%= mp.fb_link %> / <%= mp.constituency.name %>
-						</lI>
-					<% end %>
+					<%= render partial: "admins/mp", collection: @mps, as: :mp %>	
 				</ul>
 				<% end %>
 

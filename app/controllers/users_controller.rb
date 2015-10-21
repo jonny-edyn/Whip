@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   # GET /users/:id/edit
   def edit
     # authorize! :update, @user
-    @parties = Party.all
+    @parties = Party.all.to_a
     @constituency = @user.constituency
     @mp = @constituency.mp if @constituency
     @s3_direct_user_image = S3_BUCKET.presigned_post(key: "uploads/user_photos/#{SecureRandom.uuid}/${filename}", success_action_status: 201, acl: :public_read)
