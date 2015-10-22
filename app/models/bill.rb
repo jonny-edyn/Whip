@@ -88,9 +88,9 @@ class Bill < ActiveRecord::Base
 	def top_comments(num=1, upvote=true)
 		if votes.any?
 			if upvote
-				top_votes = votes.order(comment_score: :desc).select { |b| b.in_favor && b.comment != "" }.first(num)
+				top_votes = votes.select { |b| b.in_favor && b.comment != "" }.to_a.sort_by{ |v| v.comment_score }.first(num)
 			else
-				top_votes = votes.order(comment_score: :desc).select { |b| !b.in_favor && b.comment != "" }.first(num)
+				top_votes = votes.select { |b| !b.in_favor && b.comment != "" }.to_a.sort_by{ |v| v.comment_score }.first(num)
 			end
 			return top_votes.to_a
 		else

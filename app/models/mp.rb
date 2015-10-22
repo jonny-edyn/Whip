@@ -1,5 +1,6 @@
 class Mp < ActiveRecord::Base
 	belongs_to :constituency
+	has_many :users, through: :constituency
 	has_many :votes, as: :voteable
 
 	def self.import(file)
@@ -30,4 +31,14 @@ class Mp < ActiveRecord::Base
 	    end
 	  end
 	end
+
+	def self.find_mp_for(user)
+		if user
+			Mp.joins(:users).includes(:constituency).where('users.id' => user.id).first
+		else
+			nil
+		end
+	end
+
+
 end

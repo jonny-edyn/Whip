@@ -4,7 +4,7 @@
 
 <div class="container max_924">
 
-<%= render 'bills/top_banner_with_names' %>
+<%= render :partial => 'shared/top_banner_with_names', :locals => { :user => current_user } %>
 <h2 class="text-din">TOP TRENDING BILLS</h2>
 
 	<div class="row trending_bills" >

@@ -1,5 +1,5 @@
 <div class="container max_924">
-	<%= render 'bills/top_banner_with_names' %>
+	<%= render :partial => 'shared/top_banner_with_names', :locals => { :user => current_user } %>
 
 	<div class="row" >
 		<% 

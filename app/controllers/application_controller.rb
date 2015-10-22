@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   layout :layout_by_resource
   before_action :set_issues
   before_action :check_email_format
+  before_action :set_user_mp
 
   def layout_by_resource
     if controller_name == 'static_pages' && action_name == 'prelaunch_landing_page'
@@ -41,6 +42,10 @@ class ApplicationController < ActionController::Base
     if user_signed_in? && current_user.email =~ /\Achange@me/
       redirect_to finish_signup_path(current_user)
     end
+  end
+
+  def set_user_mp
+    @mp = Mp.find_mp_for(current_user)
   end
 
 end

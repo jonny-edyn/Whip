@@ -63,16 +63,3 @@
 		<%= render "admins/admin_sidebar" %>
 	</div>
 </div> <!-- .container -->
-
-<script type="text/javascript">
-$('body').off('click','.show_edit');
-$('body').on('click','.show_edit',function(e){
-	e.preventDefault();
-
-	var id = $(this).attr('id');
-	var fin = 'issue_' + id
-
-	$('.edit_form').css('display','none');
-	$('#' + fin).fadeIn();
-})
-</script>

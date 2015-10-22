@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151017110055) do
+ActiveRecord::Schema.define(version: 20151022102743) do
 
   create_table "bill_issues", force: :cascade do |t|
     t.integer  "bill_id",    limit: 4
@@ -173,6 +173,8 @@ ActiveRecord::Schema.define(version: 20151017110055) do
     t.string   "phone",                  limit: 255
     t.boolean  "accepted_terms",         limit: 1,     default: false
     t.integer  "votes_count",            limit: 4,     default: 0
+    t.integer  "followers_count",        limit: 4,     default: 0
+    t.integer  "followed_users_count",   limit: 4,     default: 0
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
