@@ -25,6 +25,7 @@ Rails.application.configure do
   # Debug mode disables concatenation and preprocessing of assets.
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
+  ## COME HERE AND CHANGE TO FALSE TO GET BETTER IDEA OF PRODUCTION SPEED
   config.assets.debug = true
 
   # Asset digests allow you to set far-future HTTP expiration dates on all assets,
