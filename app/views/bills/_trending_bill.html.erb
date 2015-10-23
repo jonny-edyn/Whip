@@ -1,0 +1,73 @@
+<div class="col-md-12 text-center" style="padding-bottom: 0px;">
+
+	<div class="row" style="padding-bottom:10px;">
+		<div class="col-md-12 main-bill" style='background-image: url("<%= bill.set_background_img %>");padding-left: 0px;padding-right: 0px;'>
+			<div class="bill-overlay">
+				<table style="width:100%;height:100%;">
+				  <tr>
+					 <td style="text-align: center; vertical-align: middle;">
+						<%= bill.set_trending_bill_link(current_user) %>
+						<p><%= link_to "MORE INFO", bill_path(bill), class: "more_info" %></p>
+					 </td>
+				  </tr>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<%= bill.set_link_of_subtext(current_user) %>
+	<div class="row" style="">
+		<div class="col-sm-6 main-bill-arguments  arguments-left">
+			<div class="panel panel-bills-slider" style="box-shadow:none;margin-bottom:0;">
+				<div class="panel-body">
+					<h2 class="header-argument-for text-center">ARGUMENTS FOR</h2>
+					<div class="text-left" style="">
+						<%= bill.support.html_safe %>
+					</div>
+				</div>
+			</div><!--.panel -->
+		</div>
+		<div class="col-sm-6 main-bill-arguments arguments-right">
+			<div class="panel panel-bills-slider" style="box-shadow:none;margin-bottom:0;">
+				<div class="panel-body">
+					<h2 class="header-argument-against text-center">ARGUMENTS AGAINST</h2>
+					<div class="text-left" style="">
+						<%= bill.opposition.html_safe %>
+					</div>
+				</div>
+			</div><!--.panel -->
+		</div>
+	</div>
+	</a>
+
+	<div class="row " style="margin-bottom: 0px;">
+		<div class="col-sm-6 main-bill-votes arguments-left">
+			<div class="vote-button-yes vote-button-yes-main">
+				<%= bill.set_yes_vote_btn(current_user) %>
+			</div>
+		</div>
+		<div class="col-sm-6 main-bill-votes arguments-right">
+			<div class="vote-button-no vote-button-no-main">
+				<%= bill.set_no_vote_btn(current_user) %>
+			</div>
+		</div>
+	</div>
+	
+	<%
+		top_yes_comment = bill.top_comments
+		top_no_comment = bill.top_comments(1, false)
+	%>
+	<div class="row">
+		<div class="col-sm-6">
+			<% if top_yes_comment.any? %>
+				<%= render partial: "votes/comment", collection: top_yes_comment, as: :vote %>
+			<% end %>
+		</div>
+		<div class="col-sm-6">
+			<% if top_no_comment.any? %>
+				<%= render partial: "votes/comment", collection: top_no_comment, as: :vote %>
+			<% end %>
+		</div>
+	</div>
+
+</div>

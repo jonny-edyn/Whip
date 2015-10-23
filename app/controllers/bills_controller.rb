@@ -51,8 +51,8 @@ class BillsController < ApplicationController
 
 		@bills = Bill.get_index_bills(current_user)
 		trending_setting = Setting.first.yes
-		@trending = Bill.set_trending_bills(@bills, trending_setting)
-		@common = Bill.set_common_bills(@bills, trending_setting)
+		@trending = BillDecorator.decorate_collection(Bill.set_trending_bills(@bills, trending_setting))
+		@common = BillDecorator.decorate_collection(Bill.set_common_bills(@bills, trending_setting))
 
 		@commons = Kaminari.paginate_array(@common).page(params[:page]).per(20)
 

@@ -1,22 +1,14 @@
 <div class="text-center masonary_sizing">
-	<% if user_signed_in? %>
-		<a href="<%= bill_path(bill) %>" class="bricks">
-	<% else %>
-		<a class="" href="#" data-toggle="modal" data-target="#loginModal">
-	<% end %>
+	<%= bill.set_common_bill_link(current_user) %>
 	<div class="panel panel-bills small-bill-highlight">
 		<div class="panel-body">
 			<div class="row" style="padding:20px; padding-bottom:10px;">
-				<% if bill.image_url %>
-			    	<div class="col-md-12 common-bill" style="background-image: url('https:<%= bill.image_url %>'); border-radius: 12px;">
-			    <% else %>
-					<div class="col-md-12 common-bill" style="background-image: url(<%= asset_path 'bill-standard-background.jpg' %>); border-radius: 12px;">
-				<% end %>
+				<div class="col-md-12 common-bill" style="background-image: url('<%= bill.set_background_img %>'); border-radius: 12px;">
 					<table style="width:100%;height:100%;">
 					  <tr>
 						 <td style="text-align: center; vertical-align: middle;">
 							<p class="common-bill-title" style="font-size: 18px;padding-top: 22px;"><%= link_to bill.simple_name, bill_path(bill) %></p>
-							<p class="common-bill-title"><small><%= link_to "#{bill.official_name}" + "#{' - ' + bill.issues.first.name if bill.issues.first}", bill_path(bill) %></small></p>
+							<p class="common-bill-title"><small><%= link_to "#{bill.official_name_text(bill)}", bill_path(bill) %></small></p>
 							<p><%= link_to "MORE INFO", bill_path(bill), class: "more_info" %></p>
 						 </td>
 					  </tr>
@@ -39,22 +31,14 @@
 
 			<div class="row" style="margin: 0 5px 10px 5px;padding: 0 5px;">
 				<div class="col-sm-6 vote-button-yes">
-					<% if user_signed_in? %>
-						<%= render :partial => 'bills/vote_yes_form', :locals => { :bill => bill.id, :vote => false } %>
-					<% else %>
-						<a class="btn btn-vote-yes" href="#" data-toggle="modal" data-target="#loginModal">VOTE YES</a>
-					<% end %>
+					<%= bill.set_yes_vote_btn(current_user) %>
 				</div>
 				<div class="col-sm-6 vote-button-no">
-					<% if user_signed_in? %>
-						<%= render :partial => 'bills/vote_no_form', :locals => { :bill => bill.id, :vote => false } %>
-					<% else %>
-						<a class="btn btn-vote-no" href="#" data-toggle="modal" data-target="#loginModal">VOTE NO</a>
-					<% end %>
+					<%= bill.set_no_vote_btn(current_user) %>
 				</div>
 			</div>
 		</div><!--.panel-body-->
 	</div><!--.panel-->
 	</a>
-	</div><!-- .col-sm-6 -->
+</div><!-- .col-sm-6 -->
 		

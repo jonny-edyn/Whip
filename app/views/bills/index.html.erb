@@ -4,143 +4,28 @@
 
 <div class="container max_924">
 
-<%= render :partial => 'shared/top_banner_with_names', :locals => { :user => current_user } %>
-<h2 class="text-din">TOP TRENDING BILLS</h2>
-
+	<%= render :partial => 'shared/top_banner_with_names', :locals => { :user => current_user } %>
+	<h2 class="text-din">TOP TRENDING BILLS</h2>
 	<div class="row trending_bills" >
-		<% 
-			if @trending.any?
-			@trending.each do |bill|
-			
-			#https://css-tricks.com/centering-in-the-unknown/
-		 %>
-		 
-		<div class="col-md-12 text-center" style="padding-bottom: 0px;">
-			<div class="row" style="padding-bottom:10px;">
-			    <% if bill.image_url %>
-			    	<div class="col-md-12 main-bill" style="background-image: url('https:<%= bill.image_url %>');padding-left: 0px;padding-right: 0px;">
-			    <% else %>
-					<div class="col-md-12 main-bill" style="background-image: url(<%= asset_path 'bill-standard-background.jpg' %>);padding-left: 0px;padding-right: 0px;">
-				<% end %>
-					<div class="bill-overlay">
-						<table style="width:100%;height:100%;">
-						  <tr>
-							 <td style="text-align: center; vertical-align: middle;">
-								<% if user_signed_in? %>
-									<h1><%= link_to bill.simple_name, bill_path(bill) %></h1>
-								<% else %>
-									<a class="" href="#" data-toggle="modal" data-target="#loginModal"><h1><%= bill.simple_name %></h1></a>
-								<% end %>
-								<% if user_signed_in? %>
-									<h3><%= link_to "#{bill.official_name}" + "#{' - ' + bill.issues.first.name if bill.issues.first}", bill_path(bill) %></h3>
-								<% else %>
-									<a class="" href="#" data-toggle="modal" data-target="#loginModal"><h3><%= "#{bill.official_name}" + "#{' - ' + bill.issues.first.name if bill.issues.first}" %></h3></a>
-								<% end %>
-								<p><%= link_to "MORE INFO", bill_path(bill), class: "more_info" %></p>
-							 </td>
-						  </tr>
-						</table>
-					</div>
-				</div>
-			</div>
-
-			<% if user_signed_in? %>
-				<a href="<%= bill_path(bill) %>">
-			<% else %>
-				<a class="" href="#" data-toggle="modal" data-target="#loginModal">
-			<% end %>
-			<!-- original, in case designer changes his mind -->
-			<div class="row" style="">
-				<div class="col-sm-6 main-bill-arguments  arguments-left">
-					<div class="panel panel-bills-slider" style="box-shadow:none;margin-bottom:0;">
-						<div class="panel-body">
-							<h2 class="header-argument-for text-center">ARGUMENTS FOR</h2>
-							<div class="text-left" style="">
-								<%= bill.support.html_safe %>
-							</div>
-						</div>
-					</div><!--.panel -->
-				</div>
-				<div class="col-sm-6 main-bill-arguments arguments-right">
-					<div class="panel panel-bills-slider" style="box-shadow:none;margin-bottom:0;">
-						<div class="panel-body">
-							<h2 class="header-argument-against text-center">ARGUMENTS AGAINST</h2>
-							<div class="text-left" style="">
-								<%= bill.opposition.html_safe %>
-							</div>
-						</div>
-					</div><!--.panel -->
-				</div>
-			</div>
-			</a>
-			<div class="row " style="margin-bottom: 0px;">
-				<div class="col-sm-6 main-bill-votes arguments-left">
-					<div class="vote-button-yes vote-button-yes-main">
-						<% if user_signed_in? %>
-							<%= render :partial => 'bills/vote_yes_form', :locals => { :bill => bill.id, :vote => false } %>
-						<% else %>
-							<a class="btn btn-vote-yes" href="#" data-toggle="modal" data-target="#loginModal">VOTE YES</a>
-						<% end %>
-					</div>
-				</div>
-				<div class="col-sm-6 main-bill-votes arguments-right">
-					<div class="vote-button-no vote-button-no-main">
-						<% if user_signed_in? %>
-							<%= render :partial => 'bills/vote_no_form', :locals => { :bill => bill.id, :vote => false } %>
-						<% else %>
-							<a class="btn btn-vote-no" href="#" data-toggle="modal" data-target="#loginModal">VOTE NO</a>
-						<% end %>
-					</div>
-
-				</div>
-			</div>
-			
-		<%
-			top_yes_comment = bill.top_comments
-			top_no_comment = bill.top_comments(1, false)
-		%>
-			<div class="row">
-				<div class="col-sm-6">
-					<% if top_yes_comment.any? %>
-						<%= render partial: "votes/comment", collection: top_yes_comment, as: :vote %>
-					<% end %>
-				</div>
-				<div class="col-sm-6">
-					<% if top_no_comment.any? %>
-						<%= render partial: "votes/comment", collection: top_no_comment, as: :vote %>
-					<% end %>
-				</div>
-			</div>
-		
-		</div>
-
-		<% end %>
-		<% end %>
+	<% if @trending.any? %>
+	 <%= render partial: "bills/trending_bill", collection: @trending, as: :bill %>
+	<% end %>
 	</div><!-- .row .trending_bills -->
 
 
 	<h2 class="text-din padding_bottom_20">OTHER BILLS</h2>
-
 	<div style="padding-bottom:60px;" id="common_bill_container">
+		<div class="row" id="hold_common_bills">
+			<%= render @commons %>
+		</div>
 
-		
-
-		 <div class="row" id="hold_common_bills">
-
-		 	<%= render @commons %>
-
-		 </div>
-
-		 
-		 <div class="row">
-		 	<div class="col-md-12" style="padding-top: 15px;">
-		 		<% if @commons.any? %>
-					<%= paginate @commons %>
-				<% end %>
-		 	</div>
-		 </div>
-
-
+		<div class="row">
+			<div class="col-md-12" style="padding-top: 15px;">
+			<% if @commons.any? %>
+				<%= paginate @commons %>
+			<% end %>
+			</div>
+		</div>
 	</div>
 
 </div> <!--.container max_924 -->
