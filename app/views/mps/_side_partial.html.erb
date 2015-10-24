@@ -1,0 +1,24 @@
+<div id="mp-statistics">
+	<div class="clearfix" style="padding-bottom:6px;color: #999999;font-size:12px; font-family: 'dinRegular';letter-spacing: 1px;">
+		MP for <%= mp.constituency.name %><br>
+	</div>
+		<%= mp.show_email_icon %>
+    <% if mp.fb_link %>
+      <div style="display:inline-block;padding-right:12px;">
+        <a href="<%= mp.fb_link %>" class="facebook-link" target="_blank"><img src="<%= image_path('fb_icon.png') %>"></a>
+      </div>
+    <% else %>
+    	<div style="display:inline-block;padding-right:12px;">
+        <a href="#" class="facebook-link" id="no_fb_modal"><img src="<%= image_path('no_fb_icon.png') %>"></a>
+      </div>
+    <% end %>
+    <% if @mp.tw_link %>
+      <div style="display:inline-block;">
+        <a href="<%= mp.tw_link %>" class="twitter-link" target="_blank"><img src="<%= image_path('tw_icon.png') %>"></a>
+      </div>
+    <% else %>
+    	<div style="display:inline-block;">
+        <a href="#" class="twitter-link" id="no_tw_modal"><img src="<%= image_path('no_tw_icon.png') %>"></a>
+      </div>
+    <% end %>
+</div><!-- #mp-statistics -->

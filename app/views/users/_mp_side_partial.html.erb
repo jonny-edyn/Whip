@@ -10,34 +10,7 @@
         <div style="text-transform:uppercase;" class="clearfix">
           <%= @mp.name %>
         </div>
-        <div id="mp-statistics" style="padding-bottom:9px;font-family: dinRegular;">
-          <div class="clearfix" style="padding-bottom:9px;color: #999;font-size: 12px;font-family: dinRegular;letter-spacing: 1px;">
-            MP for <%= @mp.constituency.name %><br>
-          </div>
-          <% if @mp.email != "" %>
-              <div style="display:inline-block;padding-right:12px;">
-                <a href="#" class="email-link" id="mp_email_modal"><img src="<%= image_path('email_icon.png') %>"></a>
-              </div>
-          <% end %>
-          <% if @mp.fb_link %>
-            <div style="display:inline-block;padding-right:12px;">
-              <a href="<%= @mp.fb_link %>" class="facebook-link" target="_blank"><img src="<%= image_path('fb_icon.png') %>"></a>
-            </div>
-          <% else %>
-            <div style="display:inline-block;padding-right:12px;">
-              <a href="#" class="facebook-link" id="no_fb_modal"><img src="<%= image_path('no_fb_icon.png') %>"></a>
-            </div>
-          <% end %>
-          <% if @mp.tw_link %>
-            <div style="display:inline-block;">
-              <a href="<%= @mp.tw_link %>" class="twitter-link" target="_blank"><img src="<%= image_path('tw_icon.png') %>"></a>
-            </div>
-          <% else %>
-            <div style="display:inline-block;">
-              <a href="#" class="twitter-link" id="no_tw_modal"><img src="<%= image_path('no_tw_icon.png') %>"></a>
-            </div>
-          <% end %>
-        </div><!-- #mp-statistics -->
+        <%= render :partial => 'mps/side_partial', :locals => { :mp => @mp } %>
         <div style="text-transform:uppercase;padding-bottom:4px;" class="clearfix">
           <%= @mp.phone %>
         </div>

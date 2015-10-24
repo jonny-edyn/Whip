@@ -4,5 +4,5 @@ class Issue < ActiveRecord::Base
 
 	def self.equal_to(name)
     	where("name = ?", name)
-  	end
+ 	end
 end

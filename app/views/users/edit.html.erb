@@ -1,4 +1,4 @@
-<%= content_tag "div", id: "json_data_users_edit", data: {mp: @mp } do %>
+<%= content_tag "div", id: "json_data_users_edit", data: {mp: @mp, s3_fields: @s3_direct_user_image.fields, s3_url: @s3_direct_user_image.url} do %>
 <% end %>
 
 <div class="container max_924">
@@ -166,29 +166,8 @@
   </div>
 </div>
 
-<div class="row" style="display:none;">
-  <div class="col-sm-12" style="padding-top: 20px;padding-bottom: 20px;border-bottom: 1px solid #C0C0C0;">
-    <h4 class="text-din" style="">Social Media Accounts</h4>
-    <div class="form-group" style="margin-bottom:10px;">
-      <% unless @idents.include?("twitter") %>
-       <a href="<%= root_url %>users/auth/twitter" class="btn btn-default" style="margin-right: 10px;"><i class="fa fa-twitter"></i> MERGE TWITTER</a>
-      <% else %>
-       <a href="<%= remove_twitter_users_path %>" class="btn btn-default"><i class="fa fa-twitter"></i> REMOVE TWITTER FROM ACCOUNT</a>
-      <% end %>
-
-      <% unless @idents.include?("facebook") %>
-         <a href="<%= root_url %>users/auth/facebook" class="btn btn-default" style="margin-right: 10px;"><i class="fa fa-facebook"></i> MERGE FACEBOOK</a>
-      <% else %>
-       <a href="<%= remove_twitter_users_path %>" class="btn btn-default"><i class="fa fa-facebook"></i> REMOVE FACEBOOK FROM ACCOUNT</a>
-      <% end %>
-    </div>
-  </div>
+<div class="form-group" style="padding-top:20px;text-align: right;padding-bottom: 60px;">
+  <%= button_to 'CANCEL MY ACCOUNT'.html_safe, registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'btn btn-default btn-square', style: 'font-size: 12px;' %>
 </div>
 
-<div class="form-group" style="padding-top:20px;text-align: right;padding-bottom: 60px;">
-      <%= button_to 'CANCEL MY ACCOUNT'.html_safe, registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'btn btn-default btn-square', style: 'font-size: 12px;' %>
-     </div>
-
 </div><!--.container max_924-->
-
-<%= render "users/aws_upload" %>

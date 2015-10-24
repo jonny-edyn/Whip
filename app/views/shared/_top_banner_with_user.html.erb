@@ -1,0 +1,82 @@
+<div class="row" style="padding-bottom: 20px;">
+
+	<div class="col-sm-4" style="padding-left:0;">
+		<div class="row">
+			<div class="col-sm-12">
+				<div id="user-image" style="text-transform:uppercase;display:inline-block;vertical-align:top;padding-right:12px;">
+					<img src="<%= user.picture_url || image_path('blank.png') %>" style="height:65px;width:65px;background-color:#10b8b8;border:none;border-radius:50%;" />
+				</div>
+				<div id="user-info" style="display:inline-block;">
+					<div style="text-transform:uppercase;padding-bottom:6px;font-family: 'dinRegular';" class="clearfix">
+						<%= user.name %>
+					</div>
+
+					<div id="user-statistics">
+						<div style="display:inline-block;padding-right:12px;vertical-align:top;">
+							<div>
+								<a href="<%= my_votes_path %>" data-toggle="tooltip" data-placement="bottom" title="Votes">
+									<div style="vertical-align:top;">
+										<img src="<%= image_path('icon-vote.png') %>" style="width:21px;height:24px;" class="image" title="votes" />
+									</div>
+								</a>
+							</div>
+							<div id="votes-count" class="text-center top_banner_num_text">
+								<%= user.votes_count %> 
+							</div>
+						</div>
+
+						<div style="display:inline-block;padding-right:12px;">
+							<div>
+							<a href="<%= following_path %>" data-toggle="tooltip" data-placement="bottom" title="Following">
+								<img src="<%= image_path('icon-engage-single.png') %>" style="width:21px" class="image" title="Following" />
+							</a><!-- add this functionality still -->
+							</div>
+							<div id="followers-count" class="text-center top_banner_num_text">
+								<%= user.followed_users_count %>
+							</div>
+						</div>
+
+						<div style="display:inline-block;padding-right:12px;">
+							<div>
+							<a href="<%= followers_path %>" data-toggle="tooltip" data-placement="bottom" title="Followers">
+								<img src="<%= image_path('icon-engage-single.png') %>" style="width:21px" class="image flipped-horizontal" title="followers" />
+							</a><!-- add this functionality still -->
+							</div>
+							<div id="followers-count" class="text-center top_banner_num_text">
+								<%= user.followers_count %>
+							</div>
+						</div>
+
+						<div style="display:inline-block;vertical-align:top;">
+							<a href="<%= edit_user_path(user) %>" data-toggle="tooltip" data-placement="bottom" title="Settings"><i class="fa fa-cog fa-2x" style="color:#8a8a8a;" title="settings"></i></a>
+						</div>
+
+					</div><!--#user-statistics-->
+				</div><!-- #user-info -->
+			</div>
+		</div>
+	</div>
+
+	<div class="col-sm-4" style="text-align: center;border-bottom: 1px solid #C9C9C9;">
+		<img src="<%= image_path('terms-image-850.png') %>" class="width_100" style="height: 73px;width: 190px;">
+	</div>
+
+	<div class="col-sm-4 text-right extra_mp_padding">
+		<div class="row">
+			<div class="col-sm-12" style="padding-right: 0;">
+				<% if @mp %>
+				<div id="mp-info" style="display:inline-block;">
+					<div style="text-transform:uppercase; font-family: 'dinRegular';" class="clearfix">
+						<%= @mp.name %>
+					</div>
+					<%= render :partial => 'mps/side_partial', :locals => { :mp => @mp } %>
+				</div><!-- #mp-info -->
+				<div id="mp-image" style="text-transform:uppercase;display:inline-block;vertical-align:top;padding-left:12px;">
+					<img src="<%= @mp.picture_url %>" style="height:65px;width:65px;background-color:#10b8b8;border:none;border-radius:50%;" />
+				</div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+
+</div>

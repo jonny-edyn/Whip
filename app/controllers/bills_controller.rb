@@ -65,7 +65,7 @@ class BillsController < ApplicationController
 	end
 
 	def show
-		@bill = Bill.includes(:media_links, :issues).find(params[:id])
+		@bill = Bill.includes(:media_links, :issues).find(params[:id]).decorate
 		
 		@vote = @bill.get_user_vote(current_user)
 		@votes = @bill.commented_votes

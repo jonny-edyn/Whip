@@ -12,17 +12,12 @@
 
 						<!-- Bills Image Section -->
 						<div class="row" style="padding-bottom:20px;">
-							<% if @bill.image_url %>
-						    	<div class="col-md-12 main-bill" style="background-image: url('https:<%= @bill.image_url %>');padding-left: 0px; padding-right: 0px;">
-						    <% else %>
-								<div class="col-md-12 main-bill" style="background-image: url(<%= asset_path 'bill-standard-background.jpg' %>); padding-left: 0px; padding-right: 0px;">
-							<% end %>
+						 	<div class="col-md-12 main-bill" style="background-image: url('<%= @bill.set_background_img %>');padding-left: 0px; padding-right: 0px;">
 								<div class="bill-overlay">
 									<table style="width:100%;height:100%;">
 									  <tr>
 										 <td style="text-align: center; vertical-align: middle;">
-											<h1><%= link_to @bill.simple_name, bill_path(@bill) %></h1>
-											<h3><%= link_to "#{@bill.official_name}" + "#{' - ' + @bill.issues.first.name if @bill.issues.first}", bill_path(@bill) %></h3>
+											<%= @bill.set_trending_bill_link(current_user) %>
 										 </td>
 									  </tr>
 									</table>
@@ -103,5 +98,3 @@
 		</div>
 	</div>
 </div><!--.container -->
-
-<%= render 'layouts/voting_modal' %>

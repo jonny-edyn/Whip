@@ -2,7 +2,7 @@ class BillDecorator < Draper::Decorator
   delegate_all
 
   def set_background_img
-  	if bill.image_url
+  	if object.image_url
 			"https:#{object.image_url}"
 	  else
 			h.asset_path 'bill-standard-background.jpg'

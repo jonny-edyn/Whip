@@ -40,5 +40,9 @@ class Mp < ActiveRecord::Base
 		end
 	end
 
+	def voted_on?(bill)
+		votes.where(bill_id: bill.id).first
+	end
+
 
 end

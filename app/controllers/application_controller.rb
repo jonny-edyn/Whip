@@ -45,7 +45,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_user_mp
-    @mp = Mp.find_mp_for(current_user)
+    @mp = Mp.find_mp_for(current_user).decorate
   end
 
 end

@@ -39,7 +39,7 @@ class VotesController < ApplicationController
 		unless user_signed_in?
 			redirect_to root_path
 		else
-			@votes = current_user.votes.includes(:bill)
+			@votes = current_user.votes.includes(:bill, :voteable)
 		end
 		
 	end

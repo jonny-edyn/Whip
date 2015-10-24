@@ -99,12 +99,20 @@ class Bill < ActiveRecord::Base
 	end
 
 	def commented_votes
-		return votes.order(comment_score: :desc).where("comment != ?", "")
+		return votes.where("comment != ?", "").to_a.sort_by{ |v| v.comment_score }
 	end
 
 	def get_user_vote(user)
 		if user
 			return votes.includes(:voteable).select { |v| v.voteable_id == user.id }.first
+		else
+			return false
+		end
+	end
+
+	def get_mp_vote(mp)
+		if mp
+			return votes.to_a.select { |v| v.voteable_id == mp.id }.first
 		else
 			return false
 		end

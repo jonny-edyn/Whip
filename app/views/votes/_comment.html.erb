@@ -1,47 +1,36 @@
-<% voter = vote.voteable %>
 <% if vote.comment != "" %>
+<% voter = vote.voteable %>
 <div class="row" style="padding: 10px 0px;border: 1px solid #c0c0c0; margin-bottom: 10px;text-align: left;height: 160px; background-color: rgba(0, 0, 0, 0.04); border-radius: 12px; margin: 10px 4px;">
 	<div class="col-sm-12" style="">
-		<% if voter && voter.picture_url %>
+		<% if voter %>
 			<div id="user-image" style="text-transform:uppercase;display:inline-block;vertical-align:top;padding-right:12px;display:inline-block;">
-				<img src="<%= voter.picture_url %>" style="height:60px;width:60px;background-color:#10b8b8;border:none;border-radius:50%;" />
+				<img src="<%= voter.picture_url || image_path('blank.png') %>" style="height:60px;width:60px;background-color:#10b8b8;border:none;border-radius:50%;" />
 			</div>
-		<% else %>
-			<div id="user-image" style="text-transform:uppercase;display:inline-block;vertical-align:top;padding-right:12px;display:inline-block;">
-				<img src="<%= image_path('blank.png') %>" style="height:60px;width:60px;background-color:#10b8b8;border:none;border-radius:50%;" />
-			</div>
-		<% end %>
-		<% if vote.in_favor %>
-			<div style="text-transform:uppercase;padding-bottom:6px;font-family: 'dinRegular'; display:inline-block; margin-top: 20px; ">
-				<%= link_to "#{voter.name}'s OPINION", user_path(voter), style: "color: #f58b8b; text-decoration:underline;" if voter  %>
-			</div>
-		<% else %>
-			<div style="text-transform:uppercase;padding-bottom:6px;font-family: 'dinRegular'; display:inline-block; margin-top: 20px;">
-				<%= link_to "#{voter.name}'s OPINION", user_path(voter), style: "color: #97d9ff; text-decoration:underline;" if voter  %>
-			</div>
+			<% if vote.in_favor %>
+				<div style="text-transform:uppercase;padding-bottom:6px;font-family: 'dinRegular'; display:inline-block; margin-top: 20px; ">
+					<%= link_to "#{voter.name}'s OPINION", user_path(voter), style: "color: #f58b8b; text-decoration:underline;" %>
+				</div>
+			<% else %>
+				<div style="text-transform:uppercase;padding-bottom:6px;font-family: 'dinRegular'; display:inline-block; margin-top: 20px;">
+					<%= link_to "#{voter.name}'s OPINION", user_path(voter), style: "color: #97d9ff; text-decoration:underline;" %>
+				</div>
+			<% end %>
 		<% end %>
 	</div>
 	<div class="col-sm-12" style="padding-top: 8px;">
 		<div style="float:left;">
 			<div id="" style="text-transform:uppercase;margin-right:22px;width:50px;height:50px;border-radius:50%;border: 1px solid #c0c0c0;text-align:center;margin-left:5px;margin-top: 4px;">
 				<div class="" style="" id="vote_<%= vote.id %>_div">
-					<% if user_signed_in? %>
-						<% unless vote.vote_from?(current_user) %>
+					<% if user_signed_in? && !vote.vote_from?(current_user) %>
 							<div style="display: inline-block;padding-top: 2px;">
 								<%= form_for vote, url: upvote_vote_path(vote), remote: true do |f| %>
 									<button type="submit" class="btn upvote_btn" style="padding: 0;">
-						                <i class="fa fa-arrow-up" style="font-size: 18px;"></i>
-						            </button>
-								<% end %>
+			                <i class="fa fa-arrow-up" style="font-size: 18px;"></i>
+			            </button>
 							</div>
-						<% else %>
-							<div style="height:14px;">
-
-							</div>
-						<% end %>
+							<% end %>
 					<% else %>
 						<div style="height:14px;">
-
 						</div>
 					<% end %>
 				</div>
@@ -50,7 +39,6 @@
 				</div>
 			</div>
 		</div>
-		
 		<div style="font-family: 'dinRegular';overflow: scroll; max-height: 55px; text-align: left;">
 			<p style="">
 				<%= vote.comment if vote.comment != "" %>

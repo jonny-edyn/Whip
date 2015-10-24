@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   # GET /users/:id.:format
   def show
     # authorize! :read, @user
-    @votes = @user.votes
+    @votes = @user.votes.includes(:bill, :voteable)
   end
 
   # GET /users/:id/edit
@@ -17,7 +17,6 @@ class UsersController < ApplicationController
     # authorize! :update, @user
     @parties = Party.all.to_a
     @constituency = @user.constituency
-    @mp = @constituency.mp if @constituency
     @s3_direct_user_image = S3_BUCKET.presigned_post(key: "uploads/user_photos/#{SecureRandom.uuid}/${filename}", success_action_status: 201, acl: :public_read)
 
     respond_to do |format|
@@ -90,9 +89,8 @@ class UsersController < ApplicationController
     constituency_name_web = @node.next_element.text
     @constituency = Constituency.find_by(name: constituency_name_web)
     @user = User.find(params[:id])
-    @mp = @constituency.mp if @constituency
-      @user.post_code = params[:postcode]
-      @user.constituency_id = @constituency.id
+    @user.post_code = params[:postcode]
+    @user.constituency_id = @constituency.id
     if @user.save
       respond_to do |format|
         format.html {redirect_to :back}
