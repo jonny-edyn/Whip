@@ -1,22 +1,11 @@
 <div class="container max_924 padding_bottom_60">
 
-<%= render :partial => 'shared/top_banner_with_names', :locals => { :user => current_user } %>
+	<%= render :partial => 'shared/top_banner_with_names', :locals => { :user => current_user } %>
 
 	<h4 class="text-din padding_bottom_24">Users Following You</h4>
-	<% 
-		if @users.any?
-		@users.each do |user|
-	%>
-	<!--
-	<div class="row padding_bottom_20">
-		<div class="col-sm-2">
-			<p style="margin: 6px 0px 10px;"><a href="<%= user_path(user.id) %>" style="font-size: 18px;"><%= user.name %></a></p>
-		</div>
-	</div>
-	-->
-	<div class="list-group-item">
-		<p style="margin: 0;"><a href="<%= user_path(user.id) %>" style="font-size: 18px;"><%= user.name %></a></p>
-	</div>
+
+	<% if @users.any? %>
+		<%= render partial: "users/followers_list", collection: @users, as: :user %>
 	<% end %>
-	<% end %>
+
 </div>

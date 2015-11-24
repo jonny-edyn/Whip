@@ -1,12 +1,25 @@
 <div id="vote-modal-comment">
-	<p class="text-center text-din max_300 margin_0_auto" style="padding-bottom: 20px;">We will send your vote to your MP and include your opinion on the bill</p>
+
+	<p class="text-center text-din max_300 margin_0_auto" style="padding-bottom: 20px;">
+		We will send your vote to your MP and include your opinion on the bill
+	</p>
+
+
+
 	<div class="form-group">
-		<%= text_area_tag "content", "", placeholder: "YOUR COMMENT - WHY SHOULD OTHERS VOTE FOR?", class: 'form-control vote_comment_placeholder', style: "background-color:#eaeaea;" %>
-		<%# submit_tag "Add Comment", id: "add_comment" %>
+		<%= text_area_tag "content", "",
+			placeholder: "YOUR COMMENT - WHY SHOULD OTHERS VOTE FOR?",
+			class: 'form-control vote_comment_placeholder',
+			style: "background-color:#eaeaea;" 
+		%>
 	</div>
+
+
+
 	<div class="form-group text-center ">
-		<%= button_tag(type: 'submit',  id: "add_comment", class: "btn btn-xs btn-outline btn-square btn-c9-border") do %>
+		<%= button_tag(type: 'submit', id: "add_comment", class: "btn btn-xs btn-outline btn-square btn-c9-border") do %>
 			<i class="fa fa-caret-right"></i>
 		<% end %>
 	</div>
+
 </div>

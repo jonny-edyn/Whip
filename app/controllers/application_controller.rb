@@ -18,12 +18,6 @@ class ApplicationController < ActionController::Base
   end
 
 
-  def check_if_admin
-    unless user_signed_in? && current_user.admin
-      redirect_to root_path
-    end
-  end
-
   def check_if_signed_in
     unless user_signed_in?
       redirect_to root_path
@@ -45,7 +39,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_user_mp
-    @mp = Mp.find_mp_for(current_user).decorate
+    @mp = Mp.find_mp_for(current_user)
   end
 
 end

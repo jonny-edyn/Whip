@@ -1,0 +1,17 @@
+<li class="list-group-item">
+	<div class="row">
+
+		<div class="col-sm-2">
+			<%# set the line-height to the height of the div to vertically center, in this case, the height of the button %>
+			<a href="<%= user_path(user.id) %>" style="font-size: 18px;line-height:34px;"><%= user.name %></a>
+		</div>
+
+		<div class="col-sm-4">
+			<%= form_for(current_user.relationships.find_by(followed_id: user),
+				 html: { method: :delete }) do |f| %>
+			  <%= f.submit "Unfollow", class: "btn btn-outline btn-square text-din-medium" %>
+			<% end %>
+		</div>
+		
+	</div>
+</li>

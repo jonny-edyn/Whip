@@ -1,5 +1,4 @@
 class SessionsController < Devise::SessionsController
-	skip_before_filter :check_if_admin
 
 	# POST /resource/sign_in
   def create
@@ -11,10 +10,11 @@ class SessionsController < Devise::SessionsController
   end
 
   def failure
-  	flash[:notice] = 'Invalid Email Address Or Password!'
-	respond_to do |format|
-        format.html { redirect_to root_path }
-      end
+    flash[:notice] = 'Invalid Email Address Or Password!'
+    session[:failed_reg] = true
+    respond_to do |format|
+      format.html { redirect_to root_path }
+    end
   end
 
 	

@@ -1,31 +1,27 @@
 <%= content_tag "div", id: "json_data_bills_index", data: {failed: @failed } do %>
 <% end %>
 
-
-<div class="container max_924">
-
-	<%= render :partial => 'shared/top_banner_with_names', :locals => { :user => current_user } %>
-	<h2 class="text-din">TOP TRENDING BILLS</h2>
-	<div class="row trending_bills" >
-	<% if @trending.any? %>
-	 <%= render partial: "bills/trending_bill", collection: @trending, as: :bill %>
-	<% end %>
-	</div><!-- .row .trending_bills -->
+<%= render :partial => 'shared/top_banner_with_names', :locals => { :user => current_user } %>
+<h2 class="text-din">TOP TRENDING BILLS</h2>
+<div class="row trending_bills" >
+<% if @trending.any? %>
+	<%= render partial: "bills/trending_bill", collection: @trending, as: :bill %>
+<% end %>
+</div><!-- .row .trending_bills -->
 
 
-	<h2 class="text-din padding_bottom_20">OTHER BILLS</h2>
-	<div style="padding-bottom:60px;" id="common_bill_container">
-		<div class="row" id="hold_common_bills">
-			<%= render @commons %>
-		</div>
-
-		<div class="row">
-			<div class="col-md-12" style="padding-top: 15px;">
-			<% if @commons.any? %>
-				<%= paginate @commons %>
-			<% end %>
-			</div>
-		</div>
+<h2 class="text-din padding_bottom_20">OTHER BILLS</h2>
+<div style="padding-bottom:60px;" id="common_bill_container">
+	<div class="row" id="hold_common_bills">
+		<%= render @commons %>
 	</div>
 
-</div> <!--.container max_924 -->
+	<div>
+		<div class="col-md-12" style="padding-top: 15px;">
+		<% if @commons.any? %>
+			<%= paginate @commons %>
+		<% end %>
+		</div>
+	</div>
+</div>
+

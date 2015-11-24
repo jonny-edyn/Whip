@@ -1,0 +1,144 @@
+<%= content_tag "div", id: "json_data_admins_bills", data: {s3_fields: @s3_direct_post_primary.fields, s3_url: @s3_direct_post_primary.url } do %>
+<% end %>
+
+<div class="container">
+<div class="row admin-content">
+	<div class="col-sm-9" role="main">
+		<div class="row">
+			<div class="col-md-12">
+				<h2 class="text-din text-uppercase" style="margin-top: 0;">BILLS</h2>
+				<%= form_for @setting do |f| %>
+					<%= f.label :yes, "Automatic Trending?" %>
+					<%= f.check_box :yes %>
+					<%# f.submit "Save Trending Setting", class:'btn btn-default' %>
+					<%= button_tag(type: 'submit', class: "btn btn-sm btn-default") do %>
+						<i class="fa fa-floppy-o"></i> Save Trending Setting
+					<% end %>
+				<% end %>
+
+				<h2 class="text-din text-uppercase">
+				  Download Bills
+				</h2>
+				<div class="form-group">
+					 <%# link_to "Excel", bills_path(format: "xls") %>
+					 <%= link_to(bills_path(format: "xls"), class: 'btn btn-sm btn-default') do %>
+					 	<i class="fa fa-file-excel-o"></i> Excel
+					 <% end %>
+				</div>
+
+				<h2 class="text-din text-uppercase">Mass Import Bills</h2>
+				<%= form_tag mass_bill_import_admin_bills_path, multipart: true do %>
+					<div class="form-group">
+						<%= file_field_tag :file %>
+					</div>
+					<%# submit_tag "Import Bills", class:'btn btn-default' %>
+					<div class="form-group">
+						<%= button_tag(type: 'submit', class: "btn btn-sm btn-default") do %>
+							<i class="glyphicon glyphicon-import"></i> Import Bills
+						<% end %>
+					</div>
+				<% end %>
+			</div>
+			<div class="col-md-12">
+				<h2 class="text-din text-uppercase">Manage Bills</h2>
+			</div>
+			<div class="col-md-12">
+				 
+				<div class="row">
+				 	<div class="col-md-12" style="padding-top: 15px;">
+				 		<% if @bills.any? %>
+							<%= paginate @bills %>
+						<% end %>
+				 	</div>
+				</div>
+
+
+				<% if @bills.any? %>
+				<ul class="list-group">
+					<%= render partial: "bill", collection: @bills, as: :bill %>				
+				</ul>
+				<% end %>
+			</div>
+			<div class="col-md-12">
+				<h2 class="text-din text-uppercase">Add Bill</h2>
+			</div>
+			<div class="col-md-12">
+				<a href="javascript:;" class="show_add btn btn-xs btn-default"><span class="glyphicon glyphicon-plus"></span> ADD</a>
+				<div style="display:none;" class="add_form">
+				<%= form_for @bill do |f| %>
+				    <div class="form-group">
+						<%= f.label :simple_name, "Common Name" %>
+						<%= f.text_field :simple_name, required: true, class:'form-control' %>
+					</div>
+					<div class="form-group">
+						<%= f.label :official_name, "Official Name" %>
+						<%= f.text_field :official_name, required: true, class:'form-control' %>
+					</div>
+					<div class="form-group">
+						<%= f.label :support, "Arguments For" %>
+						<%= f.bootsy_area :support, editor_options: { color: false,image: false, font_styles: false }, style:'width:100%;height:150px;' %>
+					</div>
+					<div class="form-group">
+						<%= f.label :opposition, "Arguments Against" %>
+						<%= f.bootsy_area :opposition, editor_options: { color: false,image: false, font_styles: false }, style:'width:100%;height:150px;' %>
+					</div>
+					<div class="form-group">
+						<%= f.label :meaning, "Meaning" %>
+						<%= f.bootsy_area :meaning, editor_options: { color: false,image: false, font_styles: false }, style:'width:100%;height:150px;' %>
+					</div>
+					<div class="form-group">
+						<%= f.label :impact, "Who Does It Impact?" %>
+						<%= f.bootsy_area :impact, editor_options: { color: false,image: false, font_styles: false }, style:'width:100%;height:150px;' %>
+						<%= f.label :cost, "Potential Costs" %>
+					</div>
+					<div class="form-group">
+						<%= f.bootsy_area :cost, editor_options: { color: false,image: false, font_styles: false }, style:'width:100%;height:150px;' %>
+					</div>
+					<div class="form-group">
+						<%= f.label :trending, "Add To Top Trending?" %>
+						<%= f.check_box :trending %>
+					</div>
+					<div class="form-group">
+						<%= f.label :progress, "Current Bill Progress" %>
+						<%= f.select :progress, options_for_select([ ["HOUSE OF COMMONS","house_of_commons"], ["HOUSE OF LORDS","house_of_lords"],["ROYAL ASSENT","royal_assent"] ]),{}, {:class=>'form-control'} %>
+					</div>
+					<div class="form-group">
+						<%= f.label :image_url %>
+						<%= f.file_field :image_url %>
+					</div>
+					<div class="form-group">
+						<%= f.label :social_image_url %>
+						<%= f.file_field :social_image_url %>
+					</div>
+					<div class="form-group">
+						<%# f.submit "Add New Bill", :class => 'btn btn-lg btn-primary' %>
+						<%= button_tag(type: 'submit', class: "btn btn-lg btn-default") do %>
+							<i class="glyphicon glyphicon-plus"></i> Add New Bill
+						<% end %>
+					</div>
+				<% end %>
+				</div>
+			</div>
+		</div>
+	</div>
+	<%= render "admin/sidebar" %>
+</div>
+</div><!-- .container -->
+
+<div class="modal fade modal-alert modal-danger" id="warningModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1><i class="fa fa-exclamation-triangle"></i></h1>
+			</div>
+			<div class="modal-body">
+				<p>Are you sure you want to delete this bill? This cannot be undone.</p>
+			</div>
+			<div class="modal-footer">
+				<input type="hidden" id="warning-rel" value="" />
+				<a href="javascript:;" id="do-warning" class="btn btn-flat btn-danger"><i class="fa fa-check"></i> Yes</a>
+				<a href="javascript:;" class="btn btn-flat btn-outline" data-dismiss="modal"><i class="fa fa-times"></i> No</a>
+			</div>
+		</div>
+	</div>
+</div>

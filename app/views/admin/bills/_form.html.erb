@@ -1,0 +1,55 @@
+<%= form_for bill do |f| %>
+	<div class="form-group">
+		<%= f.label :simple_name, "Common Name" %>
+		<%= f.text_field :simple_name, class:'form-control' %>
+	</div>
+	<div class="form-group">
+		<%= f.label :official_name, "Official Name" %>
+		<%= f.text_field :official_name, class:'form-control' %>
+	</div>
+	<div class="form-group">
+		<%= f.label :support, "Arguments For" %>
+		<%= f.bootsy_area :support, editor_options: { color: false,image: false, font_styles: false }, style:'width:100%;height:150px;' %>
+	</div>
+	<div class="form-group">
+		<%= f.label :opposition, "Arguments Against" %>
+		<%= f.bootsy_area :opposition, editor_options: { color: false,image: false, font_styles: false }, style:'width:100%;height:150px;' %>
+	</div>
+	<div class="form-group">
+		<%= f.label :meaning, "Meaning" %>
+		<%= f.bootsy_area :meaning, editor_options: { color: false,image: false, font_styles: false }, style:'width:100%;height:150px;' %>
+	</div>
+	<div class="form-group">
+		<%= f.label :impact, "Who Does It Impact?" %>
+		<%= f.bootsy_area :impact, editor_options: { color: false,image: false, font_styles: false }, style:'width:100%;height:150px;' %>
+	</div>
+	<div class="form-group">
+		<%= f.label :cost, "Potential Costs" %>
+		<%= f.bootsy_area :cost, editor_options: { color: false,image: false, font_styles: false }, style:'width:100%;height:150px;' %>
+	</div>
+	<div class="form-group">
+		<%= f.label :trending, "Add To Top Trending?" %>
+		<%= f.check_box :trending %>
+	</div>
+	<div class="form-group">
+		<%= f.label :progress, "Current Bill Progress" %>
+		<%= f.select :progress, options_for_select([ ["HOUSE OF COMMONS","house_of_commons"], ["HOUSE OF LORDS","house_of_lords"],["ROYAL ASSENT","royal_assent"] ], bill.progress),{}, {:class=>'form-control'} %>
+	</div>
+	<div class="form-group">
+		<% if bill.image_url != "" %>
+			<p>Current Bill Image</p>
+			<img src="<%= bill.image_url %>">
+		<% end %>
+		<%= f.label :image_url %>
+		<%= f.file_field :image_url %>
+	</div>
+	<div class="form-group">
+		<% if bill.social_image_url != "" %>
+			<p>Current Social Image</p>
+			<img src="<%= bill.social_image_url %>">
+		<% end %>
+		<%= f.label :social_image_url %>
+		<%= f.file_field :social_image_url %>
+	</div>
+	<%= f.submit "Save Bill Edits", :class => 'btn btn-lg btn-default', id: "edit_bill_btn" %>
+<% end %>

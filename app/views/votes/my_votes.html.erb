@@ -1,10 +1,7 @@
-<div class="container max_924">
-	<%= render :partial => 'shared/top_banner_with_names', :locals => { :user => current_user } %>
+<%= render :partial => 'shared/top_banner_with_names', :locals => { :user => current_user } %>
 
-	<div class="row trending_bills" >
-		<% if @votes.any? %>
-		 	<%= render partial: "users/vote_list", collection: @votes, as: :vote %>
-		<% end %>
-	</div>
-
-</div><!-- .container max 924 -->
+<div class="rending_bills" >
+	<% if @votes.any? %>
+	 	<%= render partial: "users/vote_list", collection: @votes, as: :vote %>
+	<% end %>
+</div>

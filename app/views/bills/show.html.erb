@@ -1,100 +1,57 @@
-<div class="container max_924">
+<%= render :partial => 'shared/top_banner_with_names', :locals => { :user => current_user } %>
 
-	<%= render :partial => 'shared/top_banner_with_names', :locals => { :user => current_user } %>
+<div class="panel panel-bills padding_bottom_60 padding_top_20 panel-body" style="margin: 30px;">
 
-	<div class="padding_bottom_60 padding_top_20">
-		<div class="panel panel-bills">
-			<div class="panel-body" style="margin: 30px;">
+	
+	<div class="text-center" style="">
 
-				
-				<div class="row main_bill_information" >
-					<div class="col-md-12 text-center" style="">
+		<!-- Bills Image Section -->
+		<div class="main-bill" style='background-image: linear-gradient(rgba(12, 11, 11, 0.24), rgba(12, 11, 11, 0.24)),
+																url("<%= @bill.set_background_img %>");'>
+			<div><%= @bill.set_trending_bill_link(current_user) %></div>
+		</div>
 
-						<!-- Bills Image Section -->
-						<div class="row" style="padding-bottom:20px;">
-						 	<div class="col-md-12 main-bill" style="background-image: url('<%= @bill.set_background_img %>');padding-left: 0px; padding-right: 0px;">
-								<div class="bill-overlay">
-									<table style="width:100%;height:100%;">
-									  <tr>
-										 <td style="text-align: center; vertical-align: middle;">
-											<%= @bill.set_trending_bill_link(current_user) %>
-										 </td>
-									  </tr>
-									</table>
-								</div>
-							</div>
-						</div>
-
-						<!-- Arguments For And Against Section -->
-						<div class="row" style="">
-							<div class="col-sm-6 main-bill-arguments  arguments-left">
-								<div class="panel panel-bills-slider" style="box-shadow:none;margin-bottom:0;">
-									<div class="panel-body">
-										<h2 class="header-argument-for text-center">ARGUMENTS FOR</h2>
-										<div class="text-left" style="font-size:14px;">
-											<%= @bill.support.html_safe %>
-										</div>
-									</div>
-								</div><!--.panel -->
-							</div>
-							<div class="col-sm-6 main-bill-arguments arguments-right">
-								<div class="panel panel-bills-slider" style="box-shadow:none;margin-bottom:0;">
-									<div class="panel-body">
-										<h2 class="header-argument-against text-center">ARGUMENTS AGAINST</h2>
-										<div class="text-left" style="font-size:14px;">
-											<%= @bill.opposition.html_safe %>
-										</div>
-									</div>
-								</div><!--.panel -->
-							</div>
-						</div>
-						<div class="row " style="margin-bottom: 20px;">
-							<div class="col-sm-6 main-bill-votes arguments-left">
-								<div class="vote-button-yes vote-button-yes-main">
-									<%= render :partial => 'bills/vote_yes_form', :locals => { :bill => @bill.id, :vote => @vote } %>
-								</div>
-							</div>
-							<div class="col-sm-6 main-bill-votes arguments-right">
-								<div class="vote-button-no vote-button-no-main">
-									<%= render :partial => 'bills/vote_no_form', :locals => { :bill => @bill.id, :vote => @vote } %>
-								</div>
-							</div>
-						</div>
-
-
-					</div>
-				</div>
-
-				<!-- TOP Comments Section -->
-				<div class="row">
-					<div class="col-sm-6" style="">
-						<%= render partial: "votes/comment", collection: @votes_top_3_yes, as: :vote %>
-					</div>
-					<div class="col-sm-6">
-						<%= render partial: "votes/comment", collection: @votes_top_3_no, as: :vote %>
-					</div>
-				</div>
-				
-
-
-				<!-- Nav tabs -->
-			  <ul class="nav nav-tabs" role="tablist" style="margin: 30px 0px;">
-			    <li role="presentation" class="active"><a href="#bill_info" aria-controls="bill_info" role="tab" data-toggle="tab" style="padding: 10px 40px;">BILL INFO</a></li>
-			    <li role="presentation"><a href="#community" aria-controls="community" role="tab" data-toggle="tab" style="padding: 10px 40px;">OPINIONS</a></li>
-			  </ul>
-
-			  <!-- Tab panes -->
-			  <div class="tab-content">
-			    <div role="tabpanel" class="tab-pane active" id="bill_info">
-			    	<%= render partial: "bills/bill_info", :locals => { :bill => @bill, :media_links => @bill.media_links, :issues => @bill.issues } %>
-			    </div>
-			    <div role="tabpanel" class="tab-pane" id="community">
-			    	<%= render partial: "bills/bill_comments", :locals => { :user_vote => @vote, :votes => @votes } %>
-			    </div>
-			  </div>
-				
-
+		<!-- Arguments For And Against Section -->
+		<div class="row">
+			<div class="col-sm-6">
+				<h2 class="header-argument-for">ARGUMENTS FOR</h2>
+				<p><%= @bill.support.html_safe %></p>
+			</div>
+			<div class="col-sm-6">
+				<h2 class="header-argument-against">ARGUMENTS AGAINST</h2>
+				<p><%= @bill.opposition.html_safe %></p>
 			</div>
 		</div>
+		
+		<div class="row">
+			<div class="col-sm-6 main-bill-votes">
+					<%= @bill.set_yes_vote_btn(current_user) %>
+			</div>
+			<div class="col-sm-6 main-bill-votes">
+					<%= @bill.set_no_vote_btn(current_user) %>
+			</div>
+		</div>
+
 	</div>
-</div><!--.container -->
+	
+
+
+	<!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist" style="margin: 30px 0px;">
+    <li role="presentation" class="active"><a href="#bill_info" aria-controls="bill_info" role="tab" data-toggle="tab" style="padding: 10px 40px;">BILL INFO</a></li>
+    <li role="presentation"><a href="#community" aria-controls="community" role="tab" data-toggle="tab" style="padding: 10px 40px;">OPINIONS</a></li>
+  </ul>
+  
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="bill_info">
+    	<%= render partial: "bills/bill_info", :locals => { :bill => @bill, :media_links => @bill.media_links, :issues => @bill.issues } %>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="community">
+    	<%= render partial: "bills/bill_comments", :locals => { :user_vote => @vote, :votes => @votes } %>
+    </div>
+  </div>
+	
+
+</div>

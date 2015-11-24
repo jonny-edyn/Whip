@@ -1,17 +1,28 @@
 <div id="add-email" class="container max_924" style="padding-bottom:60px;padding-top:30px;">
+
+
   <h4 class="text-din text-left" style="font-size: 24px; margin-bottom: 0px;">ADD EMAIL</h4>
   <p style="font-size: 12px; color: rgb(148, 148, 148);">PLEASE ADD YOUR EMAIL ADDRESS TO CONTINUE</p>
+
+
   <% flash.each do |message_type, message| %>
-      <div class="alert alert-<%= message_type %>" style="color:red;"><%= message %></div>
-    <% end %>
+    <div class="alert alert-<%= message_type %>" style="color:red;"><%= message %></div>
+  <% end %>
+
+
   <%= form_for(current_user, :as => 'user', :url => finish_signup_path(current_user), :html => { role: 'form'}) do |f| %>
+
     <div class="form-group">
       <div class="controls">
         <%= f.text_field :email, :autofocus => true, :value => '', class: 'form-control input-lg' %>
       </div>
     </div>
+
     <div class="actions" style="text-align:right;">
       <%= f.submit 'Continue', :class => 'btn btn-default btn-square' %>
     </div>
+    
   <% end %>
+
+
 </div>

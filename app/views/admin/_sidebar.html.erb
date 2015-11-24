@@ -1,0 +1,14 @@
+<div class="col-sm-3" id="admin-sidebar" role="complementary">
+	<nav class="bs-docs-sidebar hidden-print affix-top">
+		<ul class="nav bs-docs-sidenav">
+			<li><a href="<%= admin_users_path %>">USERS</a></li>
+			<li><a href="<%= admin_bills_path %>">BILLS</a></li>
+			<li><a href="<%= admin_parties_path %>">PARTIES</a></li>
+			<li><a href="<%= admin_issues_path %>">ISSUES</a></li>
+			<li><a href="<%= admin_constituencies_path %>">CONSTITUENCIES</a></li>
+			<li><a href="<%= admin_mps_path %>">MPS</a></li>
+			<li><a href="<%= voting_results_admin_bills_path %>">GET VOTING RESULTS</a></li>
+			<li><%= link_to("LOGOUT", destroy_user_session_path, :method => :delete)  %></li>
+		</ul>
+	</nav>
+</div>

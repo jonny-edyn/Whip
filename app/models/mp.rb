@@ -34,7 +34,7 @@ class Mp < ActiveRecord::Base
 
 	def self.find_mp_for(user)
 		if user
-			Mp.joins(:users).includes(:constituency).where('users.id' => user.id).first
+			Mp.joins(:users).includes(:constituency).where('users.id' => user.id).first.decorate
 		else
 			nil
 		end

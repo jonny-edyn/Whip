@@ -9,7 +9,13 @@ class Bill < ActiveRecord::Base
 
 	has_many :media_links
 
+
+
 	scope :with_matching_issue, ->(name = params[:issue_name]) {joins(:issues).merge(Issue.equal_to(name))}
+
+
+	validates :simple_name, presence: true
+
 
 	def self.import(file)
 	  spreadsheet = open_spreadsheet(file)

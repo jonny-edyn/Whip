@@ -1,0 +1,147 @@
+<div class="modal fade modal-whip-white" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top:-45px;padding-right:15px;opacity:1;"><span aria-hidden="true"><img src="<%= image_path('btn-modal-close.png') %>" /></span></button>
+        <h4 class="modal-title" id="myModalLabel">SIGN IN</h4>
+      </div>
+      <div class="modal-body">
+        <div id="flash_messages">
+        </div>
+        <%= render 'devise/sessions/new_for_modal' %>
+        <br>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade modal-whip-white" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="signUpModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+      	<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top:-45px;padding-right:15px;opacity:1;"><span aria-hidden="true"><img src="<%= image_path('btn-modal-close.png') %>" /></span></button>
+        <h4 class="modal-title" id="myModalLabel">JOIN NOW</h4>
+      </div>
+      <div class="modal-body">
+        <div id="flash_messages_3">
+        </div>
+        <%= render 'devise/registrations/new_for_modal' %>
+        <br>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade modal-whip-white" id="emailsignUpModal" tabindex="-1" role="dialog" aria-labelledby="emailsignUpModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+      	<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top:-45px;padding-right:15px;opacity:1;"><span aria-hidden="true"><img src="<%= image_path('btn-modal-close.png') %>" /></span></button>
+        <h4 class="modal-title" id="myModalLabel">JOIN NOW</h4>
+      </div>
+      <div class="modal-body">
+        <div id="flash_messages_3">
+        </div>
+        <%= render 'devise/registrations/email_new_for_modal' %>
+        <br>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade modal-whip-comment" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="commentModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top:-45px;padding-right:15px;opacity:1;"><span aria-hidden="true"><img src="<%= image_path('btn-modal-close.png') %>" /></span></button>
+        <div style="vertical-align:top; padding-bottom: 24px;">
+			<img src="<%= image_path('icon-vote.png') %>" style="width:60px;height:60px;" class="image" title="votes" />
+		</div>
+        <h4 class="modal-title text-din" id="myModalLabel">THANKS FOR VOTING</h4>
+        <h4 class="modal-title text-din" id="myModalLabelVote"></h4>
+        <div class="find_bill_id" style="display:none;"></div>
+      </div>
+      <div class="modal-body">
+        <div id="flash_messages_3">
+        </div>
+        <%= render 'votes/add_comment_for_modal' %>
+        <%= render 'votes/post_vote_on_social_for_modal' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade modal-whip-comment" id="noFBModal" tabindex="-1" role="dialog" aria-labelledby="noFBModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top:-45px;padding-right:15px;opacity:1;"><span aria-hidden="true"><img src="<%= image_path('btn-modal-close.png') %>" /></span></button>
+        <h4 class="modal-title text-din" id="myModalLabel">YOUR MP DOESN'T HAVE FACEBOOK.</h4>
+      </div>
+      <div class="modal-body">
+        <div id="flash_messages_3">
+        </div>
+      	<%= render 'layouts/missing_fb_form' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade modal-whip-comment" id="noTWModal" tabindex="-1" role="dialog" aria-labelledby="noTWModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top:-45px;padding-right:15px;opacity:1;"><span aria-hidden="true"><img src="<%= image_path('btn-modal-close.png') %>" /></span></button>
+        <h4 class="modal-title text-din" id="myModalLabel">YOUR MP DOESN'T HAVE TWITTER.</h4>
+      </div>
+      <div class="modal-body">
+        <div id="flash_messages_3">
+        </div>
+      	<%= render 'layouts/missing_tw_form' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade modal-whip-comment" id="mpEmailModal" tabindex="-1" role="dialog" aria-labelledby="mpEmailModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-top:-45px;padding-right:15px;opacity:1;"><span aria-hidden="true"><img src="<%= image_path('btn-modal-close.png') %>" /></span></button>
+        <h4 class="modal-title text-din" id="myModalLabel">EMAIL YOUR MP.</h4>
+      </div>
+      <div class="modal-body">
+        <div id="flash_messages_3">
+        </div>
+      	<%= render 'layouts/email_mp_form' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade modal-whip-comment" id="acceptTermsModal" tabindex="-1" role="dialog" aria-labelledby="acceptTermsModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+      </div>
+      <div class="modal-body">
+      	<%= render 'layouts/accept_terms_form' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade modal-alert modal-danger" id="warningModal" tabindex="-1" role="dialog" aria-labelledby="warningModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title text-din" id=""><i class="fa fa-exclamation-triangle fa-3x"></i></h4>
+      </div>
+      <div class="modal-body">
+      </div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-danger" data-dismiss="modal">OK</button>
+			</div>
+    </div>
+  </div>
+</div>

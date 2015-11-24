@@ -1,14 +1,11 @@
 Rails.application.routes.draw do
-
-  #match '*foo' => redirect('/'), via: [:get, :patch, :post]
   
 
   authenticated :user do
    root :to => 'bills#index', :as => :authenticated_root
   end
-
-
   devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks', :sessions => "sessions", :registrations => "registrations" }
+
 
   get '/following' => 'users#following'
   get '/followers' => 'users#followers'
@@ -27,48 +24,53 @@ Rails.application.routes.draw do
       post :add_user_to_party
     end
   end
-
   match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
+
 
   match '/issues/:issue_name/' => 'issues#find_issues', via: [:get], :as => :issue_name
   resources :issues
 
+
   resources :parties
 
-  resources :bills do
-    member do
-      post :add_issues
+
+  resources :bills
+
+  namespace :admin do
+    resources :bills, only: [:index, :edit, :update, :destroy] do
+      collection do
+        get :voting_results
+        post :get_voting_results
+        post :mass_bill_import
+      end
+      member do
+        post :add_issues
+      end
     end
-    collection do
+    resources :constituencies, only: [:index] do
+      collection do
+        post :populate_constituencies
+      end
     end
+    resources :issues, only: [:index, :create, :update, :destroy]
+    resources :mps, only: [:index] do
+      collection do
+        post :populate_mps
+        post :mass_mp_import
+      end
+    end
+    resources :parties, only: [:index, :create, :update, :destroy]
+    resources :users, only: [:index]
   end
 
-  resources :mps
-
-  resources :admins do
-    collection do
-      get :users
-      get :bills
-      get :parties
-      get :issues
-      get :constituencies
-      post :populate_constituencies
-      get :mps
-      post :populate_mps
-      post :mass_mp_import
-      get :voting_results
-      post :get_voting_results
-      post :mass_bill_import
-      get :hidden_admin_login
-    end
-  end
 
   resources :settings, only: [:update]
 
+
   resources :relationships, only: [:create, :destroy]
 
-  get '/my_votes' => 'votes#my_votes'
 
+  get '/my_votes' => 'votes#my_votes'
   resources :votes do
     member do
       patch :upvote
@@ -76,11 +78,14 @@ Rails.application.routes.draw do
     end
   end
 
+
   resources :media_links
+
 
   match '/404', to: 'errors#file_not_found', via: :all
   match '/422', to: 'errors#unprocessable', via: :all
   match '/500', to: 'errors#internal_server_error', via: :all
+
 
   get '/privacy' => 'static_pages#privacy'
   get '/terms' => 'static_pages#terms'
@@ -90,66 +95,8 @@ Rails.application.routes.draw do
   get '/guidelines' => 'static_pages#guidelines'
   get '/feedback' => 'static_pages#feedback'
 
+
   post 'mailing_list_request' => 'static_pages#mailing_list_request'
-  #get '/prelaunch_landing_page' => 'static_pages#prelaunch_landing_page'
-  #get '/old_home' => 'static_pages#old_home'
-  #get '/home' => 'static_pages#home'
-  #get '/postlaunch_landing_page' => 'static_pages#postlaunch_landing_page'
-  #root  'static_pages#prelaunch_landing_page'
   root 'bills#index'
 
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
-
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
-
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
-
-  # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
-
-  # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
-
-  # Example resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Example resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Example resource route with more complex sub-resources:
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', on: :collection
-  #     end
-  #   end
-
-  # Example resource route with concerns:
-  #   concern :toggleable do
-  #     post 'toggle'
-  #   end
-  #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
-
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
 end

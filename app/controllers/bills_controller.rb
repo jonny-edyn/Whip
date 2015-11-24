@@ -1,49 +1,6 @@
 class BillsController < ApplicationController
 	after_action :update_impressions_count, only: [:show]
 
-	def create
-
-		@bill = Bill.new(bill_params)
-		
-    
-	  	if @bill.save
-	      	redirect_to :back
-	  	else
-	    	render 'static_pages/home'
-	  	end
-
-	end
-
-	def update
-
-		@bill = Bill.find(params[:id])
-
-		if @bill.update_attributes(bill_params)
-			respond_to do |format|
-				format.html { redirect_to :back }
-				format.js { render :partial => 'edit_bill_success.js.erb' }
-			end
-		else
-			respond_to do |format|
-				format.html { redirect_to :root_path }
-				format.js { render :partial => 'edit_bill_fail.js.erb' }
-			end
-		end
-		
-	end
-
-	def destroy
-		
-		@bill = Bill.find(params[:id])
-
-		if @bill.destroy!
-			redirect_to :back
-		else
-			redirect_to :root_path
-		end
-
-	end
-
 	def index
 
 		@failed = true if session[:failed_reg]
@@ -80,29 +37,9 @@ class BillsController < ApplicationController
 
 	end
 
-	def add_issues
-		@bill = Bill.find(params[:id])
-		@bill.issues.clear
-		@issues = params[:bill_issues]
 
-		if @issues.any?
-			@issues.each do |issue|
-				@bill.bill_issues.create!(issue_id: issue)
-			end
-		end
-
-		respond_to do |format|
-	      format.html { redirect_to :back }
-	      format.js
-	    end
-
-	end
 
 	private
-
-	  def bill_params
-	  	params.require(:bill).permit(:progress, :meaning, :impact, :cost, :trending, :simple_name, :official_name, :support, :opposition, :image_url, :social_image_url)
-	  end
 
 	  def update_impressions_count
 	  	impressionist(@bill)

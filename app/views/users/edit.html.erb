@@ -1,39 +1,34 @@
 <%= content_tag "div", id: "json_data_users_edit", data: {mp: @mp, s3_fields: @s3_direct_user_image.fields, s3_url: @s3_direct_user_image.url} do %>
 <% end %>
 
-<div class="container max_924">
 
 
-<div class="row" id="meet_div" style="display:none;">
-  <div class="col-md-12">
-    <h2 class="text-din text-center" style="padding-bottom: 40px;">MEET</h2>
-  </div>
-</div>
+  
+<h2 class="text-din text-center" style="padding-bottom: 40px;">MEET</h2>
+ 
+
 
 <div class="row" style="padding-bottom: 40px;border-bottom: 1px solid #c0c0c0;margin-bottom: 20px;">
+
+
   <div class="col-md-6">
     <div class="row">
-        <div class="col-sm-4">
+
+      <div class="col-sm-4">
+        <div style="height:141px;width:141px;background-color:transparent;">
           <% if @user.picture_url %>
-            <div style="height:141px;width:141px;background-color:transparent;">
-              <img src="<%= @user.picture_url %>" style="height:141px;width:141px;background-color:transparent;border-radius:50%;">
-              <%= form_for @user, url: update_info_users_path, html: {class: "user_image_form"} do |f| %>
-                <%= f.file_field :picture_url, style: "position: absolute;bottom: 0px;opacity: 0;z-index: 99999;cursor: pointer;width: 141px;" %>
-                <%= f.submit "Change Image", style: "", class: "change_image_btn" %>
-              <% end %>
-            </div>
-          <% else %>
-            <div style="height:141px;width:141px;background-color:transparent;border-radius:50%;">
-              <%= form_for @user, url: update_info_users_path, html: {class: "user_image_form"} do |f| %>
-                <%= f.file_field :picture_url, style: "position: absolute;bottom: 0px;opacity: 0;z-index: 99999;cursor: pointer;width: 141px;" %>
-                <%= f.submit "Change Image", style: "", class: "change_image_btn" %>
-              <% end %>
-            </div>
+            <img src="<%= @user.picture_url %>" style="height:141px;width:141px;background-color:transparent;border-radius:50%;">
+          <% end %>
+          <%= form_for @user, url: update_info_users_path, html: {class: "user_image_form"} do |f| %>
+            <%= f.file_field :picture_url, style: "position: absolute;bottom: 0px;opacity: 0;z-index: 99999;cursor: pointer;width: 141px;" %>
+            <%= f.submit "Change Image", style: "", class: "change_image_btn" %>
           <% end %>
         </div>
+      </div>
       <div class="col-sm-8" class="text-din">
-        <div class="text-uppercase" style="font-family: dinRegular;font-size: 14px;">HI <%= @user.name %></div>
+        <h3 class="text-uppercase" style="font-family: dinRegular;font-size: 14px;">HI <%= @user.name %></h3>
         <p style="font-family: dinRegular;font-size: 12px;color: #999;">Please enter your postcode.  We need this to find your local MP.</p>
+
         <%= form_tag add_post_code_join_constituency_user_path(current_user), id: "add_postcode", remote: true do %>
           <div class="form-group" style="">
              <%= text_field_tag :postcode, @user.post_code, class: 'form-control text-center', style: "width: 30%;display: inline;min-width: 90px;" %>
@@ -46,9 +41,13 @@
              </div>
 
         <% end %>
+
       </div>
     </div>
   </div>
+
+
+
 
   <div id="mp_side">
     <% if @mp %>
@@ -56,118 +55,103 @@
     <% end %>
   </div>
 
- 
+
+
+
 </div>
+
+
+
 
 <div id="party_list">
   <%= render partial: "users/party_list_partial", :locals => { :parties => @parties } %>
 </div>
 
 
-<div class="row"  style="padding-bottom:20px; border-bottom: 1px solid #c0c0c0;">
-  <div class="col-md-12">
-    <div style="display:none;">
-        <h4 class="text-din text-center" style="padding-bottom: 40px;">EDIT ACCOUNT INFORMATION</h4>
-          <%= form_for(@user, :url => { :action => "update_info" } ) do |f| %>
-            <div class="field form-group">
-              <%= f.label :password, "Password" %>
-              <%= f.password_field :password, :autocomplete => "off", :class => 'form-control'  %>
-            </div>
-            <div class="field form-group">
-              <%= f.label :password_confirmation %>
-              <%= f.password_field :password_confirmation, :class => 'form-control' %>
-            </div>
-            <div class="field form-group">
-              <%= f.label :allow_profile_view %>
-              <%= f.check_box :allow_profile_view %>
-            </div>
-            <div class="action_container form-group">
-                 <%# f.submit %>
-          <%= button_tag(type: 'submit', class: "btn btn-outline btn-square") do %>
-                  <i class="fa fa-user"></i> Update User
-              <% end %>
-            </div>
-          <% end %>
+
+
+
+<div style="padding-bottom:20px; border-bottom: 1px solid #c0c0c0;">
+  <%= form_for(@user, :url => { :action => "update_info" } ) do |f| %>
+
+
+    <h4 class="text-din">ABOUT YOU</h4>
+    <div class="field form-group">
+      <%= f.text_area :bio, :class => 'form-control text-din', placeholder: "ENTER YOUR BIO"  %>
     </div>
-    
 
-      <%= form_for(@user, :url => { :action => "update_info" } ) do |f| %>
-        <div class="field form-group">
-          <h4 class="text-din">ABOUT YOU</h4>
-        </div>
-        <div class="field form-group">
-          <%= f.text_area :bio, :class => 'form-control text-din', placeholder: "ENTER YOUR BIO"  %>
-        </div>
-        <div class="field form-group">
-          <h4 class="text-din">SOCIAL MEDIA LINKS</h4>
-        </div>
-        <div class="row">
-        	<div class="col-sm-6">
-				<div class="field form-group">
-				  <%= f.text_field :fb_link, :class => 'form-control text-din', placeholder: "FACEBOOK"  %>
-				</div>
-			</div>
-			<div class="col-sm-6">
-				<div class="field form-group">
-				  <%= f.text_field :tw_link, :class => 'form-control text-din', placeholder: "TWITTER"  %>
-				</div>
-			</div>
-		</div>
-        <div class="row">
-        	<div class="col-sm-6">
-				<div class="field form-group">
-				  <%= f.text_field :insta_link, :class => 'form-control text-din', placeholder: "INSTAGRAM"  %>
-				</div>
-			</div>
-			<div class="col-sm-6">
-				<div class="field form-group">
-				  <%= f.text_field :youtube_link, :class => 'form-control text-din', placeholder: "YOUTUBE"  %>
-				</div>
-			</div>
-		</div>
-        <div class="field form-group">
-          <%= f.text_field :web_link, :class => 'form-control text-din', placeholder: "WEBSITE"  %>
-        </div>
-        <div class="field form-group">
-          <h4 class="text-din">ADDRESS</h4>
-        </div>
-        <div class="field form-group">
-          <%= f.text_field :street_addr, :class => 'form-control text-din', placeholder: "STREET"  %>
-        </div>
-        <div class="row">
-        	<div class="col-sm-6">
-				<div class="field form-group">
-				  <%= f.text_field :city, :class => 'form-control text-din', placeholder: "CITY"  %>
-				</div>
-			</div>
-			<div class="col-sm-6">
-				<div class="field form-group">
-				  <%= f.text_field :post_code, :class => 'form-control text-din', placeholder: "POSTCODE", disabled: true  %>
-				</div>
-			</div>
-		</div>
-        <div class="field form-group">
-          <%= f.text_field :phone, :class => 'form-control text-din', placeholder: "PHONE (OPTIONAL)"  %>
-        </div>
-        <h4 class="text-din">PUBLIC PROFILE</h4>
-        <%= f.label :allow_profile_view, "MAKE YOUR PROFILE PRIVATE?", style: "font-family: dinRegular;font-size: 12px;font-weight: normal;" %>
-        <%= f.check_box :allow_profile_view %>
-        <p style="font-family: dinRegular;font-size: 12px;font-weight: normal;">LINK TO YOUR PROFILE: www.whip.org.uk/users/<%= current_user.id %></p>
-        <div class="action_container clearfix">
-        	<div class="pull-right">
-          <%# f.submit %>
-			<%= button_tag(type: 'submit', class: "btn btn-default btn-square", style: "font-size: 12px;") do %>
-           		SAVE DETAILS
-         	<% end %>
-         	</div>
-        </div>
-      <% end %>
 
-  </div>
+    <h4 class="text-din">SOCIAL MEDIA LINKS</h4>
+    <div class="row">
+    	<div class="col-sm-6">
+  			<div class="field form-group">
+  			  <%= f.text_field :fb_link, :class => 'form-control text-din', placeholder: "FACEBOOK"  %>
+  			</div>
+  		</div>
+  		<div class="col-sm-6">
+  			<div class="field form-group">
+  			  <%= f.text_field :tw_link, :class => 'form-control text-din', placeholder: "TWITTER"  %>
+  			</div>
+  		</div>
+  	</div>
+    <div class="row">
+    	<div class="col-sm-6">
+  			<div class="field form-group">
+  			  <%= f.text_field :insta_link, :class => 'form-control text-din', placeholder: "INSTAGRAM"  %>
+  			</div>
+  		</div>
+  		<div class="col-sm-6">
+  			<div class="field form-group">
+  			  <%= f.text_field :youtube_link, :class => 'form-control text-din', placeholder: "YOUTUBE"  %>
+  			</div>
+  		</div>
+  	</div>
+    <div class="field form-group">
+      <%= f.text_field :web_link, :class => 'form-control text-din', placeholder: "WEBSITE"  %>
+    </div>
+
+
+    <h4 class="text-din">ADDRESS</h4>
+    <div class="field form-group">
+      <%= f.text_field :street_addr, :class => 'form-control text-din', placeholder: "STREET"  %>
+    </div>
+    <div class="row">
+    	<div class="col-sm-6">
+  			<div class="field form-group">
+  			  <%= f.text_field :city, :class => 'form-control text-din', placeholder: "CITY"  %>
+  			</div>
+  		</div>
+  		<div class="col-sm-6">
+  			<div class="field form-group">
+  			  <%= f.text_field :post_code, :class => 'form-control text-din', placeholder: "POSTCODE", disabled: true  %>
+  			</div>
+  		</div>
+  	</div>
+    <div class="field form-group">
+      <%= f.text_field :phone, :class => 'form-control text-din', placeholder: "PHONE (OPTIONAL)"  %>
+    </div>
+
+
+    <h4 class="text-din">PUBLIC PROFILE</h4>
+    <%= f.label :allow_profile_view, "MAKE YOUR PROFILE PRIVATE?", style: "font-family: dinRegular;font-size: 12px;font-weight: normal;" %>
+    <%= f.check_box :allow_profile_view %>
+    <p style="font-family: dinRegular;font-size: 12px;font-weight: normal;">LINK TO YOUR PROFILE: www.whip.org.uk/users/<%= current_user.id %></p>
+
+
+    <div class="action_container clearfix">
+    	<div class="pull-right">
+  			<%= button_tag(type: 'submit', class: "btn btn-default btn-square", style: "font-size: 12px;") do %>
+             		SAVE DETAILS
+       	<% end %>
+     	</div>
+    </div>
+
+
+  <% end %>
 </div>
 
-<div class="form-group" style="padding-top:20px;text-align: right;padding-bottom: 60px;">
+
+
+<div style="padding-top:20px;text-align: right;padding-bottom: 60px;">
   <%= button_to 'CANCEL MY ACCOUNT'.html_safe, registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'btn btn-default btn-square', style: 'font-size: 12px;' %>
 </div>
-
-</div><!--.container max_924-->
